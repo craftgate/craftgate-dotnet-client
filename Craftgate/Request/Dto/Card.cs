@@ -10,7 +10,7 @@ namespace Craftgate.Request.Dto
         public string CardAlias { get; set; }
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }
-        
+
         public bool? StoreCardAfterSuccessPayment { get; set; } = false;
     }
 }

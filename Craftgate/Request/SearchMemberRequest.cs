@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Craftgate.Model;
-using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {

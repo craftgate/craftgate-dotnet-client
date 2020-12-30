@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
+using Enumerable = System.Linq.Enumerable;
 
 namespace Craftgate.Request.Common
 {
@@ -11,7 +12,7 @@ namespace Craftgate.Request.Common
     {
         public static string BuildQueryParam(object request)
         {
-            var fields = request.GetType().GetRuntimeProperties().ToList();
+            var fields = Enumerable.ToList(request.GetType().GetRuntimeProperties());
             var query = new StringBuilder(fields.Any() ? "?" : "");
             foreach (var field in fields)
             {
@@ -32,9 +33,9 @@ namespace Craftgate.Request.Common
                 case DateTime time:
                     return FormatDateValue(time);
                 case ISet<long> enumerable:
-                    return FormatListValue<long>(enumerable);
+                    return FormatListValue(enumerable);
                 case ISet<string> enumerable:
-                    return FormatListValue<string>(enumerable);
+                    return FormatListValue(enumerable);
                 case Enum @enum:
                     return GetEnumMemberAttrValue(@enum);
                 default:

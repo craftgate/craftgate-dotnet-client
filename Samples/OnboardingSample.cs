@@ -118,7 +118,7 @@ namespace Samples
         [Test]
         public void Create_Buyer()
         {
-            var request = new CreateMemberRequest()
+            var request = new CreateMemberRequest
             {
                 IsBuyer = true,
                 IsSubMerchant = false,
@@ -151,7 +151,7 @@ namespace Samples
         public void Update_Buyer()
         {
             long memberId = 1;
-            var request = new UpdateMemberRequest()
+            var request = new UpdateMemberRequest
             {
                 IsBuyer = true,
                 IsSubMerchant = false,
@@ -162,7 +162,7 @@ namespace Samples
                 MemberType = MemberType.Personal,
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
                 ContactName = "Haluk",
-                ContactSurname = "Demir",
+                ContactSurname = "Demir"
             };
 
             var response = _craftgateClient.Onboarding().UpdateMember(memberId, request);
@@ -176,14 +176,14 @@ namespace Samples
         [Test]
         public void Retrieve_Buyer()
         {
-            long memberId = 1L;
+            var memberId = 1L;
 
             var response = _craftgateClient.Onboarding().RetrieveMember(memberId);
             Assert.AreEqual(memberId, response.Id);
             Assert.AreEqual(true, response.IsBuyer);
             Assert.AreEqual(false, response.IsSubMerchant);
         }
-        
+
         [Test]
         public void Create_Sub_Merchant_Buyer()
         {
@@ -223,11 +223,11 @@ namespace Samples
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);
         }
-        
+
         [Test]
         public void Retrieve_Sub_Merchant_Buyer()
         {
-            long memberId = 1L;
+            var memberId = 1L;
 
             var response = _craftgateClient.Onboarding().RetrieveMember(memberId);
             Assert.AreEqual(memberId, response.Id);

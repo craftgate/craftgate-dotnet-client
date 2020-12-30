@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using Craftgate.Request;
+using Craftgate.Request.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using NUnit.Framework;
-using Craftgate.Request;
-using Craftgate.Request.Common;
 
 namespace Test
 {
@@ -21,7 +21,7 @@ namespace Test
         {
             //given
             var expectedSignature = "P4PZMZJ/7TDDG/ZHVOWJVCUYC7WD9VAGHRNT7DQOCZM=";
-            var request = new CreateMemberRequest()
+            var request = new CreateMemberRequest
             {
                 MemberExternalId = "ext-1511",
                 Email = "haluk.demir@example.com",

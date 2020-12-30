@@ -330,7 +330,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.AreEqual(paymentId, response.Id);
         }
-        
+
         [Test]
         public void Refund_Payment()
         {
@@ -396,11 +396,11 @@ namespace Samples
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
         }
-        
+
         [Test]
         public void Store_Card()
         {
-            var request = new StoreCardRequest()
+            var request = new StoreCardRequest
             {
                 CardAlias = "My YKB Card",
                 CardUserKey = "c115ecdf-0afc-4d83-8a1b-719c2af19cbd",
