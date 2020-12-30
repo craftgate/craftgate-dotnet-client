@@ -1,3 +1,4 @@
+using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
 using NUnit.Framework;
@@ -6,15 +7,15 @@ namespace Samples
 {
     public class InstallmentSample
     {
-        private readonly Craftgate.Craftgate _craftgate =
-            new Craftgate.Craftgate("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+        private readonly CraftgateClient _craftgateClient =
+            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Retrieve_Bin()
         {
             var binNumber = "525864";
 
-            var response = _craftgate.Installment().RetrieveBinNumber(binNumber);
+            var response = _craftgateClient.Installment().RetrieveBinNumber(binNumber);
             Assert.NotNull(response);
             Assert.AreEqual(response.BinNumber, binNumber);
             Assert.AreEqual(response.CardType, CardType.CreditCard);
@@ -35,7 +36,7 @@ namespace Samples
                 Currency = Currency.Try
             };
 
-            var response = _craftgate.Installment().SearchInstallments(request);
+            var response = _craftgateClient.Installment().SearchInstallments(request);
             Assert.True(response.Items.Count > 0);
         }
     }

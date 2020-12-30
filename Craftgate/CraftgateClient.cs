@@ -7,19 +7,19 @@ using Newtonsoft.Json.Serialization;
 
 namespace Craftgate
 {
-    public class Craftgate
+    public class CraftgateClient
     {
         private const string BaseUrl = "https://api.craftgate.io";
         private readonly InstallmentAdapter _installmentAdapter;
         private readonly OnboardingAdapter _onboardingAdapter;
         private readonly PaymentAdapter _paymentAdapter;
 
-        public Craftgate(string apiKey, string secretKey)
+        public CraftgateClient(string apiKey, string secretKey)
             : this(apiKey, secretKey, BaseUrl)
         {
         }
 
-        public Craftgate(string apiKey, string secretKey, string baseUrl)
+        public CraftgateClient(string apiKey, string secretKey, string baseUrl)
         {
             ConfigureJsonConverter();
 

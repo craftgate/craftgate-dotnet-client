@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
 using NUnit.Framework;
@@ -8,8 +9,8 @@ namespace Samples
 {
     public class OnboardingSample
     {
-        private readonly Craftgate.Craftgate _craftgate =
-            new Craftgate.Craftgate("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+        private readonly CraftgateClient _craftgateClient =
+            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Create_Sub_Merchant()
@@ -34,7 +35,7 @@ namespace Samples
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
-            var response = _craftgate.Onboarding().CreateMember(request);
+            var response = _craftgateClient.Onboarding().CreateMember(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.ContactName, response.ContactName);
             Assert.AreEqual(request.ContactSurname, response.ContactSurname);
@@ -75,7 +76,7 @@ namespace Samples
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
-            var response = _craftgate.Onboarding().UpdateMember(memberId, request);
+            var response = _craftgateClient.Onboarding().UpdateMember(memberId, request);
             Assert.AreEqual(memberId, response.Id);
             Assert.AreEqual(request.ContactName, response.ContactName);
             Assert.AreEqual(request.ContactSurname, response.ContactSurname);
@@ -95,7 +96,7 @@ namespace Samples
         {
             var memberId = 1L;
 
-            var response = _craftgate.Onboarding().RetrieveMember(memberId);
+            var response = _craftgateClient.Onboarding().RetrieveMember(memberId);
             Assert.AreEqual(memberId, response.Id);
             Assert.AreEqual(false, response.IsBuyer);
             Assert.AreEqual(true, response.IsSubMerchant);
@@ -110,7 +111,7 @@ namespace Samples
                 MemberIds = new HashSet<long> {1, 2}
             };
 
-            var response = _craftgate.Onboarding().SearchMembers(request);
+            var response = _craftgateClient.Onboarding().SearchMembers(request);
             Assert.True(response.Items.Count > 0);
         }
 
@@ -132,7 +133,7 @@ namespace Samples
                 ContactSurname = "Demir"
             };
 
-            var response = _craftgate.Onboarding().CreateMember(request);
+            var response = _craftgateClient.Onboarding().CreateMember(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.IsBuyer, response.IsBuyer);
             Assert.AreEqual(request.IsSubMerchant, response.IsSubMerchant);
@@ -164,7 +165,7 @@ namespace Samples
                 ContactSurname = "Demir",
             };
 
-            var response = _craftgate.Onboarding().UpdateMember(memberId, request);
+            var response = _craftgateClient.Onboarding().UpdateMember(memberId, request);
             Assert.AreEqual(memberId, response.Id);
             Assert.AreEqual(request.Email, response.Email);
             Assert.AreEqual(request.PhoneNumber, response.PhoneNumber);
@@ -177,7 +178,7 @@ namespace Samples
         {
             long memberId = 1L;
 
-            var response = _craftgate.Onboarding().RetrieveMember(memberId);
+            var response = _craftgateClient.Onboarding().RetrieveMember(memberId);
             Assert.AreEqual(memberId, response.Id);
             Assert.AreEqual(true, response.IsBuyer);
             Assert.AreEqual(false, response.IsSubMerchant);
@@ -206,7 +207,7 @@ namespace Samples
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
-            var response = _craftgate.Onboarding().CreateMember(request);
+            var response = _craftgateClient.Onboarding().CreateMember(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.ContactName, response.ContactName);
             Assert.AreEqual(request.ContactSurname, response.ContactSurname);
@@ -228,7 +229,7 @@ namespace Samples
         {
             long memberId = 1L;
 
-            var response = _craftgate.Onboarding().RetrieveMember(memberId);
+            var response = _craftgateClient.Onboarding().RetrieveMember(memberId);
             Assert.AreEqual(memberId, response.Id);
             Assert.AreEqual(true, response.IsBuyer);
             Assert.AreEqual(true, response.IsSubMerchant);

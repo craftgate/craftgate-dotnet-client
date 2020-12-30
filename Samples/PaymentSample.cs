@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
 using Craftgate.Request.Dto;
@@ -9,8 +10,8 @@ namespace Samples
 {
     public class PaymentSample
     {
-        private readonly Craftgate.Craftgate _craftgate =
-            new Craftgate.Craftgate("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+        private readonly CraftgateClient _craftgateClient =
+            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Create_Payment()
@@ -55,7 +56,7 @@ namespace Samples
                 }
             };
 
-            var response = _craftgate.Payment().CreatePayment(request);
+            var response = _craftgateClient.Payment().CreatePayment(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
@@ -127,7 +128,7 @@ namespace Samples
                 }
             };
 
-            var response = _craftgate.Payment().CreatePayment(request);
+            var response = _craftgateClient.Payment().CreatePayment(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
@@ -201,7 +202,7 @@ namespace Samples
                 }
             };
 
-            var response = _craftgate.Payment().CreatePayment(request);
+            var response = _craftgateClient.Payment().CreatePayment(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
@@ -274,7 +275,7 @@ namespace Samples
                 }
             };
 
-            var response = _craftgate.Payment().Init3DSPayment(request);
+            var response = _craftgateClient.Payment().Init3DSPayment(request);
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
@@ -288,7 +289,7 @@ namespace Samples
                 PaymentId = 1
             };
 
-            var response = _craftgate.Payment().Complete3DSPayment(request);
+            var response = _craftgateClient.Payment().Complete3DSPayment(request);
             Assert.NotNull(response);
         }
 
@@ -301,7 +302,7 @@ namespace Samples
                 IsTransactional = true
             };
 
-            var response = _craftgate.Payment().ApprovePaymentTransactions(request);
+            var response = _craftgateClient.Payment().ApprovePaymentTransactions(request);
             Assert.NotNull(response);
             Assert.AreEqual(2, response.Size);
         }
@@ -315,7 +316,7 @@ namespace Samples
                 IsTransactional = true
             };
 
-            var response = _craftgate.Payment().DisapprovePaymentTransactions(request);
+            var response = _craftgateClient.Payment().DisapprovePaymentTransactions(request);
             Assert.NotNull(response);
             Assert.AreEqual(2, response.Size);
         }
@@ -325,7 +326,7 @@ namespace Samples
         {
             long paymentId = 1;
 
-            var response = _craftgate.Payment().RetrievePayment(paymentId);
+            var response = _craftgateClient.Payment().RetrievePayment(paymentId);
             Assert.NotNull(response);
             Assert.AreEqual(paymentId, response.Id);
         }
@@ -339,7 +340,7 @@ namespace Samples
                 RefundDestinationType = RefundDestinationType.Card
             };
 
-            var response = _craftgate.Payment().RefundPayment(request);
+            var response = _craftgateClient.Payment().RefundPayment(request);
             Assert.NotNull(response);
             Assert.AreEqual(request.PaymentId, response.PaymentId);
             Assert.AreEqual(RefundStatus.Success, response.Status);
@@ -350,7 +351,7 @@ namespace Samples
         {
             long paymentRefundId = 1;
 
-            var response = _craftgate.Payment().RetrievePaymentRefund(paymentRefundId);
+            var response = _craftgateClient.Payment().RetrievePaymentRefund(paymentRefundId);
             Assert.NotNull(response);
             Assert.AreEqual(paymentRefundId, response.Id);
         }
@@ -366,7 +367,7 @@ namespace Samples
                 RefundDestinationType = RefundDestinationType.Card
             };
 
-            var response = _craftgate.Payment().RefundPaymentTransaction(request);
+            var response = _craftgateClient.Payment().RefundPaymentTransaction(request);
             Assert.NotNull(response);
             Assert.AreEqual(request.PaymentTransactionId, response.PaymentTransactionId);
             Assert.AreEqual(RefundStatus.Success, response.Status);
@@ -377,7 +378,7 @@ namespace Samples
         {
             long paymentTransactionRefundId = 1;
 
-            var response = _craftgate.Payment().RetrievePaymentTransactionRefund(paymentTransactionRefundId);
+            var response = _craftgateClient.Payment().RetrievePaymentTransactionRefund(paymentTransactionRefundId);
             Assert.NotNull(response);
             Assert.AreEqual(paymentTransactionRefundId, response.Id);
             Assert.AreEqual(RefundStatus.Success, response.Status);
@@ -391,7 +392,7 @@ namespace Samples
                 PaymentId = 1
             };
 
-            var response = _craftgate.Payment().SearchPaymentTransactionRefunds(request);
+            var response = _craftgateClient.Payment().SearchPaymentTransactionRefunds(request);
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
         }
@@ -409,7 +410,7 @@ namespace Samples
                 ExpireMonth = "07"
             };
 
-            var response = _craftgate.Payment().StoreCard(request);
+            var response = _craftgateClient.Payment().StoreCard(request);
             Assert.NotNull(response);
             Assert.AreEqual(request.CardAlias, response.CardAlias);
             Assert.AreEqual(request.CardUserKey, response.CardUserKey);
@@ -430,7 +431,7 @@ namespace Samples
                 CardType = CardType.CreditCard
             };
 
-            var response = _craftgate.Payment().SearchStoredCards(request);
+            var response = _craftgateClient.Payment().SearchStoredCards(request);
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
         }
@@ -443,7 +444,7 @@ namespace Samples
                 CardToken = "fac377f2-ab15-4696-88d2-5e71b27ec378",
                 CardUserKey = "11a078c4-3c32-4796-90b1-51ee5517a212"
             };
-            Assert.DoesNotThrow(() => _craftgate.Payment().DeleteStoredCard(request));
+            Assert.DoesNotThrow(() => _craftgateClient.Payment().DeleteStoredCard(request));
         }
     }
 }
