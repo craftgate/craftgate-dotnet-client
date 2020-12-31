@@ -1,0 +1,27 @@
+name: Craftgate Dotnet Client Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  pack:
+    name: Release Library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup dotnet 3.1
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+          source-url: https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.NUGET_SECRET_KEY}}
+
+      - name: Pack Client Library
+        run: dotnet pack -c Release -p:PackageVersion=${GITHUB_REF#refs/*/} ./Craftgate
+
+      - name: Push Packed Client Library to Nuget
+        run:  dotnet nuget push ./Craftgate/bin/Release/*.nupkg -k ${{secrets.NUGET_SECRET_KEY}}
+       

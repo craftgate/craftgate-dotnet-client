@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+
+        <IsPackable>false</IsPackable>
+
+        <TargetFrameworks>netcoreapp2.0;netcoreapp1.0;netcoreapp1.1;netcoreapp3.1</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.2" />
+        <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
+        <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+        <PackageReference Include="NUnit" Version="3.10.1" />
+        <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Craftgate\Craftgate.csproj" />
+    </ItemGroup>
+
+</Project>
