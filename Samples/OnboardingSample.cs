@@ -13,7 +13,7 @@ namespace Samples
             new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
-        public void Create_Sub_Merchant()
+        public void Create_Sub_Merchant_Member()
         {
             var request = new CreateMemberRequest
             {
@@ -53,7 +53,7 @@ namespace Samples
         }
 
         [Test]
-        public void Update_Sub_Merchant()
+        public void Update_Sub_Merchant_Member()
         {
             var memberId = 1L;
 
@@ -92,7 +92,7 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Sub_Merchant()
+        public void Retrieve_Sub_Merchant_Member()
         {
             var memberId = 1L;
 
@@ -103,7 +103,7 @@ namespace Samples
         }
 
         [Test]
-        public void Search_Sub_Merchants()
+        public void Search_Members()
         {
             var request = new SearchMemberRequest
             {
@@ -116,7 +116,7 @@ namespace Samples
         }
 
         [Test]
-        public void Create_Buyer()
+        public void Create_Buyer_Member()
         {
             var request = new CreateMemberRequest
             {
@@ -148,7 +148,7 @@ namespace Samples
         }
 
         [Test]
-        public void Update_Buyer()
+        public void Update_Buyer_Member()
         {
             long memberId = 1;
             var request = new UpdateMemberRequest
@@ -174,7 +174,7 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Buyer()
+        public void Retrieve_Buyer_Member()
         {
             var memberId = 1L;
 
@@ -185,7 +185,7 @@ namespace Samples
         }
 
         [Test]
-        public void Create_Sub_Merchant_Buyer()
+        public void Create_Sub_Merchant_Buyer_Member()
         {
             var request = new CreateMemberRequest
             {
@@ -225,7 +225,7 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Sub_Merchant_Buyer()
+        public void Retrieve_Sub_Merchant_Buyer_Member()
         {
             var memberId = 1L;
 

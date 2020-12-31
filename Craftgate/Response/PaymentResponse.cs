@@ -7,7 +7,6 @@ namespace Craftgate.Response
 {
     public class PaymentResponse
     {
-        public IList<PaymentTransaction> PaymentTransactions;
         public long? Id { get; set; }
         public DateTime? CreatedDate { get; set; }
         public decimal? Price { get; set; }
@@ -33,5 +32,6 @@ namespace Craftgate.Response
         public CardAssociation? CardAssociation { get; set; }
         public string CardBrand { get; set; }
         public MerchantPos Pos { get; set; }
+        public IList<PaymentTransaction> PaymentTransactions;
     }
 }
