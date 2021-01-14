@@ -27,24 +27,6 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public PaymentTransactionApprovalListResponse ApprovePaymentTransactions(
-            ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
-        {
-            var path = "/payment/v1/payment-transactions/approve";
-            return RestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(approvePaymentTransactionsRequest, path, RequestOptions),
-                approvePaymentTransactionsRequest);
-        }
-
-        public PaymentTransactionApprovalListResponse DisapprovePaymentTransactions(
-            DisapprovePaymentTransactionsRequest disapprovePaymentTransactionsRequest)
-        {
-            var path = "/payment/v1/payment-transactions/disapprove";
-            return RestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(disapprovePaymentTransactionsRequest, path, RequestOptions),
-                disapprovePaymentTransactionsRequest);
-        }
-
         public InitThreeDSPaymentResponse Init3DSPayment(InitThreeDSPaymentRequest initThreeDSPaymentRequest)
         {
             var path = "/payment/v1/card-payments/3ds-init";
@@ -57,6 +39,40 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/card-payments/3ds-complete";
             return RestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(completeThreeDsPaymentRequest, path, RequestOptions),
+                completeThreeDsPaymentRequest);
+        }
+
+        public DepositPaymentResponse CreateDepositPayment(CreateDepositPaymentRequest createDepositPaymentRequest)
+        {
+            var path = "/payment/v1/deposits";
+            return RestClient.Post<DepositPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(createDepositPaymentRequest, path, RequestOptions),
+                createDepositPaymentRequest);
+        }
+
+        public DepositPaymentRefundResponse RefundDepositPayment(long paymentId,
+            RefundDepositPaymentRequest refundDepositPaymentRequest)
+        {
+            var path = "/payment/v1/deposits/" + paymentId + "/refunds";
+            return RestClient.Post<DepositPaymentRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundDepositPaymentRequest, path, RequestOptions),
+                refundDepositPaymentRequest);
+        }
+
+        public InitThreeDSPaymentResponse Init3DSDepositPayment(InitThreeDSPaymentRequest initThreeDSPaymentRequest)
+        {
+            var path = "/payment/v1/deposits/3ds-init";
+            return RestClient.Post<InitThreeDSPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initThreeDSPaymentRequest, path, RequestOptions),
+                initThreeDSPaymentRequest);
+        }
+
+        public DepositPaymentResponse Complete3DSDepositPayment(
+            CompleteThreeDSPaymentRequest completeThreeDsPaymentRequest)
+        {
+            var path = "/payment/v1/deposits/3ds-complete";
+            return RestClient.Post<DepositPaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(completeThreeDsPaymentRequest, path, RequestOptions),
                 completeThreeDsPaymentRequest);
         }
@@ -124,6 +140,24 @@ namespace Craftgate.Adapter
             var path = "/payment/v1/cards" + query;
 
             RestClient.Delete<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+        }
+
+        public PaymentTransactionApprovalListResponse ApprovePaymentTransactions(
+            ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
+        {
+            var path = "/payment/v1/payment-transactions/approve";
+            return RestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(approvePaymentTransactionsRequest, path, RequestOptions),
+                approvePaymentTransactionsRequest);
+        }
+
+        public PaymentTransactionApprovalListResponse DisapprovePaymentTransactions(
+            DisapprovePaymentTransactionsRequest disapprovePaymentTransactionsRequest)
+        {
+            var path = "/payment/v1/payment-transactions/disapprove";
+            return RestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(disapprovePaymentTransactionsRequest, path, RequestOptions),
+                disapprovePaymentTransactionsRequest);
         }
     }
 }

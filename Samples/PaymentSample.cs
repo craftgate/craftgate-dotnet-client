@@ -294,31 +294,91 @@ namespace Samples
         }
 
         [Test]
-        public void Approve_Payment_Transactions()
+        public void Create_Deposit_Payment()
         {
-            var request = new ApprovePaymentTransactionsRequest
+            var request = new CreateDepositPaymentRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
-                IsTransactional = true
+                Price = new decimal(100.0),
+                BuyerMemberId = 1,
+                Currency = Currency.Try,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Card = new Card
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "5258640000000001",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000"
+                }
             };
 
-            var response = _craftgateClient.Payment().ApprovePaymentTransactions(request);
-            Assert.NotNull(response);
-            Assert.AreEqual(2, response.Size);
+            var response = _craftgateClient.Payment().CreateDepositPayment(request);
+            Assert.NotNull(response.Id);
+            Assert.AreEqual(request.Price, response.Price);
+            Assert.AreEqual(request.BuyerMemberId, response.BuyerMemberId);
+            Assert.AreEqual(PaymentStatus.Success, response.PaymentStatus);
+            Assert.AreEqual(PaymentType.DepositPayment, response.PaymentType);
+            Assert.Null(response.CardUserKey);
+            Assert.Null(response.CardToken);
         }
 
         [Test]
-        public void Disapprove_Payment_Transactions()
+        public void Refund_Deposit_Payment()
         {
-            var request = new DisapprovePaymentTransactionsRequest
+            long paymentId = 1;
+            var request = new RefundDepositPaymentRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
-                IsTransactional = true
+                Price = new decimal(50.0),
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5"
             };
 
-            var response = _craftgateClient.Payment().DisapprovePaymentTransactions(request);
+            var response = _craftgateClient.Payment().RefundDepositPayment(paymentId, request);
             Assert.NotNull(response);
-            Assert.AreEqual(2, response.Size);
+            Assert.AreEqual(paymentId, response.PaymentId);
+            Assert.AreEqual(RefundStatus.Success, response.Status);
+            Assert.AreEqual(new decimal(50.0), response.RefundPrice);
+        }
+
+        [Test]
+        public void Init_3DS_Deposit_Payment()
+        {
+            var request = new InitThreeDSPaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.Try,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
+                Card = new Card
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "5258640000000001",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000"
+                }
+            };
+
+            var response = _craftgateClient.Payment().Init3DSDepositPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.HtmlContent);
+            Assert.NotNull(response.GetDecodedHtmlContent());
+        }
+
+        [Test]
+        public void Complete_3DS_Deposit_Payment()
+        {
+            var request = new CompleteThreeDSPaymentRequest
+            {
+                PaymentId = 1
+            };
+
+            var response = _craftgateClient.Payment().Complete3DSDepositPayment(request);
+            Assert.NotNull(response);
+            Assert.Equals(new decimal(100), response.Price);
+            Assert.Equals(PaymentStatus.Success, response.PaymentStatus);
+            Assert.Equals(PaymentType.DepositPayment, response.PaymentType);
         }
 
         [Test]
@@ -445,6 +505,34 @@ namespace Samples
                 CardUserKey = "11a078c4-3c32-4796-90b1-51ee5517a212"
             };
             Assert.DoesNotThrow(() => _craftgateClient.Payment().DeleteStoredCard(request));
+        }
+
+        [Test]
+        public void Approve_Payment_Transactions()
+        {
+            var request = new ApprovePaymentTransactionsRequest
+            {
+                PaymentTransactionIds = new HashSet<long> {1, 2},
+                IsTransactional = true
+            };
+
+            var response = _craftgateClient.Payment().ApprovePaymentTransactions(request);
+            Assert.NotNull(response);
+            Assert.AreEqual(2, response.Size);
+        }
+
+        [Test]
+        public void Disapprove_Payment_Transactions()
+        {
+            var request = new DisapprovePaymentTransactionsRequest
+            {
+                PaymentTransactionIds = new HashSet<long> {1, 2},
+                IsTransactional = true
+            };
+
+            var response = _craftgateClient.Payment().DisapprovePaymentTransactions(request);
+            Assert.NotNull(response);
+            Assert.AreEqual(2, response.Size);
         }
     }
 }
