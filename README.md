@@ -1,7 +1,7 @@
 # Craftgate Dotnet Client
 
 ![Craftgate Dotnet CI](https://github.com/craftgate/craftgate-dotnet-client/workflows/Craftgate%20Dotnet%20CI/badge.svg?branch=master)
-![Nuget](https://img.shields.io/nuget/v/Craftgate)
+[![NuGet](https://img.shields.io/nuget/v/Craftgate.svg)](https://www.nuget.org/packages/Craftgate/)
 
 This repo contains the Dotnet client for Craftgate API.
 
@@ -12,7 +12,7 @@ This repo contains the Dotnet client for Craftgate API.
 
 ## Installation
 ```bash
-
+Install-Package Craftgate -Version 0.0.1
 ```
 
 ## Usage
@@ -107,8 +107,9 @@ For all adapters in the `Craftgate`, their purposes, accessors, as well as direc
 | Adapter Name | Purpose | Accessor |
 |--------------|---------|----------|
 | `InstallmentAdapter` | Retrieving per-installment pricing information based on installment count or BIN number | `Installment()` |
-| `OnboardingAdapter` | Conducting CRUD operations on buyers and submerchants | `Onboarding()` |
+| `OnboardingAdapter` | Conducting CRUD operations on members like buyers and submerchants | `Onboarding()` |
 | `PaymentAdapter` | Conducting payments, retrieving payment information, managing stored cards | `Payment()` |
+| `WalletAdapter` | Wallet operations like send, receive remittance and search wallets or wallet transactions of member's   | `Wallet()` |
 
 ## License
 MIT
