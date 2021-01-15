@@ -60,12 +60,12 @@ namespace Craftgate.Adapter
                 refundDepositPaymentRequest);
         }
 
-        public InitThreeDSPaymentResponse Init3DSDepositPayment(InitThreeDSPaymentRequest initThreeDSPaymentRequest)
+        public InitThreeDSPaymentResponse Init3DSDepositPayment(CreateDepositPaymentRequest createDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits/3ds-init";
             return RestClient.Post<InitThreeDSPaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(initThreeDSPaymentRequest, path, RequestOptions),
-                initThreeDSPaymentRequest);
+                CreateHeaders(createDepositPaymentRequest, path, RequestOptions),
+                createDepositPaymentRequest);
         }
 
         public DepositPaymentResponse Complete3DSDepositPayment(

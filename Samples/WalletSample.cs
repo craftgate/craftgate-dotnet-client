@@ -13,7 +13,7 @@ namespace Samples
         [Test]
         public void Search_Wallets()
         {
-            var request = new SearchWalletRequest()
+            var request = new SearchWalletsRequest()
             {
                 MemberId = 1L
             };
@@ -26,11 +26,11 @@ namespace Samples
         public void Search_Wallet_Transactions()
         {
             long walletId = 1;
-            var request = new SearchWalletTransactionRequest
+            var request = new SearchWalletTransactionsRequest
             {
             };
 
-            var response = _craftgateClient.Wallet().SearchWalletsTransactions(walletId, request);
+            var response = _craftgateClient.Wallet().SearchWalletTransactions(walletId, request);
             Assert.True(response.Items.Count > 0);
         }
 

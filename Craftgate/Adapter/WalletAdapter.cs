@@ -11,18 +11,18 @@ namespace Craftgate.Adapter
         {
         }
 
-        public WalletListResponse SearchWallets(SearchWalletRequest searchWalletRequest)
+        public WalletListResponse SearchWallets(SearchWalletsRequest searchWalletsRequest)
         {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchWalletRequest);
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchWalletsRequest);
             var path = "/wallet/v1/wallets" + queryParam;
             return RestClient.Get<WalletListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public WalletTransactionListResponse SearchWalletsTransactions(long walletId,
-            SearchWalletTransactionRequest searchWalletTransactionRequest)
+        public WalletTransactionListResponse SearchWalletTransactions(long walletId,
+            SearchWalletTransactionsRequest searchWalletTransactionsRequest)
         {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchWalletTransactionRequest);
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchWalletTransactionsRequest);
             var path = "/wallet/v1/wallets/" + walletId + "/wallet-transactions" + queryParam;
             return RestClient.Get<WalletTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
