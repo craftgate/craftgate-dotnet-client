@@ -7,6 +7,7 @@ namespace Craftgate.Response
     {
         public long Id { get; set; }
         public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public decimal Amount { get; set; }
         public Currency Currency { get; set; }
         public long MemberId { get; set; }

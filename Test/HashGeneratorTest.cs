@@ -20,7 +20,7 @@ namespace Test
         public void Should_Generate_Hash()
         {
             //given
-            var expectedSignature = "L9YIHYVL5KER4SKPOSPWLIOEASVLHPN5VUTINP70FUG=";
+            var expectedSignature = "LXOBKNDEANGAXYOL63UZ/7P03KB0GUASPL7LXWVRJ4O=";
             var request = new CreateMemberRequest
             {
                 MemberExternalId = "ext-1511",

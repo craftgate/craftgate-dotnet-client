@@ -1,4 +1,4 @@
-# Craftgate Dotnet Client
+# Craftgate .NET Client
 
 ![Craftgate Dotnet CI](https://github.com/craftgate/craftgate-dotnet-client/workflows/Craftgate%20Dotnet%20CI/badge.svg?branch=master)
 [![NuGet](https://img.shields.io/nuget/v/Craftgate.svg)](https://www.nuget.org/packages/Craftgate/)
@@ -22,7 +22,7 @@ Once you've obtained your API credentials, you can start using Craftgate by inst
 
 ```dotnet
 
-Craftgate _craftgate = new Craftgate("<YOUR API KEY>", "<YOUR SECRET KEY>");
+CraftgateClient _craftgate = new CraftgateClient("<YOUR API KEY>", "<YOUR SECRET KEY>");
 ...
 
 ```
@@ -31,7 +31,7 @@ By default the Craftgate client connects to the production API servers at `https
 
 ```dotnet
 
-Craftgate _craftgate = new Craftgate("<YOUR API KEY>", "<YOUR SECRET KEY>", "https://sandbox-api.craftgate.io");
+CraftgateClient _craftgate = new CraftgateClient("<YOUR API KEY>", "<YOUR SECRET KEY>", "https://sandbox-api.craftgate.io");
 ...
 
 ```
@@ -58,7 +58,7 @@ var request = new CreatePaymentRequest
     Installment = 1,
     ConversationId = "foo-bar",
     Currency = CurrencyCode.Try,
-    PaymentGroup = PaymentGroup.Product,
+    PaymentGroup = PaymentGroup.ListingOrSubscription,
     Card = new CardDto
     {
         CardHolderName = "Ahmet Mehmet",
@@ -67,28 +67,24 @@ var request = new CreatePaymentRequest
         ExpireMonth = "11",
         Cvc = "123"
     },
-    Items = new List<CreatePaymentItemDto>
+    Items = new List<PaymentItem>
     {
-        new CreatePaymentItemDto
+        new PaymentItem
         {
             Name = "Item 1",
             Price = new decimal(30.0),
-            SubMerchantMemberId = 1,
-            SubMerchantMemberPrice = new decimal(27.0)
+            ExternalId = "externalId-1"
         },
-        new CreatePaymentItemDto
+        new PaymentItem
         {
             Name = "Item 2",
-            Price = new decimal(50.0),
-            SubMerchantMemberId = 1,
-            SubMerchantMemberPrice = new decimal(42.0)
+            Price = new decimal(50.0)
         },
-        new CreatePaymentItemDto
+        new PaymentItem
         {
-            Name = "Sanitizer",
+            Name = "Item 3",
             Price = new decimal(20.0),
-            SubMerchantMemberId = 1,
-            SubMerchantMemberPrice = new decimal(18.0)
+            ExternalId = "externalId-3"
         }
     }
 };

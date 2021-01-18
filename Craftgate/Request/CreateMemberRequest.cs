@@ -19,7 +19,7 @@ namespace Craftgate.Request
         public string Iban { get; set; }
         public SettlementEarningsDestination? SettlementEarningsDestination { get; set; }
 
-        public bool IsBuyer { get; set; }
-        public bool IsSubMerchant { get; set; }
+        public bool? IsBuyer { get; set; }
+        public bool? IsSubMerchant { get; set; }
     }
 }

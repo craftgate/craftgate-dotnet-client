@@ -6,7 +6,6 @@ namespace Craftgate.Response.Dto
     {
         public string BinNumber { get; set; }
         public string LastFourDigits { get; set; }
-        public string CardHolderName { get; set; }
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }
         public string CardAlias { get; set; }
