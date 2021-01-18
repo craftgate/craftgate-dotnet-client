@@ -105,7 +105,7 @@ namespace Samples
         [Test]
         public void Search_Members()
         {
-            var request = new SearchMemberRequest
+            var request = new SearchMembersRequest
             {
                 Name = "Zeytinyağı Üretim",
                 MemberIds = new HashSet<long> {1, 2}
@@ -120,14 +120,10 @@ namespace Samples
         {
             var request = new CreateMemberRequest
             {
-                IsBuyer = true,
-                IsSubMerchant = false,
                 MemberExternalId = Guid.NewGuid().ToString(),
                 Email = "haluk.demir@example.com",
                 PhoneNumber = "905551111111",
                 Name = "Haluk Demir",
-                IdentityNumber = "11111111110",
-                MemberType = MemberType.Personal,
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
                 ContactName = "Haluk",
                 ContactSurname = "Demir"
@@ -135,13 +131,11 @@ namespace Samples
 
             var response = _craftgateClient.Onboarding().CreateMember(request);
             Assert.NotNull(response.Id);
-            Assert.AreEqual(request.IsBuyer, response.IsBuyer);
-            Assert.AreEqual(request.IsSubMerchant, response.IsSubMerchant);
+            Assert.True(response.IsBuyer);
             Assert.AreEqual(request.MemberExternalId, response.MemberExternalId);
             Assert.AreEqual(request.Email, response.Email);
             Assert.AreEqual(request.PhoneNumber, response.PhoneNumber);
             Assert.AreEqual(request.Name, response.Name);
-            Assert.AreEqual(request.IdentityNumber, response.IdentityNumber);
             Assert.AreEqual(request.Address, response.Address);
             Assert.AreEqual(request.ContactName, response.ContactName);
             Assert.AreEqual(request.ContactSurname, response.ContactSurname);
@@ -153,19 +147,17 @@ namespace Samples
             long memberId = 1;
             var request = new UpdateMemberRequest
             {
-                IsBuyer = true,
-                IsSubMerchant = false,
                 Email = "haluk.demir@example.com",
                 PhoneNumber = "905551111111",
                 Name = "Haluk Demir",
                 IdentityNumber = "11111111110",
-                MemberType = MemberType.Personal,
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
                 ContactName = "Haluk",
                 ContactSurname = "Demir"
             };
 
             var response = _craftgateClient.Onboarding().UpdateMember(memberId, request);
+            Assert.True(response.IsBuyer);
             Assert.AreEqual(memberId, response.Id);
             Assert.AreEqual(request.Email, response.Email);
             Assert.AreEqual(request.PhoneNumber, response.PhoneNumber);

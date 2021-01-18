@@ -3,7 +3,7 @@ using Craftgate.Model;
 
 namespace Craftgate.Request
 {
-    public class SearchMemberRequest
+    public class SearchMembersRequest
     {
         public bool? IsBuyer { get; set; }
         public bool? IsSubMerchant { get; set; }

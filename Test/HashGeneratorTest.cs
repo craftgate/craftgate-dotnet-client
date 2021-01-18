@@ -20,7 +20,7 @@ namespace Test
         public void Should_Generate_Hash()
         {
             //given
-            var expectedSignature = "P4PZMZJ/7TDDG/ZHVOWJVCUYC7WD9VAGHRNT7DQOCZM=";
+            var expectedSignature = "L9YIHYVL5KER4SKPOSPWLIOEASVLHPN5VUTINP70FUG=";
             var request = new CreateMemberRequest
             {
                 MemberExternalId = "ext-1511",
@@ -33,7 +33,7 @@ namespace Test
             //when
             var signature = HashGenerator.GenerateHash("https://api.craftgate.io", "api-key", "secret-key",
                 "rand-2010",
-                request, "/onboarding/v1/buyers");
+                request, "/onboarding/v1/members");
 
             //then
             Assert.AreEqual(expectedSignature, signature);
@@ -43,12 +43,12 @@ namespace Test
         public void Should_Generate_Hash_When_Request_Body_Null()
         {
             //given
-            var expectedSignature = "MT34NSUQRSFJMEJCFJ90LHTTJR1BIAGCBGATPYACJMS=";
+            var expectedSignature = "/IOWMS1TQ329EEC4XODWQAHYC4EHZKV8BDFYNHRL/BQ=";
 
             //when
             var signature = HashGenerator.GenerateHash("https://api.craftgate.io", "api-key", "secret-key",
                 "rand-2010",
-                null, "/onboarding/v1/buyers");
+                null, "/onboarding/v1/members");
 
             //then
             Assert.AreEqual(expectedSignature, signature);
