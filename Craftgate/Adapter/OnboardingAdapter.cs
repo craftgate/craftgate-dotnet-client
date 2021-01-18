@@ -34,9 +34,9 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public MemberListResponse SearchMembers(SearchMemberRequest searchMemberRequest)
+        public MemberListResponse SearchMembers(SearchMembersRequest searchMembersRequest)
         {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMemberRequest);
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMembersRequest);
             var path = "/onboarding/v1/members" + queryParam;
             return RestClient.Get<MemberListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
