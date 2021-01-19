@@ -162,7 +162,7 @@ namespace Samples
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.Product,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
                 Card = new Card
                 {
                     CardHolderName = "Haluk Demir",
@@ -179,25 +179,19 @@ namespace Samples
                     {
                         Name = "Item 1",
                         ExternalId = Guid.NewGuid().ToString(),
-                        Price = new decimal(30.0),
-                        SubMerchantMemberId = 1,
-                        SubMerchantMemberPrice = new decimal(27.0)
+                        Price = new decimal(30.0)
                     },
                     new PaymentItem
                     {
                         Name = "Item 2",
                         ExternalId = Guid.NewGuid().ToString(),
-                        Price = new decimal(50.0),
-                        SubMerchantMemberId = 1,
-                        SubMerchantMemberPrice = new decimal(42.0)
+                        Price = new decimal(50.0)
                     },
                     new PaymentItem
                     {
                         Name = "Item 3",
                         ExternalId = Guid.NewGuid().ToString(),
-                        Price = new decimal(20.0),
-                        SubMerchantMemberId = 1,
-                        SubMerchantMemberPrice = new decimal(18.0)
+                        Price = new decimal(20.0)
                     }
                 }
             };
@@ -224,9 +218,122 @@ namespace Samples
             Assert.NotNull(response.CardUserKey);
             Assert.NotNull(response.CardToken);
         }
+        
+        [Test]
+        public void Create_Payment_Using_Stored_Card()
+        {
+            var request = new CreatePaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.Try,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Card = new Card
+                {
+                    CardUserKey = "fac377f2-ab15-4696-88d2-5e71b27ec378",
+                    CardToken = "11a078c4-3c32-4796-90b1-51ee5517a212"
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
 
+            var response = _craftgateClient.Payment().CreatePayment(request);
+            Assert.NotNull(response.Id);
+            Assert.AreEqual(request.Price, response.Price);
+            Assert.AreEqual(request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual(request.WalletPrice, response.WalletPrice);
+            Assert.AreEqual(request.Currency, response.Currency);
+            Assert.AreEqual(request.Installment, response.Installment);
+            Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
+            Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual(false, response.IsThreeDS);
+            Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
+            Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
+            Assert.AreEqual(true, response.PaidWithStoredCard);
+            Assert.AreEqual("525864", response.BinNumber);
+            Assert.AreEqual("0001", response.LastFourDigits);
+            Assert.AreEqual(CardType.CreditCard, response.CardType);
+            Assert.AreEqual(CardAssociation.MasterCard, response.CardAssociation);
+            Assert.AreEqual("World", response.CardBrand);
+            Assert.AreEqual(3, response.PaymentTransactions.Count);
+            Assert.Null(response.CardUserKey);
+            Assert.Null(response.CardToken);
+        }
+        
         [Test]
         public void Init_3DS_Payment()
+        {
+            var request = new InitThreeDSPaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.Try,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
+                Card = new Card
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "5258640000000001",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000"
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().Init3DSPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.HtmlContent);
+            Assert.NotNull(response.GetDecodedHtmlContent());
+        }
+
+        [Test]
+        public void Init_3DS_Marketplace_Payment()
         {
             var request = new InitThreeDSPaymentRequest
             {
@@ -271,6 +378,105 @@ namespace Samples
                         Price = new decimal(20.0),
                         SubMerchantMemberId = 1,
                         SubMerchantMemberPrice = new decimal(18.0)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().Init3DSPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.HtmlContent);
+            Assert.NotNull(response.GetDecodedHtmlContent());
+        }
+        
+        [Test]
+        public void Init_3DS_Payment_And_Store_Card()
+        {
+            var request = new InitThreeDSPaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.Try,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
+                Card = new Card
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "5258640000000001",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000",
+                    StoreCardAfterSuccessPayment = true,
+                    CardAlias = "My YKB Card"
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().Init3DSPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.HtmlContent);
+            Assert.NotNull(response.GetDecodedHtmlContent());
+        }
+        
+        [Test]
+        public void Init_3DS_Payment_Using_Stored_Card()
+        {
+            var request = new InitThreeDSPaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.Try,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
+                Card = new Card
+                {
+                    CardUserKey = "fac377f2-ab15-4696-88d2-5e71b27ec378",
+                    CardToken = "11a078c4-3c32-4796-90b1-51ee5517a212"
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
                     }
                 }
             };

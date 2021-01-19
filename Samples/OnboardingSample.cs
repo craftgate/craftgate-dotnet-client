@@ -13,7 +13,7 @@ namespace Samples
             new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
-        public void Create_Sub_Merchant_Member()
+        public void Create_Sub_Merchant()
         {
             var request = new CreateMemberRequest
             {
@@ -53,7 +53,7 @@ namespace Samples
         }
 
         [Test]
-        public void Update_Sub_Merchant_Member()
+        public void Update_Sub_Merchant()
         {
             var memberId = 1L;
 
@@ -92,7 +92,7 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Sub_Merchant_Member()
+        public void Retrieve_Sub_Merchant()
         {
             var memberId = 1L;
 
@@ -103,20 +103,7 @@ namespace Samples
         }
 
         [Test]
-        public void Search_Members()
-        {
-            var request = new SearchMembersRequest
-            {
-                Name = "Zeytinyağı Üretim",
-                MemberIds = new HashSet<long> {1, 2}
-            };
-
-            var response = _craftgateClient.Onboarding().SearchMembers(request);
-            Assert.True(response.Items.Count > 0);
-        }
-
-        [Test]
-        public void Create_Buyer_Member()
+        public void Create_Buyer()
         {
             var request = new CreateMemberRequest
             {
@@ -142,7 +129,7 @@ namespace Samples
         }
 
         [Test]
-        public void Update_Buyer_Member()
+        public void Update_Buyer()
         {
             long memberId = 1;
             var request = new UpdateMemberRequest
@@ -177,7 +164,20 @@ namespace Samples
         }
 
         [Test]
-        public void Create_Sub_Merchant_Buyer_Member()
+        public void Search_Members()
+        {
+            var request = new SearchMembersRequest
+            {
+                Name = "Zeytinyağı Üretim",
+                MemberIds = new HashSet<long> {1, 2}
+            };
+
+            var response = _craftgateClient.Onboarding().SearchMembers(request);
+            Assert.True(response.Items.Count > 0);
+        }
+
+        [Test]
+        public void Create_Member_As_Sub_Merchant_And_Buyer()
         {
             var request = new CreateMemberRequest
             {
@@ -214,17 +214,6 @@ namespace Samples
             Assert.AreEqual(request.TaxNumber, response.TaxNumber);
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);
-        }
-
-        [Test]
-        public void Retrieve_Sub_Merchant_Buyer_Member()
-        {
-            var memberId = 1L;
-
-            var response = _craftgateClient.Onboarding().RetrieveMember(memberId);
-            Assert.AreEqual(memberId, response.Id);
-            Assert.AreEqual(true, response.IsBuyer);
-            Assert.AreEqual(true, response.IsSubMerchant);
         }
     }
 }
