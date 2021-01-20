@@ -20,7 +20,7 @@ namespace Test
         public void Should_Generate_Hash()
         {
             //given
-            var expectedSignature = "LXOBKNDEANGAXYOL63UZ/7P03KB0GUASPL7LXWVRJ4O=";
+            var expectedSignature = "lxoBkNdEanGAXYOL63uz/7P03kB0guaSPl7lXWvRJ4o=";
             var request = new CreateMemberRequest
             {
                 MemberExternalId = "ext-1511",
@@ -43,7 +43,7 @@ namespace Test
         public void Should_Generate_Hash_When_Request_Body_Null()
         {
             //given
-            var expectedSignature = "/IOWMS1TQ329EEC4XODWQAHYC4EHZKV8BDFYNHRL/BQ=";
+            var expectedSignature = "/IoWMs1tQ329eEC4XoDwQAhYc4eHZKV8bdFYNhrL/BQ=";
 
             //when
             var signature = HashGenerator.GenerateHash("https://api.craftgate.io", "api-key", "secret-key",
