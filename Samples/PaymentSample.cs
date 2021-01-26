@@ -498,6 +498,47 @@ namespace Samples
             var response = _craftgateClient.Payment().Complete3DSPayment(request);
             Assert.NotNull(response);
         }
+        
+         [Test]
+        public void Init_Checkout_Payment()
+        {
+            var request = new InitCheckoutPaymentRequest()
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.Try,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitCheckoutPayment(request);
+            Assert.NotNull(response.Token);
+            Assert.NotNull(response.PageUrl);
+        }
 
         [Test]
         public void Create_Deposit_Payment()
@@ -594,6 +635,34 @@ namespace Samples
             var response = _craftgateClient.Payment().RetrievePayment(paymentId);
             Assert.NotNull(response);
             Assert.AreEqual(paymentId, response.Id);
+        }
+        
+        [Test]
+        public void Retrieve_Checkout_Payment()
+        {
+            var token = "456d1297-908e-4bd6-a13b-4be31a6e47d5";
+
+            var response = _craftgateClient.Payment().RetrieveCheckoutPayment(token);
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.Price);
+            Assert.NotNull(response.PaidPrice);
+            Assert.NotNull(response.WalletPrice);
+            Assert.NotNull(response.Currency);
+            Assert.NotNull(response.Installment);
+            Assert.NotNull(response.PaymentGroup);
+            Assert.NotNull(response.PaymentPhase);
+            Assert.NotNull(response.IsThreeDS);
+            Assert.NotNull(response.MerchantCommissionRate);
+            Assert.NotNull(response.MerchantCommissionRateAmount);
+            Assert.NotNull(response.PaidWithStoredCard);
+            Assert.NotNull(response.BinNumber);
+            Assert.NotNull(response.LastFourDigits);
+            Assert.NotNull(response.CardType);
+            Assert.NotNull(response.CardAssociation);
+            Assert.NotNull(response.CardBrand);
+            Assert.NotNull(response.PaymentTransactions.Count);
+            Assert.NotNull(response.CardUserKey);
+            Assert.NotNull(response.CardToken);
         }
 
         [Test]
