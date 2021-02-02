@@ -12,7 +12,7 @@ This repo contains the Dotnet client for Craftgate API.
 
 ## Installation
 ```bash
-Install-Package Craftgate -Version 0.0.1
+Install-Package Craftgate -Version 1.0.0
 ```
 
 ## Usage
