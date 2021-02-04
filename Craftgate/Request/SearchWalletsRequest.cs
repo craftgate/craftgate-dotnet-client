@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Craftgate.Model;
-
 namespace Craftgate.Request
 {
     public class SearchWalletsRequest
