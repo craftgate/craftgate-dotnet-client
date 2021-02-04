@@ -51,7 +51,7 @@ namespace Craftgate
         {
             return _onboardingAdapter;
         }
-        
+
         public WalletAdapter Wallet()
         {
             return _walletAdapter;

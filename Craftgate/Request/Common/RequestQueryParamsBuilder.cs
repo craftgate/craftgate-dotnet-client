@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
-using Enumerable = System.Linq.Enumerable;
 
 namespace Craftgate.Request.Common
 {

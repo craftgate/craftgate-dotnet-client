@@ -32,6 +32,7 @@ namespace Craftgate.Response
         public CardAssociation? CardAssociation { get; set; }
         public string CardBrand { get; set; }
         public MerchantPos Pos { get; set; }
+        public PaymentError PaymentError { get; set; }
         public IList<PaymentTransaction> PaymentTransactions;
     }
 }

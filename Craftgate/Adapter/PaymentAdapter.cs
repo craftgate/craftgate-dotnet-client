@@ -45,15 +45,15 @@ namespace Craftgate.Adapter
 
         public InitCheckoutPaymentResponse InitCheckoutPayment(InitCheckoutPaymentRequest initCheckoutPaymentRequest)
         {
-            var path = "/payment/v1/checkout-payment/init";
+            var path = "/payment/v1/checkout-payments/init";
             return RestClient.Post<InitCheckoutPaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(initCheckoutPaymentRequest, path, RequestOptions),
                 initCheckoutPaymentRequest);
         }
-        
+
         public PaymentResponse RetrieveCheckoutPayment(string token)
         {
-            var path = "/payment/v1/checkout-payment?token=" + token;
+            var path = "/payment/v1/checkout-payments/" + token;
             return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
