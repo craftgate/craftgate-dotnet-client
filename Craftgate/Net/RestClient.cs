@@ -22,7 +22,7 @@ namespace Craftgate.Net
             var handler = new HttpClientHandler {AllowAutoRedirect = false};
             HttpClient = new HttpClient(handler)
             {
-                Timeout = TimeSpan.FromSeconds(120)
+                Timeout = TimeSpan.FromSeconds(150)
             };
         }
 
