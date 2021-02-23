@@ -14,6 +14,9 @@ namespace Craftgate.Response
         public decimal? RefundBankPrice { get; set; }
         public decimal? RefundWalletPrice { get; set; }
         public RefundType? RefundType { get; set; }
+        public string AuthCode { get; set; }
+        public string HostReference { get; set; }
+        public string TransId { get; set; }
         public RefundDestinationType? RefundDestinationType { get; set; }
         public Currency Currency { get; set; }
         public long? PaymentId { get; set; }
