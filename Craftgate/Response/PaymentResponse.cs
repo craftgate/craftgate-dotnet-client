@@ -28,6 +28,10 @@ namespace Craftgate.Response
         public bool? PaidWithStoredCard { get; set; }
         public string BinNumber { get; set; }
         public string LastFourDigits { get; set; }
+        public string AuthCode { get; set; }
+        public string HostReference { get; set; }
+        public string TransId { get; set; }
+        public string OrderId { get; set; }
         public CardType? CardType { get; set; }
         public CardAssociation? CardAssociation { get; set; }
         public string CardBrand { get; set; }

@@ -153,7 +153,7 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Buyer_Member()
+        public void Retrieve_Buyer()
         {
             var memberId = 1L;
 
