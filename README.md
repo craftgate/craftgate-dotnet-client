@@ -107,5 +107,8 @@ For all adapters in the `Craftgate`, their purposes, accessors, as well as direc
 | `PaymentAdapter` | Conducting payments, retrieving payment information, managing stored cards | `Payment()` |
 | `WalletAdapter` | Wallet operations like send, receive remittance and search wallets or wallet transactions of member's   | `Wallet()` |
 
+### Contributions
+For all contributions to this client please see the contribution guide [here](CONTRIBUTING.md).
+
 ## License
 MIT
