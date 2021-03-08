@@ -2,7 +2,7 @@
 As an open-source project, anyone can contribute to the development of `craftgate-dotnet-client`. If you decide to do so, please be aware of the guidelines outlined below.
 
 ## Prerequisites
-`craftgate-dotnet-client` is written in .NET, in order to contribute to the project, some familiarity with .NET knowledge is required. Please see the [requirements](/#requirements)
+`craftgate-dotnet-client` is written in .NET, in order to contribute to the project, some familiarity with .NET knowledge is required. Please see the [requirements](/README.md#requirements)
 
 ## Package Structure
 The project has a straightforward package structure; the source files are located under the [Craftgate](Craftgate), sample integrations are located under [Samples](Samples), and tests are located under [Test](Test).
