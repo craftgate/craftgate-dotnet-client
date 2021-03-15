@@ -43,5 +43,70 @@ namespace Craftgate.Adapter
                 CreateHeaders(createRemittanceRequest, path, RequestOptions),
                 createRemittanceRequest);
         }
+
+        public WalletResponse RetrieveMerchantMemberWallet()
+        {
+            var path = "/wallet/v1/merchants/me/wallet";
+            return RestClient.Get<WalletResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+        }
+
+        public WalletResponse ResetMerchantMemberWalletBalance(ResetMerchantMemberWalletBalanceRequest request)
+        {
+            var path = "/wallet/v1/merchants/me/wallet/reset-balance";
+            return RestClient.Post<WalletResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public WalletTransactionRefundableAmountResponse RetrieveRefundableAmountOfWalletTransaction(
+            long walletTransactionId)
+        {
+            var path = "/payment/v1/wallet-transactions/" + walletTransactionId + "/refundable-amount";
+            return RestClient.Get<WalletTransactionRefundableAmountResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public RefundWalletTransactionToCardResponse RefundWalletTransactionToCard(long walletTransactionId,
+            RefundWalletTransactionToCardRequest request)
+        {
+            var path = "/payment/v1/wallet-transactions/" + walletTransactionId + "/refunds";
+            return RestClient.Post<RefundWalletTransactionToCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public RefundWalletTransactionToCardListResponse RetrieveRefundWalletTransactionsToCard(
+            long walletTransactionId)
+        {
+            var path = "/payment/v1/wallet-transactions/" + walletTransactionId + "/refunds";
+            return RestClient.Get<RefundWalletTransactionToCardListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public WithdrawResponse CreateWithdraw(CreateWithdrawRequest request)
+        {
+            var path = "/wallet/v1/withdraws";
+            return RestClient.Post<WithdrawResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public WithdrawResponse CancelWithdraw(long withdrawId)
+        {
+            var path = "/wallet/v1/withdraws/" + withdrawId + "/cancel";
+            return RestClient.Post<WithdrawResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public WithdrawResponse RetrieveWithdraw(long withdrawId)
+        {
+            var path = "/wallet/v1/withdraws/" + withdrawId;
+            return RestClient.Get<WithdrawResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+        }
+
+        public WithdrawListResponse SearchWithdraws(SearchWithdrawsRequest request)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
+            var path = "/wallet/v1/withdraws" + queryParam;
+            return RestClient.Get<WithdrawListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
     }
 }
