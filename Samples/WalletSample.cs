@@ -43,8 +43,8 @@ namespace Samples
             {
                 MemberId = memberId,
                 Price = price,
-                Description = "Remittance send to memberId" + memberId,
-                RemittanceReasonType = RemittanceReasonType.Remittance
+                Description = "Remittance send to sub merchant memberId" + memberId,
+                RemittanceReasonType = RemittanceReasonType.SubMerchantSendReceive
             };
 
             var response = _craftgateClient.Wallet().SendRemittance(request);
@@ -53,7 +53,7 @@ namespace Samples
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.Description, response.Description);
             Assert.AreEqual(RemittanceType.Send, response.RemittanceType);
-            Assert.AreEqual(RemittanceReasonType.Remittance, response.RemittanceReasonType);
+            Assert.AreEqual(RemittanceReasonType.SubMerchantSendReceive, response.RemittanceReasonType);
         }
 
         [Test]
@@ -65,8 +65,8 @@ namespace Samples
             {
                 MemberId = memberId,
                 Price = price,
-                Description = "Remittance received from memberId" + memberId,
-                RemittanceReasonType = RemittanceReasonType.Remittance
+                Description = "Remittance received from sub merchant memberId" + memberId,
+                RemittanceReasonType = RemittanceReasonType.SubMerchantSendReceive
             };
 
             var response = _craftgateClient.Wallet().ReceiveRemittance(request);
@@ -75,7 +75,7 @@ namespace Samples
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.Description, response.Description);
             Assert.AreEqual(RemittanceType.Receive, response.RemittanceType);
-            Assert.AreEqual(RemittanceReasonType.Remittance, response.RemittanceReasonType);
+            Assert.AreEqual(RemittanceReasonType.SubMerchantSendReceive, response.RemittanceReasonType);
         }
 
         [Test]
