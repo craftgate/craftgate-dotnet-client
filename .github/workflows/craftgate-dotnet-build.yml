@@ -1,10 +1,10 @@
 name: Craftgate Dotnet CI
 
-on: [push]
+on: [ push, pull_request ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     name: Dotnet Build & Test
     steps:
