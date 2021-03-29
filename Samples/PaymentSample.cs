@@ -506,12 +506,10 @@ namespace Samples
             {
                 Price = new decimal(100.0),
                 PaidPrice = new decimal(100.0),
-                WalletPrice = new decimal(0.0),
-                Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 Currency = Currency.Try,
                 PaymentGroup = PaymentGroup.ListingOrSubscription,
-                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
+                CallbackUrl = "https://www.your-website.com/craftgate-checkout-callback",
                 Items = new List<PaymentItem>
                 {
                     new PaymentItem

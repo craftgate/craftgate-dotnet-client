@@ -8,10 +8,8 @@ namespace Craftgate.Request
     {
         public decimal? Price { get; set; }
         public decimal? PaidPrice { get; set; }
-        public decimal? WalletPrice { get; set; } = decimal.Zero;
         public string CallbackUrl { get; set; }
         public string CardUserKey { get; set; }
-        public int? Installment { get; set; }
         public Currency? Currency { get; set; }
         public PaymentGroup? PaymentGroup { get; set; }
         public string ConversationId { get; set; }
