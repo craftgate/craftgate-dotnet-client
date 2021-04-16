@@ -14,6 +14,7 @@ namespace Craftgate
         private readonly OnboardingAdapter _onboardingAdapter;
         private readonly PaymentAdapter _paymentAdapter;
         private readonly WalletAdapter _walletAdapter;
+        private readonly SettlementReportingAdapter _settlementReportingAdapter;
 
         public CraftgateClient(string apiKey, string secretKey)
             : this(apiKey, secretKey, BaseUrl)
@@ -35,6 +36,7 @@ namespace Craftgate
             _onboardingAdapter = new OnboardingAdapter(requestOptions);
             _paymentAdapter = new PaymentAdapter(requestOptions);
             _walletAdapter = new WalletAdapter(requestOptions);
+            _settlementReportingAdapter = new SettlementReportingAdapter(requestOptions);
         }
 
         public PaymentAdapter Payment()
@@ -55,6 +57,11 @@ namespace Craftgate
         public WalletAdapter Wallet()
         {
             return _walletAdapter;
+        }
+
+        public SettlementReportingAdapter SettlementReporting()
+        {
+            return _settlementReportingAdapter;
         }
 
         private static void ConfigureJsonConverter()
