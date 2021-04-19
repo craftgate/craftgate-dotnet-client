@@ -15,6 +15,7 @@ namespace Craftgate.Request
         public string ConversationId { get; set; }
         public PaymentPhase PaymentPhase { get; set; } = PaymentPhase.Auth;
         public long? BuyerMemberId { get; set; }
+        public IList<int> EnabledInstallments { get; set; }
         public IList<PaymentItem> Items { get; set; }
     }
 }
