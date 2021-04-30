@@ -14,9 +14,11 @@ namespace Craftgate.Request
         public Currency? Currency { get; set; }
         public PaymentGroup? PaymentGroup { get; set; }
         public string ConversationId { get; set; }
+        public string ExternalId { get; set; }
         public PaymentPhase PaymentPhase { get; set; } = PaymentPhase.Auth;
         public long? BuyerMemberId { get; set; }
         public Card Card { get; set; }
         public IList<PaymentItem> Items { get; set; }
+        public Dictionary<string, object> AdditionalParams { get; set; }
     }
 }

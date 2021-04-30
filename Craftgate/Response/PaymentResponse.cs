@@ -16,6 +16,7 @@ namespace Craftgate.Response
         public long? BuyerMemberId { get; set; }
         public int? Installment { get; set; }
         public string ConversationId { get; set; }
+        public string ExternalId { get; set; }
         public PaymentType? PaymentType { get; set; }
         public PaymentGroup? PaymentGroup { get; set; }
         public PaymentStatus? PaymentStatus { get; set; }
