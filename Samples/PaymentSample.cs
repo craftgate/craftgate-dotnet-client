@@ -161,6 +161,7 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "external_id-123456789",
                 Currency = Currency.Try,
                 PaymentGroup = PaymentGroup.ListingOrSubscription,
                 Card = new Card
@@ -205,6 +206,8 @@ namespace Samples
             Assert.AreEqual(request.Installment, response.Installment);
             Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
             Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual(request.ConversationId, response.ConversationId);
+            Assert.AreEqual(request.ExternalId, response.ExternalId);
             Assert.AreEqual(false, response.IsThreeDS);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
@@ -218,7 +221,7 @@ namespace Samples
             Assert.NotNull(response.CardUserKey);
             Assert.NotNull(response.CardToken);
         }
-        
+
         [Test]
         public void Create_Payment_Using_Stored_Card()
         {
@@ -281,7 +284,77 @@ namespace Samples
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
         }
-        
+
+        [Test]
+        public void Create_Payment_Using_External_Payment_Provider_Stored_Card()
+        {
+            var request = new CreatePaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                PosAlias = "6007-posAlias-1",
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "external_id-123456789",
+                Currency = Currency.Try,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                },
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    {
+                        "paymentProvider", new Dictionary<string, object>
+                        {
+                            {"cardUserKey", "test-cardUserKey"},
+                            {"cardToken", "tuz8imxv30"}
+                        }
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().CreatePayment(request);
+            Assert.NotNull(response.Id);
+            Assert.AreEqual(request.Price, response.Price);
+            Assert.AreEqual(request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual(request.WalletPrice, response.WalletPrice);
+            Assert.AreEqual(request.Currency, response.Currency);
+            Assert.AreEqual(request.Installment, response.Installment);
+            Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
+            Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual(false, response.IsThreeDS);
+            Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
+            Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
+            Assert.AreEqual(false, response.PaidWithStoredCard);
+            Assert.AreEqual(3, response.PaymentTransactions.Count);
+            Assert.Null(response.BinNumber);
+            Assert.Null(response.LastFourDigits);
+            Assert.Null(response.CardType);
+            Assert.Null(response.CardAssociation);
+            Assert.Null(response.CardBrand);
+            Assert.Null(response.CardUserKey);
+            Assert.Null(response.CardToken);
+        }
+
         [Test]
         public void Init_3DS_Payment()
         {
@@ -387,7 +460,7 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
         }
-        
+
         [Test]
         public void Init_3DS_Payment_And_Store_Card()
         {
@@ -439,7 +512,7 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
         }
-        
+
         [Test]
         public void Init_3DS_Payment_Using_Stored_Card()
         {
@@ -498,8 +571,8 @@ namespace Samples
             var response = _craftgateClient.Payment().Complete3DSPayment(request);
             Assert.NotNull(response);
         }
-        
-         [Test]
+
+        [Test]
         public void Init_Checkout_Payment()
         {
             var request = new InitCheckoutPaymentRequest()
@@ -634,7 +707,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.AreEqual(paymentId, response.Id);
         }
-        
+
         [Test]
         public void Retrieve_Checkout_Payment()
         {
