@@ -39,5 +39,20 @@ namespace Samples
             var response = _craftgateClient.Installment().SearchInstallments(request);
             Assert.True(response.Items.Count > 0);
         }
+
+        [Test]
+        public void Search_Installments_With_Distinct_Card_Brand_With_Lowest_Commissions()
+        {
+            var request = new SearchInstallmentsRequest
+            {
+                BinNumber = "525864",
+                Price = 100,
+                Currency = Currency.Try,
+                DistinctCardBrandsWithLowestCommissions = true
+            };
+
+            var response = _craftgateClient.Installment().SearchInstallments(request);
+            Assert.True(response.Items.Count > 0);
+        }
     }
 }
