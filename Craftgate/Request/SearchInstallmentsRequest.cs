@@ -7,5 +7,6 @@ namespace Craftgate.Request
         public string BinNumber { get; set; }
         public decimal? Price { get; set; }
         public Currency? Currency { get; set; }
+        public bool? DistinctCardBrandsWithLowestCommissions { get; set; }
     }
 }
