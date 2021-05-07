@@ -13,9 +13,10 @@ namespace Craftgate
         private readonly InstallmentAdapter _installmentAdapter;
         private readonly OnboardingAdapter _onboardingAdapter;
         private readonly PaymentAdapter _paymentAdapter;
+        private readonly PaymentReportingAdapter _paymentReportingAdapter;
         private readonly WalletAdapter _walletAdapter;
-        private readonly SettlementReportingAdapter _settlementReportingAdapter;
         private readonly SettlementAdapter _settlementAdapter;
+        private readonly SettlementReportingAdapter _settlementReportingAdapter;
 
         public CraftgateClient(string apiKey, string secretKey)
             : this(apiKey, secretKey, BaseUrl)
@@ -36,14 +37,20 @@ namespace Craftgate
             _installmentAdapter = new InstallmentAdapter(requestOptions);
             _onboardingAdapter = new OnboardingAdapter(requestOptions);
             _paymentAdapter = new PaymentAdapter(requestOptions);
+            _paymentReportingAdapter = new PaymentReportingAdapter(requestOptions);
             _walletAdapter = new WalletAdapter(requestOptions);
-            _settlementReportingAdapter = new SettlementReportingAdapter(requestOptions);
             _settlementAdapter = new SettlementAdapter(requestOptions);
+            _settlementReportingAdapter = new SettlementReportingAdapter(requestOptions);
         }
 
         public PaymentAdapter Payment()
         {
             return _paymentAdapter;
+        }
+        
+        public PaymentReportingAdapter PaymentReporting()
+        {
+            return _paymentReportingAdapter;
         }
 
         public InstallmentAdapter Installment()
@@ -61,15 +68,14 @@ namespace Craftgate
             return _walletAdapter;
         }
 
-        public SettlementReportingAdapter SettlementReporting()
-        {
-            return _settlementReportingAdapter;
-        }
-
-
         public SettlementAdapter Settlement()
         {
             return _settlementAdapter;
+        }
+
+        public SettlementReportingAdapter SettlementReporting()
+        {
+            return _settlementReportingAdapter;
         }
 
         private static void ConfigureJsonConverter()

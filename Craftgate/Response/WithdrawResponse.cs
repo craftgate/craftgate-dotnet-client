@@ -13,6 +13,6 @@ namespace Craftgate.Response
         public DateTime CreatedDate;
         public String Description;
         public Currency Currency;
-        public PayoutStatus PayoutStatus;
+        public TransactionPayoutStatus PayoutStatus;
     }
 }

@@ -8,6 +8,8 @@ namespace Craftgate.Model
     public enum MerchantType
     {
         [EnumMember(Value = "MERCHANT")] Merchant,
-        [EnumMember(Value = "SUB_MERCHANT_MEMBER")] SubMerchantMember 
+
+        [EnumMember(Value = "SUB_MERCHANT_MEMBER")]
+        SubMerchantMember
     }
 }

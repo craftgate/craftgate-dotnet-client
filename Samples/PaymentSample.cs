@@ -790,19 +790,6 @@ namespace Samples
         }
 
         [Test]
-        public void Search_Payment_Transaction_Refunds()
-        {
-            var request = new SearchPaymentTransactionRefundsRequest
-            {
-                PaymentId = 1
-            };
-
-            var response = _craftgateClient.Payment().SearchPaymentTransactionRefunds(request);
-            Assert.NotNull(response);
-            Assert.True(response.Items.Count > 0);
-        }
-
-        [Test]
         public void Store_Card()
         {
             var request = new StoreCardRequest

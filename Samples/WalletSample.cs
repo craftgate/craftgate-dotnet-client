@@ -165,7 +165,7 @@ namespace Samples
             Assert.AreEqual(response.MemberId, request.MemberId);
             Assert.AreEqual(response.Currency, request.Currency);
             Assert.AreEqual(response.Description, request.Description);
-            Assert.AreEqual(response.PayoutStatus, PayoutStatus.WaitingForPayout);
+            Assert.AreEqual(response.PayoutStatus, TransactionPayoutStatus.WaitingForPayout);
         }
 
 
@@ -179,7 +179,7 @@ namespace Samples
             Assert.IsNotNull(response.Id);
             Assert.IsNotNull(response.CreatedDate);
             Assert.AreEqual(response.Status, Status.Active);
-            Assert.AreEqual(response.PayoutStatus, PayoutStatus.Cancelled);
+            Assert.AreEqual(response.PayoutStatus, TransactionPayoutStatus.Cancelled);
         }
 
         [Test]
@@ -193,7 +193,7 @@ namespace Samples
             Assert.IsNotNull(response.CreatedDate);
             Assert.AreEqual(response.Status, Status.Active);
             Assert.AreEqual(response.Currency, Currency.Try);
-            Assert.AreEqual(response.PayoutStatus, PayoutStatus.WaitingForPayout);
+            Assert.AreEqual(response.PayoutStatus, TransactionPayoutStatus.WaitingForPayout);
         }
 
         [Test]
@@ -201,7 +201,7 @@ namespace Samples
         {
             var request = new SearchWithdrawsRequest
             {
-                PayoutStatus = PayoutStatus.WaitingForPayout,
+                PayoutStatus = TransactionPayoutStatus.WaitingForPayout,
                 MinWithdrawPrice = new decimal(5),
                 MaxWithdrawPrice = new decimal(1000)
             };
