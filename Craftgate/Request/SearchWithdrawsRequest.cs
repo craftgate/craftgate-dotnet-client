@@ -7,7 +7,7 @@ namespace Craftgate.Request
     {
         public long? MemberId { set; get; }
         public Currency? Currency { set; get; }
-        public PayoutStatus? PayoutStatus { set; get; }
+        public TransactionPayoutStatus? PayoutStatus { set; get; }
         public decimal? MinWithdrawPrice { set; get; }
         public decimal? MaxWithdrawPrice { set; get; }
         public DateTime? MinCreatedDate { set; get; }

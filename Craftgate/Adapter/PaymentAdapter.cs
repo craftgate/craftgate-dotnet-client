@@ -108,16 +108,6 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public PaymentTransactionRefundListResponse SearchPaymentTransactionRefunds(
-            SearchPaymentTransactionRefundsRequest searchPaymentTransactionRefundsRequest)
-        {
-            var query = RequestQueryParamsBuilder.BuildQueryParam(searchPaymentTransactionRefundsRequest);
-            var path = "/payment/v1/refund-transactions" + query;
-
-            return RestClient.Get<PaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
-        }
-
         public PaymentRefundResponse RefundPayment(RefundPaymentRequest refundPaymentRequest)
         {
             var path = "/payment/v1/refunds";

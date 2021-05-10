@@ -8,7 +8,9 @@ namespace Craftgate.Model
     public enum SettlementType
     {
         [EnumMember(Value = "SETTLEMENT")] Settlement,
-        [EnumMember(Value = "BOUNCED_SETTLEMENT")] BouncedSettlement,
+
+        [EnumMember(Value = "BOUNCED_SETTLEMENT")]
+        BouncedSettlement,
         [EnumMember(Value = "WITHDRAW")] Withdraw
     }
 }
