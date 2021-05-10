@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Craftgate.Model;
-
 namespace Craftgate.Response.Dto
 {
     public class PayoutBouncedTransaction

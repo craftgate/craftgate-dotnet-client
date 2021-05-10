@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Craftgate.Model;
 using Craftgate.Response.Common;
 
 namespace Craftgate.Response
@@ -9,7 +7,7 @@ namespace Craftgate.Response
     {
         public int RetryCount { get; set; }
         public decimal RefundablePrice { get; set; }
-        public PaymentRefundStatus RefundStatus { get; set; }
+        public string RefundStatus { get; set; }
         public string CardHolderName { get; set; }
         public string CardIssuerBankName { get; set; }
         public int MdStatus { get; set; }
