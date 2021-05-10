@@ -159,6 +159,7 @@ namespace Samples
 
             Assert.IsNotNull(response.Id);
             Assert.IsNotNull(response.CreatedDate);
+            Assert.Null(response.PayoutId);
             Assert.AreEqual(response.Price, request.Price);
             Assert.AreEqual(response.Status, Status.Active);
             Assert.AreEqual(response.MemberId, request.MemberId);
