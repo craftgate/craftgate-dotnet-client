@@ -61,18 +61,18 @@ namespace Samples
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual(request.WalletPrice, response.WalletPrice);
-            Assert.AreEqual(request.Currency, response.Currency);
+            Assert.AreEqual("TRY", response.Currency);
             Assert.AreEqual(request.Installment, response.Installment);
-            Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
-            Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual("LISTING_OR_SUBSCRIPTION", response.PaymentGroup);
+            Assert.AreEqual("AUTH", response.PaymentPhase);
             Assert.AreEqual(false, response.IsThreeDS);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
             Assert.AreEqual(false, response.PaidWithStoredCard);
             Assert.AreEqual("525864", response.BinNumber);
             Assert.AreEqual("0001", response.LastFourDigits);
-            Assert.AreEqual(CardType.CreditCard, response.CardType);
-            Assert.AreEqual(CardAssociation.MasterCard, response.CardAssociation);
+            Assert.AreEqual("CREDIT_CARD", response.CardType);
+            Assert.AreEqual("MASTER_CARD", response.CardAssociation);
             Assert.AreEqual("World", response.CardBrand);
             Assert.AreEqual(3, response.PaymentTransactions.Count);
             Assert.Null(response.CardUserKey);
@@ -133,18 +133,18 @@ namespace Samples
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual(request.WalletPrice, response.WalletPrice);
-            Assert.AreEqual(request.Currency, response.Currency);
+            Assert.AreEqual("TRY", response.Currency);
             Assert.AreEqual(request.Installment, response.Installment);
-            Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
-            Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual("PRODUCT", response.PaymentGroup);
+            Assert.AreEqual("AUTH", response.PaymentPhase);
             Assert.AreEqual(false, response.IsThreeDS);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
             Assert.AreEqual(false, response.PaidWithStoredCard);
             Assert.AreEqual("525864", response.BinNumber);
             Assert.AreEqual("0001", response.LastFourDigits);
-            Assert.AreEqual(CardType.CreditCard, response.CardType);
-            Assert.AreEqual(CardAssociation.MasterCard, response.CardAssociation);
+            Assert.AreEqual("CREDIT_CARD", response.CardType);
+            Assert.AreEqual("MASTER_CARD", response.CardAssociation);
             Assert.AreEqual("World", response.CardBrand);
             Assert.AreEqual(3, response.PaymentTransactions.Count);
             Assert.Null(response.CardUserKey);
@@ -202,10 +202,10 @@ namespace Samples
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual(request.WalletPrice, response.WalletPrice);
-            Assert.AreEqual(request.Currency, response.Currency);
+            Assert.AreEqual("TRY", response.Currency);
             Assert.AreEqual(request.Installment, response.Installment);
-            Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
-            Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual("LISTING_OR_SUBSCRIPTION", response.PaymentGroup);
+            Assert.AreEqual("AUTH", response.PaymentPhase);
             Assert.AreEqual(request.ConversationId, response.ConversationId);
             Assert.AreEqual(request.ExternalId, response.ExternalId);
             Assert.AreEqual(false, response.IsThreeDS);
@@ -214,8 +214,8 @@ namespace Samples
             Assert.AreEqual(false, response.PaidWithStoredCard);
             Assert.AreEqual("525864", response.BinNumber);
             Assert.AreEqual("0001", response.LastFourDigits);
-            Assert.AreEqual(CardType.CreditCard, response.CardType);
-            Assert.AreEqual(CardAssociation.MasterCard, response.CardAssociation);
+            Assert.AreEqual("CREDIT_CARD", response.CardType);
+            Assert.AreEqual("MASTER_CARD", response.CardAssociation);
             Assert.AreEqual("World", response.CardBrand);
             Assert.AreEqual(3, response.PaymentTransactions.Count);
             Assert.NotNull(response.CardUserKey);
@@ -267,18 +267,18 @@ namespace Samples
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual(request.WalletPrice, response.WalletPrice);
-            Assert.AreEqual(request.Currency, response.Currency);
+            Assert.AreEqual("TRY", response.Currency);
             Assert.AreEqual(request.Installment, response.Installment);
-            Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
-            Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual("LISTING_OR_SUBSCRIPTION", response.PaymentGroup);
+            Assert.AreEqual("AUTH", response.PaymentPhase);
             Assert.AreEqual(false, response.IsThreeDS);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
             Assert.AreEqual(true, response.PaidWithStoredCard);
             Assert.AreEqual("525864", response.BinNumber);
             Assert.AreEqual("0001", response.LastFourDigits);
-            Assert.AreEqual(CardType.CreditCard, response.CardType);
-            Assert.AreEqual(CardAssociation.MasterCard, response.CardAssociation);
+            Assert.AreEqual("CREDIT_CARD", response.CardType);
+            Assert.AreEqual("MASTER_CARD", response.CardAssociation);
             Assert.AreEqual("World", response.CardBrand);
             Assert.AreEqual(3, response.PaymentTransactions.Count);
             Assert.Null(response.CardUserKey);
@@ -337,10 +337,10 @@ namespace Samples
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual(request.WalletPrice, response.WalletPrice);
-            Assert.AreEqual(request.Currency, response.Currency);
+            Assert.AreEqual("TRY", response.Currency);
             Assert.AreEqual(request.Installment, response.Installment);
-            Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
-            Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual("LISTING_OR_SUBSCRIPTION", response.PaymentGroup);
+            Assert.AreEqual("AUTH", response.PaymentPhase);
             Assert.AreEqual(false, response.IsThreeDS);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
@@ -634,8 +634,8 @@ namespace Samples
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.BuyerMemberId, response.BuyerMemberId);
-            Assert.AreEqual(PaymentStatus.Success, response.PaymentStatus);
-            Assert.AreEqual(PaymentType.DepositPayment, response.PaymentType);
+            Assert.AreEqual("SUCCESS", response.PaymentStatus);
+            Assert.AreEqual("DEPOSIT_PAYMENT", response.PaymentType);
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
         }
@@ -653,7 +653,7 @@ namespace Samples
             var response = _craftgateClient.Payment().RefundDepositPayment(paymentId, request);
             Assert.NotNull(response);
             Assert.AreEqual(paymentId, response.PaymentId);
-            Assert.AreEqual(RefundStatus.Success, response.Status);
+            Assert.AreEqual("SUCCESS", response.Status);
             Assert.AreEqual(new decimal(50.0), response.RefundPrice);
         }
 
@@ -694,8 +694,8 @@ namespace Samples
             var response = _craftgateClient.Payment().Complete3DSDepositPayment(request);
             Assert.NotNull(response);
             Assert.Equals(new decimal(100), response.Price);
-            Assert.Equals(PaymentStatus.Success, response.PaymentStatus);
-            Assert.Equals(PaymentType.DepositPayment, response.PaymentType);
+            Assert.Equals("SUCCESS", response.PaymentStatus);
+            Assert.Equals("DEPOSIT_PAYMENT", response.PaymentType);
         }
 
         [Test]
@@ -748,7 +748,7 @@ namespace Samples
             var response = _craftgateClient.Payment().RefundPayment(request);
             Assert.NotNull(response);
             Assert.AreEqual(request.PaymentId, response.PaymentId);
-            Assert.AreEqual(RefundStatus.Success, response.Status);
+            Assert.AreEqual("SUCCESS", response.Status);
         }
 
         [Test]
@@ -775,7 +775,7 @@ namespace Samples
             var response = _craftgateClient.Payment().RefundPaymentTransaction(request);
             Assert.NotNull(response);
             Assert.AreEqual(request.PaymentTransactionId, response.PaymentTransactionId);
-            Assert.AreEqual(RefundStatus.Success, response.Status);
+            Assert.AreEqual("SUCCESS", response.Status);
         }
 
         [Test]
@@ -786,7 +786,7 @@ namespace Samples
             var response = _craftgateClient.Payment().RetrievePaymentTransactionRefund(paymentTransactionRefundId);
             Assert.NotNull(response);
             Assert.AreEqual(paymentTransactionRefundId, response.Id);
-            Assert.AreEqual(RefundStatus.Success, response.Status);
+            Assert.AreEqual("SUCCESS", response.Status);
         }
 
         [Test]

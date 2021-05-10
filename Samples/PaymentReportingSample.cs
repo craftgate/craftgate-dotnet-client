@@ -44,7 +44,7 @@ namespace Samples
         [Test]
         public void Retrieve_Payment()
         {
-            long paymentId = 196;
+            long paymentId = 1;
 
             var response = _craftgateClient.PaymentReporting().RetrievePayment(paymentId);
             Assert.NotNull(response);
@@ -83,7 +83,7 @@ namespace Samples
             var response = _craftgateClient.PaymentReporting().RetrievePaymentTransactionRefunds(paymentId, paymentTransactionId);
             Assert.True(response.Items.Count > 0);
         }
-        
+
         [Test]
         public void Search_Payment_Refunds()
         {
@@ -106,7 +106,7 @@ namespace Samples
             var response = _craftgateClient.PaymentReporting().SearchPaymentRefunds(request);
             Assert.True(response.Items.Count > 0);
         }
-        
+
         [Test]
         public void Search_Payment_Transaction_Refunds()
         {
@@ -114,9 +114,9 @@ namespace Samples
             {
                 Page = 0,
                 Size = 10,
-                Id = 61,
-                PaymentId = 196,
-                PaymentTransactionId = 281,
+                Id = 1,
+                PaymentId = 100,
+                PaymentTransactionId = 1000,
                 BuyerMemberId = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 Status = RefundStatus.Success,

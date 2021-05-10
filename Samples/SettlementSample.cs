@@ -13,9 +13,7 @@ namespace Samples
         [Test]
         public void Create_Instant_Wallet_Settlement()
         {
-            var request = new CreateInstantWalletSettlementRequest()
-            {
-            };
+            var request = new CreateInstantWalletSettlementRequest();
 
             SettlementResponse response = _craftgateClient.Settlement().CreateInstantWalletSettlement(request);
             Assert.NotNull(response.SettlementResultStatus);
