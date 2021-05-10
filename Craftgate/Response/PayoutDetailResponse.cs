@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Craftgate.Model;
 using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
@@ -14,9 +13,9 @@ namespace Craftgate.Response
         public decimal PayoutAmount;
         public string Currency;
         public long MerchantId;
-        public MerchantType MerchantType;
-        public SettlementEarningsDestination SettlementEarningsDestination;
-        public SettlementSource SettlementSource;
+        public string MerchantType;
+        public string SettlementEarningsDestination;
+        public string SettlementSource;
         public IList<PayoutDetailTransaction> PayoutTransactions;
     }
 }

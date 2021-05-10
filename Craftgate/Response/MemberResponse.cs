@@ -1,14 +1,12 @@
-using Craftgate.Model;
-
 namespace Craftgate.Response
 {
     public class MemberResponse
     {
         public long? Id { get; set; }
-        public Status? Status { get; set; }
+        public string Status { get; set; }
         public bool IsBuyer { get; set; }
         public bool IsSubMerchant { get; set; }
-        public MemberType? MemberType { get; set; }
+        public string MemberType { get; set; }
         public string MemberExternalId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -20,7 +18,7 @@ namespace Craftgate.Response
         public string LegalCompanyTitle { get; set; }
         public string TaxOffice { get; set; }
         public string TaxNumber { get; set; }
-        public SettlementEarningsDestination? SettlementEarningsDestination { get; set; }
+        public string SettlementEarningsDestination { get; set; }
         public string Iban { get; set; }
     }
 }

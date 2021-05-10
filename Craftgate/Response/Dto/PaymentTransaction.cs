@@ -1,5 +1,4 @@
 using System;
-using Craftgate.Model;
 
 namespace Craftgate.Response.Dto
 {
@@ -18,7 +17,7 @@ namespace Craftgate.Response.Dto
         public decimal SubMerchantMemberPrice { get; set; }
         public decimal SubMerchantMemberPayoutRate { get; set; }
         public decimal SubMerchantMemberPayoutAmount { get; set; }
-        public TransactionStatus TransactionStatus { get; set; }
+        public string TransactionStatus { get; set; }
         public DateTime BlockageResolvedDate { get; set; }
         public Payout Payout { get; set; }
     }

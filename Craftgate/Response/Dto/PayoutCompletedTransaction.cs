@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Craftgate.Model;
-
 namespace Craftgate.Response.Dto
 {
     public class PayoutCompletedTransaction
@@ -10,8 +7,8 @@ namespace Craftgate.Response.Dto
         public decimal PayoutAmount;
         public string Currency;
         public long MerchantId;
-        public MerchantType MerchantType;
-        public SettlementEarningsDestination SettlementEarningsDestination;
-        public SettlementSource SettlementSource;
+        public string MerchantType;
+        public string SettlementEarningsDestination;
+        public string SettlementSource;
     }
 }

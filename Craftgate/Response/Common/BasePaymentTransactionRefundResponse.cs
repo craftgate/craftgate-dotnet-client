@@ -1,5 +1,4 @@
 using System;
-using Craftgate.Model;
 
 namespace Craftgate.Response.Common
 {
@@ -7,8 +6,8 @@ namespace Craftgate.Response.Common
     {
         public long Id { get; set; }
         public DateTime CreatedDate { get; set; }
-        public RefundStatus Status { get; set; }
-        public RefundDestinationType RefundDestinationType { get; set; }
+        public string Status { get; set; }
+        public string RefundDestinationType { get; set; }
         public decimal RefundPrice { get; set; }
         public decimal RefundBankPrice { get; set; }
         public decimal RefundWalletPrice { get; set; }

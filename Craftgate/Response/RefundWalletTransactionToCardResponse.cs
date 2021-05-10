@@ -1,5 +1,4 @@
 using System;
-using Craftgate.Model;
 using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
@@ -8,7 +7,7 @@ namespace Craftgate.Response
     {
         public long Id { get; set; }
         public DateTime CreatedDate { get; set; }
-        public RefundStatus RefundStatus { get; set; }
+        public string RefundStatus { get; set; }
         public decimal RefundPrice { get; set; }
         public string AuthCode { get; set; }
         public string HostReference { get; set; }
@@ -16,6 +15,6 @@ namespace Craftgate.Response
         public long TransactionId { get; set; }
         public long WalletTransactionId { get; set; }
         public PaymentError PaymentError { get; set; }
-        public WalletTransactionRefundCardTransactionType TransactionType { get; set; }
+        public string TransactionType { get; set; }
     }
 }
