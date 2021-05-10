@@ -28,5 +28,13 @@ namespace Craftgate.Adapter
             return RestClient.Get<PayoutBouncedTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+
+
+        public PayoutDetailResponse RetrievePayoutDetails(long id)
+        {
+            var path = "/settlement-reporting/v1/settlement-file/payout-details/" + id;
+            return RestClient.Get<PayoutDetailResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
     }
 }
