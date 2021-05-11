@@ -46,10 +46,11 @@ namespace Samples
             Assert.AreEqual(request.LegalCompanyTitle, response.LegalCompanyTitle);
             Assert.AreEqual(request.Name, response.Name);
             Assert.AreEqual(request.MemberExternalId, response.MemberExternalId);
-            Assert.AreEqual(request.MemberType, response.MemberType);
+            Assert.AreEqual("LIMITED_OR_JOINT_STOCK_COMPANY", response.MemberType);
             Assert.AreEqual(request.TaxNumber, response.TaxNumber);
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);
+            Assert.AreEqual("IBAN", response.SettlementEarningsDestination);
         }
 
         [Test]
@@ -210,7 +211,7 @@ namespace Samples
             Assert.AreEqual(request.LegalCompanyTitle, response.LegalCompanyTitle);
             Assert.AreEqual(request.Name, response.Name);
             Assert.AreEqual(request.MemberExternalId, response.MemberExternalId);
-            Assert.AreEqual(request.MemberType, response.MemberType);
+            Assert.AreEqual("LIMITED_OR_JOINT_STOCK_COMPANY", response.MemberType);
             Assert.AreEqual(request.TaxNumber, response.TaxNumber);
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);

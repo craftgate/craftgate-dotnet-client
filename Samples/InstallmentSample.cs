@@ -18,8 +18,8 @@ namespace Samples
             var response = _craftgateClient.Installment().RetrieveBinNumber(binNumber);
             Assert.NotNull(response);
             Assert.AreEqual(binNumber, response.BinNumber);
-            Assert.AreEqual(CardType.CreditCard, response.CardType);
-            Assert.AreEqual(CardAssociation.MasterCard, response.CardAssociation);
+            Assert.AreEqual("CREDIT_CARD", response.CardType);
+            Assert.AreEqual("MASTER_CARD", response.CardAssociation);
             Assert.AreEqual("World", response.CardBrand);
             Assert.AreEqual("YAPI VE KREDİ BANKASI A.Ş.", response.BankName);
             Assert.AreEqual(67L, response.BankCode);
