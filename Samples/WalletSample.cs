@@ -52,8 +52,8 @@ namespace Samples
             Assert.AreEqual(request.MemberId, response.MemberId);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.Description, response.Description);
-            Assert.AreEqual(RemittanceType.Send, response.RemittanceType);
-            Assert.AreEqual(RemittanceReasonType.SubMerchantSendReceive, response.RemittanceReasonType);
+            Assert.AreEqual("SEND", response.RemittanceType);
+            Assert.AreEqual("SUBMERCHANT_SEND_RECEIVE", response.RemittanceReasonType);
         }
 
         [Test]
@@ -74,8 +74,8 @@ namespace Samples
             Assert.AreEqual(request.MemberId, response.MemberId);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.Description, response.Description);
-            Assert.AreEqual(RemittanceType.Receive, response.RemittanceType);
-            Assert.AreEqual(RemittanceReasonType.SubMerchantSendReceive, response.RemittanceReasonType);
+            Assert.AreEqual("RECEIVE", response.RemittanceType);
+            Assert.AreEqual("SUBMERCHANT_SEND_RECEIVE", response.RemittanceReasonType);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace Samples
             Assert.IsNotNull(response.CreatedDate);
             Assert.IsNotNull(response.MemberId);
             Assert.IsNotNull(response.Amount);
-            Assert.AreEqual(response.Currency, Currency.Try);
+            Assert.AreEqual("TRY", response.Currency);
         }
 
         [Test]
@@ -103,8 +103,8 @@ namespace Samples
             Assert.NotNull(response.Id);
             Assert.IsNotNull(response.CreatedDate);
             Assert.IsNotNull(response.MemberId);
-            Assert.AreEqual(response.Amount, decimal.Zero);
-            Assert.AreEqual(response.Currency, Currency.Try);
+            Assert.AreEqual(decimal.Zero, response.Amount);
+            Assert.AreEqual("TRY", response.Currency);
         }
 
         [Test]
@@ -128,10 +128,10 @@ namespace Samples
 
             Assert.IsNotNull(response.Id);
             Assert.IsNull(response.PaymentError);
-            Assert.AreEqual(response.RefundStatus, RefundStatus.Success);
-            Assert.AreEqual(response.TransactionType, WalletTransactionRefundCardTransactionType.Payment);
-            Assert.AreEqual(response.WalletTransactionId, walletTransactionId);
-            Assert.AreEqual(response.RefundPrice, request.RefundPrice);
+            Assert.AreEqual("SUCCESS", response.RefundStatus);
+            Assert.AreEqual("PAYMENT", response.TransactionType);
+            Assert.AreEqual(walletTransactionId, response.WalletTransactionId);
+            Assert.AreEqual(request.RefundPrice, response.RefundPrice);
         }
 
         [Test]
@@ -160,14 +160,13 @@ namespace Samples
             Assert.IsNotNull(response.Id);
             Assert.IsNotNull(response.CreatedDate);
             Assert.Null(response.PayoutId);
-            Assert.AreEqual(response.Price, request.Price);
-            Assert.AreEqual(response.Status, Status.Active);
-            Assert.AreEqual(response.MemberId, request.MemberId);
-            Assert.AreEqual(response.Currency, request.Currency);
-            Assert.AreEqual(response.Description, request.Description);
-            Assert.AreEqual(response.PayoutStatus, PayoutStatus.WaitingForPayout);
+            Assert.AreEqual(request.Price, response.Price);
+            Assert.AreEqual("ACTIVE", response.Status);
+            Assert.AreEqual(request.MemberId, response.MemberId);
+            Assert.AreEqual("TRY", response.Currency);
+            Assert.AreEqual(request.Description, response.Description);
+            Assert.AreEqual("WAITING_FOR_PAYOUT", response.PayoutStatus);
         }
-
 
         [Test]
         public void Cancel_Withdraw()
@@ -178,8 +177,8 @@ namespace Samples
 
             Assert.IsNotNull(response.Id);
             Assert.IsNotNull(response.CreatedDate);
-            Assert.AreEqual(response.Status, Status.Active);
-            Assert.AreEqual(response.PayoutStatus, PayoutStatus.Cancelled);
+            Assert.AreEqual("ACTIVE", response.Status);
+            Assert.AreEqual("CANCELLED", response.PayoutStatus);
         }
 
         [Test]
@@ -191,9 +190,9 @@ namespace Samples
 
             Assert.IsNotNull(response.Id);
             Assert.IsNotNull(response.CreatedDate);
-            Assert.AreEqual(response.Status, Status.Active);
-            Assert.AreEqual(response.Currency, Currency.Try);
-            Assert.AreEqual(response.PayoutStatus, PayoutStatus.WaitingForPayout);
+            Assert.AreEqual("ACTIVE", response.Status);
+            Assert.AreEqual("TRY", response.Currency);
+            Assert.AreEqual("WAITING_FOR_PAYOUT", response.PayoutStatus);
         }
 
         [Test]
@@ -201,7 +200,7 @@ namespace Samples
         {
             var request = new SearchWithdrawsRequest
             {
-                PayoutStatus = PayoutStatus.WaitingForPayout,
+                PayoutStatus = TransactionPayoutStatus.WaitingForPayout,
                 MinWithdrawPrice = new decimal(5),
                 MaxWithdrawPrice = new decimal(1000)
             };

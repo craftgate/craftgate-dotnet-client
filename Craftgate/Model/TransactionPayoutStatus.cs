@@ -2,9 +2,10 @@ using System.Runtime.Serialization;
 
 namespace Craftgate.Model
 {
-    public enum PayoutStatus
+    public enum TransactionPayoutStatus
     {
         [EnumMember(Value = "CANCELLED")] Cancelled,
+        [EnumMember(Value = "NO_PAYOUT")] NoPayout,
 
         [EnumMember(Value = "WAITING_FOR_PAYOUT")]
         WaitingForPayout,

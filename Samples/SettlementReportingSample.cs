@@ -54,5 +54,14 @@ namespace Samples
             var response = _craftgateClient.SettlementReporting().SearchBouncedPayoutTransactions(request);
             Assert.True(response.Items.Count > 0);
         }
+
+        [Test]
+        public void Retrieve_Payout_Details()
+        {
+            var payoutId = 1L;
+
+            var response = _craftgateClient.SettlementReporting().RetrievePayoutDetails(payoutId);
+            Assert.NotNull(response);
+        }
     }
 }

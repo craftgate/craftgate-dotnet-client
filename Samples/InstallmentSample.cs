@@ -17,13 +17,13 @@ namespace Samples
 
             var response = _craftgateClient.Installment().RetrieveBinNumber(binNumber);
             Assert.NotNull(response);
-            Assert.AreEqual(response.BinNumber, binNumber);
-            Assert.AreEqual(response.CardType, CardType.CreditCard);
-            Assert.AreEqual(response.CardAssociation, CardAssociation.MasterCard);
-            Assert.AreEqual(response.CardBrand, "World");
-            Assert.AreEqual(response.BankName, "YAPI VE KREDİ BANKASI A.Ş.");
-            Assert.AreEqual(response.BankCode, 67L);
-            Assert.AreEqual(response.Commercial, false);
+            Assert.AreEqual(binNumber, response.BinNumber);
+            Assert.AreEqual("CREDIT_CARD", response.CardType);
+            Assert.AreEqual("MASTER_CARD", response.CardAssociation);
+            Assert.AreEqual("World", response.CardBrand);
+            Assert.AreEqual("YAPI VE KREDİ BANKASI A.Ş.", response.BankName);
+            Assert.AreEqual(67L, response.BankCode);
+            Assert.AreEqual(false, response.Commercial);
         }
 
         [Test]

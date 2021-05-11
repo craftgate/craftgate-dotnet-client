@@ -1,5 +1,4 @@
 using System;
-using Craftgate.Model;
 
 namespace Craftgate.Response
 {
@@ -9,7 +8,7 @@ namespace Craftgate.Response
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public decimal Amount { get; set; }
-        public Currency Currency { get; set; }
+        public string Currency { get; set; }
         public long MemberId { get; set; }
     }
 }

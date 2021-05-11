@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Craftgate.Model;
 
 namespace Craftgate.Response.Dto
 {
@@ -7,8 +6,8 @@ namespace Craftgate.Response.Dto
     {
         public string BinNumber { get; set; }
         public decimal? Price { get; set; }
-        public CardType? CardType { get; set; }
-        public CardAssociation? CardAssociation { get; set; }
+        public string CardType { get; set; }
+        public string CardAssociation { get; set; }
         public string CardBrand { get; set; }
         public string BankName { get; set; }
         public long? BankCode { get; set; }
