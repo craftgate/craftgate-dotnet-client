@@ -2,6 +2,7 @@ namespace Craftgate.Response.Dto
 {
     public class PayoutCompletedTransaction
     {
+        public long PayoutId;
         public long TransactionId;
         public string TransactionType;
         public decimal PayoutAmount;
