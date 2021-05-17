@@ -11,12 +11,10 @@ namespace Craftgate.Adapter
         {
         }
 
-        public WalletListResponse SearchWallets(SearchWalletsRequest searchWalletsRequest)
+        public WalletResponse RetrieveMemberWallet(long memberId)
         {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchWalletsRequest);
-            var path = "/wallet/v1/wallets" + queryParam;
-            return RestClient.Get<WalletListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+            var path = "/wallet/v1/members/" + memberId + "/wallet";
+            return RestClient.Get<WalletResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
         }
 
         public WalletTransactionListResponse SearchWalletTransactions(long walletId,

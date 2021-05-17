@@ -11,15 +11,18 @@ namespace Samples
             new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
-        public void Search_Wallets()
+        public void Retrieve_Member_Wallet()
         {
-            var request = new SearchWalletsRequest()
-            {
-                MemberId = 1L
-            };
+            long memberId = 1L;
 
-            var response = _craftgateClient.Wallet().SearchWallets(request);
-            Assert.True(response.Items.Count > 0);
+            var response = _craftgateClient.Wallet().RetrieveMemberWallet(memberId);
+
+            Assert.NotNull(response.Id);
+            Assert.IsNotNull(response.CreatedDate);
+            Assert.AreEqual(memberId, response.MemberId);
+            Assert.IsNotNull(response.Amount);
+            Assert.IsNotNull(response.WithdrawalAmount);
+            Assert.AreEqual("TRY", response.Currency);
         }
 
         [Test]
