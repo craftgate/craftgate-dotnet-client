@@ -15,6 +15,6 @@ namespace Craftgate.Response.Common
         public string AuthCode { get; set; }
         public string HostReference { get; set; }
         public string TransId { get; set; }
-        public string PaymentId { get; set; }
+        public long PaymentId { get; set; }
     }
 }
