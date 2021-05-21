@@ -641,23 +641,6 @@ namespace Samples
         }
 
         [Test]
-        public void Refund_Deposit_Payment()
-        {
-            long paymentId = 1;
-            var request = new RefundDepositPaymentRequest
-            {
-                Price = new decimal(50.0),
-                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5"
-            };
-
-            var response = _craftgateClient.Payment().RefundDepositPayment(paymentId, request);
-            Assert.NotNull(response);
-            Assert.AreEqual(paymentId, response.PaymentId);
-            Assert.AreEqual("SUCCESS", response.Status);
-            Assert.AreEqual(new decimal(50.0), response.RefundPrice);
-        }
-
-        [Test]
         public void Init_3DS_Deposit_Payment()
         {
             var request = new CreateDepositPaymentRequest
