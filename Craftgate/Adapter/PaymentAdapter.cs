@@ -66,15 +66,6 @@ namespace Craftgate.Adapter
                 createDepositPaymentRequest);
         }
 
-        public DepositPaymentRefundResponse RefundDepositPayment(long paymentId,
-            RefundDepositPaymentRequest refundDepositPaymentRequest)
-        {
-            var path = "/payment/v1/deposits/" + paymentId + "/refunds";
-            return RestClient.Post<DepositPaymentRefundResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(refundDepositPaymentRequest, path, RequestOptions),
-                refundDepositPaymentRequest);
-        }
-
         public InitThreeDSPaymentResponse Init3DSDepositPayment(CreateDepositPaymentRequest createDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits/3ds-init";
