@@ -81,6 +81,19 @@ namespace Samples
             Assert.AreEqual("SUBMERCHANT_SEND_RECEIVE", response.RemittanceReasonType);
         }
 
+        public void Retrieve_Remittance()
+        {
+            long remittanceId = 1;
+
+            var response = _craftgateClient.Wallet().RetrieveRemittance(remittanceId);
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.MemberId);
+            Assert.NotNull(response.Price);
+            Assert.NotNull(response.Description);
+            Assert.AreEqual("SEND", response.RemittanceType);
+            Assert.AreEqual("SUBMERCHANT_SEND_RECEIVE", response.RemittanceReasonType);
+        }
+
         [Test]
         public void Retrieve_Merchant_Member_Wallet()
         {

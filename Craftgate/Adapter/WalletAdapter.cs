@@ -41,6 +41,13 @@ namespace Craftgate.Adapter
                 CreateHeaders(createRemittanceRequest, path, RequestOptions),
                 createRemittanceRequest);
         }
+        
+        
+        public RemittanceResponse RetrieveRemittance(long id)
+        {
+            var path = "/wallet/v1/remittances/" + id;
+            return RestClient.Get<RemittanceResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+        }
 
         public WalletResponse RetrieveMerchantMemberWallet()
         {
