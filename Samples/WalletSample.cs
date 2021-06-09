@@ -8,7 +8,7 @@ namespace Samples
     public class WalletSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "http://localhost:8000");
+            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Retrieve_Member_Wallet()
