@@ -8,7 +8,7 @@ namespace Samples
     public class WalletSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+            new CraftgateClient("api-key", "secret-key", "http://localhost:8000");
 
         [Test]
         public void Retrieve_Member_Wallet()
@@ -81,6 +81,7 @@ namespace Samples
             Assert.AreEqual("SUBMERCHANT_SEND_RECEIVE", response.RemittanceReasonType);
         }
 
+        [Test]
         public void Retrieve_Remittance()
         {
             long remittanceId = 1;
