@@ -11,6 +11,7 @@ namespace Craftgate.Request
         public Currency? Currency { get; set; }
         public string CallbackUrl { get; set; }
         public string PosAlias { get; set; }
+        public string ClientIp { get; set; }
         public Card Card { get; set; }
     }
 }
