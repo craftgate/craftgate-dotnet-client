@@ -11,7 +11,7 @@ namespace Samples
     public class PaymentSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+            new CraftgateClient("api-key", "secret-key", "http://localhost:8000");
 
         [Test]
         public void Create_Payment()
@@ -25,6 +25,7 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 Currency = Currency.Try,
                 PaymentGroup = PaymentGroup.ListingOrSubscription,
+                PaymentPhase =  PaymentPhase.Auth,
                 Card = new Card
                 {
                     CardHolderName = "Haluk Demir",
@@ -848,6 +849,21 @@ namespace Samples
             var response = _craftgateClient.Payment().DisapprovePaymentTransactions(request);
             Assert.NotNull(response);
             Assert.AreEqual(2, response.Size);
+        }
+        
+        [Test]
+        public void Post_Auth_Payment()
+        {
+            var request = new PostAuthPaymentRequest()
+            {
+                PaymentId = 1,
+                PaidPrice = new decimal(100.0)
+            };
+
+            var response = _craftgateClient.Payment().PostAuthPayment(request);
+            Assert.AreEqual(request.PaymentId, response.Id);
+            Assert.AreEqual(request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual("POST_AUTH", response.PaymentPhase);
         }
     }
 }
