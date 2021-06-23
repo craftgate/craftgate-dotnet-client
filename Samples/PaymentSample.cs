@@ -25,7 +25,6 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 Currency = Currency.Try,
                 PaymentGroup = PaymentGroup.ListingOrSubscription,
-                PaymentPhase =  PaymentPhase.Auth,
                 Card = new Card
                 {
                     CardHolderName = "Haluk Demir",
