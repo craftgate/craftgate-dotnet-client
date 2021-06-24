@@ -920,14 +920,14 @@ namespace Samples
         [Test]
         public void Post_Auth_Payment()
         {
+            long paymentId = 1;
             var request = new PostAuthPaymentRequest()
             {
-                PaymentId = 1,
                 PaidPrice = new decimal(100.0)
             };
 
-            var response = _craftgateClient.Payment().PostAuthPayment(request);
-            Assert.AreEqual(request.PaymentId, response.Id);
+            var response = _craftgateClient.Payment().PostAuthPayment(paymentId, request);
+            Assert.AreEqual(paymentId, response.Id);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual("POST_AUTH", response.PaymentPhase);
         }

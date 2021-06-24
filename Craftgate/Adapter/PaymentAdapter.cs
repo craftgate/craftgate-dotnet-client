@@ -43,9 +43,9 @@ namespace Craftgate.Adapter
                 completeThreeDsPaymentRequest);
         }
         
-        public PaymentResponse PostAuthPayment(PostAuthPaymentRequest postAuthPaymentRequest)
+        public PaymentResponse PostAuthPayment(long paymentId, PostAuthPaymentRequest postAuthPaymentRequest)
         {
-            var path = "/payment/v1/card-payments/" + postAuthPaymentRequest.PaymentId + "/post-auth";
+            var path = "/payment/v1/card-payments/" + paymentId + "/post-auth";
             return RestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(postAuthPaymentRequest, path, RequestOptions), postAuthPaymentRequest);
         }
