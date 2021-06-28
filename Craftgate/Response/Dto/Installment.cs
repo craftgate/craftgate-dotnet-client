@@ -12,6 +12,7 @@ namespace Craftgate.Response.Dto
         public string BankName { get; set; }
         public long? BankCode { get; set; }
         public bool? Force3ds { get; set; }
+        public bool? CvcRequired { get; set; }
         public bool? Commercial { get; set; }
         public List<InstallmentPriceDto> InstallmentPrices { get; set; }
     }
