@@ -22,6 +22,8 @@ namespace Craftgate.Response.Common
         public bool IsThreeDS { get; set; }
         public decimal MerchantCommissionRate { get; set; }
         public decimal MerchantCommissionRateAmount { get; set; }
+        public decimal BankCommissionRate { get; set; }
+        public decimal BankCommissionRateAmount { get; set; }
         public bool PaidWithStoredCard { get; set; }
         public string BinNumber { get; set; }
         public string LastFourDigits { get; set; }
