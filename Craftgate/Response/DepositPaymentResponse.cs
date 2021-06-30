@@ -11,6 +11,8 @@ namespace Craftgate.Response
         public string ConversationId { get; set; }
         public string AuthCode { get; set; }
         public string HostReference { get; set; }
+        public decimal BankCommissionRate { get; set; }
+        public decimal BankCommissionRateAmount { get; set; }
         public string TransId { get; set; }
         public string OrderId { get; set; }
         public string PaymentType { get; set; }
