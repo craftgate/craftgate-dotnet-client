@@ -4,8 +4,8 @@ namespace Craftgate.Model
 {
     public enum RefundType
     {
-        [EnumMember(Value = "CANCEL")] Cancel,
+        [EnumMember(Value = "CANCEL")] CANCEL,
 
-        [EnumMember(Value = "REFUND")] Refund
+        [EnumMember(Value = "REFUND")] REFUND
     }
 }

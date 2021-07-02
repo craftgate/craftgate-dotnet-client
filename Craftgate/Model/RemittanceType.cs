@@ -4,7 +4,7 @@ namespace Craftgate.Model
 {
     public enum RemittanceType
     {
-        [EnumMember(Value = "SEND")] Send,
-        [EnumMember(Value = "RECEIVE")] Receive
+        [EnumMember(Value = "SEND")] SEND,
+        [EnumMember(Value = "RECEIVE")] RECEIVE
     }
 }

@@ -4,8 +4,8 @@ namespace Craftgate.Model
 {
     public enum PaymentPhase
     {
-        [EnumMember(Value = "AUTH")] Auth,
-        [EnumMember(Value = "PRE_AUTH")] PreAuth,
-        [EnumMember(Value = "POST_AUTH")] PostAuth
+        [EnumMember(Value = "AUTH")] AUTH,
+        [EnumMember(Value = "PRE_AUTH")] PRE_AUTH,
+        [EnumMember(Value = "POST_AUTH")] POST_AUTH
     }
 }

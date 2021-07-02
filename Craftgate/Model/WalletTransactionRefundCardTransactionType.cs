@@ -4,7 +4,7 @@ namespace Craftgate.Model
 {
     public enum WalletTransactionRefundCardTransactionType
     {
-        [EnumMember(Value = "PAYMENT")] Payment,
-        [EnumMember(Value = "PAYMENT_TX")] PaymentTx
+        [EnumMember(Value = "PAYMENT")] PAYMENT,
+        [EnumMember(Value = "PAYMENT_TX")] PAYMENT_TX
     }
 }

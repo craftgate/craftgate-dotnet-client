@@ -7,6 +7,6 @@ namespace Craftgate.Model
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Currency
     {
-        [EnumMember(Value = "TRY")] Try
+        [EnumMember(Value = "TRY")] TRY
     }
 }

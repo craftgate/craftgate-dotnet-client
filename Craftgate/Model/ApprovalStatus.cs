@@ -4,8 +4,8 @@ namespace Craftgate.Model
 {
     public enum ApprovalStatus
     {
-        [EnumMember(Value = "FAILURE")] Failure,
+        [EnumMember(Value = "FAILURE")] FAILURE,
 
-        [EnumMember(Value = "SUCCESS")] Success
+        [EnumMember(Value = "SUCCESS")] SUCCESS
     }
 }

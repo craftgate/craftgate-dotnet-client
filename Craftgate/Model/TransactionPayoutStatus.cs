@@ -4,15 +4,15 @@ namespace Craftgate.Model
 {
     public enum TransactionPayoutStatus
     {
-        [EnumMember(Value = "CANCELLED")] Cancelled,
-        [EnumMember(Value = "NO_PAYOUT")] NoPayout,
+        [EnumMember(Value = "CANCELLED")] CANCELLED,
+        [EnumMember(Value = "NO_PAYOUT")] NO_PAYOUT,
 
         [EnumMember(Value = "WAITING_FOR_PAYOUT")]
-        WaitingForPayout,
+        WAITING_FOR_PAYOUT,
 
-        [EnumMember(Value = "PAYOUT_STARTED")] PayoutStarted,
+        [EnumMember(Value = "PAYOUT_STARTED")] PAYOUT_STARTED,
 
         [EnumMember(Value = "PAYOUT_COMPLETED")]
-        PayoutCompleted
+        PAYOUT_COMPLETED
     }
 }

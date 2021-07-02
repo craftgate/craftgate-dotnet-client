@@ -17,7 +17,7 @@ namespace Samples
             var ts = DateTime.Now;
             var request = new SearchPayoutCompletedTransactionsRequest()
             {
-                SettlementType = SettlementType.Settlement,
+                SettlementType = SettlementType.SETTLEMENT,
                 StartDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 0, 0, 0),
                 EndDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 23, 59, 59)
             };
@@ -32,7 +32,7 @@ namespace Samples
             var ts = DateTime.Now;
             var request = new SearchPayoutCompletedTransactionsRequest()
             {
-                SettlementType = SettlementType.BouncedSettlement,
+                SettlementType = SettlementType.BOUNCED_SETTLEMENT,
                 StartDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 0, 0, 0),
                 EndDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 23, 59, 59)
             };

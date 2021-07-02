@@ -33,7 +33,7 @@ namespace Samples
             {
                 BinNumber = "525864",
                 Price = 100,
-                Currency = Currency.Try
+                Currency = Currency.TRY
             };
 
             var response = _craftgateClient.Installment().SearchInstallments(request);
@@ -47,7 +47,7 @@ namespace Samples
             {
                 BinNumber = "525864",
                 Price = 100,
-                Currency = Currency.Try,
+                Currency = Currency.TRY,
                 DistinctCardBrandsWithLowestCommissions = true
             };
 

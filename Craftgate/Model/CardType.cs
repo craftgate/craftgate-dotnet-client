@@ -4,10 +4,10 @@ namespace Craftgate.Model
 {
     public enum CardType
     {
-        [EnumMember(Value = "CREDIT_CARD")] CreditCard,
+        [EnumMember(Value = "CREDIT_CARD")] CREDIT_CARD,
 
-        [EnumMember(Value = "DEBIT_CARD")] DebitCard,
+        [EnumMember(Value = "DEBIT_CARD")] DEBIT_CARD,
 
-        [EnumMember(Value = "PREPAID_CARD")] PrepaidCard
+        [EnumMember(Value = "PREPAID_CARD")] PREPAID_CARD
     }
 }

@@ -4,9 +4,9 @@ namespace Craftgate.Model
 {
     public enum PaymentGroup
     {
-        [EnumMember(Value = "PRODUCT")] Product,
+        [EnumMember(Value = "PRODUCT")] PRODUCT,
 
         [EnumMember(Value = "LISTING_OR_SUBSCRIPTION")]
-        ListingOrSubscription
+        LISTING_OR_SUBSCRIPTION
     }
 }

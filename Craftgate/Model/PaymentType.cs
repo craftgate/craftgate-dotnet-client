@@ -4,16 +4,16 @@ namespace Craftgate.Model
 {
     public enum PaymentType
     {
-        [EnumMember(Value = "CARD_PAYMENT")] CardPayment,
+        [EnumMember(Value = "CARD_PAYMENT")] CARD_PAYMENT,
 
         [EnumMember(Value = "DEPOSIT_PAYMENT")]
-        DepositPayment,
+        DEPOSIT_PAYMENT,
 
-        [EnumMember(Value = "WALLET_PAYMENT")] WalletPayment,
+        [EnumMember(Value = "WALLET_PAYMENT")] WALLET_PAYMENT,
 
         [EnumMember(Value = "CARD_AND_WALLET_PAYMENT")]
-        CardAndWalletPayment,
+        CARD_AND_WALLET_PAYMENT,
 
-        [EnumMember(Value = "BANK_TRANSFER")] BankTransfer
+        [EnumMember(Value = "BANK_TRANSFER")] BANK_TRANSFER
     }
 }

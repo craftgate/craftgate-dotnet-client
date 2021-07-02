@@ -4,12 +4,12 @@ namespace Craftgate.Model
 {
     public enum CardAssociation
     {
-        [EnumMember(Value = "VISA")] Visa,
+        [EnumMember(Value = "VISA")] VISA,
 
-        [EnumMember(Value = "MASTER_CARD")] MasterCard,
+        [EnumMember(Value = "MASTER_CARD")] MASTER_CARD,
 
-        [EnumMember(Value = "AMEX")] Amex,
+        [EnumMember(Value = "AMEX")] AMEX,
 
-        [EnumMember(Value = "TROY")] Troy
+        [EnumMember(Value = "TROY")] TROY
     }
 }
