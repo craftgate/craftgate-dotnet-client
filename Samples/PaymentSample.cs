@@ -23,8 +23,8 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 Card = new Card
                 {
                     CardHolderName = "Haluk Demir",
@@ -89,8 +89,8 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.Product,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.PRODUCT,
                 Card = new Card
                 {
                     CardHolderName = "Haluk Demir",
@@ -162,8 +162,8 @@ namespace Samples
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 ExternalId = "external_id-123456789",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 Card = new Card
                 {
                     CardHolderName = "Haluk Demir",
@@ -232,8 +232,8 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 Card = new Card
                 {
                     CardUserKey = "fac377f2-ab15-4696-88d2-5e71b27ec378",
@@ -297,8 +297,8 @@ namespace Samples
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 ExternalId = "external_id-123456789",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 Items = new List<PaymentItem>
                 {
                     new PaymentItem
@@ -365,8 +365,8 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
                 Card = new Card
                 {
@@ -415,8 +415,8 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.Product,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.PRODUCT,
                 CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
                 Card = new Card
                 {
@@ -471,8 +471,8 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
                 Card = new Card
                 {
@@ -523,8 +523,8 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
                 Card = new Card
                 {
@@ -580,8 +580,8 @@ namespace Samples
                 Price = new decimal(100.0),
                 PaidPrice = new decimal(100.0),
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 CallbackUrl = "https://www.your-website.com/craftgate-checkout-callback",
                 Items = new List<PaymentItem>
                 {
@@ -618,7 +618,7 @@ namespace Samples
             {
                 Price = new decimal(100.0),
                 BuyerMemberId = 1,
-                Currency = Currency.Try,
+                Currency = Currency.TRY,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 Card = new Card
                 {
@@ -648,7 +648,7 @@ namespace Samples
                 Price = new decimal(100.0),
                 BuyerMemberId = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
+                Currency = Currency.TRY,
                 CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
                 Card = new Card
                 {
@@ -725,7 +725,7 @@ namespace Samples
             var request = new RefundPaymentRequest
             {
                 PaymentId = 1,
-                RefundDestinationType = RefundDestinationType.Card
+                RefundDestinationType = RefundDestinationType.CARD
             };
 
             var response = _craftgateClient.Payment().RefundPayment(request);
@@ -752,7 +752,7 @@ namespace Samples
                 PaymentTransactionId = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 RefundPrice = 20,
-                RefundDestinationType = RefundDestinationType.Card
+                RefundDestinationType = RefundDestinationType.CARD
             };
 
             var response = _craftgateClient.Payment().RefundPaymentTransaction(request);
@@ -800,10 +800,10 @@ namespace Samples
                 CardAlias = "My YKB Card",
                 CardBankName = "YAPI VE KREDİ BANKASI A.Ş.",
                 CardBrand = "World",
-                CardAssociation = CardAssociation.MasterCard,
+                CardAssociation = CardAssociation.MASTER_CARD,
                 CardToken = "d9b19d1a-243c-43dc-a498-add08162df72",
                 CardUserKey = "c115ecdf-0afc-4d83-8a1b-719c2af19cbd",
-                CardType = CardType.CreditCard
+                CardType = CardType.CREDIT_CARD
             };
 
             var response = _craftgateClient.Payment().SearchStoredCards(request);
@@ -860,9 +860,9 @@ namespace Samples
                 WalletPrice = new decimal(0.0),
                 Installment = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.Try,
-                PaymentGroup = PaymentGroup.ListingOrSubscription,
-                PaymentPhase = PaymentPhase.PreAuth,
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                PaymentPhase = PaymentPhase.PRE_AUTH,
                 Card = new Card
                 {
                     CardHolderName = "Haluk Demir",

@@ -4,10 +4,10 @@ namespace Craftgate.Model
 {
     public enum SettlementResultStatus
     {
-        [EnumMember(Value = "SUCCESS")] Success,
-        [EnumMember(Value = "FAILURE")] Failure,
+        [EnumMember(Value = "SUCCESS")] SUCCESS,
+        [EnumMember(Value = "FAILURE")] FAILURE,
 
         [EnumMember(Value = "NO_RECORD_FOUND")]
-        NoRecordFound
+        NO_RECORD_FOUND
     }
 }

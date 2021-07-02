@@ -5,9 +5,9 @@ namespace Craftgate.Model
     public enum RemittanceReasonType
     {
         [EnumMember(Value = "SUBMERCHANT_SEND_RECEIVE")]
-        SubMerchantSendReceive,
+        SUBMERCHANT_SEND_RECEIVE,
 
         [EnumMember(Value = "REDEEM_ONLY_LOYALTY")]
-        RedeemOnlyLoyalty
+        REDEEM_ONLY_LOYALTY
     }
 }

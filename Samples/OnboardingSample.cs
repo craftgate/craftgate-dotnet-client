@@ -27,11 +27,11 @@ namespace Samples
                 LegalCompanyTitle = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 Name = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 MemberExternalId = Guid.NewGuid().ToString(),
-                MemberType = MemberType.LimitedOrJointStockCompany,
+                MemberType = MemberType.LIMITED_OR_JOINT_STOCK_COMPANY,
                 TaxNumber = "1111111114",
                 TaxOffice = "Erenköy",
                 Iban = "TR930006701000000001111111",
-                SettlementEarningsDestination = SettlementEarningsDestination.Iban,
+                SettlementEarningsDestination = SettlementEarningsDestination.IBAN,
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
@@ -68,12 +68,12 @@ namespace Samples
                 PhoneNumber = "905551111111",
                 IdentityNumber = "11111111110",
                 LegalCompanyTitle = "Dem Zeytinyağı Üretim Ltd. Şti.",
-                MemberType = MemberType.LimitedOrJointStockCompany,
+                MemberType = MemberType.LIMITED_OR_JOINT_STOCK_COMPANY,
                 Name = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 TaxNumber = "1111111114",
                 TaxOffice = "Erenköy",
                 Iban = "TR930006701000000001111111",
-                SettlementEarningsDestination = SettlementEarningsDestination.Iban,
+                SettlementEarningsDestination = SettlementEarningsDestination.IBAN,
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
@@ -192,11 +192,11 @@ namespace Samples
                 LegalCompanyTitle = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 Name = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 MemberExternalId = Guid.NewGuid().ToString(),
-                MemberType = MemberType.LimitedOrJointStockCompany,
+                MemberType = MemberType.LIMITED_OR_JOINT_STOCK_COMPANY,
                 TaxNumber = "1111111114",
                 TaxOffice = "Erenköy",
                 Iban = "TR930006701000000001111111",
-                SettlementEarningsDestination = SettlementEarningsDestination.Iban,
+                SettlementEarningsDestination = SettlementEarningsDestination.IBAN,
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 

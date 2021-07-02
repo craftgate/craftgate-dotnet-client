@@ -4,13 +4,13 @@ namespace Craftgate.Model
 {
     public enum PaymentStatus
     {
-        [EnumMember(Value = "FAILURE")] Failure,
+        [EnumMember(Value = "FAILURE")] FAILURE,
 
-        [EnumMember(Value = "SUCCESS")] Success,
+        [EnumMember(Value = "SUCCESS")] SUCCESS,
 
-        [EnumMember(Value = "INIT_THREEDS")] InitThreeds,
+        [EnumMember(Value = "INIT_THREEDS")] INIT_THREEDS,
 
         [EnumMember(Value = "CALLBACK_THREEDS")]
-        CallbackThreeds
+        CALLBACK_THREEDS
     }
 }

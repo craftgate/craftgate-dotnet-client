@@ -4,12 +4,12 @@ namespace Craftgate.Model
 {
     public enum MemberType
     {
-        [EnumMember(Value = "PERSONAL")] Personal,
+        [EnumMember(Value = "PERSONAL")] PERSONAL,
 
         [EnumMember(Value = "PRIVATE_COMPANY")]
-        Private,
+        PRIVATE_COMPANY,
 
         [EnumMember(Value = "LIMITED_OR_JOINT_STOCK_COMPANY")]
-        LimitedOrJointStockCompany
+        LIMITED_OR_JOINT_STOCK_COMPANY
     }
 }

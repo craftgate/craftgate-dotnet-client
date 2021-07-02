@@ -7,8 +7,8 @@ namespace Craftgate.Model
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SettlementSource
     {
-        [EnumMember(Value = "COLLECTION")] Collection,
-        [EnumMember(Value = "WITHDRAW")] Withdraw,
-        [EnumMember(Value = "BOUNCED")] Bounced
+        [EnumMember(Value = "COLLECTION")] COLLECTION,
+        [EnumMember(Value = "WITHDRAW")] WITHDRAW,
+        [EnumMember(Value = "BOUNCED")] BOUNCED
     }
 }

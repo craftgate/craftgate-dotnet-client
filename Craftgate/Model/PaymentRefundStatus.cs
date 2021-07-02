@@ -4,11 +4,11 @@ namespace Craftgate.Model
 {
     public enum PaymentRefundStatus
     {
-        [EnumMember(Value = "NO_REFUND")] NoRefund,
-        [EnumMember(Value = "NOT_REFUNDED")] NotRefunded,
+        [EnumMember(Value = "NO_REFUND")] NO_REFUND,
+        [EnumMember(Value = "NOT_REFUNDED")] NOT_REFUNDED,
 
         [EnumMember(Value = "PARTIAL_REFUNDED")]
-        PartialRefunded,
-        [EnumMember(Value = "FULLY_REFUNDED")] FullyRefunded
+        PARTIAL_REFUNDED,
+        [EnumMember(Value = "FULLY_REFUNDED")] FULLY_REFUNDED
     }
 }

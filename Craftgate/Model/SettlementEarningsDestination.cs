@@ -4,7 +4,7 @@ namespace Craftgate.Model
 {
     public enum SettlementEarningsDestination
     {
-        [EnumMember(Value = "IBAN")] Iban,
-        [EnumMember(Value = "WALLET")] Wallet
+        [EnumMember(Value = "IBAN")] IBAN,
+        [EnumMember(Value = "WALLET")] WALLET
     }
 }

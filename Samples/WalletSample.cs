@@ -47,7 +47,7 @@ namespace Samples
                 MemberId = memberId,
                 Price = price,
                 Description = "Remittance send to sub merchant memberId" + memberId,
-                RemittanceReasonType = RemittanceReasonType.SubMerchantSendReceive
+                RemittanceReasonType = RemittanceReasonType.SUBMERCHANT_SEND_RECEIVE
             };
 
             var response = _craftgateClient.Wallet().SendRemittance(request);
@@ -69,7 +69,7 @@ namespace Samples
                 MemberId = memberId,
                 Price = price,
                 Description = "Remittance received from sub merchant memberId" + memberId,
-                RemittanceReasonType = RemittanceReasonType.SubMerchantSendReceive
+                RemittanceReasonType = RemittanceReasonType.SUBMERCHANT_SEND_RECEIVE
             };
 
             var response = _craftgateClient.Wallet().ReceiveRemittance(request);
@@ -169,7 +169,7 @@ namespace Samples
                 MemberId = 1,
                 Price = new decimal(100),
                 Description = "Hakediş Çekme Talebi",
-                Currency = Currency.Try
+                Currency = Currency.TRY
             };
 
             var response = _craftgateClient.Wallet().CreateWithdraw(request);
@@ -217,7 +217,7 @@ namespace Samples
         {
             var request = new SearchWithdrawsRequest
             {
-                PayoutStatus = TransactionPayoutStatus.WaitingForPayout,
+                PayoutStatus = TransactionPayoutStatus.WAITING_FOR_PAYOUT,
                 MinWithdrawPrice = new decimal(5),
                 MaxWithdrawPrice = new decimal(1000)
             };

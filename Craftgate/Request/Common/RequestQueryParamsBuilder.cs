@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -37,6 +38,8 @@ namespace Craftgate.Request.Common
                     return FormatListValue(enumerable);
                 case Enum @enum:
                     return GetEnumMemberAttrValue(@enum);
+                case decimal @decimal:
+                    return @decimal.ToString(new CultureInfo("en-EN"));
                 default:
                     return value.ToString();
             }
