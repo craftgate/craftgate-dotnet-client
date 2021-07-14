@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Craftgate.Model;
 using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
@@ -16,6 +17,7 @@ namespace Craftgate.Response
         public string MerchantType;
         public string SettlementEarningsDestination;
         public string SettlementSource;
+        public string BounceStatus;
         public IList<PayoutDetailTransaction> PayoutTransactions;
     }
 }
