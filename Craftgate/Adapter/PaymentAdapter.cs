@@ -127,6 +127,13 @@ namespace Craftgate.Adapter
             return RestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(storeCardRequest, path, RequestOptions), storeCardRequest);
         }
+        
+        public StoredCardResponse UpdateCard(UpdateCardRequest updateCardRequest)
+        {
+            var path = "/payment/v1/cards/update";
+            return RestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(updateCardRequest, path, RequestOptions), updateCardRequest);
+        }
 
         public StoredCardListResponse SearchStoredCards(SearchStoredCardsRequest searchStoredCardsRequest)
         {
