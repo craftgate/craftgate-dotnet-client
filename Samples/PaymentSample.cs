@@ -791,6 +791,24 @@ namespace Samples
             Assert.AreEqual(request.CardUserKey, response.CardUserKey);
             Assert.NotNull(response.CardToken);
         }
+        
+        [Test]
+        public void Update_Card()
+        {
+            var request = new UpdateCardRequest
+            {
+                CardToken = "fac377f2-ab15-4696-88d2-5e71b27ec378",
+                CardUserKey = "11a078c4-3c32-4796-90b1-51ee5517a212",
+                ExpireYear = "2044",
+                ExpireMonth = "07"
+            };
+
+            var response = _craftgateClient.Payment().UpdateCard(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.CardToken);
+            Assert.AreEqual(request.CardUserKey, response.CardUserKey);
+            Assert.AreEqual(request.CardToken, response.CardToken);
+        }
 
         [Test]
         public void Search_Stored_Cards()
