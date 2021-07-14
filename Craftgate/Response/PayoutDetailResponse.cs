@@ -17,7 +17,7 @@ namespace Craftgate.Response
         public string MerchantType;
         public string SettlementEarningsDestination;
         public string SettlementSource;
-        public BounceStatus BounceStatus;
+        public string BounceStatus;
         public IList<PayoutDetailTransaction> PayoutTransactions;
     }
 }
