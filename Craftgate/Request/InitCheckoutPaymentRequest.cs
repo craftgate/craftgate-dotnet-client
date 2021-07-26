@@ -9,6 +9,7 @@ namespace Craftgate.Request
         public decimal? Price { get; set; }
         public decimal? PaidPrice { get; set; }
         public string CallbackUrl { get; set; }
+        public string MerchantWebhookUrl { get; set; }
         public string CardUserKey { get; set; }
         public Currency? Currency { get; set; }
         public PaymentGroup? PaymentGroup { get; set; }
