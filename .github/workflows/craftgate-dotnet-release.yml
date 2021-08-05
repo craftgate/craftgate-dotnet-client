@@ -19,9 +19,13 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_SECRET_KEY}}
 
+      - name: Set Package Version
+        run: echo ("PACKAGE_VERSION=" + $env:GITHUB_REF.replace('refs/heads/', '')) >> $env:GITHUB_ENV 
+    
       - name: Pack Client Library
-        run: dotnet pack -c Release -p:PackageVersion=${GITHUB_REF#refs/*/} ./Craftgate
+        run: dotnet pack -c Release -p:PackageVersion="${{ env.PACKAGE_VERSION }}" ./Craftgate
 
       - name: Push Packed Client Library to Nuget
-        run:  dotnet nuget push ./Craftgate/bin/Release/*.nupkg -k ${{secrets.NUGET_SECRET_KEY}}
-       
+        run:  dotnet nuget push ./Craftgate/bin/Release/*.nupkg -k $env:NUGET_SECRET_KEY
+        env: 
+          NUGET_SECRET_KEY: ${{secrets.NUGET_SECRET_KEY}}
