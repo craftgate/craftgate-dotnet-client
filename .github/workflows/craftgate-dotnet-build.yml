@@ -4,7 +4,7 @@ on: [ push, pull_request ]
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: windows-latest
 
     name: Dotnet Build & Test
     steps:
@@ -25,9 +25,9 @@ jobs:
         with:
           dotnet-version: '3.1.x'
   
-
-        
       - run: dotnet build -c Release ./Craftgate
       - run: dotnet test Test -f netcoreapp1.1
       - run: dotnet test Test -f netcoreapp2.0
       - run: dotnet test Test -f netcoreapp3.1
+      - run: dotnet test Test -f net45
+      - run: dotnet test Test -f net462
