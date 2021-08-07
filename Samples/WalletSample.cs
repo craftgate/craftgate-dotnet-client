@@ -152,7 +152,7 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Wallet_Transactions_To_Card()
+        public void Retrieve_Refund_Wallet_Transactions_To_Card()
         {
             long walletTransactionId = 1;
             var response = _craftgateClient.Wallet().RetrieveRefundWalletTransactionsToCard(walletTransactionId);
