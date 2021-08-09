@@ -793,7 +793,7 @@ namespace Samples
         }
         
         [Test]
-        public void Update_Card()
+        public void Update_Stored_Card()
         {
             var request = new UpdateCardRequest
             {
@@ -830,7 +830,7 @@ namespace Samples
         }
 
         [Test]
-        public void Delete_StoredCard()
+        public void Delete_Stored_Card()
         {
             var request = new DeleteStoredCardRequest
             {
