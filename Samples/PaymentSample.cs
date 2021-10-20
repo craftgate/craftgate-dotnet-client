@@ -949,5 +949,18 @@ namespace Samples
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual("POST_AUTH", response.PaymentPhase);
         }
+        
+        [Test]
+        public void Check_Masterpass_User()
+        {
+            var request = new CheckMasterpassUserRequest()
+            {
+                MasterpassGsmNumber = "903000000000"
+            };
+
+            var response = _craftgateClient.Payment().CheckMasterpassUser(request);
+            Assert.AreEqual(true, response.IsEligibleToUseMasterpass);
+            Assert.NotNull(response);
+        }
     }
 }

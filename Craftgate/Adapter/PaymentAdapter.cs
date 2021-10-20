@@ -169,5 +169,12 @@ namespace Craftgate.Adapter
                 CreateHeaders(disapprovePaymentTransactionsRequest, path, RequestOptions),
                 disapprovePaymentTransactionsRequest);
         }
+        
+        public CheckMasterpassUserResponse CheckMasterpassUser(CheckMasterpassUserRequest checkMasterpassUserRequest)
+        {
+            var path = "/payment/v1/masterpass-payments/check-user";
+            return RestClient.Post<CheckMasterpassUserResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(checkMasterpassUserRequest, path, RequestOptions), checkMasterpassUserRequest);
+        }
     }
 }
