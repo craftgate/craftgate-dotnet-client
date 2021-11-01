@@ -33,6 +33,8 @@ namespace Craftgate.Response.Common
         public string HostReference { get; set; }
         public string TransId { get; set; }
         public string OrderId { get; set; }
+        public string CardHolderName { get; set; }
+        public string BankCardHolderName { get; set; }
         public string CardType { get; set; }
         public string CardAssociation { get; set; }
         public string CardBrand { get; set; }
