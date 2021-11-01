@@ -793,7 +793,7 @@ namespace Samples
         }
         
         [Test]
-        public void Update_Card()
+        public void Update_Stored_Card()
         {
             var request = new UpdateCardRequest
             {
@@ -830,7 +830,7 @@ namespace Samples
         }
 
         [Test]
-        public void Delete_StoredCard()
+        public void Delete_Stored_Card()
         {
             var request = new DeleteStoredCardRequest
             {
@@ -948,6 +948,19 @@ namespace Samples
             Assert.AreEqual(paymentId, response.Id);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual("POST_AUTH", response.PaymentPhase);
+        }
+        
+        [Test]
+        public void Check_Masterpass_User()
+        {
+            var request = new CheckMasterpassUserRequest()
+            {
+                MasterpassGsmNumber = "903000000000"
+            };
+
+            var response = _craftgateClient.Payment().CheckMasterpassUser(request);
+            Assert.AreEqual(true, response.IsEligibleToUseMasterpass);
+            Assert.NotNull(response);
         }
     }
 }

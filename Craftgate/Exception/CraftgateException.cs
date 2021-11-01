@@ -7,24 +7,24 @@ namespace Craftgate.Exception
         private const string GeneralErrorCode = "0";
         private const string GeneralErrorDescription = "An error occurred.";
         private const string GeneralErrorGroup = "Unknown";
-        private string _errorCode;
-        private string _errorDescription;
-        private string _errorGroup;
+        public string ErrorCode { get; }
+        public string ErrorDescription { get; }
+        public string ErrorGroup { get; }
 
         public CraftgateException(string errorCode, string errorDescription, string errorGroup)
             : base(errorDescription)
         {
-            _errorCode = errorCode;
-            _errorDescription = errorDescription;
-            _errorGroup = errorGroup;
+            ErrorCode = errorCode;
+            ErrorDescription = errorDescription;
+            ErrorGroup = errorGroup;
         }
 
         public CraftgateException(exception exception)
             : base(exception.Message, exception)
         {
-            _errorCode = GeneralErrorCode;
-            _errorDescription = GeneralErrorDescription;
-            _errorGroup = GeneralErrorGroup;
+            ErrorCode = GeneralErrorCode;
+            ErrorDescription = GeneralErrorDescription;
+            ErrorGroup = GeneralErrorGroup;
         }
     }
 }
