@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using Craftgate.Common;
 using Craftgate.Exception;
 using Craftgate.Response.Common;
 using Newtonsoft.Json;
@@ -79,7 +80,7 @@ namespace Craftgate.Net
         private static T HandleResponse<T>(HttpResponseMessage httpResponseMessage)
         {
             var apiResponse =
-                JsonConvert.DeserializeObject<Response<T>>(httpResponseMessage.Content.ReadAsStringAsync().Result);
+                JsonConvert.DeserializeObject<Response<T>>(httpResponseMessage.Content.ReadAsStringAsync().Result, CraftgateJsonSerializerSettings.Settings);
 
             if (apiResponse == null) return default;
             if (apiResponse.Errors != null)
@@ -95,7 +96,7 @@ namespace Craftgate.Net
         private static StringContent PrepareContent(object request)
         {
             if (request == null) return null;
-            var body = JsonConvert.SerializeObject(request);
+            var body = JsonConvert.SerializeObject(request, CraftgateJsonSerializerSettings.Settings);
             return new StringContent(body, Encoding.UTF8, "application/json");
         }
     }

@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using Craftgate.Adapter;
+﻿using Craftgate.Adapter;
 using Craftgate.Request.Common;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 
 namespace Craftgate
 {
@@ -25,8 +21,6 @@ namespace Craftgate
 
         public CraftgateClient(string apiKey, string secretKey, string baseUrl)
         {
-            ConfigureJsonConverter();
-
             var requestOptions = new RequestOptions
             {
                 ApiKey = apiKey,
@@ -47,7 +41,7 @@ namespace Craftgate
         {
             return _paymentAdapter;
         }
-        
+
         public PaymentReportingAdapter PaymentReporting()
         {
             return _paymentReportingAdapter;
@@ -76,23 +70,6 @@ namespace Craftgate
         public SettlementReportingAdapter SettlementReporting()
         {
             return _settlementReportingAdapter;
-        }
-
-        private static void ConfigureJsonConverter()
-        {
-            JsonConvert.DefaultSettings = () =>
-            {
-                var settings = new JsonSerializerSettings
-                {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                    NullValueHandling = NullValueHandling.Ignore,
-                    Converters = new List<JsonConverter>
-                    {
-                        new StringEnumConverter()
-                    }
-                };
-                return settings;
-            };
         }
     }
 }
