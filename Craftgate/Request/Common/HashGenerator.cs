@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using Craftgate.Common;
 using Craftgate.Exception;
 using Newtonsoft.Json;
 using exception = System.Exception;
@@ -20,7 +21,7 @@ namespace Craftgate.Request.Common
 
                 if (request != null)
                 {
-                    var requestBody = JsonConvert.SerializeObject(request);
+                    var requestBody = JsonConvert.SerializeObject(request, CraftgateJsonSerializerSettings.Settings);
                     hashData = decodedUrl + apiKey + secretKey + randomString + requestBody;
                 }
                 else
