@@ -26,6 +26,7 @@ namespace Craftgate.Request
         public bool AlwaysStoreCardAfterPayment { get; set; }
         public bool AllowOnlyStoredCards { get; set; }
         public bool AllowOnlyCreditCard { get; set; }
+        public bool ForceThreeDS { get; set; }
         public IList<PaymentItem> Items { get; set; }
     }
 }
