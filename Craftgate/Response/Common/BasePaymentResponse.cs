@@ -1,4 +1,5 @@
 using System;
+using Craftgate.Model;
 using Craftgate.Response.Dto;
 
 namespace Craftgate.Response.Common
@@ -39,6 +40,7 @@ namespace Craftgate.Response.Common
         public string CardAssociation { get; set; }
         public string CardBrand { get; set; }
         public MerchantPos Pos { get; set; }
+        public Loyalty Loyalty { get; set; }
         public PaymentError PaymentError { get; set; }
     }
 }
