@@ -356,6 +356,86 @@ namespace Samples
         }
 
         [Test]
+        public void Create_Payment_With_Loyalty()
+        {
+            var request = new CreatePaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                Card = new Card
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "4043080000000003",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000",
+                    Loyalty = new Loyalty
+                    {
+                        Type = LoyaltyType.REWARD_MONEY,
+                        Reward = new Reward
+                        {
+                            CardRewardMoney = new decimal(1.36),
+                            FirmRewardMoney = new decimal(3.88)
+                        }
+                    }
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().CreatePayment(request);
+            Assert.NotNull(response.Id);
+            Assert.AreEqual(request.Price, response.Price);
+            Assert.AreEqual(request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual(request.WalletPrice, response.WalletPrice);
+            Assert.AreEqual("TRY", response.Currency);
+            Assert.AreEqual(request.Installment, response.Installment);
+            Assert.AreEqual("LISTING_OR_SUBSCRIPTION", response.PaymentGroup);
+            Assert.AreEqual("AUTH", response.PaymentPhase);
+            Assert.AreEqual(false, response.IsThreeDS);
+            Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
+            Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
+            Assert.AreEqual(false, response.PaidWithStoredCard);
+            Assert.AreEqual("404308", response.BinNumber);
+            Assert.AreEqual("0003", response.LastFourDigits);
+            Assert.AreEqual("CREDIT_CARD", response.CardType);
+            Assert.AreEqual("VISA", response.CardAssociation);
+            Assert.AreEqual("Bonus", response.CardBrand);
+            Assert.AreEqual(3, response.PaymentTransactions.Count);
+            Assert.Null(response.CardUserKey);
+            Assert.Null(response.CardToken);
+            Assert.NotNull(response.Loyalty);
+            Assert.AreEqual(LoyaltyType.REWARD_MONEY, response.Loyalty.Type);
+            Assert.NotNull(response.Loyalty.Reward);
+            Assert.AreEqual(new decimal(1.36), response.Loyalty.Reward.CardRewardMoney);
+            Assert.AreEqual(new decimal(3.88), response.Loyalty.Reward.FirmRewardMoney);
+        }
+
+        [Test]
         public void Init_3DS_Payment()
         {
             var request = new InitThreeDSPaymentRequest
@@ -676,9 +756,30 @@ namespace Samples
 
             var response = _craftgateClient.Payment().Complete3DSDepositPayment(request);
             Assert.NotNull(response);
-            Assert.Equals(new decimal(100), response.Price);
-            Assert.Equals("SUCCESS", response.PaymentStatus);
-            Assert.Equals("DEPOSIT_PAYMENT", response.PaymentType);
+            Assert.AreEqual(new decimal(100), response.Price);
+            Assert.AreEqual("SUCCESS", response.PaymentStatus);
+            Assert.AreEqual("DEPOSIT_PAYMENT", response.PaymentType);
+        }
+
+        [Test]
+        public void Retrieve_Loyalties()
+        {
+            var request = new RetrieveLoyaltiesRequest()
+            {
+                CardNumber = "4043080000000003",
+                ExpireYear = "2044",
+                ExpireMonth = "07",
+                Cvc = "000"
+            };
+
+            var response = _craftgateClient.Payment().RetrieveLoyalties(request);
+            Assert.NotNull(response);
+            Assert.AreEqual("Bonus", response.CardBrand);
+            Assert.IsNotEmpty(response.Loyalties);
+            Assert.AreEqual(LoyaltyType.REWARD_MONEY, response.Loyalties[0].Type);
+            Assert.IsNotNull(response.Loyalties[0].Reward);
+            Assert.AreEqual(new decimal(12.35), response.Loyalties[0].Reward.CardRewardMoney);
+            Assert.AreEqual(new decimal(5.20), response.Loyalties[0].Reward.FirmRewardMoney);
         }
 
         [Test]

@@ -1,3 +1,5 @@
+using Craftgate.Model;
+
 namespace Craftgate.Request.Dto
 {
     public class Card
@@ -11,5 +13,6 @@ namespace Craftgate.Request.Dto
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }
         public bool? StoreCardAfterSuccessPayment { get; set; } = false;
+        public Loyalty Loyalty { get; set; }
     }
 }

@@ -90,6 +90,14 @@ namespace Craftgate.Adapter
                 completeThreeDsPaymentRequest);
         }
 
+        public RetrieveLoyaltiesResponse RetrieveLoyalties(RetrieveLoyaltiesRequest retrieveLoyaltiesRequest)
+        {
+            var path = "/payment/v1/card-loyalties/retrieve";
+            return RestClient.Post<RetrieveLoyaltiesResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(retrieveLoyaltiesRequest, path, RequestOptions),
+                retrieveLoyaltiesRequest);
+        }
+
         public PaymentTransactionRefundResponse RefundPaymentTransaction(
             RefundPaymentTransactionRequest refundPaymentTransactionRequest)
         {
