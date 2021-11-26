@@ -7,5 +7,6 @@ namespace Craftgate.Response.Dto
         public decimal InstallmentPrice { get; set; }
         public decimal TotalPrice { get; set; }
         public string InstallmentLabel { get; set; }
+        public bool LoyaltySupported { get; set; }
     }
 }
