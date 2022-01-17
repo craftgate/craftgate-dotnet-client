@@ -325,8 +325,8 @@ namespace Samples
                     {
                         "paymentProvider", new Dictionary<string, object>
                         {
-                            {"cardUserKey", "test-cardUserKey"},
-                            {"cardToken", "tuz8imxv30"}
+                            { "cardUserKey", "test-cardUserKey" },
+                            { "cardToken", "tuz8imxv30" }
                         }
                     }
                 }
@@ -762,6 +762,60 @@ namespace Samples
         }
 
         [Test]
+        public void Init_GarantiPay_Payment()
+        {
+            var request = new InitGarantiPayPaymentRequest()
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                CallbackUrl = "https://www.your-website.com/craftgate-garantipay-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                },
+                Installments = new List<GarantiPayInstallment>
+                {
+                    new GarantiPayInstallment
+                    {
+                        Number = 2,
+                        TotalPrice = 120
+                    },
+                    new GarantiPayInstallment
+                    {
+                        Number = 3,
+                        TotalPrice = 125
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitGarantiPayPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response);
+            Assert.NotNull(response.HtmlContent);
+            Assert.NotNull(response.GetDecodedHtmlContent());
+        }
+
+        [Test]
         public void Retrieve_Loyalties()
         {
             var request = new RetrieveLoyaltiesRequest()
@@ -892,7 +946,7 @@ namespace Samples
             Assert.AreEqual(request.CardUserKey, response.CardUserKey);
             Assert.NotNull(response.CardToken);
         }
-        
+
         [Test]
         public void Update_Stored_Card()
         {
@@ -946,7 +1000,7 @@ namespace Samples
         {
             var request = new ApprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -960,7 +1014,7 @@ namespace Samples
         {
             var request = new DisapprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -968,7 +1022,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.AreEqual(2, response.Size);
         }
-        
+
         [Test]
         public void Create_Pre_Auth_Payment()
         {
@@ -1035,7 +1089,7 @@ namespace Samples
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
         }
-        
+
         [Test]
         public void Post_Auth_Payment()
         {
@@ -1050,7 +1104,7 @@ namespace Samples
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual("POST_AUTH", response.PaymentPhase);
         }
-        
+
         [Test]
         public void Check_Masterpass_User()
         {
