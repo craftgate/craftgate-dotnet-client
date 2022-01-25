@@ -7,6 +7,8 @@ namespace Craftgate.Model
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Currency
     {
-        [EnumMember(Value = "TRY")] TRY
+        [EnumMember(Value = "TRY")] TRY,
+        [EnumMember(Value = "USD")] USD,
+        [EnumMember(Value = "EUR")] EUR
     }
 }
