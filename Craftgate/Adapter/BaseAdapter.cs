@@ -8,9 +8,11 @@ namespace Craftgate.Adapter
     {
         private const int RandomStringSize = 8;
         private const string ApiVersionHeaderValue = "v1";
+        private const string ClientVersionHeaderValue = "craftgate-dotnet-client";
         private const string ApiKeyHeaderName = "x-api-key";
         private const string RandomHeaderName = "x-rnd-key";
         private const string AuthVersionHeaderName = "x-auth-version";
+        private const string ClientVersionHeaderName = "x-client-version";
         private const string SignatureHeaderName = "x-signature";
         private const string RandomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         protected readonly RequestOptions RequestOptions;
@@ -41,6 +43,7 @@ namespace Craftgate.Adapter
             headers.Add(ApiKeyHeaderName, options.ApiKey);
             headers.Add(RandomHeaderName, randomString);
             headers.Add(AuthVersionHeaderName, ApiVersionHeaderValue);
+            headers.Add(ClientVersionHeaderName, ClientVersionHeaderValue + ":1.0.20");
             headers.Add(SignatureHeaderName, PrepareAuthorizationString(request, path, randomString, options));
             return headers;
         }
