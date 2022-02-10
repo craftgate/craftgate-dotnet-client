@@ -9,6 +9,7 @@ namespace Craftgate.Model
     {
         [EnumMember(Value = "TRY")] TRY,
         [EnumMember(Value = "USD")] USD,
-        [EnumMember(Value = "EUR")] EUR
+        [EnumMember(Value = "EUR")] EUR,
+        [EnumMember(Value = "GBP")] GBP
     }
 }
