@@ -17,6 +17,7 @@ namespace Craftgate.Response.Common
         public string ConversationId { get; set; }
         public string ExternalId { get; set; }
         public string PaymentType { get; set; }
+        public string PaymentProvider { get; set; }
         public string PaymentSource { get; set; }
         public string PaymentGroup { get; set; }
         public string PaymentStatus { get; set; }

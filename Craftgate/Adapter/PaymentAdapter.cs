@@ -90,6 +90,14 @@ namespace Craftgate.Adapter
                 completeThreeDsPaymentRequest);
         }
 
+        public InitGarantiPayPaymentResponse InitGarantiPayPayment(InitGarantiPayPaymentRequest initGarantiPayPaymentRequest)
+        {
+            var path = "/payment/v1/garanti-pay-payments";
+            return RestClient.Post<InitGarantiPayPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initGarantiPayPaymentRequest, path, RequestOptions),
+                initGarantiPayPaymentRequest);
+        }
+
         public RetrieveLoyaltiesResponse RetrieveLoyalties(RetrieveLoyaltiesRequest retrieveLoyaltiesRequest)
         {
             var path = "/payment/v1/card-loyalties/retrieve";
