@@ -170,7 +170,10 @@ namespace Samples
             var request = new SearchMembersRequest
             {
                 Name = "Zeytinyağı Üretim",
-                MemberIds = new HashSet<long> {1, 2}
+                MemberIds = new HashSet<long> {1, 2},
+                Page = 0,
+                Size = 25,
+                MemberType = MemberType.LIMITED_OR_JOINT_STOCK_COMPANY
             };
 
             var response = _craftgateClient.Onboarding().SearchMembers(request);

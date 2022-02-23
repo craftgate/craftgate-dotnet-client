@@ -13,6 +13,9 @@ namespace Craftgate.Request.Dto
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }
         public bool? StoreCardAfterSuccessPayment { get; set; } = false;
+        public string BinNumber { get; set; }
+        public string LastFourDigits { get; set; }
+        public string CardHolderIdentityNumber { get; set; }
         public Loyalty Loyalty { get; set; }
     }
 }
