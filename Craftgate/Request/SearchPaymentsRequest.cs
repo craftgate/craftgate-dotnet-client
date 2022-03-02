@@ -14,6 +14,7 @@ namespace Craftgate.Request
         public string OrderId { get; set; }
         public PaymentType? PaymentType { get; set; }
         public PaymentSource? PaymentSource { get; set; }
+        public PaymentProvider? PaymentProvider { get; set; }
         public PaymentStatus? PaymentStatus { get; set; }
         public string PaymentChannel { get; set; }
         public string BinNumber { get; set; }

@@ -11,6 +11,8 @@ namespace Craftgate.Model
         [EnumMember(Value = "INIT_THREEDS")] INIT_THREEDS,
 
         [EnumMember(Value = "CALLBACK_THREEDS")]
-        CALLBACK_THREEDS
+        CALLBACK_THREEDS,
+
+        [EnumMember(Value = "WAITING")] WAITING
     }
 }
