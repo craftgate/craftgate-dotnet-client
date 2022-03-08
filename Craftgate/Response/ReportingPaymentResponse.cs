@@ -12,6 +12,5 @@ namespace Craftgate.Response
         public int MdStatus { get; set; }
         public MemberResponse BuyerMember { get; set; }
         public IList<ReportingPaymentRefundResponse> Refunds { get; set; }
-        public IList<ReportingPaymentTransactionRefundResponse> PaymentTransactionRefunds { get; set; }
     }
 }
