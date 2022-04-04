@@ -32,7 +32,8 @@ namespace Samples
                 TaxOffice = "Erenköy",
                 Iban = "TR930006701000000001111111",
                 SettlementEarningsDestination = SettlementEarningsDestination.IBAN,
-                Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
+                Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
+                WalletLowerLimit = -50
             };
 
             var response = _craftgateClient.Onboarding().CreateMember(request);
@@ -51,6 +52,7 @@ namespace Samples
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);
             Assert.AreEqual("IBAN", response.SettlementEarningsDestination);
+            Assert.AreEqual(request.WalletLowerLimit, response.WalletLowerLimit);
         }
 
         [Test]
@@ -74,7 +76,8 @@ namespace Samples
                 TaxOffice = "Erenköy",
                 Iban = "TR930006701000000001111111",
                 SettlementEarningsDestination = SettlementEarningsDestination.IBAN,
-                Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
+                Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
+                WalletLowerLimit = -50
             };
 
             var response = _craftgateClient.Onboarding().UpdateMember(memberId, request);
@@ -90,6 +93,7 @@ namespace Samples
             Assert.AreEqual(request.TaxNumber, response.TaxNumber);
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);
+            Assert.AreEqual(request.WalletLowerLimit, response.WalletLowerLimit);
         }
 
         [Test]
