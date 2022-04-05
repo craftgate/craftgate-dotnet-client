@@ -812,9 +812,9 @@ namespace Samples
         }
 
         [Test]
-        public void Create_Deposit_Payment()
+        public void Create_Fund_Transfer_Deposit_Payment()
         {
-            var request = new CreateDepositPaymentRequest
+            var request = new CreateFundTransferDepositPaymentRequest()
             {
                 Price = new decimal(100.0),
                 BuyerMemberId = 1,
@@ -823,7 +823,6 @@ namespace Samples
 
             Assert.DoesNotThrow(() => _craftgateClient.Payment().CreateFundTransferDepositPayment(request));
         }
-
 
         [Test]
         public void Init_GarantiPay_Payment()
