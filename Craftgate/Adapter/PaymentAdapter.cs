@@ -90,6 +90,13 @@ namespace Craftgate.Adapter
                 completeThreeDsPaymentRequest);
         }
 
+       public DepositPaymentResponse CreateFundTransferDepositPayment(CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
+        {
+            var path = "/payment/v1/deposits/fund-transfer";
+            RestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(createFundTransferDepositPaymentRequest, path, RequestOptions));
+        }
+
         public InitGarantiPayPaymentResponse InitGarantiPayPayment(InitGarantiPayPaymentRequest initGarantiPayPaymentRequest)
         {
             var path = "/payment/v1/garanti-pay-payments";
