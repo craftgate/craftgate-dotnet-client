@@ -18,6 +18,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "REMITTANCE")] REMITTANCE,
         [EnumMember(Value = "LOYALTY")] LOYALTY,
         [EnumMember(Value = "WITHDRAW_CANCEL")] WITHDRAW_CANCEL,
-        [EnumMember(Value = "MERCHANT_BALANCE_RESET")] MERCHANT_BALANCE_RESET
+        [EnumMember(Value = "MERCHANT_BALANCE_RESET")] MERCHANT_BALANCE_RESET,
+        [EnumMember(Value = "DEPOSIT_FROM_FUND_TRANSFER")] DEPOSIT_FROM_FUND_TRANSFER
     }
 }
