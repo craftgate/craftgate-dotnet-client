@@ -20,6 +20,6 @@ namespace Craftgate.Response
         public string TaxNumber { get; set; }
         public string Iban { get; set; }
         public string SettlementEarningsDestination { get; set; }
-        public decimal WalletLowerLimit { get; set; }
+        public decimal NegativeWalletAmountLimit { get; set; }
     }
 }
