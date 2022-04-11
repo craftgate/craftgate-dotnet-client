@@ -18,7 +18,8 @@ namespace Craftgate.Response
         public string LegalCompanyTitle { get; set; }
         public string TaxOffice { get; set; }
         public string TaxNumber { get; set; }
-        public string SettlementEarningsDestination { get; set; }
         public string Iban { get; set; }
+        public string SettlementEarningsDestination { get; set; }
+        public decimal NegativeWalletAmountLimit { get; set; }
     }
 }

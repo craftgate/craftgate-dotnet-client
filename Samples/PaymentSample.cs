@@ -750,7 +750,6 @@ namespace Samples
             {
                 Price = new decimal(100.0),
                 BuyerMemberId = 1,
-                Currency = Currency.TRY,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 Card = new Card
                 {
@@ -780,7 +779,6 @@ namespace Samples
                 Price = new decimal(100.0),
                 BuyerMemberId = 1,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-                Currency = Currency.TRY,
                 CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
                 Card = new Card
                 {
@@ -811,6 +809,19 @@ namespace Samples
             Assert.AreEqual(new decimal(100), response.Price);
             Assert.AreEqual("SUCCESS", response.PaymentStatus);
             Assert.AreEqual("DEPOSIT_PAYMENT", response.PaymentType);
+        }
+
+        [Test]
+        public void Create_Fund_Transfer_Deposit_Payment()
+        {
+            var request = new CreateFundTransferDepositPaymentRequest()
+            {
+                Price = new decimal(100.0),
+                BuyerMemberId = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5"
+            };
+
+            Assert.DoesNotThrow(() => _craftgateClient.Payment().CreateFundTransferDepositPayment(request));
         }
 
         [Test]

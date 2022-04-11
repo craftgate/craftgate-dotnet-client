@@ -18,6 +18,7 @@ namespace Craftgate.Request
         public string TaxNumber { get; set; }
         public string Iban { get; set; }
         public SettlementEarningsDestination? SettlementEarningsDestination { get; set; }
+        public decimal? NegativeWalletAmountLimit { get; set; }
 
         public bool? IsBuyer { get; set; }
         public bool? IsSubMerchant { get; set; }
