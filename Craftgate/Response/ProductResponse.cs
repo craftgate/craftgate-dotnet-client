@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Craftgate.Model;
 
 namespace Craftgate.Response
@@ -13,7 +14,7 @@ namespace Craftgate.Response
         public int Stock { get; set; }
         public int SoldCount { get; set; }
         public string Token { get; set; }
-        public string EnabledInstallments { get; set; }
+        public ISet<long> EnabledInstallments { get; set; }
         public string Url { get; set; }
         public string QrCodeUrl { get; set; }
         public string Channel { get; set; }

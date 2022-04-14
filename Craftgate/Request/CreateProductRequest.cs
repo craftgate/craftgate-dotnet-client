@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Craftgate.Model;
 
 namespace Craftgate.Request
@@ -9,6 +10,6 @@ namespace Craftgate.Request
         public decimal Price {get; set;}
         public Currency Currency {get; set;}
         public string Description {get; set;}
-        public string EnabledInstallments {get; set;}
+        public ISet<long> EnabledInstallments {get; set;}
     }
 }

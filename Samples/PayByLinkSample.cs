@@ -24,7 +24,7 @@ namespace Samples
                 Channel = "API",
                 Price = 10,
                 Currency = Currency.TRY,
-                EnabledInstallments = "1,2,3,6"
+                EnabledInstallments = new HashSet<long> {1, 2, 3, 6}
             };
 
             ProductResponse response = _craftgateClient.PayByLink().CreateProduct(request);
@@ -51,7 +51,7 @@ namespace Samples
                 Channel = "API",
                 Price = 10,
                 Currency = Currency.TRY,
-                EnabledInstallments = "1,2,3",
+                EnabledInstallments = new HashSet<long>() {1, 2, 3}
             };
 
             ProductResponse response = _craftgateClient.PayByLink().UpdateProduct(productId, request);
@@ -66,13 +66,13 @@ namespace Samples
             Assert.NotNull(response.Token);
             Assert.NotNull(response.QrCodeUrl);
         }
-        
+
         [Test]
         public void Retrieve_Product()
         {
             long productId = 1L;
             ProductResponse response = _craftgateClient.PayByLink().RetrieveProduct(productId);
-        
+
             Assert.AreEqual(productId, response.Id);
             Assert.NotNull(response.Name);
             Assert.NotNull(response.Price);
@@ -80,14 +80,14 @@ namespace Samples
             Assert.NotNull(response.Token);
             Assert.NotNull(response.QrCodeUrl);
         }
-        
+
         [Test]
         public void Delete_Product()
         {
             long productId = 1;
             _craftgateClient.PayByLink().DeleteProduct(productId);
         }
-        
+
         [Test]
         public void Search_Products()
         {
@@ -97,9 +97,9 @@ namespace Samples
                 Channel = "API",
                 Currency = Currency.TRY
             };
-        
+
             ProductListResponse productListResponse = _craftgateClient.PayByLink().SearchProducts(request);
-        
+
             Assert.NotNull(productListResponse);
         }
     }
