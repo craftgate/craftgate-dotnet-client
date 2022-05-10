@@ -1,10 +1,13 @@
+using System;
 using System.Runtime.Serialization;
 
 namespace Craftgate.Model
 {
     public enum RefundDestinationType
     {
-        [EnumMember(Value = "CARD")] CARD,
+        [Obsolete("deprecated since version 1.0.26. use PROVIDER instead.")] [EnumMember(Value = "CARD")]
+        CARD,
+        [EnumMember(Value = "PROVIDER")] PROVIDER,
         [EnumMember(Value = "WALLET")] WALLET
     }
 }

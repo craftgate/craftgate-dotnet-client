@@ -104,6 +104,14 @@ namespace Craftgate.Adapter
                 initGarantiPayPaymentRequest);
         }
 
+        public InitApmPaymentResponse InitApmPayment(InitApmPaymentRequest initApmPaymentRequest)
+        {
+            var path = "/payment/v1/apm-payments/init";
+            return RestClient.Post<InitApmPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initApmPaymentRequest, path, RequestOptions),
+                initApmPaymentRequest);
+        }
+
         public RetrieveLoyaltiesResponse RetrieveLoyalties(RetrieveLoyaltiesRequest retrieveLoyaltiesRequest)
         {
             var path = "/payment/v1/card-loyalties/retrieve";
