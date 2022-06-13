@@ -325,8 +325,8 @@ namespace Samples
                     {
                         "paymentProvider", new Dictionary<string, object>
                         {
-                            { "cardUserKey", "test-cardUserKey" },
-                            { "cardToken", "tuz8imxv30" }
+                            {"cardUserKey", "test-cardUserKey"},
+                            {"cardToken", "tuz8imxv30"}
                         }
                     }
                 }
@@ -434,7 +434,7 @@ namespace Samples
             Assert.AreEqual(new decimal(1.36), response.Loyalty.Reward.CardRewardMoney);
             Assert.AreEqual(new decimal(3.88), response.Loyalty.Reward.FirmRewardMoney);
         }
-        
+
         [Test]
         public void Create_Payment_With_First6_Last4_and_IdentityNumber()
         {
@@ -912,6 +912,52 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.PaymentId);
             Assert.NotNull(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
+        }
+
+        [Test]
+        public void Init_Sodexo_Apm_Payment()
+        {
+            var request = new InitApmPaymentRequest()
+            {
+                ApmType = ApmType.SODEXO,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                ApmUserIdentity = "5545510009",
+                AdditionalParams = new Dictionary<string, string>()
+                {
+                    {"sodexoCode", "843195"}
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.Null(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.SUCCESS);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.NONE);
         }
 
         [Test]
@@ -1099,7 +1145,7 @@ namespace Samples
         {
             var request = new ApprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> { 1, 2 },
+                PaymentTransactionIds = new HashSet<long> {1, 2},
                 IsTransactional = true
             };
 
@@ -1113,7 +1159,7 @@ namespace Samples
         {
             var request = new DisapprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> { 1, 2 },
+                PaymentTransactionIds = new HashSet<long> {1, 2},
                 IsTransactional = true
             };
 
@@ -1216,7 +1262,7 @@ namespace Samples
             Assert.AreEqual(true, response.IsEligibleToUseMasterpass);
             Assert.NotNull(response);
         }
-        
+
         [Test]
         public void Create_MultiCurrency_Payment()
         {
@@ -1282,6 +1328,5 @@ namespace Samples
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
         }
-
     }
 }
