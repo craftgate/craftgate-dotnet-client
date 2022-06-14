@@ -7,6 +7,8 @@ namespace Craftgate.Model
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ApmType
     {
-        [EnumMember(Value = "PAPARA")] PAPARA
+        [EnumMember(Value = "PAPARA")] PAPARA,
+        [EnumMember(Value = "PAYONEER")] PAYONEER,
+        [EnumMember(Value = "SODEXO")] SODEXO
     }
 }
