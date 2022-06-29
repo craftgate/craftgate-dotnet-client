@@ -206,5 +206,12 @@ namespace Craftgate.Adapter
             return RestClient.Post<CheckMasterpassUserResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(checkMasterpassUserRequest, path, RequestOptions), checkMasterpassUserRequest);
         }
+        
+        public PaymentTransactionResponse UpdatePaymentTransaction(UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
+        {
+            var path = "/payment/v1/payment-transactions/" + updatePaymentTransactionRequest.PaymentTransactionId;
+            return RestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions), updatePaymentTransactionRequest);
+        }
     }
 }
