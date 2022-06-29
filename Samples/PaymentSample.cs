@@ -1329,7 +1329,7 @@ namespace Samples
             Assert.Null(response.CardToken);
         }
         
-                [Test]
+        [Test]
         public void Update_Payment_Transaction()
         {
             var request = new UpdatePaymentTransactionRequest()
