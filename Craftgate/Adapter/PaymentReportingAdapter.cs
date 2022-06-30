@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Craftgate.Net;
 using Craftgate.Request;
 using Craftgate.Request.Common;
@@ -19,10 +20,25 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
+        public Task<ReportingPaymentListResponse> SearchPaymentsAsync(SearchPaymentsRequest searchPaymentsRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPaymentsRequest);
+            var path = "/payment-reporting/v1/payments" + queryParam;
+            return RestClient.GetAsync<ReportingPaymentListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
         public ReportingPaymentResponse RetrievePayment(long paymentId)
         {
             var path = "/payment-reporting/v1/payments/" + paymentId;
             return RestClient.Get<ReportingPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        public Task<ReportingPaymentResponse> RetrievePaymentAsync(long paymentId)
+        {
+            var path = "/payment-reporting/v1/payments/" + paymentId;
+            return RestClient.GetAsync<ReportingPaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
@@ -32,11 +48,25 @@ namespace Craftgate.Adapter
             return RestClient.Get<ReportingPaymentTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+        
+        public Task<ReportingPaymentTransactionListResponse> RetrievePaymentTransactionsAsync(long paymentId)
+        {
+            var path = "/payment-reporting/v1/payments/" + paymentId + "/transactions";
+            return RestClient.GetAsync<ReportingPaymentTransactionListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
 
         public ReportingPaymentRefundListResponse RetrievePaymentRefunds(long paymentId)
         {
             var path = "/payment-reporting/v1/payments/" + paymentId + "/refunds";
             return RestClient.Get<ReportingPaymentRefundListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        public Task<ReportingPaymentRefundListResponse> RetrievePaymentRefundsAsync(long paymentId)
+        {
+            var path = "/payment-reporting/v1/payments/" + paymentId + "/refunds";
+            return RestClient.GetAsync<ReportingPaymentRefundListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
@@ -48,6 +78,15 @@ namespace Craftgate.Adapter
             return RestClient.Get<ReportingPaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+        
+        public Task<ReportingPaymentTransactionRefundListResponse> RetrievePaymentTransactionRefundsAsync(long paymentId,
+            long paymentTransactionId)
+        {
+            var path = "/payment-reporting/v1/payments/" + paymentId + "/transactions/" + paymentTransactionId +
+                       "/refunds";
+            return RestClient.GetAsync<ReportingPaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
 
         public ReportingPaymentRefundListResponse SearchPaymentRefunds(
             SearchPaymentRefundsRequest searchPaymentRefundsRequest)
@@ -57,6 +96,15 @@ namespace Craftgate.Adapter
             return RestClient.Get<ReportingPaymentRefundListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+        
+        public Task<ReportingPaymentRefundListResponse> SearchPaymentRefundsAsync(
+            SearchPaymentRefundsRequest searchPaymentRefundsRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPaymentRefundsRequest);
+            var path = "/payment-reporting/v1/refunds" + queryParam;
+            return RestClient.GetAsync<ReportingPaymentRefundListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
 
         public ReportingPaymentTransactionRefundListResponse SearchPaymentTransactionRefunds(
             SearchPaymentTransactionRefundsRequest searchPaymentTransactionRefundsRequest)
@@ -64,6 +112,15 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPaymentTransactionRefundsRequest);
             var path = "/payment-reporting/v1/refund-transactions" + queryParam;
             return RestClient.Get<ReportingPaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        public Task<ReportingPaymentTransactionRefundListResponse> SearchPaymentTransactionRefundsAsync(
+            SearchPaymentTransactionRefundsRequest searchPaymentTransactionRefundsRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPaymentTransactionRefundsRequest);
+            var path = "/payment-reporting/v1/refund-transactions" + queryParam;
+            return RestClient.GetAsync<ReportingPaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
     }
