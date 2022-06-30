@@ -1328,5 +1328,20 @@ namespace Samples
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
         }
+        
+        [Test]
+        public void Update_Payment_Transaction()
+        {
+            var request = new UpdatePaymentTransactionRequest()
+            {
+                SubMerchantMemberId = 1,
+                PaymentTransactionId = 10,
+                SubMerchantMemberPrice = new decimal(10.0),
+            };
+
+            var response = _craftgateClient.Payment().UpdatePaymentTransaction(request);
+            Assert.AreEqual(request.SubMerchantMemberId, response.SubMerchantMemberId);
+            Assert.AreEqual(request.SubMerchantMemberPrice, response.SubMerchantMemberPrice);
+        }
     }
 }
