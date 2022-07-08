@@ -19,11 +19,11 @@ namespace Craftgate.Adapter
                 CreateHeaders(createMemberRequest, path, RequestOptions),
                 createMemberRequest);
         }
-        
+
         public Task<MemberResponse> CreateMemberAsync(CreateMemberRequest createMemberRequest)
         {
             var path = "/onboarding/v1/members";
-            return RestClient.PostAsync<MemberResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Post<MemberResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(createMemberRequest, path, RequestOptions),
                 createMemberRequest);
         }
@@ -35,11 +35,11 @@ namespace Craftgate.Adapter
                 CreateHeaders(updateMemberRequest, path, RequestOptions),
                 updateMemberRequest);
         }
-        
+
         public Task<MemberResponse> UpdateMemberAsync(long id, UpdateMemberRequest updateMemberRequest)
         {
             var path = "/onboarding/v1/members/" + id;
-            return RestClient.PutAsync<MemberResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Put<MemberResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updateMemberRequest, path, RequestOptions),
                 updateMemberRequest);
         }
@@ -50,11 +50,11 @@ namespace Craftgate.Adapter
             return RestClient.Get<MemberResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-        
+
         public Task<MemberResponse> RetrieveMemberAsync(long id)
         {
             var path = "/onboarding/v1/members/" + id;
-            return RestClient.GetAsync<MemberResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Get<MemberResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
@@ -65,12 +65,12 @@ namespace Craftgate.Adapter
             return RestClient.Get<MemberListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-        
+
         public Task<MemberListResponse> SearchMembersAsync(SearchMembersRequest searchMembersRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMembersRequest);
             var path = "/onboarding/v1/members" + queryParam;
-            return RestClient.GetAsync<MemberListResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Get<MemberListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
     }

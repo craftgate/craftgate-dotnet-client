@@ -19,12 +19,12 @@ namespace Craftgate.Adapter
             return RestClient.Post<SettlementResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
-        
+
         public Task<SettlementResponse> CreateInstantWalletSettlementAsync(
             CreateInstantWalletSettlementRequest request)
         {
             var path = "/settlement/v1/instant-wallet-settlements";
-            return RestClient.PostAsync<SettlementResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Post<SettlementResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
     }

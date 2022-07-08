@@ -325,8 +325,8 @@ namespace Samples
                     {
                         "paymentProvider", new Dictionary<string, object>
                         {
-                            {"cardUserKey", "test-cardUserKey"},
-                            {"cardToken", "tuz8imxv30"}
+                            { "cardUserKey", "test-cardUserKey" },
+                            { "cardToken", "tuz8imxv30" }
                         }
                     }
                 }
@@ -707,7 +707,7 @@ namespace Samples
         [Test]
         public void Init_Checkout_Payment()
         {
-            var request = new InitCheckoutPaymentRequest()
+            var request = new InitCheckoutPaymentRequest
             {
                 Price = new decimal(100.0),
                 PaidPrice = new decimal(100.0),
@@ -814,7 +814,7 @@ namespace Samples
         [Test]
         public void Create_Fund_Transfer_Deposit_Payment()
         {
-            var request = new CreateFundTransferDepositPaymentRequest()
+            var request = new CreateFundTransferDepositPaymentRequest
             {
                 Price = new decimal(100.0),
                 BuyerMemberId = 1,
@@ -827,7 +827,7 @@ namespace Samples
         [Test]
         public void Init_GarantiPay_Payment()
         {
-            var request = new InitGarantiPayPaymentRequest()
+            var request = new InitGarantiPayPaymentRequest
             {
                 Price = new decimal(100.0),
                 PaidPrice = new decimal(100.0),
@@ -881,7 +881,7 @@ namespace Samples
         [Test]
         public void Init_Apm_Payment()
         {
-            var request = new InitApmPaymentRequest()
+            var request = new InitApmPaymentRequest
             {
                 ApmType = ApmType.PAPARA,
                 Price = new decimal(1.0),
@@ -919,7 +919,7 @@ namespace Samples
         [Test]
         public void Init_Sodexo_Apm_Payment()
         {
-            var request = new InitApmPaymentRequest()
+            var request = new InitApmPaymentRequest
             {
                 ApmType = ApmType.SODEXO,
                 Price = new decimal(1.0),
@@ -930,9 +930,9 @@ namespace Samples
                 ExternalId = "optional-ExternalId",
                 CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
                 ApmUserIdentity = "5555555555",
-                AdditionalParams = new Dictionary<string, string>()
+                AdditionalParams = new Dictionary<string, string>
                 {
-                    {"sodexoCode", "843195"}
+                    { "sodexoCode", "843195" }
                 },
                 Items = new List<PaymentItem>
                 {
@@ -963,7 +963,7 @@ namespace Samples
         [Test]
         public void Retrieve_Loyalties()
         {
-            var request = new RetrieveLoyaltiesRequest()
+            var request = new RetrieveLoyaltiesRequest
             {
                 CardNumber = "4043080000000003",
                 ExpireYear = "2044",
@@ -1145,7 +1145,7 @@ namespace Samples
         {
             var request = new ApprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -1159,7 +1159,7 @@ namespace Samples
         {
             var request = new DisapprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -1239,7 +1239,7 @@ namespace Samples
         public void Post_Auth_Payment()
         {
             long paymentId = 1;
-            var request = new PostAuthPaymentRequest()
+            var request = new PostAuthPaymentRequest
             {
                 PaidPrice = new decimal(100.0)
             };
@@ -1253,7 +1253,7 @@ namespace Samples
         [Test]
         public void Check_Masterpass_User()
         {
-            var request = new CheckMasterpassUserRequest()
+            var request = new CheckMasterpassUserRequest
             {
                 MasterpassGsmNumber = "903000000000"
             };
@@ -1328,15 +1328,15 @@ namespace Samples
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
         }
-        
+
         [Test]
         public void Update_Payment_Transaction()
         {
-            var request = new UpdatePaymentTransactionRequest()
+            var request = new UpdatePaymentTransactionRequest
             {
                 SubMerchantMemberId = 1,
                 PaymentTransactionId = 10,
-                SubMerchantMemberPrice = new decimal(10.0),
+                SubMerchantMemberPrice = new decimal(10.0)
             };
 
             var response = _craftgateClient.Payment().UpdatePaymentTransaction(request);
