@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Craftgate.Net;
 using Craftgate.Request;
 using Craftgate.Request.Common;
@@ -19,6 +20,15 @@ namespace Craftgate.Adapter
             return RestClient.Get<PayoutCompletedTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+        
+        public Task<PayoutCompletedTransactionListResponse> SearchPayoutCompletedTransactionsAsync(
+            SearchPayoutCompletedTransactionsRequest searchPayoutCompletedTransactionsRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
+            var path = "/settlement-reporting/v1/settlement-file/payout-completed-transactions" + queryParam;
+            return RestClient.GetAsync<PayoutCompletedTransactionListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
 
         public PayoutBouncedTransactionListResponse SearchBouncedPayoutTransactions(
             SearchPayoutBouncedTransactionsRequest searchPayoutCompletedTransactionsRequest)
@@ -29,11 +39,26 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-
+        public Task<PayoutBouncedTransactionListResponse> SearchBouncedPayoutTransactionsAsync(
+            SearchPayoutBouncedTransactionsRequest searchPayoutCompletedTransactionsRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
+            var path = "/settlement-reporting/v1/settlement-file/bounced-sub-merchant-rows" + queryParam;
+            return RestClient.GetAsync<PayoutBouncedTransactionListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
         public PayoutDetailResponse RetrievePayoutDetails(long id)
         {
             var path = "/settlement-reporting/v1/settlement-file/payout-details/" + id;
             return RestClient.Get<PayoutDetailResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        public Task<PayoutDetailResponse> RetrievePayoutDetailsAsync(long id)
+        {
+            var path = "/settlement-reporting/v1/settlement-file/payout-details/" + id;
+            return RestClient.GetAsync<PayoutDetailResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
     }
