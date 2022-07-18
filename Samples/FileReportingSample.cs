@@ -26,21 +26,6 @@ namespace Samples
             var response = _craftgateClient.FileReporting().RetrieveDailyTransactionReport(request);
 
             Assert.NotNull(response);
-            Assert.AreEqual("a,b,c\n10.00000000,username,0.00000000", Encoding.UTF8.GetString(response));
-        }
-
-        [Test]
-        public void Retrieve_Daily_Transaction_Report_Xlsx()
-        {
-            var request = new RetrieveDailyTransactionReportRequest
-            {
-                ReportDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                FileType = ReportFileType.XLSX
-            };
-
-            var response = _craftgateClient.FileReporting().RetrieveDailyTransactionReport(request);
-
-            Assert.NotNull(response);
         }
     }
 }
