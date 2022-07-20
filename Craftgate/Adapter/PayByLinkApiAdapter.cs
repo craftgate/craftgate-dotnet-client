@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Craftgate.Net;
 using Craftgate.Request;
@@ -23,7 +22,7 @@ namespace Craftgate.Adapter
         public Task<ProductResponse> CreateProductAsync(CreateProductRequest createProductRequest)
         {
             var path = "/craftlink/v1/products";
-            return RestClient.PostAsync<ProductResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Post<ProductResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(createProductRequest, path, RequestOptions), createProductRequest);
         }
 
@@ -37,7 +36,7 @@ namespace Craftgate.Adapter
         public Task<ProductResponse> UpdateProductAsync(long id, UpdateProductRequest updateProductRequest)
         {
             var path = "/craftlink/v1/products/" + id;
-            return RestClient.PutAsync<ProductResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Put<ProductResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updateProductRequest, path, RequestOptions), updateProductRequest);
         }
 
@@ -50,7 +49,7 @@ namespace Craftgate.Adapter
         public Task<ProductResponse> RetrieveProductAsync(long id)
         {
             var path = "/craftlink/v1/products/" + id;
-            return RestClient.GetAsync<ProductResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            return AsyncRestClient.Get<ProductResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
         }
 
         public void DeleteProduct(long id)
@@ -62,22 +61,22 @@ namespace Craftgate.Adapter
         public Task DeleteProductAsync(long id)
         {
             var path = "/craftlink/v1/products/" + id;
-            return RestClient.DeleteAsync<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
         }
 
         public ProductListResponse SearchProducts(SearchProductsRequest searchProductsRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchProductsRequest);
-            String path = "/craftlink/v1/products" + queryParam;
+            var path = "/craftlink/v1/products" + queryParam;
             return RestClient.Get<ProductListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-        
+
         public Task<ProductListResponse> SearchProductsAsync(SearchProductsRequest searchProductsRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchProductsRequest);
-            String path = "/craftlink/v1/products" + queryParam;
-            return RestClient.GetAsync<ProductListResponse>(RequestOptions.BaseUrl + path,
+            var path = "/craftlink/v1/products" + queryParam;
+            return AsyncRestClient.Get<ProductListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
     }
