@@ -215,6 +215,22 @@ namespace Craftgate.Adapter
                 initApmPaymentRequest);
         }
 
+        public CompleteApmPaymentResponse CompleteApmPayment(CompleteApmPaymentRequest completeApmPaymentRequest)
+        {
+            var path = "/payment/v1/apm-payments/complete";
+            return RestClient.Post<CompleteApmPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(completeApmPaymentRequest, path, RequestOptions),
+                completeApmPaymentRequest);
+        }
+
+        public Task<CompleteApmPaymentResponse> CompleteApmPaymentAsync(CompleteApmPaymentRequest completeApmPaymentRequest)
+        {
+            var path = "/payment/v1/apm-payments/complete";
+            return AsyncRestClient.Post<CompleteApmPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(completeApmPaymentRequest, path, RequestOptions),
+                completeApmPaymentRequest);
+        }
+
         public RetrieveLoyaltiesResponse RetrieveLoyalties(RetrieveLoyaltiesRequest retrieveLoyaltiesRequest)
         {
             var path = "/payment/v1/card-loyalties/retrieve";

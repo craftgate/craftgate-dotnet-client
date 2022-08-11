@@ -9,6 +9,7 @@ namespace Craftgate.Model
     {
         [EnumMember(Value = "PAPARA")] PAPARA,
         [EnumMember(Value = "PAYONEER")] PAYONEER,
-        [EnumMember(Value = "SODEXO")] SODEXO
+        [EnumMember(Value = "SODEXO")] SODEXO,
+        [EnumMember(Value = "EDENRED")] EDENRED
     }
 }
