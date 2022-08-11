@@ -1015,7 +1015,7 @@ namespace Samples
             var response = _craftgateClient.Payment().CompleteApmPayment(request);
             Assert.NotNull(response);
             Assert.NotNull(response.PaymentId);
-            Assert.AreEqual(PaymentStatus.SUCCESS, response.Status);
+            Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
         }
 
         [Test]
