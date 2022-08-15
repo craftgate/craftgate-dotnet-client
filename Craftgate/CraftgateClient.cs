@@ -7,6 +7,7 @@ namespace Craftgate
     {
         private const string BaseUrl = "https://api.craftgate.io";
         private readonly FileReportingAdapter _fileReportingAdapter;
+        private readonly FraudAdapter _fraudAdapter;
         private readonly InstallmentAdapter _installmentAdapter;
         private readonly OnboardingAdapter _onboardingAdapter;
         private readonly PayByLinkApiAdapter _payByLinkApiAdapter;
@@ -39,6 +40,7 @@ namespace Craftgate
             _settlementReportingAdapter = new SettlementReportingAdapter(requestOptions);
             _payByLinkApiAdapter = new PayByLinkApiAdapter(requestOptions);
             _fileReportingAdapter = new FileReportingAdapter(requestOptions);
+            _fraudAdapter = new FraudAdapter(requestOptions);
         }
 
         public PaymentAdapter Payment()
@@ -84,6 +86,11 @@ namespace Craftgate
         public FileReportingAdapter FileReporting()
         {
             return _fileReportingAdapter;
+        }     
+        
+        public FraudAdapter Fraud()
+        {
+            return _fraudAdapter;
         }
     }
 }
