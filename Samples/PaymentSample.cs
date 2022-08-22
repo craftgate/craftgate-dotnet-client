@@ -77,6 +77,8 @@ namespace Samples
             Assert.AreEqual(3, response.PaymentTransactions.Count);
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
+            Assert.Null(response.FraudId);
+            Assert.Null(response.FraudAction);
         }
 
         [Test]
