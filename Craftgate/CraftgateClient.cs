@@ -42,6 +42,28 @@ namespace Craftgate
             _fileReportingAdapter = new FileReportingAdapter(requestOptions);
             _fraudAdapter = new FraudAdapter(requestOptions);
         }
+        
+        public CraftgateClient(string apiKey, string secretKey, string baseUrl, string lang)
+        {
+            var requestOptions = new RequestOptions
+            {
+                ApiKey = apiKey,
+                SecretKey = secretKey,
+                BaseUrl = baseUrl,
+                Lang = lang
+            };
+
+            _installmentAdapter = new InstallmentAdapter(requestOptions);
+            _onboardingAdapter = new OnboardingAdapter(requestOptions);
+            _paymentAdapter = new PaymentAdapter(requestOptions);
+            _paymentReportingAdapter = new PaymentReportingAdapter(requestOptions);
+            _walletAdapter = new WalletAdapter(requestOptions);
+            _settlementAdapter = new SettlementAdapter(requestOptions);
+            _settlementReportingAdapter = new SettlementReportingAdapter(requestOptions);
+            _payByLinkApiAdapter = new PayByLinkApiAdapter(requestOptions);
+            _fileReportingAdapter = new FileReportingAdapter(requestOptions);
+            _fraudAdapter = new FraudAdapter(requestOptions);
+        }
 
         public PaymentAdapter Payment()
         {
