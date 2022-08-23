@@ -46,7 +46,10 @@ namespace Craftgate.Adapter
             headers.Add(AuthVersionHeaderName, ApiVersionHeaderValue);
             headers.Add(ClientVersionHeaderName, ClientVersionHeaderValue + ":1.0.30");
             headers.Add(SignatureHeaderName, PrepareAuthorizationString(request, path, randomString, options));
-            headers.Add(LanguageHeaderName, options.Lang);
+            if (options.Language != null)
+            {
+                headers.Add(LanguageHeaderName, options.Language);
+            }
             return headers;
         }
 

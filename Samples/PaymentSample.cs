@@ -11,7 +11,7 @@ namespace Samples
     public class PaymentSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io", "en");
+            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Create_Payment()
