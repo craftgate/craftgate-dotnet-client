@@ -14,6 +14,7 @@ namespace Craftgate.Adapter
         private const string AuthVersionHeaderName = "x-auth-version";
         private const string ClientVersionHeaderName = "x-client-version";
         private const string SignatureHeaderName = "x-signature";
+        private const string LanguageHeaderName = "lang"; 
         private const string RandomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         protected readonly RequestOptions RequestOptions;
 
@@ -45,6 +46,10 @@ namespace Craftgate.Adapter
             headers.Add(AuthVersionHeaderName, ApiVersionHeaderValue);
             headers.Add(ClientVersionHeaderName, ClientVersionHeaderValue + ":1.0.30");
             headers.Add(SignatureHeaderName, PrepareAuthorizationString(request, path, randomString, options));
+            if (options.Language != null)
+            {
+                headers.Add(LanguageHeaderName, options.Language);
+            }
             return headers;
         }
 

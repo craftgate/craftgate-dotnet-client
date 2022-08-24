@@ -18,17 +18,23 @@ namespace Craftgate
         private readonly WalletAdapter _walletAdapter;
 
         public CraftgateClient(string apiKey, string secretKey)
-            : this(apiKey, secretKey, BaseUrl)
+            : this(apiKey, secretKey, BaseUrl, null)
         {
         }
 
         public CraftgateClient(string apiKey, string secretKey, string baseUrl)
+            : this(apiKey, secretKey, baseUrl, null)
+        {
+        }
+        
+        public CraftgateClient(string apiKey, string secretKey, string baseUrl, string language)
         {
             var requestOptions = new RequestOptions
             {
                 ApiKey = apiKey,
                 SecretKey = secretKey,
-                BaseUrl = baseUrl
+                BaseUrl = baseUrl,
+                Language = language
             };
 
             _installmentAdapter = new InstallmentAdapter(requestOptions);
