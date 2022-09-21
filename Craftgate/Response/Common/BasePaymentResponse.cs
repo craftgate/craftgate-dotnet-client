@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Craftgate.Model;
 using Craftgate.Response.Dto;
 
@@ -44,5 +45,6 @@ namespace Craftgate.Response.Common
         public MerchantPos Pos { get; set; }
         public Loyalty Loyalty { get; set; }
         public PaymentError PaymentError { get; set; }
+        public Dictionary<string, object> AdditionalData { get; set; }
     }
 }
