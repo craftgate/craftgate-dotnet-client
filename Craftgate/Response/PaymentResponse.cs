@@ -11,6 +11,7 @@ namespace Craftgate.Response
         public string CardToken { get; set; }
         public long? FraudId { get; set; }
         public FraudAction? FraudAction { get; set; }
+        public Dictionary<string, object> AdditionalData { get; set; }
         public IList<PaymentTransaction> PaymentTransactions;
     }
 }
