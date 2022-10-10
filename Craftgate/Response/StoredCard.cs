@@ -12,5 +12,6 @@ namespace Craftgate.Response.Dto
         public string CardBrand { get; set; }
         public string CardBankName { get; set; }
         public long? CardBankId { get; set; }
+        public string CardExpiryStatus { get; set; }
     }
 }
