@@ -8,6 +8,7 @@ namespace Craftgate.Request
         public Status Status { get; set; }
         public string Name {get; set;}
         public string Channel {get; set;}
+        public string OrderId {get; set;}
         public decimal Price {get; set;}
         public int Stock {get; set;}
         public Currency Currency {get; set;}
