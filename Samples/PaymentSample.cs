@@ -1058,6 +1058,84 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
         }
+        
+        [Test]
+        public void Create_Cash_on_Delivery_Payment()
+        {
+            var request = new CreateApmPaymentRequest
+            {
+                ApmType = ApmType.CASH_ON_DELIVERY,
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "241cf73c-7ef1-4e29-a6cc-f37905f2fc3d",
+                ExternalId = "optional-ExternalId",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(40)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().CreateApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.Id);
+            Assert.AreEqual( request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual( PaymentStatus.SUCCESS.ToString(), response.PaymentStatus);
+            Assert.AreEqual( PaymentType.APM.ToString(), response.PaymentType);
+            Assert.AreEqual( "241cf73c-7ef1-4e29-a6cc-f37905f2fc3d", response.ConversationId);
+            Assert.AreEqual(2, response.PaymentTransactions.Count);
+        }
+        
+        [Test]
+        public void Create_Fund_Transfer_Payment()
+        {
+            var request = new CreateApmPaymentRequest
+            {
+                ApmType = ApmType.FUND_TRANSFER,
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "2bc39889-b34f-40b0-abb0-4ab344360705",
+                ExternalId = "optional-ExternalId",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(40)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().CreateApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.Id);
+            Assert.AreEqual( request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual( PaymentStatus.SUCCESS.ToString(), response.PaymentStatus);
+            Assert.AreEqual( PaymentType.APM.ToString(), response.PaymentType);
+            Assert.AreEqual( "2bc39889-b34f-40b0-abb0-4ab344360705", response.ConversationId);
+            Assert.AreEqual(2, response.PaymentTransactions.Count);
+        }
 
         [Test]
         public void Retrieve_Loyalties()
