@@ -371,18 +371,15 @@ namespace Craftgate.Adapter
 
         public void DeleteStoredCard(DeleteStoredCardRequest deleteStoredCardRequest)
         {
-            var query = RequestQueryParamsBuilder.BuildQueryParam(deleteStoredCardRequest);
-            var path = "/payment/v1/cards" + query;
-
-            RestClient.Delete<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            var path = "/payment/v1/cards/delete";
+            RestClient.Post<object>(RequestOptions.BaseUrl + path, CreateHeaders(deleteStoredCardRequest, path, RequestOptions), deleteStoredCardRequest);
         }
 
         public Task DeleteStoredCardAsync(DeleteStoredCardRequest deleteStoredCardRequest)
         {
-            var query = RequestQueryParamsBuilder.BuildQueryParam(deleteStoredCardRequest);
-            var path = "/payment/v1/cards" + query;
-
-            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            var path = "/payment/v1/cards/delete";
+            return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path, 
+                CreateHeaders(deleteStoredCardRequest, path, RequestOptions), deleteStoredCardRequest);
         }
 
         public PaymentTransactionApprovalListResponse ApprovePaymentTransactions(ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
