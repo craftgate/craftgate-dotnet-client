@@ -167,18 +167,18 @@ namespace Craftgate.Adapter
                 completeThreeDsPaymentRequest);
         }
 
-        public void CreateFundTransferDepositPayment(CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
+        public FundTransferDepositPaymentResponse CreateFundTransferDepositPayment(CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits/fund-transfer";
-            RestClient.Post<object>(RequestOptions.BaseUrl + path,
+            return RestClient.Post<FundTransferDepositPaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(createFundTransferDepositPaymentRequest, path, RequestOptions),
                 createFundTransferDepositPaymentRequest);
         }
 
-        public void CreateFundTransferDepositPaymentAsync(CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
+        public Task<FundTransferDepositPaymentResponse> CreateFundTransferDepositPaymentAsync(CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits/fund-transfer";
-            AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Post<FundTransferDepositPaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(createFundTransferDepositPaymentRequest, path, RequestOptions),
                 createFundTransferDepositPaymentRequest);
         }
