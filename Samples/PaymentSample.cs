@@ -771,6 +771,7 @@ namespace Samples
             Assert.AreEqual("DEPOSIT_PAYMENT", response.PaymentType);
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
+            Assert.NotNull(response.WalletTransaction);
         }
 
         [Test]
@@ -823,7 +824,11 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5"
             };
 
-            Assert.DoesNotThrow(() => _craftgateClient.Payment().CreateFundTransferDepositPayment(request));
+            var response = _craftgateClient.Payment().CreateFundTransferDepositPayment(request);
+            Assert.AreEqual(request.BuyerMemberId, response.BuyerMemberId);
+            Assert.NotNull(response.WalletTransaction);
+            Assert.AreEqual(request.Price, response.WalletTransaction.Amount);
+            Assert.AreEqual(WalletTransactionType.DEPOSIT_FROM_FUND_TRANSFER.ToString(), response.WalletTransaction.WalletTransactionType);
         }
 
         [Test]
