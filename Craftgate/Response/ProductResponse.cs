@@ -9,6 +9,8 @@ namespace Craftgate.Response
         public string Name { get; set; }
         public string Description { get; set; }
         public string OrderId { get; set; }
+        public string ConversationId { get; set; }
+        public string ExternalId { get; set; }
         public Status Status { get; set; }
         public decimal Price { get; set; }
         public Currency Currency { get; set; }
