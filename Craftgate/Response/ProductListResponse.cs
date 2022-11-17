@@ -2,7 +2,7 @@ using Craftgate.Response.Common;
 
 namespace Craftgate.Response
 {
-    public class ProductListResponse : ListResponse<MemberResponse>
+    public class ProductListResponse : ListResponse<ProductResponse>
     {
     }
 }

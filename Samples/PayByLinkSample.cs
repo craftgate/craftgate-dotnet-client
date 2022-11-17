@@ -23,6 +23,8 @@ namespace Samples
                 Name = "A new Product",
                 Channel = "API",
                 Price = 10,
+                ConversationId = "my-ConversationId",
+                ExternalId = "my-ExternalId",
                 Currency = Currency.TRY,
                 EnabledInstallments = new HashSet<long> {1, 2, 3, 6}
             };
