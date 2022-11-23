@@ -12,6 +12,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "EUR")] EUR,
         [EnumMember(Value = "GBP")] GBP,
         [EnumMember(Value = "ARS")] ARS,
-        [EnumMember(Value = "BRL")] BRL
+        [EnumMember(Value = "BRL")] BRL,
+        [EnumMember(Value = "CNY")] CNY
     }
 }
