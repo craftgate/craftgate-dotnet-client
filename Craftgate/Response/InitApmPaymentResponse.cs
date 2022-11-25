@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using Craftgate.Model;
+using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
 {
@@ -10,5 +11,6 @@ namespace Craftgate.Response
         public PaymentStatus PaymentStatus { get; set; }
         public ApmAdditionalAction AdditionalAction { get; set; }
         public string RedirectUrl { get; set; }
+        public PaymentError PaymentError { get; set; }
     }
 }
