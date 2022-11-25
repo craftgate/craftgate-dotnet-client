@@ -1,3 +1,4 @@
+using System;
 using Craftgate.Model;
 
 namespace Craftgate.Request
@@ -12,6 +13,8 @@ namespace Craftgate.Request
         public string CardBankName { get; set; }
         public CardAssociation? CardAssociation { get; set; }
         public CardExpiryStatus? CardExpiryStatus { get; set; }
+        public DateTime? MinCreatedDate { get; set; }
+        public DateTime? MaxCreatedDate { get; set; }
         public int Page { get; set; } = 0;
         public int Size { get; set; } = 10;
     }
