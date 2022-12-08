@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Craftgate.Net;
 using Craftgate.Request;
@@ -67,7 +69,8 @@ namespace Craftgate.Adapter
                 completeThreeDsPaymentRequest);
         }
 
-        public Task<PaymentResponse> Complete3DSPaymentAsync(CompleteThreeDSPaymentRequest completeThreeDsPaymentRequest)
+        public Task<PaymentResponse> Complete3DSPaymentAsync(
+            CompleteThreeDSPaymentRequest completeThreeDsPaymentRequest)
         {
             var path = "/payment/v1/card-payments/3ds-complete";
             return AsyncRestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
@@ -97,7 +100,8 @@ namespace Craftgate.Adapter
                 initCheckoutPaymentRequest);
         }
 
-        public Task<InitCheckoutPaymentResponse> InitCheckoutPaymentAsync(InitCheckoutPaymentRequest initCheckoutPaymentRequest)
+        public Task<InitCheckoutPaymentResponse> InitCheckoutPaymentAsync(
+            InitCheckoutPaymentRequest initCheckoutPaymentRequest)
         {
             var path = "/payment/v1/checkout-payments/init";
             return AsyncRestClient.Post<InitCheckoutPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -127,7 +131,8 @@ namespace Craftgate.Adapter
                 createDepositPaymentRequest);
         }
 
-        public Task<DepositPaymentResponse> CreateDepositPaymentAsync(CreateDepositPaymentRequest createDepositPaymentRequest)
+        public Task<DepositPaymentResponse> CreateDepositPaymentAsync(
+            CreateDepositPaymentRequest createDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits";
             return AsyncRestClient.Post<DepositPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -143,7 +148,8 @@ namespace Craftgate.Adapter
                 createDepositPaymentRequest);
         }
 
-        public Task<InitThreeDSPaymentResponse> Init3DSDepositPaymentAsync(CreateDepositPaymentRequest createDepositPaymentRequest)
+        public Task<InitThreeDSPaymentResponse> Init3DSDepositPaymentAsync(
+            CreateDepositPaymentRequest createDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits/3ds-init";
             return AsyncRestClient.Post<InitThreeDSPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -151,7 +157,8 @@ namespace Craftgate.Adapter
                 createDepositPaymentRequest);
         }
 
-        public DepositPaymentResponse Complete3DSDepositPayment(CompleteThreeDSPaymentRequest completeThreeDsPaymentRequest)
+        public DepositPaymentResponse Complete3DSDepositPayment(
+            CompleteThreeDSPaymentRequest completeThreeDsPaymentRequest)
         {
             var path = "/payment/v1/deposits/3ds-complete";
             return RestClient.Post<DepositPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -159,7 +166,8 @@ namespace Craftgate.Adapter
                 completeThreeDsPaymentRequest);
         }
 
-        public Task<DepositPaymentResponse> Complete3DSDepositPaymentAsync(CompleteThreeDSPaymentRequest completeThreeDsPaymentRequest)
+        public Task<DepositPaymentResponse> Complete3DSDepositPaymentAsync(
+            CompleteThreeDSPaymentRequest completeThreeDsPaymentRequest)
         {
             var path = "/payment/v1/deposits/3ds-complete";
             return AsyncRestClient.Post<DepositPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -167,7 +175,8 @@ namespace Craftgate.Adapter
                 completeThreeDsPaymentRequest);
         }
 
-        public FundTransferDepositPaymentResponse CreateFundTransferDepositPayment(CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
+        public FundTransferDepositPaymentResponse CreateFundTransferDepositPayment(
+            CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits/fund-transfer";
             return RestClient.Post<FundTransferDepositPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -175,7 +184,8 @@ namespace Craftgate.Adapter
                 createFundTransferDepositPaymentRequest);
         }
 
-        public Task<FundTransferDepositPaymentResponse> CreateFundTransferDepositPaymentAsync(CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
+        public Task<FundTransferDepositPaymentResponse> CreateFundTransferDepositPaymentAsync(
+            CreateFundTransferDepositPaymentRequest createFundTransferDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits/fund-transfer";
             return AsyncRestClient.Post<FundTransferDepositPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -183,7 +193,8 @@ namespace Craftgate.Adapter
                 createFundTransferDepositPaymentRequest);
         }
 
-        public InitGarantiPayPaymentResponse InitGarantiPayPayment(InitGarantiPayPaymentRequest initGarantiPayPaymentRequest)
+        public InitGarantiPayPaymentResponse InitGarantiPayPayment(
+            InitGarantiPayPaymentRequest initGarantiPayPaymentRequest)
         {
             var path = "/payment/v1/garanti-pay-payments";
             return RestClient.Post<InitGarantiPayPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -191,7 +202,8 @@ namespace Craftgate.Adapter
                 initGarantiPayPaymentRequest);
         }
 
-        public Task<InitGarantiPayPaymentResponse> InitGarantiPayPaymentAsync(InitGarantiPayPaymentRequest initGarantiPayPaymentRequest)
+        public Task<InitGarantiPayPaymentResponse> InitGarantiPayPaymentAsync(
+            InitGarantiPayPaymentRequest initGarantiPayPaymentRequest)
         {
             var path = "/payment/v1/garanti-pay-payments";
             return AsyncRestClient.Post<InitGarantiPayPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -223,7 +235,8 @@ namespace Craftgate.Adapter
                 completeApmPaymentRequest);
         }
 
-        public Task<CompleteApmPaymentResponse> CompleteApmPaymentAsync(CompleteApmPaymentRequest completeApmPaymentRequest)
+        public Task<CompleteApmPaymentResponse> CompleteApmPaymentAsync(
+            CompleteApmPaymentRequest completeApmPaymentRequest)
         {
             var path = "/payment/v1/apm-payments/complete";
             return AsyncRestClient.Post<CompleteApmPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -263,7 +276,8 @@ namespace Craftgate.Adapter
                 retrieveLoyaltiesRequest);
         }
 
-        public PaymentTransactionRefundResponse RefundPaymentTransaction(RefundPaymentTransactionRequest refundPaymentTransactionRequest)
+        public PaymentTransactionRefundResponse RefundPaymentTransaction(
+            RefundPaymentTransactionRequest refundPaymentTransactionRequest)
         {
             var path = "/payment/v1/refund-transactions";
             return RestClient.Post<PaymentTransactionRefundResponse>(RequestOptions.BaseUrl + path,
@@ -271,7 +285,8 @@ namespace Craftgate.Adapter
                 refundPaymentTransactionRequest);
         }
 
-        public Task<PaymentTransactionRefundResponse> RefundPaymentTransactionAsync(RefundPaymentTransactionRequest refundPaymentTransactionRequest)
+        public Task<PaymentTransactionRefundResponse> RefundPaymentTransactionAsync(
+            RefundPaymentTransactionRequest refundPaymentTransactionRequest)
         {
             var path = "/payment/v1/refund-transactions";
             return AsyncRestClient.Post<PaymentTransactionRefundResponse>(RequestOptions.BaseUrl + path,
@@ -372,17 +387,19 @@ namespace Craftgate.Adapter
         public void DeleteStoredCard(DeleteStoredCardRequest deleteStoredCardRequest)
         {
             var path = "/payment/v1/cards/delete";
-            RestClient.Post<object>(RequestOptions.BaseUrl + path, CreateHeaders(deleteStoredCardRequest, path, RequestOptions), deleteStoredCardRequest);
+            RestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(deleteStoredCardRequest, path, RequestOptions), deleteStoredCardRequest);
         }
 
         public Task DeleteStoredCardAsync(DeleteStoredCardRequest deleteStoredCardRequest)
         {
             var path = "/payment/v1/cards/delete";
-            return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path, 
+            return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(deleteStoredCardRequest, path, RequestOptions), deleteStoredCardRequest);
         }
 
-        public PaymentTransactionApprovalListResponse ApprovePaymentTransactions(ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
+        public PaymentTransactionApprovalListResponse ApprovePaymentTransactions(
+            ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
         {
             var path = "/payment/v1/payment-transactions/approve";
             return RestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
@@ -390,7 +407,8 @@ namespace Craftgate.Adapter
                 approvePaymentTransactionsRequest);
         }
 
-        public Task<PaymentTransactionApprovalListResponse> ApprovePaymentTransactionsAsync(ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
+        public Task<PaymentTransactionApprovalListResponse> ApprovePaymentTransactionsAsync(
+            ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
         {
             var path = "/payment/v1/payment-transactions/approve";
             return AsyncRestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
@@ -398,7 +416,8 @@ namespace Craftgate.Adapter
                 approvePaymentTransactionsRequest);
         }
 
-        public PaymentTransactionApprovalListResponse DisapprovePaymentTransactions(DisapprovePaymentTransactionsRequest disapprovePaymentTransactionsRequest)
+        public PaymentTransactionApprovalListResponse DisapprovePaymentTransactions(
+            DisapprovePaymentTransactionsRequest disapprovePaymentTransactionsRequest)
         {
             var path = "/payment/v1/payment-transactions/disapprove";
             return RestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
@@ -422,7 +441,8 @@ namespace Craftgate.Adapter
                 CreateHeaders(checkMasterpassUserRequest, path, RequestOptions), checkMasterpassUserRequest);
         }
 
-        public Task<CheckMasterpassUserResponse> CheckMasterpassUserAsync(CheckMasterpassUserRequest checkMasterpassUserRequest)
+        public Task<CheckMasterpassUserResponse> CheckMasterpassUserAsync(
+            CheckMasterpassUserRequest checkMasterpassUserRequest)
         {
             var path = "/payment/v1/masterpass-payments/check-user";
             return AsyncRestClient.Post<CheckMasterpassUserResponse>(RequestOptions.BaseUrl + path,
@@ -430,18 +450,48 @@ namespace Craftgate.Adapter
         }
 
 
-        public PaymentTransactionResponse UpdatePaymentTransaction(UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
+        public PaymentTransactionResponse UpdatePaymentTransaction(
+            UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
         {
             var path = "/payment/v1/payment-transactions/" + updatePaymentTransactionRequest.PaymentTransactionId;
             return RestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions), updatePaymentTransactionRequest);
         }
 
-        public Task<PaymentTransactionResponse> UpdatePaymentTransactionAsync(UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
+        public Task<PaymentTransactionResponse> UpdatePaymentTransactionAsync(
+            UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
         {
             var path = "/payment/v1/payment-transactions/" + updatePaymentTransactionRequest.PaymentTransactionId;
             return AsyncRestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions), updatePaymentTransactionRequest);
+        }
+
+        public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)
+        {
+            string hash = parameters["hash"];
+            string hashString = new StringBuilder(threeDSecureCallbackKey)
+                .Append("###")
+                .Append(extractValue("status", parameters))
+                .Append("###")
+                .Append(extractValue("completeStatus", parameters))
+                .Append("###")
+                .Append(extractValue("paymentId", parameters))
+                .Append("###")
+                .Append(extractValue("conversationData", parameters))
+                .Append("###")
+                .Append(extractValue("conversationId", parameters))
+                .Append("###")
+                .Append(extractValue("callbackStatus", parameters))
+                .ToString();
+
+            string hashed = HashGenerator.GenerateHash(hashString);
+            return hash.Equals(hashed);
+        }
+
+        private string extractValue(string key, Dictionary<string, string> parameters)
+        {
+            string value = parameters.TryGetValue(key, out value) ? value : "";
+            return value;
         }
     }
 }

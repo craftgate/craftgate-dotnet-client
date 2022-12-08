@@ -16,6 +16,7 @@ namespace Craftgate
         private readonly SettlementAdapter _settlementAdapter;
         private readonly SettlementReportingAdapter _settlementReportingAdapter;
         private readonly WalletAdapter _walletAdapter;
+        private readonly HookAdapter _hookAdapter;
 
         public CraftgateClient(string apiKey, string secretKey)
             : this(apiKey, secretKey, BaseUrl, null)
@@ -47,6 +48,7 @@ namespace Craftgate
             _payByLinkApiAdapter = new PayByLinkApiAdapter(requestOptions);
             _fileReportingAdapter = new FileReportingAdapter(requestOptions);
             _fraudAdapter = new FraudAdapter(requestOptions);
+            _hookAdapter = new HookAdapter(requestOptions);
         }
 
         public PaymentAdapter Payment()
@@ -97,6 +99,11 @@ namespace Craftgate
         public FraudAdapter Fraud()
         {
             return _fraudAdapter;
+        }
+        
+        public HookAdapter Hook()
+        {
+            return _hookAdapter;
         }
     }
 }
