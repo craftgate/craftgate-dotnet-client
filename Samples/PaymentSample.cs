@@ -1525,5 +1525,58 @@ namespace Samples
             Assert.AreEqual(request.SubMerchantMemberId, response.SubMerchantMemberId);
             Assert.AreEqual(request.SubMerchantMemberPrice, response.SubMerchantMemberPrice);
         }
+        
+        [Test]
+        public void Verify_3DS_Callback()
+        {
+            string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                {"hash", "1d3fa1e51fe7c350185c5a7f8c3ff513a991367b08c16a56f4ab9abeb738a1e1"},
+                {"paymentId", "5"},
+                {"conversationData", "conversation-data"},
+                {"conversationId", "conversation-id"},
+                {"status", "SUCCESS"},
+                {"completeStatus", "WAITING"}
+            };
+
+            var isVerified = _craftgateClient.Payment().Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
+            Assert.True(isVerified);
+        }
+        
+        [Test]
+        public void Verify_3DS_Callback_Even_Params_Has_Nullable_Value()
+        {
+            string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                {"hash", "a097f0231031a88f2d687b510afca2505ccd2977d6421be4c3784666703f6f25"},
+                {"paymentId", "5"},
+                {"conversationId", "conversation-id"},
+                {"status", "SUCCESS"},
+                {"completeStatus", "WAITING"}
+            };
+
+            var isVerified = _craftgateClient.Payment().Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
+            Assert.True(isVerified);
+        }
+        
+        [Test]
+        public void Not_Verify_3DS_Callback()
+        {
+            string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                {"hash", "39427942bcaasjaduqabzhdancaASasdhbcxjancakjscace82"},
+                {"paymentId", "5"},
+                {"conversationData", "conversation-data"},
+                {"conversationId", "conversation-id"},
+                {"status", "SUCCESS"},
+                {"completeStatus", "WAITING"}
+            };
+
+            var isVerified = _craftgateClient.Payment().Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
+            Assert.False(isVerified);
+        }
     }
 }
