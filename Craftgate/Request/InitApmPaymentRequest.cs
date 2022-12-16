@@ -9,7 +9,7 @@ namespace Craftgate.Request
         public ApmType ApmType { get; set; }
         public decimal Price { get; set; }
         public decimal PaidPrice { get; set; }
-        public long BuyerMemberId { get; set; }
+        public long? BuyerMemberId { get; set; }
         public Currency Currency { get; set; }
         public PaymentGroup PaymentGroup { get; set; }
         public string PaymentChannel { get; set; }
