@@ -828,7 +828,8 @@ namespace Samples
             Assert.AreEqual(request.BuyerMemberId, response.BuyerMemberId);
             Assert.NotNull(response.WalletTransaction);
             Assert.AreEqual(request.Price, response.WalletTransaction.Amount);
-            Assert.AreEqual(WalletTransactionType.DEPOSIT_FROM_FUND_TRANSFER.ToString(), response.WalletTransaction.WalletTransactionType);
+            Assert.AreEqual(WalletTransactionType.DEPOSIT_FROM_FUND_TRANSFER.ToString(),
+                response.WalletTransaction.WalletTransactionType);
         }
 
         [Test]
@@ -966,7 +967,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.SUCCESS);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.NONE);
         }
-        
+
         [Test]
         public void Init_Edenred_Apm_Payment()
         {
@@ -1006,7 +1007,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
         }
-        
+
         [Test]
         public void Complete_Edenred_Apm_Payment()
         {
@@ -1024,7 +1025,7 @@ namespace Samples
             Assert.NotNull(response.PaymentId);
             Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
         }
-        
+
         [Test]
         public void Init_PayPal_APM_Payment()
         {
@@ -1063,7 +1064,50 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
         }
-        
+
+        [Test]
+        public void Init_Klarna_APM_Payment()
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("country", "de");
+            additionalParams.Add("locale", "en-DE");
+
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.KLARNA,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.USD,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.4)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.6)
+                    }
+                },
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
+        }
+
         [Test]
         public void Init_Afterpay_APM_Payment()
         {
@@ -1101,7 +1145,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
         }
-        
+
         [Test]
         public void Create_Cash_on_Delivery_Payment()
         {
@@ -1134,13 +1178,13 @@ namespace Samples
             var response = _craftgateClient.Payment().CreateApmPayment(request);
             Assert.NotNull(response);
             Assert.NotNull(response.Id);
-            Assert.AreEqual( request.PaidPrice, response.PaidPrice);
-            Assert.AreEqual( PaymentStatus.SUCCESS.ToString(), response.PaymentStatus);
-            Assert.AreEqual( PaymentType.APM.ToString(), response.PaymentType);
-            Assert.AreEqual( "241cf73c-7ef1-4e29-a6cc-f37905f2fc3d", response.ConversationId);
+            Assert.AreEqual(request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual(PaymentStatus.SUCCESS.ToString(), response.PaymentStatus);
+            Assert.AreEqual(PaymentType.APM.ToString(), response.PaymentType);
+            Assert.AreEqual("241cf73c-7ef1-4e29-a6cc-f37905f2fc3d", response.ConversationId);
             Assert.AreEqual(2, response.PaymentTransactions.Count);
         }
-        
+
         [Test]
         public void Create_Fund_Transfer_Payment()
         {
@@ -1173,10 +1217,10 @@ namespace Samples
             var response = _craftgateClient.Payment().CreateApmPayment(request);
             Assert.NotNull(response);
             Assert.NotNull(response.Id);
-            Assert.AreEqual( request.PaidPrice, response.PaidPrice);
-            Assert.AreEqual( PaymentStatus.SUCCESS.ToString(), response.PaymentStatus);
-            Assert.AreEqual( PaymentType.APM.ToString(), response.PaymentType);
-            Assert.AreEqual( "2bc39889-b34f-40b0-abb0-4ab344360705", response.ConversationId);
+            Assert.AreEqual(request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual(PaymentStatus.SUCCESS.ToString(), response.PaymentStatus);
+            Assert.AreEqual(PaymentType.APM.ToString(), response.PaymentType);
+            Assert.AreEqual("2bc39889-b34f-40b0-abb0-4ab344360705", response.ConversationId);
             Assert.AreEqual(2, response.PaymentTransactions.Count);
         }
 
@@ -1563,57 +1607,60 @@ namespace Samples
             Assert.AreEqual(request.SubMerchantMemberId, response.SubMerchantMemberId);
             Assert.AreEqual(request.SubMerchantMemberPrice, response.SubMerchantMemberPrice);
         }
-        
+
         [Test]
         public void Verify_3DS_Callback()
         {
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                {"hash", "1d3fa1e51fe7c350185c5a7f8c3ff513a991367b08c16a56f4ab9abeb738a1e1"},
-                {"paymentId", "5"},
-                {"conversationData", "conversation-data"},
-                {"conversationId", "conversation-id"},
-                {"status", "SUCCESS"},
-                {"completeStatus", "WAITING"}
+                { "hash", "1d3fa1e51fe7c350185c5a7f8c3ff513a991367b08c16a56f4ab9abeb738a1e1" },
+                { "paymentId", "5" },
+                { "conversationData", "conversation-data" },
+                { "conversationId", "conversation-id" },
+                { "status", "SUCCESS" },
+                { "completeStatus", "WAITING" }
             };
 
-            var isVerified = _craftgateClient.Payment().Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
+            var isVerified = _craftgateClient.Payment()
+                .Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
             Assert.True(isVerified);
         }
-        
+
         [Test]
         public void Verify_3DS_Callback_Even_Params_Has_Nullable_Value()
         {
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                {"hash", "a097f0231031a88f2d687b510afca2505ccd2977d6421be4c3784666703f6f25"},
-                {"paymentId", "5"},
-                {"conversationId", "conversation-id"},
-                {"status", "SUCCESS"},
-                {"completeStatus", "WAITING"}
+                { "hash", "a097f0231031a88f2d687b510afca2505ccd2977d6421be4c3784666703f6f25" },
+                { "paymentId", "5" },
+                { "conversationId", "conversation-id" },
+                { "status", "SUCCESS" },
+                { "completeStatus", "WAITING" }
             };
 
-            var isVerified = _craftgateClient.Payment().Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
+            var isVerified = _craftgateClient.Payment()
+                .Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
             Assert.True(isVerified);
         }
-        
+
         [Test]
         public void Not_Verify_3DS_Callback()
         {
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                {"hash", "39427942bcaasjaduqabzhdancaASasdhbcxjancakjscace82"},
-                {"paymentId", "5"},
-                {"conversationData", "conversation-data"},
-                {"conversationId", "conversation-id"},
-                {"status", "SUCCESS"},
-                {"completeStatus", "WAITING"}
+                { "hash", "39427942bcaasjaduqabzhdancaASasdhbcxjancakjscace82" },
+                { "paymentId", "5" },
+                { "conversationData", "conversation-data" },
+                { "conversationId", "conversation-id" },
+                { "status", "SUCCESS" },
+                { "completeStatus", "WAITING" }
             };
 
-            var isVerified = _craftgateClient.Payment().Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
+            var isVerified = _craftgateClient.Payment()
+                .Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
             Assert.False(isVerified);
         }
     }
