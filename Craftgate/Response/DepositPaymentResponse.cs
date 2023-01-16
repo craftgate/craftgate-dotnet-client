@@ -1,4 +1,5 @@
 using System;
+using Craftgate.Model;
 using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
@@ -22,5 +23,7 @@ namespace Craftgate.Response
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }
         public WalletTransaction WalletTransaction { get; set; }
+        public long? FraudId { get; set; }
+        public FraudAction? FraudAction { get; set; }
     }
 }
