@@ -229,5 +229,20 @@ namespace Samples
             Assert.IsNotNull(response.TotalSize);
             Assert.GreaterOrEqual(response.Items.Count, 0);
         }
+
+        [Test]
+        public void Create_Member_Wallet()
+        {
+            long memberId = 1L;
+            var createWalletRequest = new CreateWalletRequest()
+            {
+                NegativeAmountLimit = 0,
+                Currency = Currency.TRY
+            };
+            var response = _craftgateClient.Wallet().CreateMemberWallet(memberId, createWalletRequest);
+
+            Assert.NotNull(response.Id);
+            Assert.AreEqual("TRY", response.Currency);
+        }
     }
 }
