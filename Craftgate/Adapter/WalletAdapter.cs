@@ -11,6 +11,12 @@ namespace Craftgate.Adapter
         public WalletAdapter(RequestOptions requestOptions) : base(requestOptions)
         {
         }
+        
+        public WalletResponse CreateMemberWallet(long memberId, CreateWalletRequest createRemittanceRequest)
+        {
+            var path = "/wallet/v1/members/" + memberId + "/wallets";
+            return RestClient.Post<WalletResponse>(RequestOptions.BaseUrl + path, CreateHeaders(createRemittanceRequest, path, RequestOptions), createRemittanceRequest);
+        }
 
         public WalletResponse RetrieveMemberWallet(long memberId)
         {
