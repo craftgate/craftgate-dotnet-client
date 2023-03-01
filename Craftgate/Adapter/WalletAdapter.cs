@@ -134,35 +134,35 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public RefundWalletTransactionToCardResponse RefundWalletTransactionToCard(long walletTransactionId,
-            RefundWalletTransactionToCardRequest request)
+        public RefundWalletTransactionResponse RefundWalletTransaction(long walletTransactionId,
+            RefundWalletTransactionRequest request)
         {
             var path = "/payment/v1/wallet-transactions/" + walletTransactionId + "/refunds";
-            return RestClient.Post<RefundWalletTransactionToCardResponse>(RequestOptions.BaseUrl + path,
+            return RestClient.Post<RefundWalletTransactionResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public Task<RefundWalletTransactionToCardResponse> RefundWalletTransactionToCardAsync(long walletTransactionId,
-            RefundWalletTransactionToCardRequest request)
+        public Task<RefundWalletTransactionResponse> RefundWalletTransactionAsync(long walletTransactionId,
+            RefundWalletTransactionRequest request)
         {
             var path = "/payment/v1/wallet-transactions/" + walletTransactionId + "/refunds";
-            return AsyncRestClient.Post<RefundWalletTransactionToCardResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Post<RefundWalletTransactionResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public RefundWalletTransactionToCardListResponse RetrieveRefundWalletTransactionsToCard(
+        public RefundWalletTransactionListResponse RetrieveRefundWalletTransactions(
             long walletTransactionId)
         {
             var path = "/payment/v1/wallet-transactions/" + walletTransactionId + "/refunds";
-            return RestClient.Get<RefundWalletTransactionToCardListResponse>(RequestOptions.BaseUrl + path,
+            return RestClient.Get<RefundWalletTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<RefundWalletTransactionToCardListResponse> RetrieveRefundWalletTransactionsToCardAsync(
+        public Task<RefundWalletTransactionListResponse> RetrieveRefundWalletTransactionsAsync(
             long walletTransactionId)
         {
             var path = "/payment/v1/wallet-transactions/" + walletTransactionId + "/refunds";
-            return AsyncRestClient.Get<RefundWalletTransactionToCardListResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Get<RefundWalletTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 

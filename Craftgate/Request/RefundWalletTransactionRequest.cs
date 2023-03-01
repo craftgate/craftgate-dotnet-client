@@ -1,6 +1,6 @@
 namespace Craftgate.Request
 {
-    public class RefundWalletTransactionToCardRequest
+    public class RefundWalletTransactionRequest
     {
         public decimal RefundPrice { get; set; }
     }
