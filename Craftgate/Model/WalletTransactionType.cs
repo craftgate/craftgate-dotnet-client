@@ -12,6 +12,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "CANCEL_REFUND_WALLET_TO_CARD")] CANCEL_REFUND_WALLET_TO_CARD,
         [EnumMember(Value = "REFUND_TX_TO_WALLET")] REFUND_TX_TO_WALLET,
         [EnumMember(Value = "REFUND_WALLET_TX_TO_CARD")] REFUND_WALLET_TX_TO_CARD,
+        [EnumMember(Value = "REFUND_WALLET_TX_FUND_TRANSFER")] REFUND_WALLET_TX_FUND_TRANSFER,
         [EnumMember(Value = "MANUAL_REFUND_TX_TO_WALLET")] MANUAL_REFUND_TX_TO_WALLET,
         [EnumMember(Value = "DEPOSIT_FROM_CARD")] DEPOSIT_FROM_CARD,
         [EnumMember(Value = "SETTLEMENT_EARNINGS")] SETTLEMENT_EARNINGS,

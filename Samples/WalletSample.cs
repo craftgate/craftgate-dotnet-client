@@ -134,14 +134,14 @@ namespace Samples
         }
 
         [Test]
-        public void Refund_Wallet_Transaction_To_Card()
+        public void Refund_Wallet_Transaction()
         {
             long walletTransactionId = 1;
-            var request = new RefundWalletTransactionToCardRequest
+            var request = new RefundWalletTransactionRequest
             {
                 RefundPrice = new decimal(10)
             };
-            var response = _craftgateClient.Wallet().RefundWalletTransactionToCard(walletTransactionId, request);
+            var response = _craftgateClient.Wallet().RefundWalletTransaction(walletTransactionId, request);
 
             Assert.IsNotNull(response.Id);
             Assert.IsNull(response.PaymentError);
@@ -152,10 +152,10 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Refund_Wallet_Transactions_To_Card()
+        public void Retrieve_Refund_Wallet_Transactions()
         {
             long walletTransactionId = 1;
-            var response = _craftgateClient.Wallet().RetrieveRefundWalletTransactionsToCard(walletTransactionId);
+            var response = _craftgateClient.Wallet().RetrieveRefundWalletTransactions(walletTransactionId);
 
             Assert.IsNotNull(response.Items);
             Assert.GreaterOrEqual(response.Items.Count, 0);

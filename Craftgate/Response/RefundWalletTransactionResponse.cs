@@ -3,7 +3,7 @@ using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
 {
-    public class RefundWalletTransactionToCardResponse
+    public class RefundWalletTransactionResponse
     {
         public long Id { get; set; }
         public DateTime CreatedDate { get; set; }
