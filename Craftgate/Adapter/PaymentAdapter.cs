@@ -193,6 +193,24 @@ namespace Craftgate.Adapter
                 createFundTransferDepositPaymentRequest);
         }
 
+        public ApmDepositPaymentResponse InitApmDepositPayment(
+            InitApmDepositPaymentRequest initApmDepositPaymentRequest)
+        {
+            var path = "/payment/v1/deposits/apm-init";
+            return RestClient.Post<ApmDepositPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initApmDepositPaymentRequest, path, RequestOptions),
+                initApmDepositPaymentRequest);
+        }
+
+        public Task<ApmDepositPaymentResponse> InitApmDepositPaymentAsync(
+            InitApmDepositPaymentRequest initApmDepositPaymentRequest)
+        {
+            var path = "/payment/v1/deposits/apm-init";
+            return AsyncRestClient.Post<ApmDepositPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initApmDepositPaymentRequest, path, RequestOptions),
+                initApmDepositPaymentRequest);
+        }
+
         public InitGarantiPayPaymentResponse InitGarantiPayPayment(
             InitGarantiPayPaymentRequest initGarantiPayPaymentRequest)
         {

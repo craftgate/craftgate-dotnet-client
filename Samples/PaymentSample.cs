@@ -833,6 +833,29 @@ namespace Samples
         }
 
         [Test]
+        public void Init_Apm_Deposit_Payment()
+        {
+            var request = new InitApmDepositPaymentRequest()
+            {
+                ApmType = ApmType.PAPARA,
+                Price = new decimal(1.0),
+                Currency = Currency.TRY,
+                BuyerMemberId = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                ClientIp = "127.0.0.1"
+            };
+
+            var response = _craftgateClient.Payment().InitApmDepositPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
+        }
+
+        [Test]
         public void Init_GarantiPay_Payment()
         {
             var request = new InitGarantiPayPaymentRequest
