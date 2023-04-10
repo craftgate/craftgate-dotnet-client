@@ -1,3 +1,4 @@
+using System;
 using Craftgate.Model;
 
 namespace Craftgate.Request
@@ -17,6 +18,8 @@ namespace Craftgate.Request
         public string TaxNumber { get; set; }
         public string Iban { get; set; }
         public SettlementEarningsDestination? SettlementEarningsDestination { get; set; }
+
+        [Obsolete("deprecated since version 1.0.45. use CreateWalletRequest.NegativeAmountLimit instead.")]
         public decimal? NegativeWalletAmountLimit { get; set; }
 
         public bool? IsBuyer { get; set; }

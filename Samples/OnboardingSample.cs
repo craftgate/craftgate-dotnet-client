@@ -115,7 +115,6 @@ namespace Samples
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
                 ContactName = "Haluk",
                 ContactSurname = "Demir",
-                NegativeWalletAmountLimit = -50
             };
 
             var response = _craftgateClient.Onboarding().CreateMember(request);
@@ -128,7 +127,6 @@ namespace Samples
             Assert.AreEqual(request.Address, response.Address);
             Assert.AreEqual(request.ContactName, response.ContactName);
             Assert.AreEqual(request.ContactSurname, response.ContactSurname);
-            Assert.AreEqual(request.NegativeWalletAmountLimit, response.NegativeWalletAmountLimit);
         }
 
         [Test]
@@ -144,7 +142,6 @@ namespace Samples
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
                 ContactName = "Haluk",
                 ContactSurname = "Demir",
-                NegativeWalletAmountLimit = -50
             };
 
             var response = _craftgateClient.Onboarding().UpdateMember(memberId, request);
@@ -154,7 +151,6 @@ namespace Samples
             Assert.AreEqual(request.PhoneNumber, response.PhoneNumber);
             Assert.AreEqual(request.Name, response.Name);
             Assert.AreEqual(request.IdentityNumber, response.IdentityNumber);
-            Assert.AreEqual(request.NegativeWalletAmountLimit, response.NegativeWalletAmountLimit);
         }
 
         [Test]
