@@ -63,5 +63,22 @@ namespace Samples
             var response = _craftgateClient.SettlementReporting().RetrievePayoutDetails(payoutId);
             Assert.NotNull(response);
         }
+        
+        [Test]
+        public void Search_Settlement_Rows()
+        {
+            var ts = DateTime.Now;
+            var request = new SearchSettlementRowsRequest()
+            {
+                Page = 0,
+                Size = 10,
+                StartDate = new DateTime(ts.Year, ts.Month, ts.Day - 10, 0, 0, 0),
+                EndDate = ts,
+                FileStatus = FileStatus.CREATED
+            };
+
+            var response = _craftgateClient.SettlementReporting().SearchSettlementRows(request);
+            Assert.True(response.Items.Count > 0);
+        }
     }
 }

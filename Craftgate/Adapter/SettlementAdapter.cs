@@ -27,21 +27,5 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<SettlementResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
-
-        public SettlementRowListResponse SearchSettlementRows(SearchSettlementRowsRequest request)
-        {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
-            var path = "/settlement/v1/settlements/rows" + queryParam;
-            return RestClient.Get<SettlementRowListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
-        }
-
-        public Task<SettlementRowListResponse> SearchSettlementRowsAsync(SearchSettlementRowsRequest request)
-        {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
-            var path = "/settlement/v1/settlements/rows" + queryParam;
-            return AsyncRestClient.Get<SettlementRowListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
-        }
     }
 }
