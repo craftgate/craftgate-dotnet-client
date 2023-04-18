@@ -4,7 +4,7 @@ using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
 {
-    public class SettlementRowListResponse : ListResponse<SettlementRow> 
+    public class PayoutRowListResponse : ListResponse<PayoutRow> 
     {
     }
 }

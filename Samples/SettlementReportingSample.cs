@@ -65,10 +65,10 @@ namespace Samples
         }
         
         [Test]
-        public void Search_Settlement_Rows()
+        public void Search_Payout_Rows()
         {
             var ts = DateTime.Now;
-            var request = new SearchSettlementRowsRequest()
+            var request = new SearchPayoutRowsRequest()
             {
                 Page = 0,
                 Size = 10,
@@ -77,7 +77,7 @@ namespace Samples
                 FileStatus = FileStatus.CREATED
             };
 
-            var response = _craftgateClient.SettlementReporting().SearchSettlementRows(request);
+            var response = _craftgateClient.SettlementReporting().SearchPayoutRows(request);
             Assert.True(response.Items.Count > 0);
         }
     }

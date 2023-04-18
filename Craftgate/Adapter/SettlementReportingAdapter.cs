@@ -62,19 +62,19 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
         
-        public SettlementRowListResponse SearchSettlementRows(SearchSettlementRowsRequest request)
+        public PayoutRowListResponse SearchPayoutRows(SearchPayoutRowsRequest request)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
-            var path = "/settlement/v1/settlements/rows" + queryParam;
-            return RestClient.Get<SettlementRowListResponse>(RequestOptions.BaseUrl + path,
+            var path = "/settlement-reporting/v1/settlement-file-rows" + queryParam;
+            return RestClient.Get<PayoutRowListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<SettlementRowListResponse> SearchSettlementRowsAsync(SearchSettlementRowsRequest request)
+        public Task<PayoutRowListResponse> SearchSettlementRowsAsync(SearchPayoutRowsRequest request)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/settlement/v1/settlements/rows" + queryParam;
-            return AsyncRestClient.Get<SettlementRowListResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Get<PayoutRowListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
     }
