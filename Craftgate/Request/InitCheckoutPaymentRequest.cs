@@ -28,6 +28,7 @@ namespace Craftgate.Request
         public bool AllowOnlyCreditCard { get; set; }
         public bool AllowInstallmentOnlyCommercialCards { get; set; }
         public bool ForceThreeDS { get; set; }
+        public bool ForceAuthForNonCreditCards { get; set; }
         public IList<PaymentItem> Items { get; set; }
     }
 }
