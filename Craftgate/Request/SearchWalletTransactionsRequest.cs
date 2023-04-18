@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Craftgate.Model;
 
 namespace Craftgate.Request
 {
     public class SearchWalletTransactionsRequest
     {
-        public WalletTransactionType? WalletTransactionType { set; get; }
+        public ISet<WalletTransactionType> WalletTransactionTypes { set; get; }
         public DateTime? MinCreatedDate { get; set; }
         public DateTime? MaxCreatedDate { get; set; }
         public decimal? MinAmount { get; set; }
