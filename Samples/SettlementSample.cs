@@ -1,4 +1,5 @@
 using Craftgate;
+using Craftgate.Model;
 using Craftgate.Request;
 using Craftgate.Response;
 using NUnit.Framework;
