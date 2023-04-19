@@ -9,6 +9,7 @@ namespace Craftgate.Response
         public DateTime? UpdatedDate { get; set; }
         public decimal Amount { get; set; }
         public decimal WithdrawalAmount { get; set; }
+        public decimal NegativeAmountLimit { get; set; }
         public string Currency { get; set; }
         public long MemberId { get; set; }
     }

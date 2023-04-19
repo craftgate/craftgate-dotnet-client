@@ -11,11 +11,19 @@ namespace Craftgate.Adapter
         public WalletAdapter(RequestOptions requestOptions) : base(requestOptions)
         {
         }
-        
-        public WalletResponse CreateMemberWallet(long memberId, CreateWalletRequest createRemittanceRequest)
+
+        public WalletResponse CreateMemberWallet(long memberId, CreateWalletRequest createWalletRequest)
         {
             var path = "/wallet/v1/members/" + memberId + "/wallets";
-            return RestClient.Post<WalletResponse>(RequestOptions.BaseUrl + path, CreateHeaders(createRemittanceRequest, path, RequestOptions), createRemittanceRequest);
+            return RestClient.Post<WalletResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(createWalletRequest, path, RequestOptions), createWalletRequest);
+        }
+
+        public Task<WalletResponse> CreateMemberWalletAsync(long memberId, CreateWalletRequest createWalletRequest)
+        {
+            var path = "/wallet/v1/members/" + memberId + "/wallets";
+            return AsyncRestClient.Post<WalletResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(createWalletRequest, path, RequestOptions), createWalletRequest);
         }
 
         public WalletResponse RetrieveMemberWallet(long memberId)
@@ -27,7 +35,8 @@ namespace Craftgate.Adapter
         public Task<WalletResponse> RetrieveMemberWalletAsync(long memberId)
         {
             var path = "/wallet/v1/members/" + memberId + "/wallet";
-            return AsyncRestClient.Get<WalletResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            return AsyncRestClient.Get<WalletResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
         }
 
         public WalletTransactionListResponse SearchWalletTransactions(long walletId,
@@ -46,6 +55,21 @@ namespace Craftgate.Adapter
             var path = "/wallet/v1/wallets/" + walletId + "/wallet-transactions" + queryParam;
             return AsyncRestClient.Get<WalletTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
+        }
+
+        public WalletResponse UpdateMemberWallet(long memberId, long walletId, UpdateWalletRequest updateWalletRequest)
+        {
+            var path = "/wallet/v1/members/" + memberId + "/wallets/" + walletId;
+            return RestClient.Put<WalletResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(updateWalletRequest, path, RequestOptions), updateWalletRequest);
+        }
+
+        public Task<WalletResponse> UpdateMemberWalletAsync(long memberId, long walletId,
+            UpdateWalletRequest updateWalletRequest)
+        {
+            var path = "/wallet/v1/members/" + memberId + "/wallets/" + walletId;
+            return AsyncRestClient.Put<WalletResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(updateWalletRequest, path, RequestOptions), updateWalletRequest);
         }
 
         public RemittanceResponse SendRemittance(CreateRemittanceRequest createRemittanceRequest)
@@ -83,13 +107,15 @@ namespace Craftgate.Adapter
         public RemittanceResponse RetrieveRemittance(long id)
         {
             var path = "/wallet/v1/remittances/" + id;
-            return RestClient.Get<RemittanceResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            return RestClient.Get<RemittanceResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
         }
 
         public Task<RemittanceResponse> RetrieveRemittanceAsync(long id)
         {
             var path = "/wallet/v1/remittances/" + id;
-            return AsyncRestClient.Get<RemittanceResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            return AsyncRestClient.Get<RemittanceResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
         }
 
         public WalletResponse RetrieveMerchantMemberWallet()
@@ -101,7 +127,8 @@ namespace Craftgate.Adapter
         public Task<WalletResponse> RetrieveMerchantMemberWalletAsync()
         {
             var path = "/wallet/v1/merchants/me/wallet";
-            return AsyncRestClient.Get<WalletResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            return AsyncRestClient.Get<WalletResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
         }
 
         public WalletResponse ResetMerchantMemberWalletBalance(ResetMerchantMemberWalletBalanceRequest request)
@@ -111,7 +138,8 @@ namespace Craftgate.Adapter
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public Task<WalletResponse> ResetMerchantMemberWalletBalanceAsync(ResetMerchantMemberWalletBalanceRequest request)
+        public Task<WalletResponse> ResetMerchantMemberWalletBalanceAsync(
+            ResetMerchantMemberWalletBalanceRequest request)
         {
             var path = "/wallet/v1/merchants/me/wallet/reset-balance";
             return AsyncRestClient.Post<WalletResponse>(RequestOptions.BaseUrl + path,
@@ -203,7 +231,8 @@ namespace Craftgate.Adapter
         public Task<WithdrawResponse> RetrieveWithdrawAsync(long withdrawId)
         {
             var path = "/wallet/v1/withdraws/" + withdrawId;
-            return AsyncRestClient.Get<WithdrawResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            return AsyncRestClient.Get<WithdrawResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
         }
 
         public WithdrawListResponse SearchWithdraws(SearchWithdrawsRequest request)
