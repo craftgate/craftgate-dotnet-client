@@ -61,5 +61,21 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Get<PayoutDetailResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+        
+        public PayoutRowListResponse SearchPayoutRows(SearchPayoutRowsRequest request)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
+            var path = "/settlement-reporting/v1/settlement-file-rows" + queryParam;
+            return RestClient.Get<PayoutRowListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task<PayoutRowListResponse> SearchPayoutRowsAsync(SearchPayoutRowsRequest request)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
+            var path = "/settlement/v1/settlements/rows" + queryParam;
+            return AsyncRestClient.Get<PayoutRowListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
     }
 }
