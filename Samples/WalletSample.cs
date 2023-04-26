@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
@@ -31,6 +32,11 @@ namespace Samples
             long walletId = 1;
             var request = new SearchWalletTransactionsRequest
             {
+                WalletTransactionTypes = new HashSet<WalletTransactionType>()
+                {
+                    WalletTransactionType.LOYALTY,
+                    WalletTransactionType.WITHDRAW
+                }
             };
 
             var response = _craftgateClient.Wallet().SearchWalletTransactions(walletId, request);
