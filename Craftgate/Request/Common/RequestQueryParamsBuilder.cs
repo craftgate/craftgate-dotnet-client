@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Text;
 
 namespace Craftgate.Request.Common
@@ -32,36 +31,24 @@ namespace Craftgate.Request.Common
             {
                 case DateTime time:
                     return FormatDateValue(time);
-                case ISet<long> enumerable:
-                    return FormatListValue(enumerable);
-                case ISet<string> enumerable:
-                    return FormatListValue(enumerable);
-                case Enum @enum:
-                    return GetEnumMemberAttrValue(@enum);
                 case decimal @decimal:
                     return @decimal.ToString(new CultureInfo("en-EN"));
+                case IEnumerable enumerable:
+                    return FormatEnumerable(enumerable);
                 default:
                     return value.ToString();
             }
         }
 
+        private static string FormatEnumerable(IEnumerable enumerable)
+        {
+            var values = (from object o in enumerable select FormatValue(o)).ToList();
+            return string.Join(",", values);
+        }
+        
         private static string FormatDateValue(DateTime date)
         {
             return date.ToString("yyyy-MM-dd'T'HH:mm:ss");
-        }
-
-        private static string FormatListValue<T>(ISet<T> value)
-        {
-            return string.Join(",", value);
-        }
-
-        private static string GetEnumMemberAttrValue<T>(T enumVal)
-        {
-            var attr = (EnumMemberAttribute) enumVal.GetType().GetRuntimeField(enumVal.ToString())
-                .GetCustomAttribute(typeof(EnumMemberAttribute));
-            if (attr != null) return attr.Value;
-
-            return null;
         }
     }
 }
