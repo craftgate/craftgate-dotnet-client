@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -27,28 +28,29 @@ namespace Craftgate.Request.Common
 
         private static string FormatValue(object value)
         {
-            switch (value)
-            {
-                case DateTime time:
-                    return FormatDateValue(time);
-                case decimal @decimal:
-                    return @decimal.ToString(new CultureInfo("en-EN"));
-                case IEnumerable enumerable:
-                    return FormatEnumerable(enumerable);
-                default:
-                    return value.ToString();
-            }
+            if (value is DateTime time) return FormatDateValue(time);
+            if (value is Decimal @decimal) return @decimal.ToString(new CultureInfo("en-EN"));
+            if (IsICollection(value.GetType())) return FormatCollection(value as IEnumerable);
+            return value.ToString();
         }
-
-        private static string FormatEnumerable(IEnumerable enumerable)
+        
+        private static string FormatCollection(IEnumerable enumerable)
         {
             var values = (from object o in enumerable select FormatValue(o)).ToList();
             return string.Join(",", values);
         }
-        
+
         private static string FormatDateValue(DateTime date)
         {
             return date.ToString("yyyy-MM-dd'T'HH:mm:ss");
+        }
+        
+        private static bool IsICollection(Type type)
+        {
+            return Array.Exists(type.GetInterfaces(), interfaceType => 
+                typeof(ICollection) == interfaceType || 
+                (interfaceType.GetTypeInfo().IsGenericType && typeof(ICollection<>) == interfaceType.GetGenericTypeDefinition())
+            );
         }
     }
 }
