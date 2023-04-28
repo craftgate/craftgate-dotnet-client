@@ -31,7 +31,6 @@ namespace Samples
                 TaxNumber = "1111111114",
                 TaxOffice = "Erenköy",
                 Iban = "TR930006701000000001111111",
-                SettlementEarningsDestination = SettlementEarningsDestination.IBAN,
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
@@ -50,7 +49,7 @@ namespace Samples
             Assert.AreEqual(request.TaxNumber, response.TaxNumber);
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);
-            Assert.AreEqual("IBAN", response.SettlementEarningsDestination);
+            Assert.AreEqual("WALLET", response.SettlementEarningsDestination);
         }
 
         [Test]
@@ -199,7 +198,6 @@ namespace Samples
                 TaxNumber = "1111111114",
                 TaxOffice = "Erenköy",
                 Iban = "TR930006701000000001111111",
-                SettlementEarningsDestination = SettlementEarningsDestination.IBAN,
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
