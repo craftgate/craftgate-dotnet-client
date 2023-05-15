@@ -24,5 +24,6 @@ namespace Craftgate.Request
         public FraudCheckParameters FraudCheckParameters { get; set; }
         public IList<PaymentItem> Items { get; set; }
         public Dictionary<string, object> AdditionalParams { get; set; }
+        public bool Retry { get; set; } = true;
     }
 }
