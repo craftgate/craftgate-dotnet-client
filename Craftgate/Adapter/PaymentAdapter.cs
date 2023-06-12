@@ -277,6 +277,38 @@ namespace Craftgate.Adapter
                 CreateHeaders(createApmPaymentRequest, path, RequestOptions),
                 createApmPaymentRequest);
         }
+        
+        public InitPosApmPaymentResponse InitPosApmPayment(InitPosApmPaymentRequest initPosApmPaymentRequest)
+        {
+            var path = "/payment/v1/pos-apm-payments/init";
+            return RestClient.Post<InitPosApmPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initPosApmPaymentRequest, path, RequestOptions),
+                initPosApmPaymentRequest);
+        }
+
+        public Task<InitPosApmPaymentResponse> InitPosApmPaymentAsync(InitPosApmPaymentRequest initPosApmPaymentRequest)
+        {
+            var path = "/payment/v1/pos-apm-payments/init";
+            return AsyncRestClient.Post<InitPosApmPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initPosApmPaymentRequest, path, RequestOptions),
+                initPosApmPaymentRequest);
+        }
+
+        public CompletePosApmPaymentResponse CompletePosApmPayment(CompletePosApmPaymentRequest completePosApmPaymentRequest)
+        {
+            var path = "/payment/v1/pos-apm-payments/complete";
+            return RestClient.Post<CompletePosApmPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(completePosApmPaymentRequest, path, RequestOptions),
+                completePosApmPaymentRequest);
+        }
+
+        public Task<CompletePosApmPaymentResponse> CompletePosApmPaymentAsync(CompletePosApmPaymentRequest completePosApmPaymentRequest)
+        {
+            var path = "/payment/v1/pos-apm-payments/complete";
+            return AsyncRestClient.Post<CompletePosApmPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(completePosApmPaymentRequest, path, RequestOptions),
+                completePosApmPaymentRequest);
+        }
 
         public RetrieveLoyaltiesResponse RetrieveLoyalties(RetrieveLoyaltiesRequest retrieveLoyaltiesRequest)
         {
