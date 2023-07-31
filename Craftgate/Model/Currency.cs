@@ -15,6 +15,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "BRL")] BRL,
         [EnumMember(Value = "CNY")] CNY,
         [EnumMember(Value = "AED")] AED,
-        [EnumMember(Value = "IQD")] IQD
+        [EnumMember(Value = "IQD")] IQD,
+        [EnumMember(Value = "AZN")] AZN
     }
 }
