@@ -14,6 +14,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "EDENRED")] EDENRED,
         [EnumMember(Value = "YKB_WORLD_PAY")] YKB_WORLD_PAY,
         [EnumMember(Value = "APPLEPAY")] APPLEPAY,
-        [EnumMember(Value = "GOOGLEPAY")] GOOGLEPAY
+        [EnumMember(Value = "GOOGLEPAY")] GOOGLEPAY,
+        [EnumMember(Value = "STRIPE")] STRIPE
     }
 }
