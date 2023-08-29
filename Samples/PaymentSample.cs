@@ -743,6 +743,7 @@ namespace Samples
             var response = _craftgateClient.Payment().InitCheckoutPayment(request);
             Assert.NotNull(response.Token);
             Assert.NotNull(response.PageUrl);
+            Assert.NotNull(response.TokenExpireDate);
         }
 
         [Test]
@@ -1348,6 +1349,14 @@ namespace Samples
             Assert.NotNull(response.CardToken);
         }
 
+        [Test]
+        public void Delete_Payout_Account()
+        {
+            var token = "456d1297-908e-4bd6-a13b-4be31a6e47d5";
+
+            _craftgateClient.Payment().ExpireCheckoutPayment(token);
+        }
+        
         [Test]
         public void Refund_Payment()
         {

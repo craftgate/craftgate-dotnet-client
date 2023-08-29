@@ -123,6 +123,20 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
+        public void ExpireCheckoutPayment(string token)
+        {
+            var path = "/payment/v1/checkout-payments/" + token;
+            RestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task ExpireCheckoutPaymentAsync(string token)
+        {
+            var path = "/payment/v1/checkout-payments/" + token;
+            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
         public DepositPaymentResponse CreateDepositPayment(CreateDepositPaymentRequest createDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits";
