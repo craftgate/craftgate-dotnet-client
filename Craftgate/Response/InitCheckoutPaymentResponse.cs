@@ -1,3 +1,5 @@
+using System;
+
 namespace Craftgate.Response
 {
     public class InitCheckoutPaymentResponse
