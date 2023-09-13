@@ -291,7 +291,7 @@ namespace Craftgate.Adapter
                 CreateHeaders(createApmPaymentRequest, path, RequestOptions),
                 createApmPaymentRequest);
         }
-        
+
         public InitPosApmPaymentResponse InitPosApmPayment(InitPosApmPaymentRequest initPosApmPaymentRequest)
         {
             var path = "/payment/v1/pos-apm-payments/init";
@@ -308,7 +308,8 @@ namespace Craftgate.Adapter
                 initPosApmPaymentRequest);
         }
 
-        public CompletePosApmPaymentResponse CompletePosApmPayment(CompletePosApmPaymentRequest completePosApmPaymentRequest)
+        public CompletePosApmPaymentResponse CompletePosApmPayment(
+            CompletePosApmPaymentRequest completePosApmPaymentRequest)
         {
             var path = "/payment/v1/pos-apm-payments/complete";
             return RestClient.Post<CompletePosApmPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -316,7 +317,8 @@ namespace Craftgate.Adapter
                 completePosApmPaymentRequest);
         }
 
-        public Task<CompletePosApmPaymentResponse> CompletePosApmPaymentAsync(CompletePosApmPaymentRequest completePosApmPaymentRequest)
+        public Task<CompletePosApmPaymentResponse> CompletePosApmPaymentAsync(
+            CompletePosApmPaymentRequest completePosApmPaymentRequest)
         {
             var path = "/payment/v1/pos-apm-payments/complete";
             return AsyncRestClient.Post<CompletePosApmPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -498,22 +500,6 @@ namespace Craftgate.Adapter
                 disapprovePaymentTransactionsRequest);
         }
 
-        public CheckMasterpassUserResponse CheckMasterpassUser(CheckMasterpassUserRequest checkMasterpassUserRequest)
-        {
-            var path = "/payment/v1/masterpass-payments/check-user";
-            return RestClient.Post<CheckMasterpassUserResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(checkMasterpassUserRequest, path, RequestOptions), checkMasterpassUserRequest);
-        }
-
-        public Task<CheckMasterpassUserResponse> CheckMasterpassUserAsync(
-            CheckMasterpassUserRequest checkMasterpassUserRequest)
-        {
-            var path = "/payment/v1/masterpass-payments/check-user";
-            return AsyncRestClient.Post<CheckMasterpassUserResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(checkMasterpassUserRequest, path, RequestOptions), checkMasterpassUserRequest);
-        }
-
-
         public PaymentTransactionResponse UpdatePaymentTransaction(
             UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
         {
@@ -529,7 +515,7 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions), updatePaymentTransactionRequest);
         }
-
+        
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)
         {
             string hash = parameters["hash"];
