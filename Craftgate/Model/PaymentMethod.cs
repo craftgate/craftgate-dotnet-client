@@ -15,6 +15,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYPAL")] PAYPAL,
         [EnumMember(Value = "KLARNA")] KLARNA,
         [EnumMember(Value = "AFTERPAY")] AFTERPAY,
-        [EnumMember(Value = "STRIPE")] STRIPE
+        [EnumMember(Value = "STRIPE")] STRIPE,
+        [EnumMember(Value = "KASPI")] KASPI
     }
 }
