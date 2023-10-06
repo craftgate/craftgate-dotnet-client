@@ -9,6 +9,7 @@ namespace Craftgate.Response
         public long PaymentId { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
         public AdditionalAction AdditionalAction { get; set; }
+        public Dictionary<string, object> AdditionalData { get; set; }
         public PaymentError PaymentError { get; set; }
     }
 }
