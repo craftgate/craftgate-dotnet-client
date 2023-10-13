@@ -537,6 +537,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -593,6 +594,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -645,6 +647,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -692,6 +695,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -798,6 +802,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -905,9 +910,9 @@ namespace Samples
 
             var response = _craftgateClient.Payment().InitGarantiPayPayment(request);
             Assert.NotNull(response);
-            Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
