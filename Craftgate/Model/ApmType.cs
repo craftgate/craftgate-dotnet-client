@@ -18,6 +18,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "STRIPE")] STRIPE,
         [EnumMember(Value = "KASPI")] KASPI,
         [EnumMember(Value = "TOMPAY")] TOMPAY,
+        [EnumMember(Value = "MASLAK")] MASLAK,
         [EnumMember(Value = "FUND_TRANSFER")] FUND_TRANSFER,
         [EnumMember(Value = "CASH_ON_DELIVERY")] CASH_ON_DELIVERY
     }
