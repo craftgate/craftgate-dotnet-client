@@ -123,6 +123,20 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
+        public void ExpireCheckoutPayment(string token)
+        {
+            var path = "/payment/v1/checkout-payments/" + token;
+            RestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task ExpireCheckoutPaymentAsync(string token)
+        {
+            var path = "/payment/v1/checkout-payments/" + token;
+            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
         public DepositPaymentResponse CreateDepositPayment(CreateDepositPaymentRequest createDepositPaymentRequest)
         {
             var path = "/payment/v1/deposits";
@@ -277,7 +291,7 @@ namespace Craftgate.Adapter
                 CreateHeaders(createApmPaymentRequest, path, RequestOptions),
                 createApmPaymentRequest);
         }
-        
+
         public InitPosApmPaymentResponse InitPosApmPayment(InitPosApmPaymentRequest initPosApmPaymentRequest)
         {
             var path = "/payment/v1/pos-apm-payments/init";
@@ -294,7 +308,8 @@ namespace Craftgate.Adapter
                 initPosApmPaymentRequest);
         }
 
-        public CompletePosApmPaymentResponse CompletePosApmPayment(CompletePosApmPaymentRequest completePosApmPaymentRequest)
+        public CompletePosApmPaymentResponse CompletePosApmPayment(
+            CompletePosApmPaymentRequest completePosApmPaymentRequest)
         {
             var path = "/payment/v1/pos-apm-payments/complete";
             return RestClient.Post<CompletePosApmPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -302,7 +317,8 @@ namespace Craftgate.Adapter
                 completePosApmPaymentRequest);
         }
 
-        public Task<CompletePosApmPaymentResponse> CompletePosApmPaymentAsync(CompletePosApmPaymentRequest completePosApmPaymentRequest)
+        public Task<CompletePosApmPaymentResponse> CompletePosApmPaymentAsync(
+            CompletePosApmPaymentRequest completePosApmPaymentRequest)
         {
             var path = "/payment/v1/pos-apm-payments/complete";
             return AsyncRestClient.Post<CompletePosApmPaymentResponse>(RequestOptions.BaseUrl + path,
@@ -484,22 +500,6 @@ namespace Craftgate.Adapter
                 disapprovePaymentTransactionsRequest);
         }
 
-        public CheckMasterpassUserResponse CheckMasterpassUser(CheckMasterpassUserRequest checkMasterpassUserRequest)
-        {
-            var path = "/payment/v1/masterpass-payments/check-user";
-            return RestClient.Post<CheckMasterpassUserResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(checkMasterpassUserRequest, path, RequestOptions), checkMasterpassUserRequest);
-        }
-
-        public Task<CheckMasterpassUserResponse> CheckMasterpassUserAsync(
-            CheckMasterpassUserRequest checkMasterpassUserRequest)
-        {
-            var path = "/payment/v1/masterpass-payments/check-user";
-            return AsyncRestClient.Post<CheckMasterpassUserResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(checkMasterpassUserRequest, path, RequestOptions), checkMasterpassUserRequest);
-        }
-
-
         public PaymentTransactionResponse UpdatePaymentTransaction(
             UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
         {
@@ -514,6 +514,48 @@ namespace Craftgate.Adapter
             var path = "/payment/v1/payment-transactions/" + updatePaymentTransactionRequest.PaymentTransactionId;
             return AsyncRestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions), updatePaymentTransactionRequest);
+        }
+
+        public BnplPaymentOfferResponse RetrieveBnplOffers(BnplPaymentOfferRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/offers";
+            return RestClient.Post<BnplPaymentOfferResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public Task<BnplPaymentOfferResponse> RetrieveBnplOffersAsync(BnplPaymentOfferRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/offers";
+            return AsyncRestClient.Post<BnplPaymentOfferResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public InitBnplPaymentResponse InitBnplPayment(InitBnplPaymentRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/init";
+            return RestClient.Post<InitBnplPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public Task<InitBnplPaymentResponse> InitBnplPaymentAsync(InitBnplPaymentRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/init";
+            return AsyncRestClient.Post<InitBnplPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public void ApproveBnplPayment(long PaymentId)
+        {
+            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
+            RestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(null, path, RequestOptions), null);
+        }
+
+        public Task ApproveBnplPaymentAsync(long PaymentId)
+        {
+            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
+            return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(null, path, RequestOptions), null);
         }
 
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)

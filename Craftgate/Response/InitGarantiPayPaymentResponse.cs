@@ -6,6 +6,7 @@ namespace Craftgate.Response
     public class InitGarantiPayPaymentResponse
     {
         public string HtmlContent { get; set; }
+        public long PaymentId { get; set; }
 
         public string GetDecodedHtmlContent()
         {

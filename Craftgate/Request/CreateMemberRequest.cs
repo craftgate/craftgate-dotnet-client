@@ -18,9 +18,11 @@ namespace Craftgate.Request
         public string TaxOffice { get; set; }
         public string TaxNumber { get; set; }
         public string Iban { get; set; }
+        public SettlementEarningsDestination? SettlementEarningsDestination { get; set; }
         [Obsolete("deprecated since version 1.0.45. use CreateWalletRequest.NegativeAmountLimit instead.")]
         public decimal? NegativeWalletAmountLimit { get; set; }
 
+        public decimal? SubMerchantMaximumAllowedNegativeBalance { get; set; }
         public bool? IsBuyer { get; set; }
         public bool? IsSubMerchant { get; set; }
     }

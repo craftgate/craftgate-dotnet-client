@@ -29,7 +29,7 @@ namespace Craftgate.Request.Common
         private static string FormatValue(object value)
         {
             if (value is DateTime time) return FormatDateValue(time);
-            if (value is Decimal @decimal) return @decimal.ToString(new CultureInfo("en-EN"));
+            if (value is Decimal @decimal) return @decimal.ToString(new CultureInfo("en-US"));
             if (IsICollection(value.GetType())) return FormatCollection(value as IEnumerable);
             return value.ToString();
         }
