@@ -11,7 +11,7 @@ namespace Samples
     public class BankAccountTrackingSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+            new CraftgateClient("api-key", "secret-key", "http://localhost:8000");
 
         [Test]
         public void Search_Bank_Account_Tracking_Records()
@@ -26,6 +26,15 @@ namespace Samples
             var response = _craftgateClient.BankAccountTracking().SearchRecords(request);
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
+        }
+        
+        [Test]
+        public void Retrieve_Bank_Account_Tracking_Record()
+        {
+            var Id = 1;
+            var response = _craftgateClient.BankAccountTracking().RetrieveRecord(Id);
+            Assert.NotNull(response);
+            Assert.Equals(response.Id, Id);
         }
     }
 }
