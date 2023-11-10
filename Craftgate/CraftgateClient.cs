@@ -18,6 +18,7 @@ namespace Craftgate
         private readonly WalletAdapter _walletAdapter;
         private readonly HookAdapter _hookAdapter;
         private readonly MasterpassPaymentAdapter _masterpassPaymentAdapter;
+        private readonly BankAccountTrackingAdapter _bankAccountTrackingAdapter;
 
         public CraftgateClient(string apiKey, string secretKey)
             : this(apiKey, secretKey, BaseUrl, null)
@@ -51,6 +52,7 @@ namespace Craftgate
             _fraudAdapter = new FraudAdapter(requestOptions);
             _hookAdapter = new HookAdapter(requestOptions);
             _masterpassPaymentAdapter = new MasterpassPaymentAdapter(requestOptions);
+            _bankAccountTrackingAdapter = new BankAccountTrackingAdapter(requestOptions);
         }
 
         public PaymentAdapter Payment()
@@ -111,6 +113,11 @@ namespace Craftgate
         public MasterpassPaymentAdapter Masterpass()
         {
             return _masterpassPaymentAdapter;
+        }
+
+        public BankAccountTrackingAdapter BankAccountTracking()
+        {
+            return _bankAccountTrackingAdapter;
         }
     }
 }
