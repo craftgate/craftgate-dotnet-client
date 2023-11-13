@@ -11,7 +11,7 @@ namespace Samples
     public class BankAccountTrackingSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "http://localhost:8000");
+            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Search_Bank_Account_Tracking_Records()
