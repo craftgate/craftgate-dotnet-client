@@ -1893,6 +1893,55 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
         }
+        
+        [Test]
+        public void Init_TomFinance_Bnpl_Payment()
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("buyerName", "John Doe");
+            additionalParams.Add("buyerPhoneNumber", "5554443322");
+            
+            var request = new InitBnplPaymentRequest
+            {
+                ApmType = ApmType.TOM_FINANCE,
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "conversationId",
+                ApmOrderId = Guid.NewGuid().ToString(),
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(100)
+                    }
+                },
+                CartItems = new List<BnplPaymentCartItem>
+                {
+                    new BnplPaymentCartItem()
+                    {
+                        Id = "26020874",
+                        Name = "Item 1",
+                        BrandName = "26010303",
+                        UnitPrice = new decimal(100.0),
+                        Quantity = 1,
+                        Type = BnplCartItemType.OTHER
+                    }
+                },
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().InitBnplPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
+        }
 
         [Test]
         public void Approve_Bnpl_Payment()
