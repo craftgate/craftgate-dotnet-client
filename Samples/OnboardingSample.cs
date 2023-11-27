@@ -217,5 +217,25 @@ namespace Samples
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);
         }
+
+        [Test]
+        public void Create_Merchant()
+        {
+            var request = new CreateMerchantRequest()
+            {
+                Name = "newMerchant",
+                LegalCompanyTitle = "legalCompanyTitle",
+                Email = "new_merchant@merchant.com",
+                Website = "www.merchant.com",
+                ContactName = "newName",
+                ContactSurname = "newSurname",
+                ContactPhoneNumber = "905555555566"
+            };
+
+            var response = _craftgateClient.Onboarding().CreateMerchant(request);
+            Assert.NotNull(response.Id);
+            Assert.AreEqual(request.Name, response.Name);
+            Assert.IsNotEmpty(response.MerchantApiCredentials);
+        }
     }
 }

@@ -26,6 +26,11 @@ namespace Craftgate.Net
         {
             return Exchange<T>(url, HttpMethod.Put, headers, request);
         }
+        
+        public static T Put<T>(string url, Dictionary<string, string> headers)
+        {
+            return Exchange<T>(url, HttpMethod.Put, headers, null);
+        }
 
         public static void Delete<T>(string url, Dictionary<string, string> headers)
         {

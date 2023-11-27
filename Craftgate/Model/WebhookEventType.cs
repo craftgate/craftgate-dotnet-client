@@ -14,6 +14,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "AUTOPILOT")] AUTOPILOT,
         [EnumMember(Value = "WALLET_CREATED")] WALLET_CREATED,
         [EnumMember(Value = "WALLET_TX_CREATED")] WALLET_TX_CREATED,
-        [EnumMember(Value = "BNPL_NOTIFICATION")] BNPL_NOTIFICATION
+        [EnumMember(Value = "BNPL_NOTIFICATION")] BNPL_NOTIFICATION,
+        [EnumMember(Value = "BANK_ACCOUNT_TRACKING_RECORD")] BANK_ACCOUNT_TRACKING_RECORD
     }
 }
