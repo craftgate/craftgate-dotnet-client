@@ -28,9 +28,9 @@ namespace Craftgate.Net
             return Exchange<T>(url, HttpMethod.Put, headers, request);
         }
 
-        public static void Put<T>(string url, Dictionary<string, string> headers)
+        public static Task<T> Put<T>(string url, Dictionary<string, string> headers)
         {
-            Exchange<T>(url, HttpMethod.Put, headers, null);
+            return Exchange<T>(url, HttpMethod.Put, headers, null);
         }
 
         public static Task Delete<T>(string url, Dictionary<string, string> headers)
