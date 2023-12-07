@@ -1,5 +1,7 @@
 using System;
 using System.Text;
+using Craftgate.Model;
+using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
 {
