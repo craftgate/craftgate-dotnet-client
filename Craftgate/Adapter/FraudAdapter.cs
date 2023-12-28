@@ -73,14 +73,26 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public void CreateValueList(string listName)
+        public void CreateValueList(string listName, FraudValueType type)
         {
-            AddValueToValueList(listName, null, null);
+            AddValueToValueList(new FraudValueListRequest
+            {
+                ListName = listName,
+                Type = type,
+                Value = null,
+                DurationInSeconds = null
+            });
         }
 
-        public Task CreateValueListAsync(string listName)
+        public Task CreateValueListAsync(string listName, FraudValueType type)
         {
-            return AddValueToValueListAsync(listName, null, null);
+            return AddValueToValueListAsync(new FraudValueListRequest
+            {
+                ListName = listName,
+                Type = type,
+                Value = null,
+                DurationInSeconds = null
+            });
         }
 
         public void DeleteValueList(string listName)
@@ -97,28 +109,16 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public void AddValueToValueList(string listName, string value, int? expireInSeconds)
+        public void AddValueToValueList(FraudValueListRequest request)
         {
             const string path = "/fraud/v1/value-lists";
-            var request = new FraudValueListRequest
-            {
-                ListName = listName,
-                Value = value,
-                DurationInSeconds = expireInSeconds
-            };
             RestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public Task AddValueToValueListAsync(string listName, string value, int? expireInSeconds)
+        public Task AddValueToValueListAsync(FraudValueListRequest request)
         {
             const string path = "/fraud/v1/value-lists";
-            var request = new FraudValueListRequest
-            {
-                ListName = listName,
-                Value = value,
-                DurationInSeconds = expireInSeconds
-            };
             return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
@@ -130,9 +130,9 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task RemoveValueFromValueListAsync(string listName, string value)
+        public Task RemoveValueFromValueListAsync(string listName, string valueId)
         {
-            var path = "/fraud/v1/value-lists/" + listName + "/values/" + value;
+            var path = "/fraud/v1/value-lists/" + listName + "/values/" + valueId;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
