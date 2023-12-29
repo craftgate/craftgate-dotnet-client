@@ -18,5 +18,8 @@ namespace Craftgate.Model
         [EnumMember(Value = "IQD")] IQD,
         [EnumMember(Value = "AZN")] AZN,
         [EnumMember(Value = "KZT")] KZT
+        [EnumMember(Value = "KWD")] KZT
+        [EnumMember(Value = "SAR")] KZT
+        [EnumMember(Value = "BHD")] KZT
     }
 }
