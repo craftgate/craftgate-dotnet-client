@@ -4,11 +4,11 @@ namespace Craftgate.Model
 {
     public enum BnplCartItemType
     {
-        [EnumMember(Value = "MOBILE_PHONE_OVER_5000_TRY")]
-        MOBILE_PHONE_OVER_5000_TRY,
+        [EnumMember(Value = "MOBILE_PHONE_PRICE_ABOVE_REGULATION_LIMIT")]
+        MOBILE_PHONE_PRICE_ABOVE_REGULATION_LIMIT,
 
-        [EnumMember(Value = "MOBILE_PHONE_BELOW_5000_TRY")]
-        MOBILE_PHONE_BELOW_5000_TRY,
+        [EnumMember(Value = "MOBILE_PHONE_PRICE_BELOW_REGULATION_LIMIT")]
+        MOBILE_PHONE_PRICE_BELOW_REGULATION_LIMIT,
         [EnumMember(Value = "TABLET")] TABLET,
         [EnumMember(Value = "COMPUTER")] COMPUTER,
 
