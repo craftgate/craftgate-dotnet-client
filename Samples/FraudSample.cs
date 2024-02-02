@@ -62,25 +62,56 @@ namespace Samples
         [Test]
         public void Create_Fraud_Value_List()
         {
-            _craftgateClient.Fraud().CreateValueList("ipList");
+            _craftgateClient.Fraud().CreateValueList("ipList", FraudValueType.IP);
         }
         
         [Test]
         public void Add_Value_To_Fraud_Value_List()
         {
-            _craftgateClient.Fraud().AddValueToValueList("ipList", "127.0.0.1", null);
+            var request = new FraudValueListRequest
+            {
+                ListName = "ipList",
+                Type = FraudValueType.IP,
+                Label = "local ip 1",
+                Value = "127.0.0.1"
+            };
+            
+            _craftgateClient.Fraud().AddValueToValueList(request);
+        } 
+        
+        [Test]
+        public void Add_CardFingerprint_To_Fraud_Value_List()
+        {
+            var request = new FraudValueListRequest
+            {
+                ListName = "cardList",
+                Type = FraudValueType.CARD,
+                Label = "John Doe's Card",
+                PaymentId = 11675L
+            };
+            
+            _craftgateClient.Fraud().AddValueToValueList(request);
         }
         
         [Test]
         public void Add_Temporary_Value_To_Fraud_Value_List()
         {
-            _craftgateClient.Fraud().AddValueToValueList("ipList", "127.0.0.2", 60);
+            var request = new FraudValueListRequest
+            {
+                ListName = "ipList",
+                Type = FraudValueType.IP,
+                Label = "local ip 2",
+                Value = "127.0.0.2",
+                DurationInSeconds = 60
+            };
+
+            _craftgateClient.Fraud().AddValueToValueList(request);
         }
         
         [Test]
         public void Remove_Value_From_Fraud_Value_List()
         {
-            _craftgateClient.Fraud().RemoveValueFromValueList("ipList", "127.0.0.2");
+            _craftgateClient.Fraud().RemoveValueFromValueList("ipList", "9bf6d4de-59ee-48c1-8404-374999ab1a4e");
         }
         
         [Test]

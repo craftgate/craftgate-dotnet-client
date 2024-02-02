@@ -45,6 +45,11 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYBULL")] PAYBULL,
         [EnumMember(Value = "ELEKSE")] ELEKSE,
         [EnumMember(Value = "ALGORITMA")] ALGORITMA,
-        [EnumMember(Value = "PAYCELL")] PAYCELL
+        [EnumMember(Value = "PAYCELL")] PAYCELL,
+        [EnumMember(Value = "TAMI")] TAMI,
+        [EnumMember(Value = "QNB_PAY")] QNB_PAY,
+        [EnumMember(Value = "AKBANK_VPOS")] AKBANK_VPOS,
+        [EnumMember(Value = "TAP")] TAP,
+        [EnumMember(Value = "RUBIK")] RUBIK,
     }
 }
