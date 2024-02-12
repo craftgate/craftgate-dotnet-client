@@ -18,8 +18,7 @@ namespace Craftgate.Request
         public long? BuyerMemberId { get; set; }
         public string BankOrderId { get; set; }
         public IList<PaymentItem> Items { get; set; }
-        public long? LoanCampaignId { get; set; }
-        public long? MerchantId { get; set; }
         public ClientType ClientType { get; set; }
+        public long? LoanCampaignId { get; set; }
     }
 }
