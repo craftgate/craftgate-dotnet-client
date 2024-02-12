@@ -4,7 +4,7 @@ using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class InitApmDepositPaymentRequest
+    public class InitJuzdanPaymentRequest
     {
         public decimal Price { get; set; }
         public decimal PaidPrice { get; set; }
