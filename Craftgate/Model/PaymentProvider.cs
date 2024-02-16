@@ -27,6 +27,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "TOM_FINANCE")] TOM_FINANCE,
         [EnumMember(Value = "ALFABANK")] ALFABANK,
         [EnumMember(Value = "PAYCELL")] PAYCELL,
+        [EnumMember(Value = "HASO")] HASO,
         [EnumMember(Value = "OFFLINE")] OFFLINE
     }
 }
