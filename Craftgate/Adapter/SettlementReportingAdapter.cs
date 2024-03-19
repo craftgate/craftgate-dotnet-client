@@ -16,7 +16,7 @@ namespace Craftgate.Adapter
             SearchPayoutCompletedTransactionsRequest searchPayoutCompletedTransactionsRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
-            var path = "/settlement-reporting/v1/settlement-file/payout-completed-transactions" + queryParam;
+            var path = "/settlement-reporting/v2/settlement-file/payout-completed-transactions" + queryParam;
             return RestClient.Get<PayoutCompletedTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
@@ -25,7 +25,7 @@ namespace Craftgate.Adapter
             SearchPayoutCompletedTransactionsRequest searchPayoutCompletedTransactionsRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
-            var path = "/settlement-reporting/v1/settlement-file/payout-completed-transactions" + queryParam;
+            var path = "/settlement-reporting/v2/settlement-file/payout-completed-transactions" + queryParam;
             return AsyncRestClient.Get<PayoutCompletedTransactionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
