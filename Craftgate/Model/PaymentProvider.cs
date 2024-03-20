@@ -17,7 +17,12 @@ namespace Craftgate.Model
         [EnumMember(Value = "GOOGLEPAY")] GOOGLEPAY,
         [EnumMember(Value = "STRIPE")] STRIPE,
         [EnumMember(Value = "KASPI")] KASPI,
+<<<<<<< HEAD
         [EnumMember(Value = "COMPAY")] COMPAY,
         [EnumMember(Value = "TOMPAY")] TOMPAY
+=======
+        [EnumMember(Value = "TOMPAY")] TOMPAY,
+        [EnumMember(Value = "HASO")] HASO
+>>>>>>> master
     }
 }
