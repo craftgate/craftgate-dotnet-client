@@ -511,10 +511,6 @@ namespace Samples
                     ExpireMonth = "07",
                     Cvc = "000"
                 },
-                AdditionalParams = new Dictionary<string, object>
-                {
-                    {"threeDSCallbackVersion", 2}
-                },
                 Items = new List<PaymentItem>
                 {
                     new PaymentItem
