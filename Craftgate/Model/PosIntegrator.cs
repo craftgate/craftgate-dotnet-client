@@ -50,9 +50,6 @@ namespace Craftgate.Model
         [EnumMember(Value = "QNB_PAY")] QNB_PAY,
         [EnumMember(Value = "AKBANK_VPOS")] AKBANK_VPOS,
         [EnumMember(Value = "TAP")] TAP,
-<<<<<<< HEAD
-=======
         [EnumMember(Value = "RUBIK")] RUBIK,
->>>>>>> master
     }
 }
