@@ -11,8 +11,8 @@ namespace Samples
     public class PaymentSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key-2", "secret-key",
-                "http://localhost:8000");
+            new CraftgateClient("sandbox-YEhueLgomBjqsnvBlWVVuFsVhlvJlMHE", "sandbox-tBdcdKVGmGupzfaWcULcwDLMoglZZvTz",
+                "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Create_Payment()
@@ -502,7 +502,7 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 Currency = Currency.TRY,
                 PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
-                CallbackUrl = "https://webhook.site/9899a767-ea8a-4d84-8f08-17af43120adc",
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
                 Card = new Card
                 {
                     CardHolderName = "Haluk Demir",
@@ -592,6 +592,107 @@ namespace Samples
                         Price = new decimal(20.0),
                         SubMerchantMemberId = 1,
                         SubMerchantMemberPrice = new decimal(18.0)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().Init3DSPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.HtmlContent);
+            Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
+        }
+
+        [Test]
+        public void Init_3DS_Payment_And_Store_Card()
+        {
+            var request = new InitThreeDSPaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
+                Card = new Card
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "5258640000000001",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000",
+                    StoreCardAfterSuccessPayment = true,
+                    CardAlias = "My YKB Card"
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().Init3DSPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.HtmlContent);
+            Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
+        }
+
+        [Test]
+        public void Init_3DS_Payment_Using_Stored_Card()
+        {
+            var request = new InitThreeDSPaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-callback",
+                Card = new Card
+                {
+                    CardUserKey = "fac377f2-ab15-4696-88d2-5e71b27ec378",
+                    CardToken = "11a078c4-3c32-4796-90b1-51ee5517a212"
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
                     }
                 }
             };
@@ -1475,7 +1576,7 @@ namespace Samples
         {
             var request = new ApprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -1489,7 +1590,7 @@ namespace Samples
         {
             var request = new DisapprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -1797,14 +1898,14 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
         }
-        
+
         [Test]
         public void Init_TomFinance_Bnpl_Payment()
         {
             var additionalParams = new Dictionary<string, string>();
             additionalParams.Add("buyerName", "John Doe");
             additionalParams.Add("buyerPhoneNumber", "5554443322");
-            
+
             var request = new InitBnplPaymentRequest
             {
                 ApmType = ApmType.TOM_FINANCE,
