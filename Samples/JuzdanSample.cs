@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
+using Craftgate.Request.Dto;
 using NUnit.Framework;
 
 namespace Samples
@@ -29,10 +31,10 @@ namespace Samples
                     PaidPrice = 1,
                     Currency = Currency.TRY,
                     PaymentGroup = PaymentGroup.PRODUCT,
-                    ConversationId = "testConversationId,
-                    ExternalId = "testExternalId,
-                    CallbackUrl = "www.testCallbackUrl.com,
-                    ClientType = InitJuzdanPaymentRequest.ClientType,
+                    ConversationId = "testConversationId",
+                    ExternalId = "testExternalId",
+                    CallbackUrl = "www.testCallbackUrl.com",
+                    ClientType = ClientType.W,
                     Items = items,
                     PaymentPhase = PaymentPhase.AUTH,
                     PaymentChannel = "testPaymentChannel",
@@ -50,7 +52,7 @@ namespace Samples
         public void Retrieve() {
             var referenceId = "5493c7a7-4d8b-4517-887d-f8b8f826a3d0";
 
-            var paymentResponse = _craftgateClient.Juzdan().Retrieve(referenceId)
+            var paymentResponse = _craftgateClient.Juzdan().Retrieve(referenceId);
 
             Assert.IsNotNull(paymentResponse);
             Assert.AreEqual(PaymentSource.JUZDAN, paymentResponse.PaymentSource);

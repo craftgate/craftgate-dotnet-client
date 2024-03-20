@@ -19,11 +19,15 @@ namespace Samples
             {
                 SettlementType = SettlementType.SETTLEMENT,
                 StartDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 0, 0, 0),
-                EndDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 23, 59, 59)
+                EndDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 23, 59, 59),
+                Page = 0,
+                Size = 10
             };
 
             var response = _craftgateClient.SettlementReporting().SearchPayoutCompletedTransactions(request);
             Assert.True(response.Items.Count > 0);
+            Assert.True(response.Page == 0);
+            Assert.True(response.Size == 10);
         }
 
         [Test]
@@ -34,11 +38,15 @@ namespace Samples
             {
                 SettlementType = SettlementType.BOUNCED_SETTLEMENT,
                 StartDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 0, 0, 0),
-                EndDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 23, 59, 59)
+                EndDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 23, 59, 59),
+                Page = 0,
+                Size = 10
             };
 
             var response = _craftgateClient.SettlementReporting().SearchPayoutCompletedTransactions(request);
             Assert.True(response.Items.Count > 0);
+            Assert.True(response.Page == 0);
+            Assert.True(response.Size == 10);
         }
 
         [Test]
