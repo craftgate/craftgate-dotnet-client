@@ -558,6 +558,13 @@ namespace Craftgate.Adapter
                 CreateHeaders(null, path, RequestOptions), null);
         }
 
+        public InstantTransferBanksResponse RetrieveActiveBanks()
+        {
+            var path = "/payment/v1/instant-transfer-banks";
+            return RestClient.Get<InstantTransferBanksResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)
         {
             string hash = parameters["hash"];
