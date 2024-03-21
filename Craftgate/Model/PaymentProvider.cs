@@ -17,6 +17,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "GOOGLEPAY")] GOOGLEPAY,
         [EnumMember(Value = "STRIPE")] STRIPE,
         [EnumMember(Value = "KASPI")] KASPI,
+        [EnumMember(Value = "INSTANT_TRANSFER")] INSTANT_TRANSFER,
         [EnumMember(Value = "TOMPAY")] TOMPAY,
         [EnumMember(Value = "ALIPAY")] ALIPAY,
         [EnumMember(Value = "PAYPAL")] PAYPAL,
