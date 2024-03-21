@@ -27,11 +27,11 @@ namespace Samples
 
 
         [Test]
-        public void Init_Compay_Apm_Payment()
+        public void Init_Instant_Transfer_Apm_Payment()
         {
             var request = new InitApmPaymentRequest
             {
-                ApmType = ApmType.COMPAY,
+                ApmType = ApmType.INSTANT_TRANSFER,
                 Price = new decimal(1.0),
                 PaidPrice = new decimal(1.0),
                 Currency = Currency.TRY,
