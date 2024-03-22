@@ -534,6 +534,7 @@ namespace Samples
                 }
             };
 
+
             var response = _craftgateClient.Payment().Init3DSPayment(request);
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
@@ -1613,7 +1614,7 @@ namespace Samples
         {
             var request = new ApprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -1627,7 +1628,7 @@ namespace Samples
         {
             var request = new DisapprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -1935,14 +1936,14 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
         }
-        
+
         [Test]
         public void Init_TomFinance_Bnpl_Payment()
         {
             var additionalParams = new Dictionary<string, string>();
             additionalParams.Add("buyerName", "John Doe");
             additionalParams.Add("buyerPhoneNumber", "5554443322");
-            
+
             var request = new InitBnplPaymentRequest
             {
                 ApmType = ApmType.TOM_FINANCE,

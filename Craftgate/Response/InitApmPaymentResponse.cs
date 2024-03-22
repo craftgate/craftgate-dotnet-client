@@ -11,6 +11,7 @@ namespace Craftgate.Response
         public PaymentStatus PaymentStatus { get; set; }
         public ApmAdditionalAction AdditionalAction { get; set; }
         public string RedirectUrl { get; set; }
+        public string HtmlContent { get; set; }
         public PaymentError PaymentError { get; set; }
     }
 }

@@ -4,6 +4,7 @@ namespace Craftgate.Model
 {
     public enum BankAccountTrackingSource
     {
-        [EnumMember(Value = "YKB")] YKB
+        [EnumMember(Value = "YKB")] YKB,
+        [EnumMember(Value = "GARANTI")] GARANTI
     }
 }
