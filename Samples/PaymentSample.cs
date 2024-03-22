@@ -11,7 +11,8 @@ namespace Samples
     public class PaymentSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+            new CraftgateClient("api-key", "secret-key",
+                "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Create_Payment()
@@ -327,8 +328,8 @@ namespace Samples
                     {
                         "paymentProvider", new Dictionary<string, object>
                         {
-                            { "cardUserKey", "test-cardUserKey" },
-                            { "cardToken", "tuz8imxv30" }
+                            {"cardUserKey", "test-cardUserKey"},
+                            {"cardToken", "tuz8imxv30"}
                         }
                     }
                 }
@@ -533,10 +534,12 @@ namespace Samples
                 }
             };
 
+
             var response = _craftgateClient.Payment().Init3DSPayment(request);
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -593,6 +596,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -645,6 +649,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -692,6 +697,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -798,6 +804,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -905,9 +912,9 @@ namespace Samples
 
             var response = _craftgateClient.Payment().InitGarantiPayPayment(request);
             Assert.NotNull(response);
-            Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
+            Assert.NotNull(response.PaymentId);
         }
 
         [Test]
@@ -964,7 +971,7 @@ namespace Samples
                 ApmUserIdentity = "5555555555",
                 AdditionalParams = new Dictionary<string, string>
                 {
-                    { "sodexoCode", "843195" }
+                    {"sodexoCode", "843195"}
                 },
                 Items = new List<PaymentItem>
                 {
@@ -1031,7 +1038,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
         }
-        
+
         [Test]
         public void Init_Kaspi_Apm_Payment()
         {
@@ -1072,6 +1079,49 @@ namespace Samples
         }
 
         [Test]
+        public void Init_Tompay_Apm_Payment()
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("channel", "channel");
+            additionalParams.Add("phone", "phone");
+
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.TOMPAY,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "conversationId",
+                ExternalId = "externalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                },
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.WAIT_FOR_WEBHOOK);
+        }
+
+        [Test]
         public void Complete_Edenred_Apm_Payment()
         {
             var request = new CompleteApmPaymentRequest
@@ -1079,7 +1129,7 @@ namespace Samples
                 PaymentId = 1,
                 AdditionalParams = new Dictionary<string, string>
                 {
-                    { "otpCode", "784294" }
+                    {"otpCode", "784294"}
                 },
             };
 
@@ -1239,7 +1289,7 @@ namespace Samples
                 },
                 AdditionalParams = new Dictionary<string, object>
                 {
-                    { "sourceCode", "WEB2QR" }
+                    {"sourceCode", "WEB2QR"}
                 },
             };
 
@@ -1249,6 +1299,48 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, AdditionalAction.SHOW_HTML_CONTENT);
+        }
+        
+        [Test]
+        public void Init_Garanti_Pay_Pos_Apm_Payment()
+        {
+            var request = new InitPosApmPaymentRequest
+            {
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                PaymentProvider = PosApmPaymentProvider.GARANTI_PAY,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.4)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.6)
+                    }
+                },
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    {"integrationType", "WEB2APP"}
+                },
+            };
+
+            var response = _craftgateClient.Payment().InitPosApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.AdditionalData["redirectUrl"]);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, AdditionalAction.REDIRECT_TO_URL);
         }
 
         [Test]
@@ -1626,7 +1718,7 @@ namespace Samples
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual("POST_AUTH", response.PaymentPhase);
         }
-        
+
         [Test]
         public void Create_MultiCurrency_Payment()
         {
@@ -1714,12 +1806,12 @@ namespace Samples
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                { "hash", "1d3fa1e51fe7c350185c5a7f8c3ff513a991367b08c16a56f4ab9abeb738a1e1" },
-                { "paymentId", "5" },
-                { "conversationData", "conversation-data" },
-                { "conversationId", "conversation-id" },
-                { "status", "SUCCESS" },
-                { "completeStatus", "WAITING" }
+                {"hash", "1d3fa1e51fe7c350185c5a7f8c3ff513a991367b08c16a56f4ab9abeb738a1e1"},
+                {"paymentId", "5"},
+                {"conversationData", "conversation-data"},
+                {"conversationId", "conversation-id"},
+                {"status", "SUCCESS"},
+                {"completeStatus", "WAITING"}
             };
 
             var isVerified = _craftgateClient.Payment()
@@ -1733,11 +1825,11 @@ namespace Samples
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                { "hash", "a097f0231031a88f2d687b510afca2505ccd2977d6421be4c3784666703f6f25" },
-                { "paymentId", "5" },
-                { "conversationId", "conversation-id" },
-                { "status", "SUCCESS" },
-                { "completeStatus", "WAITING" }
+                {"hash", "a097f0231031a88f2d687b510afca2505ccd2977d6421be4c3784666703f6f25"},
+                {"paymentId", "5"},
+                {"conversationId", "conversation-id"},
+                {"status", "SUCCESS"},
+                {"completeStatus", "WAITING"}
             };
 
             var isVerified = _craftgateClient.Payment()
@@ -1751,17 +1843,155 @@ namespace Samples
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                { "hash", "39427942bcaasjaduqabzhdancaASasdhbcxjancakjscace82" },
-                { "paymentId", "5" },
-                { "conversationData", "conversation-data" },
-                { "conversationId", "conversation-id" },
-                { "status", "SUCCESS" },
-                { "completeStatus", "WAITING" }
+                {"hash", "39427942bcaasjaduqabzhdancaASasdhbcxjancakjscace82"},
+                {"paymentId", "5"},
+                {"conversationData", "conversation-data"},
+                {"conversationId", "conversation-id"},
+                {"status", "SUCCESS"},
+                {"completeStatus", "WAITING"}
             };
 
             var isVerified = _craftgateClient.Payment()
                 .Is3DSecureCallbackVerified(merchantThreeDsCallbackKey, parameters);
             Assert.False(isVerified);
+        }
+
+        [Test]
+        public void Retrieve_Bnpl_Offers()
+        {
+            var request = new BnplPaymentOfferRequest()
+            {
+                Price = new decimal(10000.0),
+                Currency = Currency.TRY,
+                ApmType = ApmType.MASLAK,
+                Items = new List<BnplPaymentCartItem>
+                {
+                    new BnplPaymentCartItem()
+                    {
+                        Id = "1234",
+                        Name = "Item 1",
+                        BrandName = "Item 1",
+                        UnitPrice = new decimal(7000.0),
+                        Quantity = 1,
+                        Type = BnplCartItemType.TV
+                    },
+                    new BnplPaymentCartItem()
+                    {
+                        Id = "1234",
+                        Name = "Item 2",
+                        BrandName = "Item 2",
+                        UnitPrice = new decimal(3000.0),
+                        Quantity = 1,
+                        Type = BnplCartItemType.TV
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().RetrieveBnplOffers(request);
+            Assert.NotNull(response.OfferId);
+            Assert.IsNotEmpty(request.Items);
+        }
+
+        [Test]
+        public void Init_Bnpl_Payment()
+        {
+            var request = new InitBnplPaymentRequest
+            {
+                ApmType = ApmType.MASLAK,
+                Price = new decimal(10000.0),
+                PaidPrice = new decimal(10000.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ApmOrderId = Guid.NewGuid().ToString(),
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                BankCode = "103", // fibabank
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(10000)
+                    }
+                },
+                CartItems = new List<BnplPaymentCartItem>
+                {
+                    new BnplPaymentCartItem()
+                    {
+                        Id = "1234",
+                        Name = "Item 1",
+                        BrandName = "Item 1",
+                        UnitPrice = new decimal(10000.0),
+                        Quantity = 1,
+                        Type = BnplCartItemType.TV
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitBnplPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
+        }
+
+        [Test]
+        public void Init_TomFinance_Bnpl_Payment()
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("buyerName", "John Doe");
+            additionalParams.Add("buyerPhoneNumber", "5554443322");
+
+            var request = new InitBnplPaymentRequest
+            {
+                ApmType = ApmType.TOM_FINANCE,
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "conversationId",
+                ApmOrderId = Guid.NewGuid().ToString(),
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(100)
+                    }
+                },
+                CartItems = new List<BnplPaymentCartItem>
+                {
+                    new BnplPaymentCartItem()
+                    {
+                        Id = "26020874",
+                        Name = "Item 1",
+                        BrandName = "26010303",
+                        UnitPrice = new decimal(100.0),
+                        Quantity = 1,
+                        Type = BnplCartItemType.OTHER
+                    }
+                },
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().InitBnplPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
+        }
+
+        [Test]
+        public void Approve_Bnpl_Payment()
+        {
+            var PaymentId = 1;
+
+            _craftgateClient.Payment().ApproveBnplPayment(PaymentId);
         }
     }
 }

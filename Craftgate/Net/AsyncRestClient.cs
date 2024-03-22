@@ -28,12 +28,18 @@ namespace Craftgate.Net
             return Exchange<T>(url, HttpMethod.Put, headers, request);
         }
 
+        public static Task<T> Put<T>(string url, Dictionary<string, string> headers)
+        {
+            return Exchange<T>(url, HttpMethod.Put, headers, null);
+        }
+
         public static Task Delete<T>(string url, Dictionary<string, string> headers)
         {
             return Exchange<T>(url, HttpMethod.Delete, headers, null);
         }
 
-        private static async Task<T> Exchange<T>(string url, HttpMethod httpMethod, Dictionary<string, string> headers, object request)
+        private static async Task<T> Exchange<T>(string url, HttpMethod httpMethod, Dictionary<string, string> headers,
+            object request)
         {
             try
             {

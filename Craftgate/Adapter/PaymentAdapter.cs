@@ -515,6 +515,63 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions), updatePaymentTransactionRequest);
         }
+
+        public BnplPaymentOfferResponse RetrieveBnplOffers(BnplPaymentOfferRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/offers";
+            return RestClient.Post<BnplPaymentOfferResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public Task<BnplPaymentOfferResponse> RetrieveBnplOffersAsync(BnplPaymentOfferRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/offers";
+            return AsyncRestClient.Post<BnplPaymentOfferResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public InitBnplPaymentResponse InitBnplPayment(InitBnplPaymentRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/init";
+            return RestClient.Post<InitBnplPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public Task<InitBnplPaymentResponse> InitBnplPaymentAsync(InitBnplPaymentRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/init";
+            return AsyncRestClient.Post<InitBnplPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public void ApproveBnplPayment(long PaymentId)
+        {
+            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
+            RestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(null, path, RequestOptions), null);
+        }
+
+        public Task ApproveBnplPaymentAsync(long PaymentId)
+        {
+            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
+            return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(null, path, RequestOptions), null);
+        }
+
+        public InstantTransferBanksResponse RetrieveActiveBanks()
+        {
+            var path = "/payment/v1/instant-transfer-banks";
+            return RestClient.Get<InstantTransferBanksResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task<InstantTransferBanksResponse> RetrieveActiveBanksAsync()
+        {
+            var path = "/payment/v1/instant-transfer-banks";
+            return AsyncRestClient.Get<InstantTransferBanksResponse>(RequestOptions.BaseUrl + path,
+            CreateHeaders(path, RequestOptions));
+        }
+
         
         public object CreateApplePayMerchantSession(
             ApplePayMerchantSessionCreateRequest applePayMerchantSessionCreateRequest)

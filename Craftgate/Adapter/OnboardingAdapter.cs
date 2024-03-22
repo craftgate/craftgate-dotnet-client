@@ -73,5 +73,21 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Get<MemberListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+
+        public CreateMerchantResponse CreateMerchant(CreateMerchantRequest createMerchantRequest)
+        {
+            var path = "/onboarding/v1/merchants";
+            return RestClient.Post<CreateMerchantResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(createMerchantRequest, path, RequestOptions),
+                createMerchantRequest);
+        }
+        
+        public Task<CreateMerchantResponse> CreateMerchantAsync(CreateMerchantRequest createMerchantRequest)
+        {
+            var path = "/onboarding/v1/merchants";
+            return AsyncRestClient.Post<CreateMerchantResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(createMerchantRequest, path, RequestOptions),
+                createMerchantRequest);
+        }
     }
 }

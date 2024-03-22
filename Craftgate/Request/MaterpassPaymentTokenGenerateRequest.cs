@@ -1,3 +1,4 @@
+using Craftgate.Model;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
@@ -9,5 +10,6 @@ namespace Craftgate.Request
         public string BinNumber { get; set; }
         public bool ForceThreeDS { get; set; }
         public MasterpassCreatePayment CreatePayment { get; set; }
+        public Loyalty Loyalty { get; set; }
     }
 }

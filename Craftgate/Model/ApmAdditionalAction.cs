@@ -6,6 +6,9 @@ namespace Craftgate.Model
     {
         [EnumMember(Value = "REDIRECT_TO_URL")] REDIRECT_TO_URL,
         [EnumMember(Value = "OTP_REQUIRED")] OTP_REQUIRED,
+        [EnumMember(Value = "SHOW_HTML_CONTENT")] SHOW_HTML_CONTENT,
+        [EnumMember(Value = "WAIT_FOR_WEBHOOK")] WAIT_FOR_WEBHOOK,
+        [EnumMember(Value = "APPROVAL_REQUIRED")] APPROVAL_REQUIRED,
         [EnumMember(Value = "NONE")] NONE
     }
 }
