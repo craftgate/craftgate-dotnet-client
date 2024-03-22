@@ -11,7 +11,7 @@ namespace Samples
     public class PaymentSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("sandbox-YEhueLgomBjqsnvBlWVVuFsVhlvJlMHE", "sandbox-tBdcdKVGmGupzfaWcULcwDLMoglZZvTz",
+            new CraftgateClient("api-key", "secret-key",
                 "https://sandbox-api.craftgate.io");
 
         [Test]
@@ -1299,6 +1299,48 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, AdditionalAction.SHOW_HTML_CONTENT);
+        }
+        
+        [Test]
+        public void Init_Garanti_Pay_Pos_Apm_Payment()
+        {
+            var request = new InitPosApmPaymentRequest
+            {
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                PaymentProvider = PosApmPaymentProvider.GARANTI_PAY,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.4)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.6)
+                    }
+                },
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    {"integrationType", "WEB2APP"}
+                },
+            };
+
+            var response = _craftgateClient.Payment().InitPosApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.AdditionalData["redirectUrl"]);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, AdditionalAction.REDIRECT_TO_URL);
         }
 
         [Test]
