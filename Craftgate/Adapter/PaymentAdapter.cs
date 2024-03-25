@@ -572,6 +572,23 @@ namespace Craftgate.Adapter
             CreateHeaders(path, RequestOptions));
         }
 
+        
+        public object CreateApplePayMerchantSession(
+            ApplePayMerchantSessionCreateRequest applePayMerchantSessionCreateRequest)
+        {
+            var path = "/payment/v1/apple-pay/merchant-sessions";
+            return RestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
+        }
+
+        public Task<object> CreateApplePayMerchantSessionAsync(
+            ApplePayMerchantSessionCreateRequest applePayMerchantSessionCreateRequest)
+        {
+            var path = "/payment/v1/apple-pay/merchant-sessions";
+            return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
+        }
+        
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)
         {
             string hash = parameters["hash"];
