@@ -1578,6 +1578,22 @@ namespace Samples
             Assert.AreEqual(request.CardUserKey, response.CardUserKey);
             Assert.AreEqual(request.CardToken, response.CardToken);
         }
+        
+        [Test]
+        public void Clone_Stored_Card()
+        {
+            var request = new CloneCardRequest
+            {
+                SourceCardUserKey = "fac377f2-ab15-4696-88d2-5e71b27ec378",
+                SourceCardToken = "11a078c4-3c32-4796-90b1-51ee5517a212",
+                TargetMerchantId = 1
+            };
+
+            var response = _craftgateClient.Payment().CloneCard(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.CardToken);
+            Assert.NotNull(response.CardUserKey);
+        }
 
         [Test]
         public void Search_Stored_Cards()
