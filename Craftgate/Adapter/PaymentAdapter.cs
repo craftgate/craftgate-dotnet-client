@@ -431,6 +431,20 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updateCardRequest, path, RequestOptions), updateCardRequest);
         }
+        
+        public StoredCardResponse CloneCard(CloneCardRequest cloneCardRequest)
+        {
+            var path = "/payment/v1/cards/clone";
+            return RestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(cloneCardRequest, path, RequestOptions), cloneCardRequest);
+        }
+
+        public Task<StoredCardResponse> CloneCardAsync(CloneCardRequest cloneCardRequest)
+        {
+            var path = "/payment/v1/cards/clone";
+            return AsyncRestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(cloneCardRequest, path, RequestOptions), cloneCardRequest);
+        }
 
         public StoredCardListResponse SearchStoredCards(SearchStoredCardsRequest searchStoredCardsRequest)
         {
