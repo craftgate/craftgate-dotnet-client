@@ -17,7 +17,6 @@ namespace Test
                 Email = "haluk.demir@example.com",
                 PhoneNumber = "905551111111",
                 Name = "Haluk Demir",
-                IdentityNumber = "11111111110"
             };
 
             //when
