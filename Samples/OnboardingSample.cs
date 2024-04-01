@@ -23,7 +23,6 @@ namespace Samples
                 ContactSurname = "Demir",
                 Email = "haluk.demir@example.com",
                 PhoneNumber = "905551111111",
-                IdentityNumber = "11111111110",
                 LegalCompanyTitle = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 Name = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 MemberExternalId = Guid.NewGuid().ToString(),
@@ -41,7 +40,6 @@ namespace Samples
             Assert.AreEqual(request.Email, response.Email);
             Assert.AreEqual(request.PhoneNumber, response.PhoneNumber);
             Assert.AreEqual(request.Iban, response.Iban);
-            Assert.AreEqual(request.IdentityNumber, response.IdentityNumber);
             Assert.AreEqual(request.LegalCompanyTitle, response.LegalCompanyTitle);
             Assert.AreEqual(request.Name, response.Name);
             Assert.AreEqual(request.MemberExternalId, response.MemberExternalId);
@@ -65,7 +63,6 @@ namespace Samples
                 ContactSurname = "Demir",
                 Email = "haluk.demir@example.com",
                 PhoneNumber = "905551111111",
-                IdentityNumber = "11111111110",
                 LegalCompanyTitle = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 MemberType = MemberType.LIMITED_OR_JOINT_STOCK_COMPANY,
                 Name = "Dem Zeytinyağı Üretim Ltd. Şti.",
@@ -83,7 +80,6 @@ namespace Samples
             Assert.AreEqual(request.Email, response.Email);
             Assert.AreEqual(request.PhoneNumber, response.PhoneNumber);
             Assert.AreEqual(request.Iban, response.Iban);
-            Assert.AreEqual(request.IdentityNumber, response.IdentityNumber);
             Assert.AreEqual(request.LegalCompanyTitle, response.LegalCompanyTitle);
             Assert.AreEqual(request.Name, response.Name);
             Assert.AreEqual(request.TaxNumber, response.TaxNumber);
@@ -137,7 +133,6 @@ namespace Samples
                 Email = "haluk.demir@example.com",
                 PhoneNumber = "905551111111",
                 Name = "Haluk Demir",
-                IdentityNumber = "11111111110",
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
                 ContactName = "Haluk",
                 ContactSurname = "Demir",
@@ -149,7 +144,6 @@ namespace Samples
             Assert.AreEqual(request.Email, response.Email);
             Assert.AreEqual(request.PhoneNumber, response.PhoneNumber);
             Assert.AreEqual(request.Name, response.Name);
-            Assert.AreEqual(request.IdentityNumber, response.IdentityNumber);
         }
 
         [Test]
@@ -169,7 +163,7 @@ namespace Samples
             var request = new SearchMembersRequest
             {
                 Name = "Zeytinyağı Üretim",
-                MemberIds = new HashSet<long> {1, 2},
+                MemberIds = new HashSet<long> { 1, 2 },
                 Page = 0,
                 Size = 25,
                 MemberType = MemberType.LIMITED_OR_JOINT_STOCK_COMPANY
@@ -190,7 +184,6 @@ namespace Samples
                 ContactSurname = "Demir",
                 Email = "haluk.demir@example.com",
                 PhoneNumber = "905551111111",
-                IdentityNumber = "11111111110",
                 LegalCompanyTitle = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 Name = "Dem Zeytinyağı Üretim Ltd. Şti.",
                 MemberExternalId = Guid.NewGuid().ToString(),
@@ -208,7 +201,6 @@ namespace Samples
             Assert.AreEqual(request.Email, response.Email);
             Assert.AreEqual(request.PhoneNumber, response.PhoneNumber);
             Assert.AreEqual(request.Iban, response.Iban);
-            Assert.AreEqual(request.IdentityNumber, response.IdentityNumber);
             Assert.AreEqual(request.LegalCompanyTitle, response.LegalCompanyTitle);
             Assert.AreEqual(request.Name, response.Name);
             Assert.AreEqual(request.MemberExternalId, response.MemberExternalId);
