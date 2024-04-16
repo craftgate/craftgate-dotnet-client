@@ -10,6 +10,7 @@ namespace Craftgate.Response.Dto
         public string BankTableBannerMessage { get; set; }
         public string BankSmallBannerMessage { get; set; }
         public bool? IsSupportNonCustomer { get; set; }
+        public bool? IsPaymentPlanCalculatedByBank { get; set; }
         public IList<BnplBankOfferTerm> BankOfferTerms { get; set; }
     }
 }
