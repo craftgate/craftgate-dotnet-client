@@ -14,7 +14,7 @@ namespace Craftgate.Request
         public int Stock {get; set;}
         public Currency Currency {get; set;}
         public string Description {get; set;}
-        public bool multiPayment {get; set;}
+        public bool MultiPayment {get; set;}
         public ISet<long> EnabledInstallments {get; set;}
     }
 }
