@@ -603,6 +603,21 @@ namespace Craftgate.Adapter
                 CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
         }
         
+        public MultiPaymentResponse RetrieveMultiPayment(string token)
+        {
+            var path = "/payment/v1/multi-payments/" + token;
+            return RestClient.Get<MultiPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        
+        public Task<MultiPaymentResponse> RetrieveMultiPaymentAsync(string token)
+        {
+            var path = "/payment/v1/multi-payments/" + token;
+            return AsyncRestClient.Get<MultiPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)
         {
             string hash = parameters["hash"];
