@@ -11,14 +11,11 @@ namespace Craftgate.Model
         [EnumMember(Value = "SODEXO")] SODEXO,
         [EnumMember(Value = "EDENRED")] EDENRED,
         [EnumMember(Value = "EDENRED_GIFT")] EDENRED_GIFT,
-        [EnumMember(Value = "METROPOL")] METROPOL,
         [EnumMember(Value = "ALIPAY")] ALIPAY,
         [EnumMember(Value = "PAYPAL")] PAYPAL,
         [EnumMember(Value = "KLARNA")] KLARNA,
         [EnumMember(Value = "AFTERPAY")] AFTERPAY,
         [EnumMember(Value = "STRIPE")] STRIPE,
-        [EnumMember(Value = "KASPI")] KASPI,
-        [EnumMember(Value = "INSTANT_TRANSFER")] INSTANT_TRANSFER,
-        [EnumMember(Value = "TOMPAY")] TOMPAY
+        [EnumMember(Value = "INSTANT_TRANSFER")] INSTANT_TRANSFER
     }
 }
