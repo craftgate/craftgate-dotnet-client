@@ -1138,6 +1138,65 @@ namespace Samples
             Assert.NotNull(response.PaymentId);
             Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
         }
+        
+        [Test]
+        public void Init_Metropol_Apm_Payment()
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("cardNumber", "6375780115068760");
+
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.METROPOL,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "conversationId",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                },
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
+        
+        public void Complete_Metropol_Apm_Payment()
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("otpCode", "00000");
+            additionalParams.Add("productId", "1");
+            additionalParams.Add("walletId", "1");
+
+            var request = new CompleteApmPaymentRequest
+            {
+                PaymentId = 1,
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().CompleteApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.SUCCESS);
+        }
 
         [Test]
         public void Init_PayPal_APM_Payment()
