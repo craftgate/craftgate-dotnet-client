@@ -24,6 +24,6 @@ namespace Craftgate.Request
         public decimal? SubMerchantMaximumAllowedNegativeBalance { get; set; }
         public bool? IsBuyer { get; set; }
         public bool? IsSubMerchant { get; set; }
-        public decimal? SettlementDelayCount { get; set; }
+        public int? SettlementDelayCount { get; set; }
     }
 }
