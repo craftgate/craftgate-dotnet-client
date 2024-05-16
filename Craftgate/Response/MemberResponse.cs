@@ -25,6 +25,6 @@ namespace Craftgate.Response
         [Obsolete("deprecated since version 1.0.45. use CreateWalletRequest.NegativeAmountLimit instead.")]
         public decimal NegativeWalletAmountLimit { get; set; }
 
-        public decimal SettlementDelayCount { get; set; }
+        public int SettlementDelayCount { get; set; }
     }
 }
