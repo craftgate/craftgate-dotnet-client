@@ -25,6 +25,8 @@ namespace Craftgate.Model
         [EnumMember(Value = "TOM_FINANCE")] TOM_FINANCE,
         [EnumMember(Value = "PAYCELL")] PAYCELL,
         [EnumMember(Value = "HASO")] HASO,
+        [EnumMember(Value = "MULTINET")] MULTINET,
+        [EnumMember(Value = "MULTINET_GIFT")] MULTINET_GIFT,
         [EnumMember(Value = "FUND_TRANSFER")] FUND_TRANSFER,
         [EnumMember(Value = "CASH_ON_DELIVERY")] CASH_ON_DELIVERY
     }
