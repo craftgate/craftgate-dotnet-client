@@ -11,5 +11,6 @@ namespace Craftgate.Request
         public bool ForceThreeDS { get; set; }
         public MasterpassCreatePayment CreatePayment { get; set; }
         public Loyalty Loyalty { get; set; }
+        public int? MasterpassIntegrationVersion { get; set; }
     }
 }
