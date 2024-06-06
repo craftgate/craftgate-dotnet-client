@@ -114,5 +114,20 @@ namespace Samples
             Assert.NotNull(response.Id);
             Assert.AreEqual("MASTERPASS", response.PaymentProvider);
         }
+
+
+        [Test]
+        public void Retrieve_Loyalties()
+        {
+            var request = new MasterpassRetrieveLoyaltiesRequest()
+            {
+                CardName = "YKB Test Kart",
+                Msisdn = "900000000000",
+                BinNumber = "404809",
+            };
+
+            var response = _craftgateClient.Masterpass().RetrieveLoyalties(request);
+            Assert.NotNull(response);
+        }
     }
 }
