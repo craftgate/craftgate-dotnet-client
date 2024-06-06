@@ -16,6 +16,8 @@ namespace Craftgate.Model
         [EnumMember(Value = "KLARNA")] KLARNA,
         [EnumMember(Value = "AFTERPAY")] AFTERPAY,
         [EnumMember(Value = "STRIPE")] STRIPE,
+        [EnumMember(Value = "MULTINET")] MULTINET,
+        [EnumMember(Value = "MULTINET_GIFT")] MULTINET_GIFT,
         [EnumMember(Value = "INSTANT_TRANSFER")] INSTANT_TRANSFER
     }
 }
