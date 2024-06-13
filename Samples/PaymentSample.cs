@@ -12,7 +12,7 @@ namespace Samples
     {
         private readonly CraftgateClient _craftgateClient =
             new CraftgateClient("api-key", "secret-key",
-                "http://localhost:8000");
+                "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Create_Payment()
