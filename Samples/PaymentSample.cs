@@ -12,7 +12,7 @@ namespace Samples
     {
         private readonly CraftgateClient _craftgateClient =
             new CraftgateClient("api-key", "secret-key",
-                "https://sandbox-api.craftgate.io");
+                "http://localhost:8000");
 
         [Test]
         public void Create_Payment()
@@ -1138,7 +1138,7 @@ namespace Samples
             Assert.NotNull(response.PaymentId);
             Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
         }
-        
+
         [Test]
         public void Init_Metropol_Apm_Payment()
         {
@@ -1178,7 +1178,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
         }
-        
+
         public void Complete_Metropol_Apm_Payment()
         {
             var additionalParams = new Dictionary<string, string>();
@@ -2082,6 +2082,23 @@ namespace Samples
             Assert.NotNull(response.PaidPrice);
             Assert.NotNull(response.RemainingAmount);
             Assert.NotNull(response.PaymentIds);
+        }
+
+        [Test]
+        public void Retrieve_Provider_Card()
+        {
+            var request = new RetrieveProviderCardRequest
+            {
+
+                ProviderCardToken = "45f12c74-3000-465c-96dc-876850e7dd7a",
+                ExternalId = "1001",
+                ProviderCardUserId = "0309ac2d-c5a5-4b4f-a91f-5c444ba07b24",
+
+            };
+
+            var response = _craftgateClient.Payment().RetrieveProviderCard(request);
+
+            Assert.NotNull(response);
         }
     }
 }
