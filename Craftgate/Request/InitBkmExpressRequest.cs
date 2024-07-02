@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using Craftgate.Model;
+using Craftgate.Request.Dto;
+
 namespace Craftgate.Request
 {
      public class InitBkmExpressRequest
