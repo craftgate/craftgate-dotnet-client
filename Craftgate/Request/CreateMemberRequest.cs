@@ -10,7 +10,6 @@ namespace Craftgate.Request
         public string Address { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string IdentityNumber { get; set; }
         public string ContactName { get; set; }
         public string ContactSurname { get; set; }
         public MemberType? MemberType { get; set; }
@@ -19,11 +18,13 @@ namespace Craftgate.Request
         public string TaxNumber { get; set; }
         public string Iban { get; set; }
         public SettlementEarningsDestination? SettlementEarningsDestination { get; set; }
+
         [Obsolete("deprecated since version 1.0.45. use CreateWalletRequest.NegativeAmountLimit instead.")]
         public decimal? NegativeWalletAmountLimit { get; set; }
 
         public decimal? SubMerchantMaximumAllowedNegativeBalance { get; set; }
         public bool? IsBuyer { get; set; }
         public bool? IsSubMerchant { get; set; }
+        public int? SettlementDelayCount { get; set; }
     }
 }

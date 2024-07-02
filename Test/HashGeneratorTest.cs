@@ -10,14 +10,13 @@ namespace Test
         public void Should_Generate_Hash()
         {
             //given
-            var expectedSignature = "lxoBkNdEanGAXYOL63uz/7P03kB0guaSPl7lXWvRJ4o=";
+            var expectedSignature = "9guTlRNDTRRyUsfSyJ8N/gAdNgQgUsL1guzqgG+FzN4=";
             var request = new CreateMemberRequest
             {
                 MemberExternalId = "ext-1511",
                 Email = "haluk.demir@example.com",
                 PhoneNumber = "905551111111",
                 Name = "Haluk Demir",
-                IdentityNumber = "11111111110"
             };
 
             //when

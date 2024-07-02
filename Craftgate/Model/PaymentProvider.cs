@@ -12,12 +12,26 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYONEER")] PAYONEER,
         [EnumMember(Value = "SODEXO")] SODEXO,
         [EnumMember(Value = "EDENRED")] EDENRED,
+        [EnumMember(Value = "METROPOL")] METROPOL,
         [EnumMember(Value = "YKB_WORLD_PAY")] YKB_WORLD_PAY,
         [EnumMember(Value = "APPLEPAY")] APPLEPAY,
         [EnumMember(Value = "GOOGLEPAY")] GOOGLEPAY,
         [EnumMember(Value = "STRIPE")] STRIPE,
         [EnumMember(Value = "KASPI")] KASPI,
+        [EnumMember(Value = "INSTANT_TRANSFER")] INSTANT_TRANSFER,
         [EnumMember(Value = "TOMPAY")] TOMPAY,
-        [EnumMember(Value = "HASO")] HASO
+        [EnumMember(Value = "ALIPAY")] ALIPAY,
+        [EnumMember(Value = "PAYPAL")] PAYPAL,
+        [EnumMember(Value = "KLARNA")] KLARNA,
+        [EnumMember(Value = "AFTERPAY")] AFTERPAY,
+        [EnumMember(Value = "HEPSIPAY")] HEPSIPAY,
+        [EnumMember(Value = "MASLAK")] MASLAK,
+        [EnumMember(Value = "TOM_FINANCE")] TOM_FINANCE,
+        [EnumMember(Value = "ALFABANK")] ALFABANK,
+        [EnumMember(Value = "PAYCELL")] PAYCELL,
+        [EnumMember(Value = "HASO")] HASO,
+        [EnumMember(Value = "MULTINET")] MULTINET,
+        [EnumMember(Value = "ISPAY")] ISPAY,
+        [EnumMember(Value = "OFFLINE")] OFFLINE
     }
 }

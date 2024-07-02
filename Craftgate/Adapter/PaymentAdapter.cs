@@ -431,6 +431,20 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updateCardRequest, path, RequestOptions), updateCardRequest);
         }
+        
+        public StoredCardResponse CloneCard(CloneCardRequest cloneCardRequest)
+        {
+            var path = "/payment/v1/cards/clone";
+            return RestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(cloneCardRequest, path, RequestOptions), cloneCardRequest);
+        }
+
+        public Task<StoredCardResponse> CloneCardAsync(CloneCardRequest cloneCardRequest)
+        {
+            var path = "/payment/v1/cards/clone";
+            return AsyncRestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(cloneCardRequest, path, RequestOptions), cloneCardRequest);
+        }
 
         public StoredCardListResponse SearchStoredCards(SearchStoredCardsRequest searchStoredCardsRequest)
         {
@@ -558,6 +572,52 @@ namespace Craftgate.Adapter
                 CreateHeaders(null, path, RequestOptions), null);
         }
 
+        public InstantTransferBanksResponse RetrieveActiveBanks()
+        {
+            var path = "/payment/v1/instant-transfer-banks";
+            return RestClient.Get<InstantTransferBanksResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task<InstantTransferBanksResponse> RetrieveActiveBanksAsync()
+        {
+            var path = "/payment/v1/instant-transfer-banks";
+            return AsyncRestClient.Get<InstantTransferBanksResponse>(RequestOptions.BaseUrl + path,
+            CreateHeaders(path, RequestOptions));
+        }
+
+        
+        public object CreateApplePayMerchantSession(
+            ApplePayMerchantSessionCreateRequest applePayMerchantSessionCreateRequest)
+        {
+            var path = "/payment/v1/apple-pay/merchant-sessions";
+            return RestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
+        }
+
+        public Task<object> CreateApplePayMerchantSessionAsync(
+            ApplePayMerchantSessionCreateRequest applePayMerchantSessionCreateRequest)
+        {
+            var path = "/payment/v1/apple-pay/merchant-sessions";
+            return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
+        }
+        
+        public MultiPaymentResponse RetrieveMultiPayment(string token)
+        {
+            var path = "/payment/v1/multi-payments/" + token;
+            return RestClient.Get<MultiPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        
+        public Task<MultiPaymentResponse> RetrieveMultiPaymentAsync(string token)
+        {
+            var path = "/payment/v1/multi-payments/" + token;
+            return AsyncRestClient.Get<MultiPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)
         {
             string hash = parameters["hash"];

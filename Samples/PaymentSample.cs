@@ -11,7 +11,7 @@ namespace Samples
     public class PaymentSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("sandbox-YEhueLgomBjqsnvBlWVVuFsVhlvJlMHE", "sandbox-tBdcdKVGmGupzfaWcULcwDLMoglZZvTz",
+            new CraftgateClient("api-key", "secret-key",
                 "https://sandbox-api.craftgate.io");
 
         [Test]
@@ -328,8 +328,8 @@ namespace Samples
                     {
                         "paymentProvider", new Dictionary<string, object>
                         {
-                            {"cardUserKey", "test-cardUserKey"},
-                            {"cardToken", "tuz8imxv30"}
+                            { "cardUserKey", "test-cardUserKey" },
+                            { "cardToken", "tuz8imxv30" }
                         }
                     }
                 }
@@ -533,6 +533,7 @@ namespace Samples
                     }
                 }
             };
+
 
             var response = _craftgateClient.Payment().Init3DSPayment(request);
             Assert.NotNull(response);
@@ -970,7 +971,7 @@ namespace Samples
                 ApmUserIdentity = "5555555555",
                 AdditionalParams = new Dictionary<string, string>
                 {
-                    {"sodexoCode", "843195"}
+                    { "sodexoCode", "843195" }
                 },
                 Items = new List<PaymentItem>
                 {
@@ -1128,7 +1129,7 @@ namespace Samples
                 PaymentId = 1,
                 AdditionalParams = new Dictionary<string, string>
                 {
-                    {"otpCode", "784294"}
+                    { "otpCode", "784294" }
                 },
             };
 
@@ -1136,6 +1137,65 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.PaymentId);
             Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
+        }
+        
+        [Test]
+        public void Init_Metropol_Apm_Payment()
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("cardNumber", "6375780115068760");
+
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.METROPOL,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "conversationId",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                },
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
+        
+        public void Complete_Metropol_Apm_Payment()
+        {
+            var additionalParams = new Dictionary<string, string>();
+            additionalParams.Add("otpCode", "00000");
+            additionalParams.Add("productId", "1");
+            additionalParams.Add("walletId", "1");
+
+            var request = new CompleteApmPaymentRequest
+            {
+                PaymentId = 1,
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().CompleteApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.SUCCESS);
         }
 
         [Test]
@@ -1288,7 +1348,7 @@ namespace Samples
                 },
                 AdditionalParams = new Dictionary<string, object>
                 {
-                    {"sourceCode", "WEB2QR"}
+                    { "sourceCode", "WEB2QR" }
                 },
             };
 
@@ -1298,6 +1358,48 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, AdditionalAction.SHOW_HTML_CONTENT);
+        }
+
+        [Test]
+        public void Init_Garanti_Pay_Pos_Apm_Payment()
+        {
+            var request = new InitPosApmPaymentRequest
+            {
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                PaymentProvider = PosApmPaymentProvider.GARANTI_PAY,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.4)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.6)
+                    }
+                },
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "integrationType", "WEB2APP" }
+                },
+            };
+
+            var response = _craftgateClient.Payment().InitPosApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.AdditionalData["redirectUrl"]);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, AdditionalAction.REDIRECT_TO_URL);
         }
 
         [Test]
@@ -1537,6 +1639,22 @@ namespace Samples
         }
 
         [Test]
+        public void Clone_Stored_Card()
+        {
+            var request = new CloneCardRequest
+            {
+                SourceCardUserKey = "fac377f2-ab15-4696-88d2-5e71b27ec378",
+                SourceCardToken = "11a078c4-3c32-4796-90b1-51ee5517a212",
+                TargetMerchantId = 1
+            };
+
+            var response = _craftgateClient.Payment().CloneCard(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.CardToken);
+            Assert.NotNull(response.CardUserKey);
+        }
+
+        [Test]
         public void Search_Stored_Cards()
         {
             var request = new SearchStoredCardsRequest
@@ -1571,7 +1689,7 @@ namespace Samples
         {
             var request = new ApprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -1585,7 +1703,7 @@ namespace Samples
         {
             var request = new DisapprovePaymentTransactionsRequest
             {
-                PaymentTransactionIds = new HashSet<long> {1, 2},
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
                 IsTransactional = true
             };
 
@@ -1763,12 +1881,12 @@ namespace Samples
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                {"hash", "1d3fa1e51fe7c350185c5a7f8c3ff513a991367b08c16a56f4ab9abeb738a1e1"},
-                {"paymentId", "5"},
-                {"conversationData", "conversation-data"},
-                {"conversationId", "conversation-id"},
-                {"status", "SUCCESS"},
-                {"completeStatus", "WAITING"}
+                { "hash", "1d3fa1e51fe7c350185c5a7f8c3ff513a991367b08c16a56f4ab9abeb738a1e1" },
+                { "paymentId", "5" },
+                { "conversationData", "conversation-data" },
+                { "conversationId", "conversation-id" },
+                { "status", "SUCCESS" },
+                { "completeStatus", "WAITING" }
             };
 
             var isVerified = _craftgateClient.Payment()
@@ -1782,11 +1900,11 @@ namespace Samples
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                {"hash", "a097f0231031a88f2d687b510afca2505ccd2977d6421be4c3784666703f6f25"},
-                {"paymentId", "5"},
-                {"conversationId", "conversation-id"},
-                {"status", "SUCCESS"},
-                {"completeStatus", "WAITING"}
+                { "hash", "a097f0231031a88f2d687b510afca2505ccd2977d6421be4c3784666703f6f25" },
+                { "paymentId", "5" },
+                { "conversationId", "conversation-id" },
+                { "status", "SUCCESS" },
+                { "completeStatus", "WAITING" }
             };
 
             var isVerified = _craftgateClient.Payment()
@@ -1800,12 +1918,12 @@ namespace Samples
             string merchantThreeDsCallbackKey = "merchantThreeDsCallbackKeySndbox";
             Dictionary<string, string> parameters = new Dictionary<string, string>
             {
-                {"hash", "39427942bcaasjaduqabzhdancaASasdhbcxjancakjscace82"},
-                {"paymentId", "5"},
-                {"conversationData", "conversation-data"},
-                {"conversationId", "conversation-id"},
-                {"status", "SUCCESS"},
-                {"completeStatus", "WAITING"}
+                { "hash", "39427942bcaasjaduqabzhdancaASasdhbcxjancakjscace82" },
+                { "paymentId", "5" },
+                { "conversationData", "conversation-data" },
+                { "conversationId", "conversation-id" },
+                { "status", "SUCCESS" },
+                { "completeStatus", "WAITING" }
             };
 
             var isVerified = _craftgateClient.Payment()
@@ -1893,14 +2011,14 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
         }
-        
+
         [Test]
         public void Init_TomFinance_Bnpl_Payment()
         {
             var additionalParams = new Dictionary<string, string>();
             additionalParams.Add("buyerName", "John Doe");
             additionalParams.Add("buyerPhoneNumber", "5554443322");
-            
+
             var request = new InitBnplPaymentRequest
             {
                 ApmType = ApmType.TOM_FINANCE,
@@ -1949,6 +2067,21 @@ namespace Samples
             var PaymentId = 1;
 
             _craftgateClient.Payment().ApproveBnplPayment(PaymentId);
+        }
+
+        [Test]
+        public void Retrieve_Multi_Payment()
+        {
+            var token = "6d7e66b5-9b1c-4c1d-879a-2557b651096e";
+
+            var response = _craftgateClient.Payment().RetrieveMultiPayment(token);
+
+            Assert.NotNull(response.Id);
+            Assert.NotNull(response.MultiPaymentStatus);
+            Assert.NotNull(response.Token);
+            Assert.NotNull(response.PaidPrice);
+            Assert.NotNull(response.RemainingAmount);
+            Assert.NotNull(response.PaymentIds);
         }
     }
 }
