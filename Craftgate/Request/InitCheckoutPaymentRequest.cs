@@ -29,6 +29,7 @@ namespace Craftgate.Request
         public bool AllowInstallmentOnlyCommercialCards { get; set; }
         public bool ForceThreeDS { get; set; }
         public bool ForceAuthForNonCreditCards { get; set; }
+        public bool DepositPayment { get; set; }
         public long? Ttl { get; set; }
         public IList<CustomInstallment> CustomInstallments { get; set; }
         public IList<PaymentItem> Items { get; set; }
