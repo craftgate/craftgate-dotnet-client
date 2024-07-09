@@ -753,6 +753,26 @@ namespace Samples
         }
 
         [Test]
+        public void Init_Checkout_Payment_For_Deposit()
+        {
+            var request = new InitCheckoutPaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.PRODUCT,
+                CallbackUrl = "https://www.your-website.com/craftgate-checkout-callback",
+                DepositPayment = true,
+            };
+
+            var response = _craftgateClient.Payment().InitCheckoutPayment(request);
+            Assert.NotNull(response.Token);
+            Assert.NotNull(response.PageUrl);
+            Assert.NotNull(response.TokenExpireDate);
+        }
+
+        [Test]
         public void Create_Deposit_Payment()
         {
             var request = new CreateDepositPaymentRequest

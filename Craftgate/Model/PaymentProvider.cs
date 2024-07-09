@@ -31,6 +31,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYCELL")] PAYCELL,
         [EnumMember(Value = "HASO")] HASO,
         [EnumMember(Value = "MULTINET")] MULTINET,
+        [EnumMember(Value = "ISPAY")] ISPAY,
         [EnumMember(Value = "OFFLINE")] OFFLINE
     }
 }
