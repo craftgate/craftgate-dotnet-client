@@ -431,7 +431,7 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<StoredCardResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updateCardRequest, path, RequestOptions), updateCardRequest);
         }
-        
+
         public StoredCardResponse CloneCard(CloneCardRequest cloneCardRequest)
         {
             var path = "/payment/v1/cards/clone";
@@ -586,7 +586,7 @@ namespace Craftgate.Adapter
             CreateHeaders(path, RequestOptions));
         }
 
-        
+
         public object CreateApplePayMerchantSession(
             ApplePayMerchantSessionCreateRequest applePayMerchantSessionCreateRequest)
         {
@@ -602,22 +602,38 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
         }
-        
+
         public MultiPaymentResponse RetrieveMultiPayment(string token)
         {
             var path = "/payment/v1/multi-payments/" + token;
             return RestClient.Get<MultiPaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-        
-        
+
+
         public Task<MultiPaymentResponse> RetrieveMultiPaymentAsync(string token)
         {
             var path = "/payment/v1/multi-payments/" + token;
             return AsyncRestClient.Get<MultiPaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-        
+
+        public StoredCardResponse RetrieveProviderCard(RetrieveProviderCardRequest retrieveProviderCardRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
+            var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
+            return RestClient.Get<StoredCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task<StoredCardResponse> RetrieveProviderCardAsync(RetrieveProviderCardRequest retrieveProviderCardRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
+            var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
+            return AsyncRestClient.Get<StoredCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)
         {
             string hash = parameters["hash"];
