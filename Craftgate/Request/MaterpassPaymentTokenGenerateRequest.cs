@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Craftgate.Model;
 using Craftgate.Request.Dto;
 
@@ -12,5 +13,6 @@ namespace Craftgate.Request
         public MasterpassCreatePayment CreatePayment { get; set; }
         public Loyalty Loyalty { get; set; }
         public int? MasterpassIntegrationVersion { get; set; }
+        public Dictionary<string, object> AdditionalGenerateTokenParams { get; set; }
     }
 }
