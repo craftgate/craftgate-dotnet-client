@@ -1,3 +1,5 @@
+using System;
+
 namespace Craftgate.Response.Dto
 {
     public class StoredCardResponse
