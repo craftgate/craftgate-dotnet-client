@@ -14,6 +14,6 @@ namespace Craftgate.Response.Dto
         public string CardBankName { get; set; }
         public long? CardBankId { get; set; }
         public string CardExpiryStatus { get; set; }
-        public string CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }
