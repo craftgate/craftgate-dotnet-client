@@ -1637,7 +1637,9 @@ namespace Samples
             Assert.NotNull(response);
             Assert.AreEqual(request.CardAlias, response.CardAlias);
             Assert.AreEqual(request.CardUserKey, response.CardUserKey);
+            Assert.AreEqual(request.CardHolderName, response.CardHolderName);
             Assert.NotNull(response.CardToken);
+            Assert.NotNull(response.CreatedAt);
         }
 
         [Test]
