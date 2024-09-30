@@ -28,6 +28,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "MULTINET")] MULTINET,
         [EnumMember(Value = "MULTINET_GIFT")] MULTINET_GIFT,
         [EnumMember(Value = "ISPAY")] ISPAY,
+        [EnumMember(Value = "CHIPPIN")] CHIPPIN,
         [EnumMember(Value = "FUND_TRANSFER")] FUND_TRANSFER,
         [EnumMember(Value = "CASH_ON_DELIVERY")] CASH_ON_DELIVERY
     }
