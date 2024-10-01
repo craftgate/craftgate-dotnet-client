@@ -1147,7 +1147,7 @@ namespace Samples
             var request = new InitApmPaymentRequest
             {
                 ApmType = ApmType.CHIPPIN,
-                ApmUserIdentity = 1000000,  // Chippin Kullanıcı No
+                ApmUserIdentity = "1000000",  // Chippin Kullanıcı No
                 Price = new decimal(1.0),
                 PaidPrice = new decimal(1.0),
                 Currency = Currency.TRY,
