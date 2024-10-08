@@ -8,120 +8,87 @@ using Craftgate.Response;
 
 namespace Craftgate.Adapter
 {
-    public class MerchantAdapter : BaseAdapter
+    public class MerchantApmAdapter : BaseAdapter
     {
-        public MerchantAdapter(RequestOptions requestOptions) : base(requestOptions)
+        public MerchantApmAdapter(RequestOptions requestOptions) : base(requestOptions)
         {
         }
 
-        public MerchantPosResponse CreateMerchantPos(CreateMerchantPosRequest createMemberRequest)
+        public MerchantApmResponse CreateMerchantApm(CreateMerchantApmRequest createMerchantApmRequest)
         {
-            var path = "/merchant/v1/merchant-poses";
-            return RestClient.Post<MerchantPosResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(createMemberRequest, path, RequestOptions),
-                createMemberRequest);
+            var path = "/merchant/v1/merchant-apms";
+            return RestClient.Post<MerchantApmResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(createMerchantApmRequest, path, RequestOptions),
+                createMerchantApmRequest);
         }
 
-        public Task<MerchantPosResponse> CreateMerchantPosAsync(CreateMerchantPosRequest createMemberRequest)
+        public Task<MerchantApmResponse> CreateMerchantApmAsync(CreateMerchantApmRequest createMerchantApmRequest)
         {
-            var path = "/merchant/v1/merchant-poses";
-            return AsyncRestClient.Post<MerchantPosResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(createMemberRequest, path, RequestOptions),
-                createMemberRequest);
+            var path = "/merchant/v1/merchant-apms";
+            return AsyncRestClient.Post<MerchantApmResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(createMerchantApmRequest, path, RequestOptions),
+                createMerchantApmRequest);
         }
 
-        public MerchantPosResponse RetrieveMerchantPos(long id)
+        public MerchantApmListResponse RetrieveMerchantApm()
         {
-            var path = "/merchant/v1/merchant-poses/" + id;
-            return RestClient.Get<MerchantPosResponse>(RequestOptions.BaseUrl + path,
+            var path = "/merchant/v1/merchant-apms";
+            return RestClient.Get<MerchantApmListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<MerchantPosResponse> RetrieveMerchantPosAsync(long id)
+        public Task<MerchantApmListResponse> RetrieveMerchantPosAsync()
         {
-            var path = "/merchant/v1/merchant-poses/" + id;
-            return AsyncRestClient.Get<MerchantPosResponse>(RequestOptions.BaseUrl + path,
+            var path = "/merchant/v1/merchant-apms";
+            return AsyncRestClient.Get<MerchantApmListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public MerchantPosResponse UpdateMerchantPos(long id, UpdateMerchantPosRequest updateMerchantPosRequest)
+        public MerchantApmResponse UpdateMerchantApm(long id, UpdateMerchantApmRequest updateMerchantApmRequest)
         {
-            var path = "/merchant/v1/merchant-poses/" + id;
-            return RestClient.Put<MerchantPosResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(updateMerchantPosRequest, path, RequestOptions),
-                updateMerchantPosRequest);
+            var path = "/merchant/v1/merchant-apms/" + id;
+            return RestClient.Put<MerchantApmResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(updateMerchantApmRequest, path, RequestOptions),
+                updateMerchantApmRequest);
         }
 
-        public Task<MerchantPosResponse> UpdateMerchantPosAsync(long id,
-            UpdateMerchantPosRequest updateMerchantPosRequest)
+        public Task<MerchantApmResponse> UpdateMerchantApmAsync(long id,
+            UpdateMerchantApmRequest updateMerchantApmRequest)
         {
-            var path = "/merchant/v1/merchant-poses/" + id;
-            return AsyncRestClient.Put<MerchantPosResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(updateMerchantPosRequest, path, RequestOptions),
-                updateMerchantPosRequest);
+            var path = "/merchant/v1/merchant-apms/" + id;
+            return AsyncRestClient.Put<MerchantApmResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(updateMerchantApmRequest, path, RequestOptions),
+                updateMerchantApmRequest);
         }
 
-        public void UpdateMerchantPosStatus(long id, PosStatus posStatus)
+        public void UpdateMerchantApmStatus(long id, UpdateMerchantApmStatusRequest updateMerchantApmStatusRequest)
         {
-            var path = "/merchant/v1/merchant-poses/" + id + "/status/" + posStatus;
+            var path = "/merchant/v1/merchant-apms/" + id + "/status";
+            
             RestClient.Put<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeaders(updateMerchantApmStatusRequest, path, RequestOptions),
+                updateMerchantApmStatusRequest);
         }
 
-        public void UpdateMerchantPosStatusAsync(long id, PosStatus posStatus)
+        public void UpdateMerchantApmStatusAsync(long id, PosStatus posStatus)
         {
-            var path = "/merchant/v1/merchant-poses/" + id + "/status/" + posStatus;
+            var path = "/merchant/v1/merchant-apms/" + id + "/status/" + posStatus;
             AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public void DeleteMerchantPos(long id)
+        public void DeleteMerchantApm(long id)
         {
-            var path = "/merchant/v1/merchant-poses/" + id;
+            var path = "/merchant/v1/merchant-apms/" + id;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public void DeleteMerchantPosAsync(long id)
+        public void DeleteMerchantApmAsync(long id)
         {
-            var path = "/merchant/v1/merchant-poses/" + id;
+            var path = "/merchant/v1/merchant-apms/" + id;
             AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
-        }
-
-        public MerchantPosListResponse SearchMerchantPos(SearchMerchantPosRequest searchMerchantPosRequest)
-        {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMerchantPosRequest);
-            var path = "/merchant/v1/merchant-poses" + queryParam;
-            return RestClient.Get<MerchantPosListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
-        }
-
-        public Task<MerchantPosListResponse> SearchMerchantPosAsync(SearchMerchantPosRequest searchMerchantPosRequest)
-        {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMerchantPosRequest);
-            var path = "/merchant/v1/merchant-poses" + queryParam;
-            return AsyncRestClient.Get<MerchantPosListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
-        }
-
-        public MerchantPosCommissionListResponse RetrieveMerchantPosCommissions(long id)
-        {
-            var path = "/merchant/v1/merchant-poses/" + id + "/commissions";
-            return RestClient.Get<MerchantPosCommissionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
-        }
-
-        /*
-        * This endpoint using for creating and updating merchant pos commissions. The HTTP method is POST due to this requirement.
-        * */
-        public MerchantPosCommissionListResponse UpdateMerchantPosCommissions(long id,
-            UpdateMerchantPosCommissionsRequest request)
-        {
-            var path = "/merchant/v1/merchant-poses/" + id + "/commissions";
-            return RestClient.Post<MerchantPosCommissionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(request, path, RequestOptions),
-                request);
         }
     }
 }

@@ -2,190 +2,84 @@ using System.Collections.Generic;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
-using Craftgate.Request.Dto;
 using NUnit.Framework;
 
 namespace Samples
 {
-    public class MerchantSample
+    public class MerchantApmSample
     {
         private readonly CraftgateClient _craftgateClient =
             new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
-        public void Create_Merchant_Pos()
+        public void Create_Merchant_Apm()
         {
-            var request = new CreateMerchantPosRequest()
+            var request = new CreateMerchantApmRequest()
             {
-                Name = "my test pos",
-                ClientId = "client id",
-                TerminalId = "terminal id",
-                ThreedsKey = "3d secure key",
-                Status = PosStatus.AUTOPILOT,
-                Currency = Currency.TRY,
-                OrderNumber = 1,
-                EnableInstallment = true,
-                EnableForeignCard = true,
-                EnablePaymentWithoutCvc = true,
-                PosIntegrator = PosIntegrator.AKBANK,
-                EnabledPaymentAuthenticationTypes = new List<PaymentAuthenticationType>
-                {
-                    PaymentAuthenticationType.NON_THREE_DS, PaymentAuthenticationType.THREE_DS
-                },
-                MerchantPosUsers = new List<CreateMerchantPosUser>
-                {
-                    new CreateMerchantPosUser()
-                    {
-                        PosOperationType = PosOperationType.STANDARD,
-                        PosUserType = PosUserType.API,
-                        PosUsername = "username",
-                        PosPassword = "password",
-                    }
-                }
+                Name = "my test apm",
+                ApmType = ApmType.PAPARA,
+                Hostname = "https://merchant-api.papara.com",
+                SupportedCurrencies = new List<Currency> { Currency.TRY, Currency.USD, Currency.EUR, Currency.GBP },
+                Properties = new Dictionary<string, object>
+                 {
+                     { "apiKey", "api-key-2" },
+                     { "secretKey", "secret-key" }
+                 }
             };
 
-            var response = _craftgateClient.Merchant().CreateMerchantPos(request);
+            var response = _craftgateClient.MerchantApm().CreateMerchantApm(request);
             Assert.NotNull(response.Id);
-            Assert.NotNull(response.Alias);
-            Assert.AreEqual(request.PosIntegrator, PosIntegrator.AKBANK);
+            Assert.AreEqual(request.ApmType, ApmType.PAPARA);
         }
 
         [Test]
-        public void Retrieve_Merchant_Pos()
+        public void Retrieve_Merchant_Apm()
         {
-            const int id = 1;
+            var response = _craftgateClient.MerchantApm().RetrieveMerchantApm();
+            Assert.NotNull(response);
+        }
 
-            var response = _craftgateClient.Merchant().RetrieveMerchantPos(id);
+        [Test]
+        public void Update_Merchant_Apm()
+        {
+            const int id = 26;
+            var request = new UpdateMerchantApmRequest()
+            {
+                Name = "my test apm update",
+                Status = ApmStatus.ACTIVE,
+                Hostname = "https://merchant-api.papara.com",
+                SupportedCurrencies = new List<Currency> { Currency.TRY, Currency.USD, Currency.EUR, Currency.GBP },
+                Properties = new Dictionary<string, object>
+                 {
+                     { "apiKey", "api-key-2" },
+                     { "secretKey", "secret-key" }
+                 }
+            };
+
+            var response = _craftgateClient.MerchantApm().UpdateMerchantApm(id, request);
             Assert.NotNull(response.Id);
-            Assert.NotNull(response.Alias);
-            Assert.AreEqual(id, response.Id);
+            Assert.AreEqual(request.Name, "my test apm update");
         }
 
+
         [Test]
-        public void Update_Merchant_Pos()
+        public void Update_Merchant_Apm_Status()
         {
-            const int id = 1;
-            var request = new UpdateMerchantPosRequest()
+            const int id = 26;
+            var request = new UpdateMerchantApmStatusRequest()
             {
-                Name = "my test pos",
-                Hostname = "https://www.sanalakpos.com",
-                Path = "/fim/api",
-                ThreedsPath = "https://www.sanalakpos.com/fim/est3dgate",
-                ClientId = "client id",
-                TerminalId = "terminal id",
-                ThreedsKey = "3d secure key",
-                Mode = "P",
-                OrderNumber = 1,
-                EnableInstallment = true,
-                EnableForeignCard = true,
-                EnablePaymentWithoutCvc = true,
-                SupportedCardAssociations = new List<CardAssociation>
-                {
-                    CardAssociation.VISA, CardAssociation.MASTER_CARD
-                },
-                EnabledPaymentAuthenticationTypes = new List<PaymentAuthenticationType>
-                {
-                    PaymentAuthenticationType.NON_THREE_DS, PaymentAuthenticationType.THREE_DS
-                },
-                MerchantPosUsers = new List<UpdateMerchantPosUser>
-                {
-                    new UpdateMerchantPosUser()
-                    {
-                        Id = 1,
-                        PosOperationType = PosOperationType.STANDARD,
-                        PosUserType = PosUserType.API,
-                        PosUsername = "username",
-                        PosPassword = "password",
-                    }
-                }
+                Status = ApmStatus.PASSIVE
             };
 
-            var response = _craftgateClient.Merchant().UpdateMerchantPos(id, request);
-            Assert.NotNull(response.Id);
-            Assert.NotNull(response.Alias);
-            Assert.AreEqual(request.Name, "my test pos");
-        }
-
-
-        [Test]
-        public void Update_Merchant_Pos_Status()
-        {
-            const int id = 9;
-            const PosStatus posStatus = PosStatus.PASSIVE;
-
-            _craftgateClient.Merchant().UpdateMerchantPosStatus(id, posStatus);
+            _craftgateClient.MerchantApm().UpdateMerchantApmStatus(id, request);
         }
 
         [Test]
-        public void Delete_Merchant_Pos()
+        public void Delete_Merchant_Apm()
         {
-            const int id = 9;
+            const int id = 26;
 
-            _craftgateClient.Merchant().DeleteMerchantPos(id);
-        }
-
-        [Test]
-        public void Search_Merchant_Pos()
-        {
-            var request = new SearchMerchantPosRequest()
-            {
-                Page = 0,
-                Size = 10,
-                Currency = Currency.TRY
-            };
-
-            var response = _craftgateClient.Merchant().SearchMerchantPos(request);
-            Assert.NotNull(response);
-            Assert.IsNotEmpty(response.Items);
-        }
-
-        [Test]
-        public void Retrieve_Merchant_Pos_Commissions()
-        {
-            const int id = 1;
-
-            var response = _craftgateClient.Merchant().RetrieveMerchantPosCommissions(id);
-            Assert.NotNull(response);
-            Assert.IsNotEmpty(response.Items);
-        }
-
-        [Test]
-        public void Update_Merchant_Pos_Commissions()
-        {
-            const int id = 1;
-            var request = new UpdateMerchantPosCommissionsRequest()
-            {
-                Commissions = new List<UpdateMerchantPosCommission>()
-                {
-                    new UpdateMerchantPosCommission()
-                    {
-                        Installment = 1,
-                        BlockageDay = 7,
-                        Status = Status.ACTIVE,
-                        CardBrandName = CardBrand.AXESS,
-                        InstallmentLabel = "Single installment",
-                        BankOnUsDebitCardCommissionRate = new decimal(1.0),
-                        BankOnUsCreditCardCommissionRate = new decimal(1.1),
-                        BankNotOnUsDebitCardCommissionRate = new decimal(1.2),
-                        BankNotOnUsCreditCardCommissionRate = new decimal(1.3),
-                        BankForeignCardCommissionRate = new decimal(1.5)
-                    },
-                    new UpdateMerchantPosCommission()
-                    {
-                        Installment = 2,
-                        BlockageDay = 7,
-                        Status = Status.ACTIVE,
-                        CardBrandName = CardBrand.AXESS,
-                        InstallmentLabel = "installment 2",
-                        BankOnUsCreditCardCommissionRate = new decimal(2.1),
-                        MerchantCommissionRate = new decimal(2.3),
-                    }
-                }
-            };
-
-            var response = _craftgateClient.Merchant().UpdateMerchantPosCommissions(id, request);
-            Assert.NotNull(response);
-            Assert.IsNotEmpty(response.Items);
+            _craftgateClient.MerchantApm().DeleteMerchantApm(id);
         }
     }
 }
