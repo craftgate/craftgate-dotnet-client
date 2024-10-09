@@ -37,7 +37,7 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<MerchantApmListResponse> RetrieveMerchantPosAsync()
+        public Task<MerchantApmListResponse> RetrieveMerchantApmAsync()
         {
             var path = "/merchant/v1/merchant-apms";
             return AsyncRestClient.Get<MerchantApmListResponse>(RequestOptions.BaseUrl + path,
@@ -64,17 +64,18 @@ namespace Craftgate.Adapter
         public void UpdateMerchantApmStatus(long id, UpdateMerchantApmStatusRequest updateMerchantApmStatusRequest)
         {
             var path = "/merchant/v1/merchant-apms/" + id + "/status";
-            
+
             RestClient.Put<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(updateMerchantApmStatusRequest, path, RequestOptions),
                 updateMerchantApmStatusRequest);
         }
 
-        public void UpdateMerchantApmStatusAsync(long id, PosStatus posStatus)
+        public void UpdateMerchantApmStatusAsync(long id, UpdateMerchantApmStatusRequest updateMerchantApmStatusRequest)
         {
-            var path = "/merchant/v1/merchant-apms/" + id + "/status/" + posStatus;
+            var path = "/merchant/v1/merchant-apms/" + id + "/status";
             AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeaders(updateMerchantApmStatusRequest, path, RequestOptions),
+                updateMerchantApmStatusRequest);
         }
 
         public void DeleteMerchantApm(long id)
