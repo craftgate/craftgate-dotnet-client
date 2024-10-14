@@ -927,7 +927,8 @@ namespace Samples
                         Number = 3,
                         TotalPrice = 125
                     }
-                }
+                },
+                EnabledInstallments = new List<int> { 2, 3}
             };
 
             var response = _craftgateClient.Payment().InitGarantiPayPayment(request);
