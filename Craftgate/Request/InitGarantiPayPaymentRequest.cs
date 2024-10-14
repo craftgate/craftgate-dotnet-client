@@ -21,6 +21,6 @@ namespace Craftgate.Request
         public string BankOrderId { get; set; }
         public IList<PaymentItem> Items { get; set; }
         public List<GarantiPayInstallment> Installments { get; set; }
-        public List<int> EnabledInstallments { get; set; }
+        public IList<int> EnabledInstallments { get; set; }
     }
 }
