@@ -894,6 +894,7 @@ namespace Samples
                 Currency = Currency.TRY,
                 PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 CallbackUrl = "https://www.your-website.com/craftgate-garantipay-callback",
+                EnabledInstallments = new List<int> {2, 3},
                 Items = new List<PaymentItem>
                 {
                     new PaymentItem
