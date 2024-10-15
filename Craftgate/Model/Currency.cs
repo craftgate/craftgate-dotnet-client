@@ -22,6 +22,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "SAR")] SAR,
         [EnumMember(Value = "BHD")] BHD,
         [EnumMember(Value = "RUB")] RUB,
-        [EnumMember(Value = "JPY")] JPY
+        [EnumMember(Value = "JPY")] JPY,
+        [EnumMember(Value = "EGP")] EGP
     }
 }
