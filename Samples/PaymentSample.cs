@@ -928,7 +928,7 @@ namespace Samples
                         Number = 3,
                         TotalPrice = 125
                     }
-                },
+                }
             };
 
             var response = _craftgateClient.Payment().InitGarantiPayPayment(request);
