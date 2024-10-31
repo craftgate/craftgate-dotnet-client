@@ -40,7 +40,7 @@ namespace Samples
                 ExternalId = "optional-ExternalId",
                 CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
                 ApmUserIdentity = "5555555555",
-                AdditionalParams = new Dictionary<string, string>
+                AdditionalParams = new Dictionary<string, object>
                 {
                     {"bankCode", "0"}
                 },
