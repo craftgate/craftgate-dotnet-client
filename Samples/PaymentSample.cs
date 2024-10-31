@@ -990,7 +990,7 @@ namespace Samples
                 ExternalId = "optional-ExternalId",
                 CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
                 ApmUserIdentity = "5555555555",
-                AdditionalParams = new Dictionary<string, string>
+                AdditionalParams = new Dictionary<string, object>
                 {
                     { "sodexoCode", "843195" }
                 },
@@ -1102,7 +1102,7 @@ namespace Samples
         [Test]
         public void Init_Tompay_Apm_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("channel", "channel");
             additionalParams.Add("phone", "phone");
 
@@ -1184,7 +1184,7 @@ namespace Samples
         [Test]
         public void Init_Paymob_Apm_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("integrationId", "11223344");
 
             var request = new InitApmPaymentRequest
@@ -1228,7 +1228,7 @@ namespace Samples
             var request = new CompleteApmPaymentRequest
             {
                 PaymentId = 1,
-                AdditionalParams = new Dictionary<string, string>
+                AdditionalParams = new Dictionary<string, object>
                 {
                     { "otpCode", "784294" }
                 },
@@ -1243,7 +1243,7 @@ namespace Samples
         [Test]
         public void Init_Metropol_Apm_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("cardNumber", "6375780115068760");
 
             var request = new InitApmPaymentRequest
@@ -1282,7 +1282,7 @@ namespace Samples
 
         public void Complete_Metropol_Apm_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("otpCode", "00000");
             additionalParams.Add("productId", "1");
             additionalParams.Add("walletId", "1");
@@ -1341,7 +1341,7 @@ namespace Samples
         [Test]
         public void Init_Klarna_APM_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("country", "de");
             additionalParams.Add("locale", "en-DE");
 
@@ -2118,7 +2118,7 @@ namespace Samples
         [Test]
         public void Init_TomFinance_Bnpl_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("buyerName", "John Doe");
             additionalParams.Add("buyerPhoneNumber", "5554443322");
 
