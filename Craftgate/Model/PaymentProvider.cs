@@ -34,6 +34,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "ISPAY")] ISPAY,
         [EnumMember(Value = "CHIPPIN")] CHIPPIN,
         [EnumMember(Value = "PAYMOB")] PAYMOB,
+        [EnumMember(Value = "BIZUM")] BIZUM,
         [EnumMember(Value = "OFFLINE")] OFFLINE
     }
 }
