@@ -55,7 +55,7 @@ namespace Samples
                         Price = new decimal(20.0)
                     }
                 },
-                FraudParams = new FraudParams()
+                FraudParams = new FraudCheckParameters()
                 {
                     BuyerEmail = "test@test.com",
                     BuyerPhoneNumber = "5555555555",

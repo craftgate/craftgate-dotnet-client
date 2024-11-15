@@ -23,7 +23,7 @@ namespace Craftgate.Request
         public Dictionary<string, object> AdditionalParams { get; set; }
         public List<PosApmInstallment> Installments { get; set; }
         public PosApmPaymentProvider? PaymentProvider { get; set; }
-        public FraudParams FraudParams { get; set; }
+        public FraudCheckParameters FraudParams { get; set; }
         public string CheckoutFormToken { get; set; }
     }
 }
