@@ -21,7 +21,7 @@ namespace Craftgate.Request
         public string BankOrderId { get; set; }
         public string ClientIp { get; set; }
         public Card Card { get; set; }
-        public FraudCheckParameters FraudCheckParameters { get; set; }
+        public FraudParams FraudParams { get; set; }
         public IList<PaymentItem> Items { get; set; }
         public Dictionary<string, object> AdditionalParams { get; set; }
         public bool Retry { get; set; } = true;

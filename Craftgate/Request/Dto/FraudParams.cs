@@ -1,6 +1,6 @@
 namespace Craftgate.Request.Dto
 {
-    public class FraudCheckParameters
+    public class FraudParams
     {
         public string BuyerExternalId { get; set; }
         public string BuyerPhoneNumber { get; set; }
