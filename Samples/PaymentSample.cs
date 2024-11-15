@@ -900,6 +900,7 @@ namespace Samples
                 Currency = Currency.TRY,
                 PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 CallbackUrl = "https://www.your-website.com/craftgate-garantipay-callback",
+                EnabledInstallments = new List<int> {2, 3},
                 Items = new List<PaymentItem>
                 {
                     new PaymentItem
@@ -995,7 +996,7 @@ namespace Samples
                 ExternalId = "optional-ExternalId",
                 CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
                 ApmUserIdentity = "5555555555",
-                AdditionalParams = new Dictionary<string, string>
+                AdditionalParams = new Dictionary<string, object>
                 {
                     { "sodexoCode", "843195" }
                 },
@@ -1107,7 +1108,7 @@ namespace Samples
         [Test]
         public void Init_Tompay_Apm_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("channel", "channel");
             additionalParams.Add("phone", "phone");
 
@@ -1187,12 +1188,53 @@ namespace Samples
         }
 
         [Test]
+        public void Init_Paymob_Apm_Payment()
+        {
+            var additionalParams = new Dictionary<string, object>();
+            additionalParams.Add("integrationId", "11223344");
+
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.PAYMOB,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.EGP,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "conversationId",
+                ExternalId = "externalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                },
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.REDIRECT_TO_URL);
+        }
+
+        [Test]
         public void Complete_Edenred_Apm_Payment()
         {
             var request = new CompleteApmPaymentRequest
             {
                 PaymentId = 1,
-                AdditionalParams = new Dictionary<string, string>
+                AdditionalParams = new Dictionary<string, object>
                 {
                     { "otpCode", "784294" }
                 },
@@ -1207,7 +1249,7 @@ namespace Samples
         [Test]
         public void Init_Metropol_Apm_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("cardNumber", "6375780115068760");
 
             var request = new InitApmPaymentRequest
@@ -1246,7 +1288,7 @@ namespace Samples
 
         public void Complete_Metropol_Apm_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("otpCode", "00000");
             additionalParams.Add("productId", "1");
             additionalParams.Add("walletId", "1");
@@ -1305,7 +1347,7 @@ namespace Samples
         [Test]
         public void Init_Klarna_APM_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("country", "de");
             additionalParams.Add("locale", "en-DE");
 
@@ -2082,7 +2124,7 @@ namespace Samples
         [Test]
         public void Init_TomFinance_Bnpl_Payment()
         {
-            var additionalParams = new Dictionary<string, string>();
+            var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("buyerName", "John Doe");
             additionalParams.Add("buyerPhoneNumber", "5554443322");
 

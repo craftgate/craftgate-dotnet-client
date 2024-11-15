@@ -19,7 +19,7 @@ namespace Craftgate.Request
         public string CallbackUrl { get; set; }
         public string ApmOrderId { get; set; }
         public string ApmUserIdentity { get; set; }
-        public Dictionary<string, string> AdditionalParams { get; set; }
+        public Dictionary<string, object> AdditionalParams { get; set; }
         public string ClientIp { get; set; }
         public IList<PaymentItem> Items { get; set; }
     }
