@@ -54,6 +54,12 @@ namespace Samples
                         ExternalId = Guid.NewGuid().ToString(),
                         Price = new decimal(20.0)
                     }
+                },
+                FraudParams = new FraudCheckParameters()
+                {
+                    BuyerEmail = "test@test.com",
+                    BuyerPhoneNumber = "5555555555",
+                    BuyerExternalId = "buyerExternalId"
                 }
             };
 
@@ -70,7 +76,7 @@ namespace Samples
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
             Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
             Assert.AreEqual(false, response.PaidWithStoredCard);
-            Assert.AreEqual("525864", response.BinNumber);
+            Assert.AreEqual("52586400", response.BinNumber);
             Assert.AreEqual("0001", response.LastFourDigits);
             Assert.AreEqual("CREDIT_CARD", response.CardType);
             Assert.AreEqual("MASTER_CARD", response.CardAssociation);
