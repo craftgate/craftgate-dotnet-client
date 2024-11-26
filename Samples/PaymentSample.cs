@@ -1196,7 +1196,6 @@ namespace Samples
                 PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 ConversationId = "conversationId",
                 ExternalId = "externalId",
-                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
                 Items = new List<PaymentItem>
                 {
                     new PaymentItem
