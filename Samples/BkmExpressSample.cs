@@ -59,7 +59,23 @@ namespace Samples
                 Status = true,
                 Message = "İşlem Başarılı",
                 TicketId = "b9bd7b93-662f-4460-9ef3-8fc735853cf1",
+            };
 
+
+            var response = _craftgateClient.BkmExpress().Complete(request);
+            Assert.NotNull(response.HostReference);
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Complete_Bkm_Express_Payment_By_Token()
+        {
+            var request = new CompleteBkmExpressRequest()
+            {
+                Status = true,
+                Message = "İşlem Başarılı",
+                TicketId = "7c0f7c89-e954-46d5-ad37-2a5c0b5f0356",
+                BkmExpressPaymentToken = "23f4e147-2c4e-4a2c-8a67-9c783d813b79"
             };
 
 
@@ -74,6 +90,15 @@ namespace Samples
             var ticketId = "b9bd7b93-662f-4460-9ef3-8fc735853cf1";
 
             var response = _craftgateClient.BkmExpress().RetrievePayment(ticketId);
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Retrieve_Payment_By_Token()
+        {
+            var token = "23f4e147-2c4e-4a2c-8a67-9c783d813b79";
+
+            var response = _craftgateClient.BkmExpress().RetrievePayment(token);
             Assert.NotNull(response);
         }
     }
