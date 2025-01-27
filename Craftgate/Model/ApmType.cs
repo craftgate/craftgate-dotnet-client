@@ -31,6 +31,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "CHIPPIN")] CHIPPIN,
         [EnumMember(Value = "PAYMOB")] PAYMOB,
         [EnumMember(Value = "BIZUM")] BIZUM,
+        [EnumMember(Value = "PAYCELL_DCB")] PAYCELL_DCB,
         [EnumMember(Value = "FUND_TRANSFER")] FUND_TRANSFER,
         [EnumMember(Value = "CASH_ON_DELIVERY")] CASH_ON_DELIVERY
     }
