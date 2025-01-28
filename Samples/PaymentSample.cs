@@ -1119,10 +1119,9 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 ExternalId = "optional-ExternalId",
                 CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
-                ApmUserIdentity = "1111222233334444",
-                AdditionalParams = new Dictionary<string, string>
+                AdditionalParams = new Dictionary<string, object>
                 {
-                    { "otpCode", "1122" }
+                    { "cardNumber", "1111222233334444" }
                 },
                 Items = new List<PaymentItem>
                 {
@@ -1419,9 +1418,9 @@ namespace Samples
             var request = new CompleteApmPaymentRequest
             {
                 PaymentId = 1,
-                AdditionalParams = new Dictionary<string, string>
+                AdditionalParams = new Dictionary<string, object>
                 {
-                    { "otpCode", "1122" }
+                    { "passCode", "1122" }
                 },
             };
 
