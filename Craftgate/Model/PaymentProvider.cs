@@ -32,6 +32,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "HASO")] HASO,
         [EnumMember(Value = "MULTINET")] MULTINET,
         [EnumMember(Value = "ISPAY")] ISPAY,
+        [EnumMember(Value = "VODAFONE")] VODAFONE,
         [EnumMember(Value = "CHIPPIN")] CHIPPIN,
         [EnumMember(Value = "PAYMOB")] PAYMOB,
         [EnumMember(Value = "BIZUM")] BIZUM,
