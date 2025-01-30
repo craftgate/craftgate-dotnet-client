@@ -618,19 +618,19 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public StoredCardResponse RetrieveProviderCard(RetrieveProviderCardRequest retrieveProviderCardRequest)
+        public StoredCardListResponse RetrieveProviderCard(RetrieveProviderCardRequest retrieveProviderCardRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
-            return RestClient.Get<StoredCardResponse>(RequestOptions.BaseUrl + path,
+            return RestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<StoredCardResponse> RetrieveProviderCardAsync(RetrieveProviderCardRequest retrieveProviderCardRequest)
+        public Task<StoredCardListResponse> RetrieveProviderCardAsync(RetrieveProviderCardRequest retrieveProviderCardRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
-            return AsyncRestClient.Get<StoredCardResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
