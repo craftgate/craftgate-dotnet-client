@@ -1067,6 +1067,89 @@ namespace Samples
         }
 
         [Test]
+        public void Init_IWallet_Apm_Payment()
+        {
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.IWALLET,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                ApmUserIdentity = "1111222233334444",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.Null(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
+        
+        [Test]
+        public void Init_IWallet_Apm_Payment_with_card_password()
+        {
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.IWALLET,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "cardNumber", "1111222233334444" }
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.Null(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.SUCCESS);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.NONE);
+        }
+
+        [Test]
         public void Init_Kaspi_Apm_Payment()
         {
             var request = new InitApmPaymentRequest
@@ -1227,6 +1310,48 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.WAIT_FOR_WEBHOOK);
         }
+        
+        [Test]
+        public void Init_Paycell_DCB_Apm_Payment()
+        {
+            var additionalParams = new Dictionary<string, object>();
+            additionalParams.Add("paycellGsmNumber", "5305289290");
+            
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.PAYCELL_DCB,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "conversationId",
+                ExternalId = "externalId",
+                CallbackUrl = "callbackUrl",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                },
+                AdditionalParams = additionalParams
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
 
         [Test]
         public void Init_Paymob_Apm_Payment()
@@ -1278,6 +1403,24 @@ namespace Samples
                 AdditionalParams = new Dictionary<string, object>
                 {
                     { "otpCode", "784294" }
+                },
+            };
+
+            var response = _craftgateClient.Payment().CompleteApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
+        }
+
+        [Test]
+        public void Complete_IWallet_Apm_Payment()
+        {
+            var request = new CompleteApmPaymentRequest
+            {
+                PaymentId = 1,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "passCode", "1122" }
                 },
             };
 
@@ -2246,7 +2389,7 @@ namespace Samples
 
             };
 
-            var response = _craftgateClient.Payment().RetrieveProviderCard(request);
+            var response = _craftgateClient.Payment().RetrieveProviderCards(request);
 
             Assert.NotNull(response);
         }
