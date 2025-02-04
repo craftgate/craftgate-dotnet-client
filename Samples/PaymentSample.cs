@@ -2389,7 +2389,7 @@ namespace Samples
 
             };
 
-            var response = _craftgateClient.Payment().RetrieveProviderCard(request);
+            var response = _craftgateClient.Payment().RetrieveProviderCards(request);
 
             Assert.NotNull(response);
         }
