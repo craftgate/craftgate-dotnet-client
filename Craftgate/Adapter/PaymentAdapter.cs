@@ -618,7 +618,7 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public StoredCardListResponse RetrieveProviderCard(RetrieveProviderCardRequest retrieveProviderCardRequest)
+        public StoredCardListResponse RetrieveProviderCards(RetrieveProviderCardRequest retrieveProviderCardRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
@@ -626,7 +626,7 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<StoredCardListResponse> RetrieveProviderCardAsync(RetrieveProviderCardRequest retrieveProviderCardRequest)
+        public Task<StoredCardListResponse> RetrieveProviderCardsAsync(RetrieveProviderCardRequest retrieveProviderCardRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
