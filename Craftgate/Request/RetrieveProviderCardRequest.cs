@@ -7,5 +7,6 @@ namespace Craftgate.Request
         public string ProviderCardToken { get; set; }
         public string ExternalId { get; set; }
         public string ProviderCardUserId { get; set; }
+        public string CardMigrationProvider { get; set; }
     }
 }
