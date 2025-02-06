@@ -6,6 +6,7 @@ namespace Craftgate.Model
     {
         [EnumMember(Value = "IBAN")] IBAN,
         [EnumMember(Value = "WALLET")] WALLET,
-        [EnumMember(Value = "CROSS_BORDER")] CROSS_BORDER
+        [EnumMember(Value = "CROSS_BORDER")] CROSS_BORDER,
+        [EnumMember(Value = "NONE")] NONE
     }
 }
