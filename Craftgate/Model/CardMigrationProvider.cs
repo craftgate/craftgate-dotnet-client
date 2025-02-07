@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 namespace Craftgate.Model
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum CardMigrationProvider
+    public enum CardProvider
     {
         [EnumMember(Value = "IYZICO")] IYZICO,
         [EnumMember(Value = "IPARA")] IPARA,
