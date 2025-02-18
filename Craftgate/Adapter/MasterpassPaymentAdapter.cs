@@ -98,5 +98,21 @@ namespace Craftgate.Adapter
                 CreateHeaders(masterpassPaymentThreeDSCompleteRequest, path, RequestOptions),
                 masterpassPaymentThreeDSCompleteRequest);
         }
+        
+        public RetrieveLoyaltiesResponse RetrieveLoyalties(MasterpassRetrieveLoyaltiesRequest masterpassRetrieveLoyaltiesRequest)
+        {
+            var path = "/payment/v2/masterpass-payments/loyalties/retrieve";
+            return RestClient.Post<RetrieveLoyaltiesResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(masterpassRetrieveLoyaltiesRequest, path, RequestOptions),
+                masterpassRetrieveLoyaltiesRequest);
+        }
+
+        public Task<RetrieveLoyaltiesResponse> RetrieveLoyaltiesAsync(MasterpassRetrieveLoyaltiesRequest masterpassRetrieveLoyaltiesRequest)
+        {
+            var path = "/payment/v2/masterpass-payments/loyalties/retrieve";
+            return AsyncRestClient.Post<RetrieveLoyaltiesResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(masterpassRetrieveLoyaltiesRequest, path, RequestOptions),
+                masterpassRetrieveLoyaltiesRequest);
+        }
     }
 }
