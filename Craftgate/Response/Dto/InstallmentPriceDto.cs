@@ -10,5 +10,7 @@ namespace Craftgate.Response.Dto
         public decimal TotalPrice { get; set; }
         public string InstallmentLabel { get; set; }
         public bool LoyaltySupported { get; set; }
+        public bool? Force3ds { get; set; }
+        public bool? CvcRequired { get; set; }
     }
 }

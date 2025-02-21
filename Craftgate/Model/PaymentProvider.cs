@@ -12,6 +12,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYONEER")] PAYONEER,
         [EnumMember(Value = "SODEXO")] SODEXO,
         [EnumMember(Value = "EDENRED")] EDENRED,
+        [EnumMember(Value = "METROPOL")] METROPOL,
         [EnumMember(Value = "YKB_WORLD_PAY")] YKB_WORLD_PAY,
         [EnumMember(Value = "APPLEPAY")] APPLEPAY,
         [EnumMember(Value = "GOOGLEPAY")] GOOGLEPAY,
@@ -29,6 +30,14 @@ namespace Craftgate.Model
         [EnumMember(Value = "ALFABANK")] ALFABANK,
         [EnumMember(Value = "PAYCELL")] PAYCELL,
         [EnumMember(Value = "HASO")] HASO,
+        [EnumMember(Value = "MULTINET")] MULTINET,
+        [EnumMember(Value = "ISPAY")] ISPAY,
+        [EnumMember(Value = "VODAFONE")] VODAFONE,
+        [EnumMember(Value = "CHIPPIN")] CHIPPIN,
+        [EnumMember(Value = "PAYMOB")] PAYMOB,
+        [EnumMember(Value = "BIZUM")] BIZUM,
+        [EnumMember(Value = "PAYCELL_DCB")] PAYCELL_DCB,
+        [EnumMember(Value = "IWALLET")] IWALLET,
         [EnumMember(Value = "OFFLINE")] OFFLINE
     }
 }

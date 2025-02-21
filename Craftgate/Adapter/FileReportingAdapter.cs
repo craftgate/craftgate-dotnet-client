@@ -22,11 +22,29 @@ namespace Craftgate.Adapter
             headers.Add(ContentType, ApplicationOctetStream);
             return RestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
         }
-        
+
         public Task<byte[]> RetrieveDailyTransactionReportAsync(RetrieveDailyTransactionReportRequest retrieveDailyTransactionReportRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveDailyTransactionReportRequest);
             var path = "/file-reporting/v1/transaction-reports" + queryParam;
+            var headers = CreateHeaders(path, RequestOptions);
+            headers.Add(ContentType, ApplicationOctetStream);
+            return AsyncRestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
+        }
+
+        public byte[] RetrieveDailyPaymentReport(RetrieveDailyPaymentReportRequest retrieveDailyPaymentReportRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveDailyPaymentReportRequest);
+            var path = "/file-reporting/v1/payment-reports" + queryParam;
+            var headers = CreateHeaders(path, RequestOptions);
+            headers.Add(ContentType, ApplicationOctetStream);
+            return RestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
+        }
+
+        public Task<byte[]> RetrieveDailyPaymentReportAsync(RetrieveDailyPaymentReportRequest retrieveDailyPaymentReportRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveDailyPaymentReportRequest);
+            var path = "/file-reporting/v1/payment-reports" + queryParam;
             var headers = CreateHeaders(path, RequestOptions);
             headers.Add(ContentType, ApplicationOctetStream);
             return AsyncRestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);

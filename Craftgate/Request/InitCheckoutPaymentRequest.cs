@@ -15,7 +15,7 @@ namespace Craftgate.Request
         public string PaymentChannel { get; set; }
         public string ConversationId { get; set; }
         public string ExternalId { get; set; }
-        public string BankOrderId { get; set; }
+        public string OrderId { get; set; }
         public PaymentPhase PaymentPhase { get; set; } = PaymentPhase.AUTH;
         public IList<PaymentMethod> EnabledPaymentMethods { get; set; }
         public string MasterpassGsmNumber { get; set; }
@@ -29,8 +29,11 @@ namespace Craftgate.Request
         public bool AllowInstallmentOnlyCommercialCards { get; set; }
         public bool ForceThreeDS { get; set; }
         public bool ForceAuthForNonCreditCards { get; set; }
+        public bool DepositPayment { get; set; }
         public long? Ttl { get; set; }
         public IList<CustomInstallment> CustomInstallments { get; set; }
         public IList<PaymentItem> Items { get; set; }
+        public FraudCheckParameters FraudParams { get; set; }
+        public Dictionary<string, object> AdditionalParams { get; set; }
     }
 }

@@ -27,5 +27,19 @@ namespace Samples
 
             Assert.NotNull(response);
         }
+
+        [Test]
+        public void Retrieve_Daily_Payment_Report()
+        {
+            var request = new RetrieveDailyPaymentReportRequest
+            {
+                ReportDate = DateTime.Now.ToString("yyyy-MM-dd"),
+                FileType = ReportFileType.CSV
+            };
+
+            var response = _craftgateClient.FileReporting().RetrieveDailyPaymentReport(request);
+
+            Assert.NotNull(response);
+        }
     }
 }
