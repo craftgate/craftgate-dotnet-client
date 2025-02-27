@@ -558,17 +558,17 @@ namespace Craftgate.Adapter
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public void ApproveBnplPayment(long PaymentId)
+        public PaymentResponse ApproveBnplPayment(long PaymentId)
         {
             var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
-            RestClient.Post<object>(RequestOptions.BaseUrl + path,
+            return RestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(null, path, RequestOptions), null);
         }
 
-        public Task ApproveBnplPaymentAsync(long PaymentId)
+        public Task<PaymentResponse> ApproveBnplPaymentAsync(long PaymentId)
         {
             var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
-            return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(null, path, RequestOptions), null);
         }
 
