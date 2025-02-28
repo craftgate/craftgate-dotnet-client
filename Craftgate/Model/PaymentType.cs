@@ -13,6 +13,10 @@ namespace Craftgate.Model
 
         [EnumMember(Value = "DEPOSIT_PAYMENT")]
         DEPOSIT_PAYMENT,
+        
+        [EnumMember(Value = "HEPSIPAY_DEPOSIT_PAYMENT")]
+        HEPSIPAY_DEPOSIT_PAYMENT,
+        
         [EnumMember(Value = "APM")] APM
     }
 }
