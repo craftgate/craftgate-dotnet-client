@@ -8,5 +8,6 @@ namespace Craftgate.Response
         public long PaymentId { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
         public PaymentError PaymentError { get; set; }
+        public string ConversationId { get; set; }
     }
 }

@@ -1410,6 +1410,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.NotNull(response.PaymentId);
             Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
+            Assert.NotNull(response.ConversationId);
         }
 
         [Test]
@@ -2386,7 +2387,7 @@ namespace Samples
                 ProviderCardToken = "45f12c74-3000-465c-96dc-876850e7dd7a",
                 ExternalId = "1001",
                 ProviderCardUserId = "0309ac2d-c5a5-4b4f-a91f-5c444ba07b24",
-                CardProvider = CardProvider.MEX
+                CardProvider = CardProvider.MEX.ToString()
             };
 
             var response = _craftgateClient.Payment().RetrieveProviderCards(request);
