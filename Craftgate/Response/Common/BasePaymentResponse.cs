@@ -43,6 +43,8 @@ namespace Craftgate.Response.Common
         public string CardAssociation { get; set; }
         public string CardBrand { get; set; }
         public string RequestedPosAlias { get; set; }
+        public long? FraudId { get; set; }
+        public FraudAction? FraudAction { get; set; }
         public MerchantPos Pos { get; set; }
         public Loyalty Loyalty { get; set; }
         public PaymentError PaymentError { get; set; }
