@@ -14,5 +14,6 @@ namespace Craftgate.Request
         public Loyalty Loyalty { get; set; }
         public int? MasterpassIntegrationVersion { get; set; }
         public Dictionary<string, object> AdditionalGenerateTokenParams { get; set; }
+        public MasterpassValidationType? ValidationType { get; set; }
     }
 }
