@@ -27,6 +27,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "HASO")] HASO,
         [EnumMember(Value = "MULTINET")] MULTINET,
         [EnumMember(Value = "MULTINET_GIFT")] MULTINET_GIFT,
+        [EnumMember(Value = "MULTINET_NEO_GIFT")] MULTINET_NEO_GIFT,
         [EnumMember(Value = "ISPAY")] ISPAY,
         [EnumMember(Value = "VODAFONE_DCB")] VODAFONE_DCB,
         [EnumMember(Value = "CHIPPIN")] CHIPPIN,
