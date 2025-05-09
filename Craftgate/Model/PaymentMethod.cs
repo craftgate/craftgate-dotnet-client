@@ -19,6 +19,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "STRIPE")] STRIPE,
         [EnumMember(Value = "MULTINET")] MULTINET,
         [EnumMember(Value = "MULTINET_GIFT")] MULTINET_GIFT,
+        [EnumMember(Value = "MULTINET_NEO_GIFT")] MULTINET_NEO_GIFT,
         [EnumMember(Value = "INSTANT_TRANSFER")] INSTANT_TRANSFER,
         [EnumMember(Value = "BIZUM")] BIZUM,
         [EnumMember(Value = "PAYCELL_DCB")] PAYCELL_DCB,
