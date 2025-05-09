@@ -10,6 +10,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYONEER")] PAYONEER,
         [EnumMember(Value = "SODEXO")] SODEXO,
         [EnumMember(Value = "EDENRED")] EDENRED,
+        [EnumMember(Value = "SETCARD")] SETCARD,
         [EnumMember(Value = "EDENRED_GIFT")] EDENRED_GIFT,
         [EnumMember(Value = "ALIPAY")] ALIPAY,
         [EnumMember(Value = "PAYPAL")] PAYPAL,
