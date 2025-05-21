@@ -17,6 +17,7 @@ namespace Craftgate.Request
         public bool EnableForeignCard;
         public bool EnableInstallment;
         public bool EnablePaymentWithoutCvc;
+        public bool EnableLoyalty;
         public bool NewIntegration;
         public int OrderNumber;
         public PosIntegrator PosIntegrator;
