@@ -25,6 +25,7 @@ namespace Craftgate.Response
         public bool EnableForeignCard { get; set; }
         public bool EnableInstallment { get; set; }
         public bool EnablePaymentWithoutCvc { get; set; }
+        public bool EnableLoyalty { get; set; }
         public bool NewIntegration { get; set; }
         public int OrderNumber { get; set; }
         public AutopilotState AutopilotState { get; set; }
