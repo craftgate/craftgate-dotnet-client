@@ -308,20 +308,20 @@ namespace Craftgate.Adapter
                 initPosApmPaymentRequest);
         }
 
-        public CompletePosApmPaymentResponse CompletePosApmPayment(
+        public PaymentResponse CompletePosApmPayment(
             CompletePosApmPaymentRequest completePosApmPaymentRequest)
         {
             var path = "/payment/v1/pos-apm-payments/complete";
-            return RestClient.Post<CompletePosApmPaymentResponse>(RequestOptions.BaseUrl + path,
+            return RestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(completePosApmPaymentRequest, path, RequestOptions),
                 completePosApmPaymentRequest);
         }
 
-        public Task<CompletePosApmPaymentResponse> CompletePosApmPaymentAsync(
+        public Task<PaymentResponse> CompletePosApmPaymentAsync(
             CompletePosApmPaymentRequest completePosApmPaymentRequest)
         {
             var path = "/payment/v1/pos-apm-payments/complete";
-            return AsyncRestClient.Post<CompletePosApmPaymentResponse>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(completePosApmPaymentRequest, path, RequestOptions),
                 completePosApmPaymentRequest);
         }
