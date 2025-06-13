@@ -29,6 +29,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "MASLAK")] MASLAK,
         [EnumMember(Value = "TOM_FINANCE")] TOM_FINANCE,
         [EnumMember(Value = "ALFABANK")] ALFABANK,
+        [EnumMember(Value = "ZIP")] ZIP,
         [EnumMember(Value = "PAYCELL")] PAYCELL,
         [EnumMember(Value = "HASO")] HASO,
         [EnumMember(Value = "MULTINET")] MULTINET,
