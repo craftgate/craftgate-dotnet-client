@@ -2465,6 +2465,14 @@ namespace Samples
 
             _craftgateClient.Payment().ApproveBnplPayment(PaymentId);
         }
+        
+        [Test]
+        public void Verify_Bnpl_Payment()
+        {
+            var PaymentId = 1;
+
+            _craftgateClient.Payment().VerifyBnplPayment(PaymentId);
+        }
 
         [Test]
         public void Retrieve_Multi_Payment()

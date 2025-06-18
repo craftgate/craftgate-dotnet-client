@@ -571,6 +571,20 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(null, path, RequestOptions), null);
         }
+        
+        public BnplPaymentVerifyResponse VerifyBnplPayment(long PaymentId)
+        {
+            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/verify";
+            return RestClient.Post<BnplPaymentVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(null, path, RequestOptions), null);
+        }
+
+        public Task<BnplPaymentVerifyResponse> VerifyBnplPaymentAsync(long PaymentId)
+        {
+            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/verify";
+            return AsyncRestClient.Post<BnplPaymentVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(null, path, RequestOptions), null);
+        }
 
         public InstantTransferBanksResponse RetrieveActiveBanks()
         {
