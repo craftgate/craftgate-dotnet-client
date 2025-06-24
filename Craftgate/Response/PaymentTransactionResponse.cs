@@ -15,6 +15,7 @@ namespace Craftgate.Response.Dto
         public decimal MerchantPayoutAmount { get; set; }
         public long SubMerchantMemberId { get; set; }
         public decimal SubMerchantMemberPrice { get; set; }
+        public decimal SubMerchantMemberTaxPrice { get; set; }
         public decimal SubMerchantMemberPayoutRate { get; set; }
         public decimal SubMerchantMemberPayoutAmount { get; set; }
         public string TransactionStatus { get; set; }
