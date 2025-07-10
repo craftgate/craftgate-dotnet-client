@@ -8,6 +8,11 @@ jobs:
   pack:
     name: Release Library
     runs-on: windows-2022
+    env:
+      projName: net45action
+      buildCfg: Release
+      net45SdkUrl: 'https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.3'
+      sdkSystemPath: 'C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework'
     steps:
       - name: Install .net framework 4.5 SDK
         shell: pwsh
@@ -20,7 +25,7 @@ jobs:
           [IO.Directory]::Delete("${env:sdkSystemPath}\v4.5", $True)
           echo "move SDK to ${env:sdkSystemPath}\v4.5"
           Move-Item -Force -LiteralPath "${env:temp}\net45sdk\build\.NETFramework\v4.5" -Destination "${env:sdkSystemPath}"
-          
+
       - uses: actions/checkout@v2
 
       - name: Setup dotnet 3.1

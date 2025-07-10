@@ -7,6 +7,11 @@ jobs:
     runs-on: windows-2022
 
     name: Dotnet Build & Test
+    env:
+      projName: net45action
+      buildCfg: Release
+      net45SdkUrl: 'https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.3'
+      sdkSystemPath: 'C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework'
     steps:
       - name: Install .net framework 4.5 SDK
         shell: pwsh
