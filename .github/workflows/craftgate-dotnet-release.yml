@@ -18,7 +18,12 @@ jobs:
           source-url: https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_SECRET_KEY}}
-
+          
+      - name: Install .NET Framework 4.5 Developer Pack
+        run: |
+          choco install netfx-4.5-devpack -y
+        if: runner.os == 'Windows'
+      
       - name: Set Package Version
         run: echo ("PACKAGE_VERSION=" + $env:GITHUB_REF.replace('refs/tags/', '')) >> $env:GITHUB_ENV 
     

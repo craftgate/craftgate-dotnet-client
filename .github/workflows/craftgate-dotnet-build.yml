@@ -24,10 +24,15 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
+          
+      - name: Install .NET Framework 4.5 Developer Pack
+        run: |
+          choco install netfx-4.5-devpack -y
+        if: runner.os == 'Windows'          
 
       - run: dotnet build -c Release ./Craftgate
       - run: dotnet test Test -f netcoreapp1.1
       - run: dotnet test Test -f netcoreapp2.0
       - run: dotnet test Test -f netcoreapp3.1
-      - run: dotnet test Test -f net452
+      - run: dotnet test Test -f net45
       - run: dotnet test Test -f net462
