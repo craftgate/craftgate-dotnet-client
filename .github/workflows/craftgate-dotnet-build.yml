@@ -27,7 +27,7 @@ jobs:
           
       - name: Install .NET Framework 4.5 Developer Pack (manual)
         run: |
-          Invoke-WebRequest -Uri "https://download.microsoft.com/download/1/5/B/15B23482-DBD5-4E7B-BCB0-9E7B9D2D7C50/NDP45-DevPack-KB2872776-ENU.exe" -OutFile NDP45-DevPack.exe
+          Invoke-WebRequest -Uri "https://download.visualstudio.microsoft.com/download/pr/6f6b3d6a-6f3b-4b1e-8e4a-9d8ef4f4b9a6/1b1e7f2b2bb6ec9a9e9b8d6e40f7b2a2/ndp45-devpack-enu.exe" -OutFile NDP45-DevPack.exe
           Start-Process -FilePath .\NDP45-DevPack.exe -ArgumentList "/quiet" -Wait
         if: runner.os == 'Windows'       
 
