@@ -7,7 +7,7 @@ on:
 jobs:
   pack:
     name: Release Library
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v2
 
@@ -18,7 +18,13 @@ jobs:
           source-url: https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_SECRET_KEY}}
-
+          
+      - name: Install .NET Framework 4.5 Developer Pack (manual)
+        run: |
+          Invoke-WebRequest -Uri "https://download.visualstudio.microsoft.com/download/pr/6f6b3d6a-6f3b-4b1e-8e4a-9d8ef4f4b9a6/1b1e7f2b2bb6ec9a9e9b8d6e40f7b2a2/ndp45-devpack-enu.exe" -OutFile NDP45-DevPack.exe
+          Start-Process -FilePath .\NDP45-DevPack.exe -ArgumentList "/quiet" -Wait
+        if: runner.os == 'Windows'
+      
       - name: Set Package Version
         run: echo ("PACKAGE_VERSION=" + $env:GITHUB_REF.replace('refs/tags/', '')) >> $env:GITHUB_ENV 
     

@@ -4,7 +4,7 @@ on: [ push, pull_request ]
 
 jobs:
   build:
-    runs-on: windows-2019
+    runs-on: windows-2022
 
     name: Dotnet Build & Test
     steps:
@@ -24,6 +24,12 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
+          
+      - name: Install .NET Framework 4.5 Developer Pack (manual)
+        run: |
+          Invoke-WebRequest -Uri "https://download.visualstudio.microsoft.com/download/pr/6f6b3d6a-6f3b-4b1e-8e4a-9d8ef4f4b9a6/1b1e7f2b2bb6ec9a9e9b8d6e40f7b2a2/ndp45-devpack-enu.exe" -OutFile NDP45-DevPack.exe
+          Start-Process -FilePath .\NDP45-DevPack.exe -ArgumentList "/quiet" -Wait
+        if: runner.os == 'Windows'       
 
       - run: dotnet build -c Release ./Craftgate
       - run: dotnet test Test -f netcoreapp1.1
