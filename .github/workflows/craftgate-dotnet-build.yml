@@ -25,10 +25,11 @@ jobs:
         with:
           dotnet-version: '3.1.x'
           
-      - name: Install .NET Framework 4.5 Developer Pack
+      - name: Install .NET Framework 4.5 Developer Pack (manual)
         run: |
-          choco install netfx-4.5-devpack -y
-        if: runner.os == 'Windows'          
+          Invoke-WebRequest -Uri "https://download.microsoft.com/download/1/5/B/15B23482-DBD5-4E7B-BCB0-9E7B9D2D7C50/NDP45-DevPack-KB2872776-ENU.exe" -OutFile NDP45-DevPack.exe
+          Start-Process -FilePath .\NDP45-DevPack.exe -ArgumentList "/quiet" -Wait
+        if: runner.os == 'Windows'       
 
       - run: dotnet build -c Release ./Craftgate
       - run: dotnet test Test -f netcoreapp1.1
