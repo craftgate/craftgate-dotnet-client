@@ -2336,6 +2336,7 @@ namespace Samples
                 Price = new decimal(10000.0),
                 Currency = Currency.TRY,
                 ApmType = ApmType.MASLAK,
+                ApmOrderId = Guid.NewGuid().ToString(),
                 Items = new List<BnplPaymentCartItem>
                 {
                     new BnplPaymentCartItem()
