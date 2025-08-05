@@ -546,6 +546,7 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
             Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.RedirectUrl);
         }
 
         [Test]
