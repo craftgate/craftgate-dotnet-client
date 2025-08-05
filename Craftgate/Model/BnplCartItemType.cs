@@ -46,6 +46,8 @@ namespace Craftgate.Model
 
         [EnumMember(Value = "AUTOMOBILE_MOTORCYCLE")]
         AUTOMOBILE_MOTORCYCLE,
+        [EnumMember(Value = "MOBILE_PHONE_REFURBISHED")]
+        MOBILE_PHONE_REFURBISHED,
         [EnumMember(Value = "OTHER")] OTHER
     }
 }
