@@ -8,7 +8,24 @@ jobs:
   pack:
     name: Release Library
     runs-on: windows-2022
+    env:
+      projName: net45action
+      buildCfg: Release
+      net45SdkUrl: 'https://www.nuget.org/api/v2/package/Microsoft.NETFramework.ReferenceAssemblies.net45/1.0.3'
+      sdkSystemPath: 'C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework'
     steps:
+      - name: Install .net framework 4.5 SDK
+        shell: pwsh
+        run: |
+          echo "download ${env:net45SdkUrl}"
+          Invoke-WebRequest -Uri "${env:net45SdkUrl}" -OutFile "${env:temp}\net45sdk.zip"
+          echo "unzip net45sdk.zip"
+          Expand-Archive -Force -LiteralPath "${env:temp}\net45sdk.zip" -DestinationPath "${env:temp}\net45sdk"
+          echo "delete ${env:sdkSystemPath}\v4.5"
+          [IO.Directory]::Delete("${env:sdkSystemPath}\v4.5", $True)
+          echo "move SDK to ${env:sdkSystemPath}\v4.5"
+          Move-Item -Force -LiteralPath "${env:temp}\net45sdk\build\.NETFramework\v4.5" -Destination "${env:sdkSystemPath}"
+
       - uses: actions/checkout@v2
 
       - name: Setup dotnet 3.1
@@ -18,13 +35,7 @@ jobs:
           source-url: https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_SECRET_KEY}}
-          
-      - name: Install .NET Framework 4.5 Developer Pack (manual)
-        run: |
-          Invoke-WebRequest -Uri "https://download.visualstudio.microsoft.com/download/pr/6f6b3d6a-6f3b-4b1e-8e4a-9d8ef4f4b9a6/1b1e7f2b2bb6ec9a9e9b8d6e40f7b2a2/ndp45-devpack-enu.exe" -OutFile NDP45-DevPack.exe
-          Start-Process -FilePath .\NDP45-DevPack.exe -ArgumentList "/quiet" -Wait
-        if: runner.os == 'Windows'
-      
+
       - name: Set Package Version
         run: echo ("PACKAGE_VERSION=" + $env:GITHUB_REF.replace('refs/tags/', '')) >> $env:GITHUB_ENV 
     
