@@ -9,6 +9,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "SHOW_HTML_CONTENT")] SHOW_HTML_CONTENT,
         [EnumMember(Value = "WAIT_FOR_WEBHOOK")] WAIT_FOR_WEBHOOK,
         [EnumMember(Value = "APPROVAL_REQUIRED")] APPROVAL_REQUIRED,
+        [EnumMember(Value = "SHOW_QR_CODE")] SHOW_QR_CODE,
         [EnumMember(Value = "NONE")] NONE
     }
 }
