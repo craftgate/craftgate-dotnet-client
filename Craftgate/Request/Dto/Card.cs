@@ -12,6 +12,7 @@ namespace Craftgate.Request.Dto
         public string CardAlias { get; set; }
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }
+        public string SecureFieldsToken { get; set; }
         public bool? StoreCardAfterSuccessPayment { get; set; } = false;
         public string BinNumber { get; set; }
         public string LastFourDigits { get; set; }
