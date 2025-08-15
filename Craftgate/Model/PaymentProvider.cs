@@ -41,6 +41,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYLANDS_MB_WAY")] PAYLANDS_MB_WAY,
         [EnumMember(Value = "PAYCELL_DCB")] PAYCELL_DCB,
         [EnumMember(Value = "IWALLET")] IWALLET,
+        [EnumMember(Value = "PAPEL")] PAPEL,
         [EnumMember(Value = "OFFLINE")] OFFLINE
     }
 }

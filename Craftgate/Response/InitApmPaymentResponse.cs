@@ -13,6 +13,7 @@ namespace Craftgate.Response
         public ApmAdditionalAction AdditionalAction { get; set; }
         public string RedirectUrl { get; set; }
         public string HtmlContent { get; set; }
+        public string QrCode { get; set; }
         public PaymentError PaymentError { get; set; }
         public Dictionary<string, object> AdditionalData { get; set; }
     }
