@@ -6,5 +6,6 @@ namespace Craftgate.Request
         public string CardToken { get; set; }
         public string ExpireYear { get; set; }
         public string ExpireMonth { get; set; }
+        public string CardAlias { get; set; }
     }
 }
