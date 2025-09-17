@@ -6,6 +6,8 @@ namespace Craftgate.Model
     {
         [EnumMember(Value = "FAILURE")] FAILURE,
 
-        [EnumMember(Value = "SUCCESS")] SUCCESS
+        [EnumMember(Value = "SUCCESS")] SUCCESS,
+        
+        [EnumMember(Value = "WAITING")] WAITING
     }
 }
