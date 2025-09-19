@@ -113,8 +113,8 @@ namespace Craftgate.Adapter
         }
 
         /*
-        * This endpoint using for creating and updating merchant pos commissions. The HTTP method is POST due to this requirement.
-        * */
+         * This endpoint using for creating and updating merchant pos commissions. The HTTP method is POST due to this requirement.
+         * */
         public MerchantPosCommissionListResponse UpdateMerchantPosCommissions(long id,
             UpdateMerchantPosCommissionsRequest request)
         {

@@ -98,7 +98,7 @@ namespace Craftgate.Adapter
                 CreateHeaders(masterpassPaymentThreeDSCompleteRequest, path, RequestOptions),
                 masterpassPaymentThreeDSCompleteRequest);
         }
-        
+
         public RetrieveLoyaltiesResponse RetrieveLoyalties(MasterpassRetrieveLoyaltiesRequest masterpassRetrieveLoyaltiesRequest)
         {
             var path = "/payment/v2/masterpass-payments/loyalties/retrieve";

@@ -14,9 +14,9 @@ namespace Craftgate.Adapter
 
         public InitJuzdanPaymentResponse Init(InitJuzdanPaymentRequest initJuzdanPaymentRequest)
         {
-           var path = "/payment/v1/juzdan-payments/init";
-           return RestClient.Post<InitJuzdanPaymentResponse>(RequestOptions.BaseUrl + path,
-               CreateHeaders(initJuzdanPaymentRequest, path, RequestOptions), initJuzdanPaymentRequest);
+            var path = "/payment/v1/juzdan-payments/init";
+            return RestClient.Post<InitJuzdanPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initJuzdanPaymentRequest, path, RequestOptions), initJuzdanPaymentRequest);
         }
 
         public PaymentResponse Retrieve(string referenceId)

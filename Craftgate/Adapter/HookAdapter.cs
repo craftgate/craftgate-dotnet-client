@@ -8,7 +8,7 @@ namespace Craftgate.Adapter
         public HookAdapter(RequestOptions requestOptions) : base(requestOptions)
         {
         }
-        
+
         public bool IsWebhookVerified(string merchantHookKey, string incomingSignature, WebhookData webhookData)
         {
             if (merchantHookKey == null || incomingSignature == null || webhookData == null)

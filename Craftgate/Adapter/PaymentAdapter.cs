@@ -571,7 +571,7 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(null, path, RequestOptions), null);
         }
-        
+
         public BnplPaymentVerifyResponse VerifyBnplPayment(long PaymentId)
         {
             var path = "/payment/v1/bnpl-payments/" + PaymentId + "/verify";
@@ -597,7 +597,7 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/instant-transfer-banks";
             return AsyncRestClient.Get<InstantTransferBanksResponse>(RequestOptions.BaseUrl + path,
-            CreateHeaders(path, RequestOptions));
+                CreateHeaders(path, RequestOptions));
         }
 
 
