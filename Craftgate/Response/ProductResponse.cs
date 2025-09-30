@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Craftgate.Model;
 
@@ -16,6 +17,7 @@ namespace Craftgate.Response
         public Currency Currency { get; set; }
         public int Stock { get; set; }
         public int SoldCount { get; set; }
+        public DateTime ExpiresAt { get; set; }
         public string Token { get; set; }
         public ISet<long> EnabledInstallments { get; set; }
         public string Url { get; set; }
