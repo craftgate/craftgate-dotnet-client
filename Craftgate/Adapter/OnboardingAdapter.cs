@@ -81,7 +81,7 @@ namespace Craftgate.Adapter
                 CreateHeaders(createMerchantRequest, path, RequestOptions),
                 createMerchantRequest);
         }
-        
+
         public Task<CreateMerchantResponse> CreateMerchantAsync(CreateMerchantRequest createMerchantRequest)
         {
             var path = "/onboarding/v1/merchants";

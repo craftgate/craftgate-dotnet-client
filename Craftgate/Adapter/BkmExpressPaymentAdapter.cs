@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Craftgate.Net;
 using Craftgate.Request;
 using Craftgate.Request.Common;
@@ -35,7 +34,7 @@ namespace Craftgate.Adapter
             return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-        
+
         public PaymentResponse RetrievePaymentByToken(
             string token)
         {
@@ -43,7 +42,5 @@ namespace Craftgate.Adapter
             return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-
     }
-        
 }

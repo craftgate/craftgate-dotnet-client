@@ -20,6 +20,7 @@ namespace Craftgate
         private readonly MasterpassPaymentAdapter _masterpassPaymentAdapter;
         private readonly BankAccountTrackingAdapter _bankAccountTrackingAdapter;
         private readonly MerchantAdapter _merchantAdapter;
+        private readonly MerchantApmAdapter _merchantApmAdapter;
         private readonly JuzdanPaymentAdapter _juzdanPaymentAdapter;
         private readonly BkmExpressPaymentAdapter _bkmExpressPaymentAdapter;
 
@@ -57,6 +58,7 @@ namespace Craftgate
             _masterpassPaymentAdapter = new MasterpassPaymentAdapter(requestOptions);
             _bankAccountTrackingAdapter = new BankAccountTrackingAdapter(requestOptions);
             _merchantAdapter = new MerchantAdapter(requestOptions);
+            _merchantApmAdapter = new MerchantApmAdapter(requestOptions);
             _juzdanPaymentAdapter = new JuzdanPaymentAdapter(requestOptions);
             _bkmExpressPaymentAdapter = new BkmExpressPaymentAdapter(requestOptions);
         }
@@ -129,6 +131,11 @@ namespace Craftgate
         public MerchantAdapter Merchant()
         {
             return _merchantAdapter;
+        }
+        
+        public MerchantApmAdapter MerchantApm()
+        {
+            return _merchantApmAdapter;
         }
 
         public JuzdanPaymentAdapter Juzdan()

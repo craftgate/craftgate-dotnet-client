@@ -546,6 +546,7 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
             Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.RedirectUrl);
         }
 
         [Test]
@@ -2336,6 +2337,7 @@ namespace Samples
                 Price = new decimal(10000.0),
                 Currency = Currency.TRY,
                 ApmType = ApmType.MASLAK,
+                ApmOrderId = Guid.NewGuid().ToString(),
                 Items = new List<BnplPaymentCartItem>
                 {
                     new BnplPaymentCartItem()
@@ -2464,6 +2466,14 @@ namespace Samples
             var PaymentId = 1;
 
             _craftgateClient.Payment().ApproveBnplPayment(PaymentId);
+        }
+        
+        [Test]
+        public void Verify_Bnpl_Payment()
+        {
+            var PaymentId = 1;
+
+            _craftgateClient.Payment().VerifyBnplPayment(PaymentId);
         }
 
         [Test]

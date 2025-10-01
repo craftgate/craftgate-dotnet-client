@@ -61,7 +61,7 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Get<PayoutDetailResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-        
+
         public PayoutRowListResponse SearchPayoutRows(SearchPayoutRowsRequest request)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
