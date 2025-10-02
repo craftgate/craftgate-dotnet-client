@@ -7,5 +7,6 @@ namespace Craftgate.Request.Dto
         public string ExternalId { get; set; }
         public long? SubMerchantMemberId { get; set; }
         public decimal? SubMerchantMemberPrice { get; set; }
+        public int? BlockageDay { get; set; }
     }
 }
