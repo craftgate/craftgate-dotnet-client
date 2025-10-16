@@ -24,7 +24,7 @@ namespace Craftgate.Request
         public string ClientIp { get; set; }
         public IList<int> EnabledInstallments { get; set; }
         public bool AlwaysStoreCardAfterPayment { get; set; }
-        public bool EnabledDeleteCard { get; set; }
+        public bool AllowDeleteStoredCard { get; set; }
         public bool AllowOnlyStoredCards { get; set; }
         public bool AllowOnlyCreditCard { get; set; }
         public bool AllowInstallmentOnlyCommercialCards { get; set; }
