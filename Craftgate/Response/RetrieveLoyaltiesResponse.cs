@@ -11,6 +11,7 @@ namespace Craftgate.Response
         public long CardIssuerBankId;
         public bool Force3ds { get; set; }
         public MerchantPos Pos { get; set; }
+        public FraudResult FraudResult { get; set; }
         public IList<Loyalty> Loyalties { get; set; }
     }
 }
