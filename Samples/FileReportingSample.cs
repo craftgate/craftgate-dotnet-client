@@ -12,7 +12,8 @@ namespace Samples
     public class FileReportingSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+            new CraftgateClient("zG5jvjwWQyo3iIDyr6p1tvy1DzTXfnTb", "yzyiMbQD8cNGh6qHWbP0rLE56LDdmh8J", "http://localhost:8000");
+
 
         [Test]
         public void Retrieve_Daily_Transaction_Report()
@@ -39,6 +40,21 @@ namespace Samples
 
             var response = _craftgateClient.FileReporting().RetrieveDailyPaymentReport(request);
 
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Create_Report()
+        {
+            var request = new CreateReportRequest
+            {
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddMonths(1),
+                ReportType = ReportType.PAYMENT,
+                ReportPeriod = ReportPeriod.INSTANT
+            };
+
+            var response = _craftgateClient.FileReporting().CreateReport(request);
             Assert.NotNull(response);
         }
     }
