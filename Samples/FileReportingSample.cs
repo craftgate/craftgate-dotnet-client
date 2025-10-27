@@ -1,7 +1,4 @@
 using System;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
@@ -12,7 +9,7 @@ namespace Samples
     public class FileReportingSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("zG5jvjwWQyo3iIDyr6p1tvy1DzTXfnTb", "yzyiMbQD8cNGh6qHWbP0rLE56LDdmh8J", "http://localhost:8000");
+            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
 
         [Test]
@@ -55,6 +52,20 @@ namespace Samples
             };
 
             var response = _craftgateClient.FileReporting().CreateReport(request);
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Retrieve_Report()
+        {
+            var request = new RetrieveReportRequest
+            {
+                FileType = ReportFileType.CSV
+            };
+
+            var reportId = 27;
+
+            var response = _craftgateClient.FileReporting().RetrieveReport(request, reportId);
             Assert.NotNull(response);
         }
     }

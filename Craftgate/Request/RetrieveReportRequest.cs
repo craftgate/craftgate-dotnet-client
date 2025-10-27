@@ -4,6 +4,6 @@ namespace Craftgate.Request
 {
     public class RetrieveReportRequest
     {
-        public ReportType ReportType { get; set; }
+        public ReportFileType FileType { get; set; }
     }
 }
