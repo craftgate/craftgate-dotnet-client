@@ -18,7 +18,6 @@ namespace Craftgate.Request
         public int Stock {get; set;}
         public Currency Currency {get; set;}
         public string Description {get; set;}
-        [JsonConverter(typeof(DateTimeConverterUsingDateTimeParse), "yyyy-MM-dd'T'HH:mm:ss")]
         public DateTime ExpiresAt {get; set;}
         public ISet<long> EnabledInstallments {get; set;}
     }
