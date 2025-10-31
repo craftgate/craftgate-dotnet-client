@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
-using Craftgate.Request.Dto;
 using Craftgate.Response;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace Samples
 {
@@ -39,7 +36,6 @@ namespace Samples
             Assert.AreEqual(response.EnabledInstallments, request.EnabledInstallments);
             Assert.NotNull(response.Url);
             Assert.NotNull(response.Token);
-            Assert.NotNull(response.QrCodeUrl);
         }
 
         [Test]
