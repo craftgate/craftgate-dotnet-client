@@ -116,7 +116,7 @@ namespace Craftgate.Adapter
                 CreateHeaders(request, path, RequestOptions), request);
         }
         
-        public void AddCardValueToFraudValueList(AddCardFingerprintFraudValueListRequest request,string listName)
+        public void AddCardFingerprintToFraudValueList(AddCardFingerprintFraudValueListRequest request,string listName)
         {
             string path = "/fraud/v1/value-lists/" + listName + "/card-fingerprints";
             RestClient.Post<object>(RequestOptions.BaseUrl + path,
