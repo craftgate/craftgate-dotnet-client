@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Craftgate.Common;
 using Craftgate.Model;
+using Newtonsoft.Json;
 
 namespace Craftgate.Request
 {
