@@ -1957,6 +1957,33 @@ namespace Samples
             Assert.AreEqual(request.PaymentId, response.PaymentId);
             Assert.AreEqual("SUCCESS", response.Status);
         }
+        
+        [Test]
+        public void Refund_Payment_Mark_As_Refunded()
+        {
+            var request = new RefundPaymentRequest
+            {
+                PaymentId = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                RefundDestinationType = RefundDestinationType.PROVIDER
+            };
+
+            var response = _craftgateClient.Payment().refundPaymentMarkAsRefunded(request);
+            Assert.NotNull(response);
+        }
+        
+        [Test]
+        public void Refund_Payment_Transaction_Mark_As_Refunded()
+        {
+            var request = new RefundPaymentTransactionMarkAsRefundedRequest
+            {
+                PaymentTransactionId = 1,
+                RefundPrice = 20
+            };
+
+            var response = _craftgateClient.Payment().refundPaymentTransactionMarkAsRefunded(request);
+            Assert.NotNull(response);
+        }
 
         [Test]
         public void Retrieve_Payment_Refund()
