@@ -374,6 +374,42 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
+        public PaymentTransactionRefundResponse refundPaymentTransactionMarkAsRefunded(
+            RefundPaymentTransactionMarkAsRefundedRequest refundPaymentTransactionMarkAsRefundedRequest)
+        {
+            var path = "/payment/v1/refund-transactions/mark-as-refunded";
+            return RestClient.Post<PaymentTransactionRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundPaymentTransactionMarkAsRefundedRequest, path, RequestOptions),
+                refundPaymentTransactionMarkAsRefundedRequest);
+        }
+
+        public Task<PaymentTransactionRefundResponse> refundPaymentTransactionMarkAsRefundedAsync(
+            RefundPaymentTransactionMarkAsRefundedRequest refundPaymentTransactionMarkAsRefundedRequest)
+        {
+            var path = "/payment/v1/refund-transactions/mark-as-refunded";
+            return AsyncRestClient.Post<PaymentTransactionRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundPaymentTransactionMarkAsRefundedRequest, path, RequestOptions),
+                refundPaymentTransactionMarkAsRefundedRequest);
+        }
+
+        public PaymentTransactionRefundListResponse refundPaymentMarkAsRefunded(
+            RefundPaymentRequest refundPaymentRequest)
+        {
+            var path = "/payment/v1/refunds/mark-as-refunded";
+            return RestClient.Post<PaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundPaymentRequest, path, RequestOptions),
+                refundPaymentRequest);
+        }
+
+        public Task<PaymentTransactionRefundListResponse> refundPaymentMarkAsRefundedAsync(
+            RefundPaymentRequest refundPaymentRequest)
+        {
+            var path = "/payment/v1/refunds/mark-as-refunded";
+            return AsyncRestClient.Post<PaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundPaymentRequest, path, RequestOptions),
+                refundPaymentRequest);
+        }
+
         public PaymentRefundResponse RefundPayment(RefundPaymentRequest refundPaymentRequest)
         {
             var path = "/payment/v1/refunds";
@@ -606,7 +642,8 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/apple-pay/merchant-sessions";
             return RestClient.Post<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
+                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions),
+                applePayMerchantSessionCreateRequest);
         }
 
         public Task<object> CreateApplePayMerchantSessionAsync(
@@ -614,7 +651,8 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/apple-pay/merchant-sessions";
             return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
+                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions),
+                applePayMerchantSessionCreateRequest);
         }
 
         public MultiPaymentResponse RetrieveMultiPayment(string token)
@@ -640,7 +678,8 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<StoredCardListResponse> RetrieveProviderCardsAsync(RetrieveProviderCardRequest retrieveProviderCardRequest)
+        public Task<StoredCardListResponse> RetrieveProviderCardsAsync(
+            RetrieveProviderCardRequest retrieveProviderCardRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
