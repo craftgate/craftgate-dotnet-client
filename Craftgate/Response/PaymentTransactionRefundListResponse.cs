@@ -1,10 +1,9 @@
 using System.Collections.Generic;
+using Craftgate.Response.Common;
 
 namespace Craftgate.Response
 {
-    public class PaymentTransactionRefundListResponse
+    public class PaymentTransactionRefundListResponse : ListResponse<PaymentTransactionRefundResponse>
     {
-        public long? Size { get; set; }
-        public IList<PaymentTransactionRefundResponse> Items { get; set; }
     }
 }

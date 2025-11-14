@@ -2,8 +2,8 @@ using System.Runtime.Serialization;
 
 namespace Craftgate.Model
 {
-    public enum PosUserType
+    public enum ReportPeriod
     {
-        [EnumMember(Value = "API")] API
+        [EnumMember(Value = "INSTANT")] INSTANT,
     }
 }
