@@ -1959,6 +1959,19 @@ namespace Samples
         }
         
         [Test]
+        public void Refund_Waiting_Payment()
+        {
+            var request = new RefundWaitingPaymentRequest
+            {
+                PaymentId = 1,
+            };
+
+            var response = _craftgateClient.Payment().RefundWaitingPayment(request);
+            Assert.NotNull(response);
+            Assert.AreEqual("SUCCESS", response.Status);
+        }
+        
+        [Test]
         public void Refund_Payment_Mark_As_Refunded()
         {
             var request = new RefundPaymentRequest
