@@ -21,7 +21,6 @@ namespace Craftgate.Response
         public string Token { get; set; }
         public ISet<long> EnabledInstallments { get; set; }
         public string Url { get; set; }
-        public string QrCodeUrl { get; set; }
         public string Channel { get; set; }
     }
 }

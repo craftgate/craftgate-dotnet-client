@@ -19,6 +19,7 @@ namespace Craftgate.Request
         public Currency Currency {get; set;}
         public string Description {get; set;}
         public DateTime ExpiresAt {get; set;}
+        public bool MultiPayment {get; set;}
         public ISet<long> EnabledInstallments {get; set;}
     }
 }
