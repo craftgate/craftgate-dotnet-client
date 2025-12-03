@@ -22,5 +22,6 @@ namespace Craftgate.Response
         public ISet<long> EnabledInstallments { get; set; }
         public string Url { get; set; }
         public string Channel { get; set; }
+        public bool MultiPayment { get; set; }
     }
 }
