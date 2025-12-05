@@ -425,6 +425,22 @@ namespace Craftgate.Adapter
                 CreateHeaders(refundPaymentRequest, path, RequestOptions),
                 refundPaymentRequest);
         }
+        
+        public WaitingPaymentRefundResponse RefundWaitingPayment(RefundWaitingPaymentRequest refundWaitingPaymentRequest)
+        {
+            var path = "/payment/v1/refunds/refund-waiting-payment";
+            return RestClient.Post<WaitingPaymentRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundWaitingPaymentRequest, path, RequestOptions),
+                refundWaitingPaymentRequest);
+        }
+
+        public Task<WaitingPaymentRefundResponse> RefundWaitingPaymentAsync(RefundWaitingPaymentRequest refundWaitingPaymentRequest)
+        {
+            var path = "/payment/v1/refunds/refund-waiting-payment";
+            return AsyncRestClient.Post<WaitingPaymentRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundWaitingPaymentRequest, path, RequestOptions),
+                refundWaitingPaymentRequest);
+        }
 
         public PaymentRefundResponse RetrievePaymentRefund(long id)
         {
