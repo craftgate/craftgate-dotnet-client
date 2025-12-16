@@ -35,5 +35,6 @@ namespace Craftgate.Request
         public IList<PaymentItem> Items { get; set; }
         public FraudCheckParameters FraudParams { get; set; }
         public Dictionary<string, object> AdditionalParams { get; set; }
+        public Dictionary<string, List<CustomInstallment>> CardBrandInstallments { get; set; }
     }
 }

@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using Craftgate.Common;
 using Craftgate.Model;
+using Newtonsoft.Json;
 
 namespace Craftgate.Request
 {
@@ -14,6 +17,7 @@ namespace Craftgate.Request
         public int Stock {get; set;}
         public Currency Currency {get; set;}
         public string Description {get; set;}
+        public DateTime? ExpiresAt {get; set;}
         public bool MultiPayment {get; set;}
         public ISet<long> EnabledInstallments {get; set;}
     }

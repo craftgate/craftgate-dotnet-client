@@ -1,15 +1,13 @@
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Craftgate.Model
 {
-    [JsonConverter(typeof(StringEnumConverter))]
     public enum ApmType
     {
         [EnumMember(Value = "PAPARA")] PAPARA,
         [EnumMember(Value = "PAYONEER")] PAYONEER,
         [EnumMember(Value = "SODEXO")] SODEXO,
+        [EnumMember(Value = "SODEXO_GIFT")] SODEXO_GIFT,
         [EnumMember(Value = "EDENRED")] EDENRED,
         [EnumMember(Value = "SETCARD")] SETCARD,
         [EnumMember(Value = "EDENRED_GIFT")] EDENRED_GIFT,
@@ -38,6 +36,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYLANDS_MB_WAY")] PAYLANDS_MB_WAY,
         [EnumMember(Value = "PAYCELL_DCB")] PAYCELL_DCB,
         [EnumMember(Value = "IWALLET")] IWALLET,
+        [EnumMember(Value = "PAPEL")] PAPEL,
         [EnumMember(Value = "FUND_TRANSFER")] FUND_TRANSFER,
         [EnumMember(Value = "CASH_ON_DELIVERY")] CASH_ON_DELIVERY
     }

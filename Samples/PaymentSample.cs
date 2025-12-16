@@ -546,6 +546,7 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
             Assert.NotNull(response.PaymentId);
+            Assert.NotNull(response.RedirectUrl);
         }
 
         [Test]
@@ -1956,6 +1957,46 @@ namespace Samples
             Assert.AreEqual(request.PaymentId, response.PaymentId);
             Assert.AreEqual("SUCCESS", response.Status);
         }
+        
+        [Test]
+        public void Refund_Waiting_Payment()
+        {
+            var request = new RefundWaitingPaymentRequest
+            {
+                PaymentId = 1,
+            };
+
+            var response = _craftgateClient.Payment().RefundWaitingPayment(request);
+            Assert.NotNull(response);
+            Assert.AreEqual("SUCCESS", response.Status);
+        }
+        
+        [Test]
+        public void Refund_Payment_Mark_As_Refunded()
+        {
+            var request = new RefundPaymentRequest
+            {
+                PaymentId = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                RefundDestinationType = RefundDestinationType.PROVIDER
+            };
+
+            var response = _craftgateClient.Payment().refundPaymentMarkAsRefunded(request);
+            Assert.NotNull(response);
+        }
+        
+        [Test]
+        public void Refund_Payment_Transaction_Mark_As_Refunded()
+        {
+            var request = new RefundPaymentTransactionMarkAsRefundedRequest
+            {
+                PaymentTransactionId = 1,
+                RefundPrice = 20
+            };
+
+            var response = _craftgateClient.Payment().refundPaymentTransactionMarkAsRefunded(request);
+            Assert.NotNull(response);
+        }
 
         [Test]
         public void Retrieve_Payment_Refund()
@@ -2336,6 +2377,7 @@ namespace Samples
                 Price = new decimal(10000.0),
                 Currency = Currency.TRY,
                 ApmType = ApmType.MASLAK,
+                ApmOrderId = Guid.NewGuid().ToString(),
                 Items = new List<BnplPaymentCartItem>
                 {
                     new BnplPaymentCartItem()
@@ -2464,6 +2506,14 @@ namespace Samples
             var PaymentId = 1;
 
             _craftgateClient.Payment().ApproveBnplPayment(PaymentId);
+        }
+        
+        [Test]
+        public void Verify_Bnpl_Payment()
+        {
+            var PaymentId = 1;
+
+            _craftgateClient.Payment().VerifyBnplPayment(PaymentId);
         }
 
         [Test]

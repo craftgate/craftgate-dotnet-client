@@ -1,4 +1,6 @@
-﻿namespace Craftgate.Request
+﻿using Craftgate.Request.Dto;
+
+namespace Craftgate.Request
 {
     public class RetrieveLoyaltiesRequest
     {
@@ -9,5 +11,9 @@
 
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }
+
+        public string ClientIp { get; set; }
+        public string ConversationId { get; set; }
+        public FraudCheckParameters FraudParams { get; set; }
     }
 }

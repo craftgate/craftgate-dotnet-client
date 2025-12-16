@@ -77,20 +77,20 @@ namespace Samples
             };
             
             _craftgateClient.Fraud().AddValueToValueList(request);
-        } 
-        
+        }
+
         [Test]
-        public void Add_CardFingerprint_To_Fraud_Value_List()
+        public void Add_Card_Value_To_Fraud_Value_List()
         {
-            var request = new FraudValueListRequest
+            var request = new AddCardFingerprintFraudValueListRequest
             {
-                ListName = "cardList",
-                Type = FraudValueType.CARD,
                 Label = "John Doe's Card",
-                PaymentId = 11675L
+                Operation = FraudOperation.PAYMENT,
+                OperationId = "11675", // PaymentId
+                DurationInSeconds = 3600
             };
-            
-            _craftgateClient.Fraud().AddValueToValueList(request);
+
+            _craftgateClient.Fraud().AddCardFingerprintToFraudValueList(request, "cardList");
         }
         
         [Test]

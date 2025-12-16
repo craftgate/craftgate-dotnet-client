@@ -115,6 +115,13 @@ namespace Craftgate.Adapter
             RestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
+        
+        public void AddCardFingerprintToFraudValueList(AddCardFingerprintFraudValueListRequest request,string listName)
+        {
+            string path = "/fraud/v1/value-lists/" + listName + "/card-fingerprints";
+            RestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
 
         public Task AddValueToValueListAsync(FraudValueListRequest request)
         {

@@ -1,6 +1,6 @@
 # Craftgate .NET Client
 
-![Craftgate Dotnet CI](https://github.com/craftgate/craftgate-dotnet-client/workflows/Craftgate%20Dotnet%20CI/badge.svg?branch=master)
+[![Build Status](https://github.com/craftgate/craftgate-dotnet-client/actions/workflows/craftgate-dotnet-build.yml/badge.svg?branch=master)](https://github.com/craftgate/craftgate-dotnet-client/actions?query=branch%3Amaster)
 [![NuGet](https://img.shields.io/nuget/v/Craftgate.svg)](https://www.nuget.org/packages/Craftgate/)
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/craftgate/craftgate-dotnet-client)
 
