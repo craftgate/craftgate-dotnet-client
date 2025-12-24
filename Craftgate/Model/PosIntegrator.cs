@@ -48,5 +48,6 @@ namespace Craftgate.Model
         [EnumMember(Value = "AKBANK_VPOS")] AKBANK_VPOS,
         [EnumMember(Value = "TAP")] TAP,
         [EnumMember(Value = "RUBIK")] RUBIK,
+        [EnumMember(Value = "BIN_PAY")] BIN_PAY
     }
 }
