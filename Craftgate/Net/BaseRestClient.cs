@@ -67,7 +67,7 @@ namespace Craftgate.Net
             if (response != null && response.Errors != null)
             {
                 var errorResponse = response.Errors;
-                throw new CraftgateException(errorResponse.ErrorCode, errorResponse.ErrorDescription, errorResponse.ErrorGroup);
+                throw new CraftgateException(errorResponse.ErrorCode, errorResponse.ErrorDescription, errorResponse.ErrorGroup, errorResponse.ProviderError);
             }
         }
         
