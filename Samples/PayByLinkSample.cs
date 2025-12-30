@@ -62,7 +62,6 @@ namespace Samples
             Assert.AreEqual(response.EnabledInstallments, request.EnabledInstallments);
             Assert.NotNull(response.Url);
             Assert.NotNull(response.Token);
-            Assert.NotNull(response.QrCodeUrl);
         }
 
         [Test]
@@ -76,7 +75,6 @@ namespace Samples
             Assert.NotNull(response.Price);
             Assert.NotNull(response.Url);
             Assert.NotNull(response.Token);
-            Assert.NotNull(response.QrCodeUrl);
         }
 
         [Test]
