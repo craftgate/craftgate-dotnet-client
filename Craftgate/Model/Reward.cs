@@ -4,6 +4,7 @@
     {
         public decimal? CardRewardMoney { get; set; }
         public decimal? FirmRewardMoney { get; set; }
+        public decimal? MileRewardMoney { get; set; }
         public decimal? TotalRewardMoney { get; set; }
     }
 }
