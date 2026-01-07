@@ -46,6 +46,7 @@ namespace Craftgate.Response.Common
         public string CardAssociation { get; set; }
         public string CardBrand { get; set; }
         public string RequestedPosAlias { get; set; }
+        public DateTime BlockageResolvedDate { get; set; }
         public long? FraudId { get; set; }
         public FraudAction? FraudAction { get; set; }
         public double? FraudScore { get; set; }
