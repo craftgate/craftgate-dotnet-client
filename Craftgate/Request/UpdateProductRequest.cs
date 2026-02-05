@@ -19,5 +19,6 @@ namespace Craftgate.Request
         public DateTime ExpiresAt { get; set; }
         public bool MultiPayment { get; set; }
         public ISet<long> EnabledInstallments { get; set; }
+        public string BasketIdentifier { get; set; }
     }
 }
