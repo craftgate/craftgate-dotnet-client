@@ -25,5 +25,6 @@ namespace Craftgate.Response
         public WalletTransaction WalletTransaction { get; set; }
         public long? FraudId { get; set; }
         public FraudAction? FraudAction { get; set; }
+        public long? FraudRuleId { get; set; }
     }
 }
