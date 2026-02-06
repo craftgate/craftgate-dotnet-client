@@ -2059,6 +2059,21 @@ namespace Samples
         }
 
         [Test]
+        public void Store_Card_With_Secure_Fields()
+        {
+            var request = new StoreCardRequest
+            {
+                SecureFieldsToken = "xxXXxx"
+            };
+            
+            var response = _craftgateClient.Payment().StoreCard(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response);
+            Assert.NotNull(response.CardToken);
+            Assert.NotNull(response.CreatedAt);
+        }
+
+        [Test]
         public void Update_Stored_Card()
         {
             var request = new UpdateCardRequest
