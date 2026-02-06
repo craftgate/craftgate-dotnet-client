@@ -14,6 +14,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAYONEER")] PAYONEER,
         [EnumMember(Value = "SODEXO")] SODEXO,
         [EnumMember(Value = "EDENRED")] EDENRED,
+        [EnumMember(Value = "TOKENFLEX")] TOKENFLEX,
         [EnumMember(Value = "METROPOL")] METROPOL,
         [EnumMember(Value = "IWALLET")] IWALLET,
         [EnumMember(Value = "ALIPAY")] ALIPAY,
