@@ -109,6 +109,24 @@ namespace Craftgate.Adapter
                 initCheckoutPaymentRequest);
         }
 
+        public InitCheckoutCardVerifyResponse InitCheckoutCardVerify(
+            InitCheckoutCardVerifyRequest initCheckoutCardVerifyRequest)
+        {
+            var path = "/payment/v1/checkout-card-verify/init";
+            return RestClient.Post<InitCheckoutCardVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initCheckoutCardVerifyRequest, path, RequestOptions),
+                initCheckoutCardVerifyRequest);
+        }
+
+        public Task<InitCheckoutCardVerifyResponse> InitCheckoutCardVerifyAsync(
+            InitCheckoutCardVerifyRequest initCheckoutCardVerifyRequest)
+        {
+            var path = "/payment/v1/checkout-card-verify/init";
+            return AsyncRestClient.Post<InitCheckoutCardVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initCheckoutCardVerifyRequest, path, RequestOptions),
+                initCheckoutCardVerifyRequest);
+        }
+
         public PaymentResponse RetrieveCheckoutPayment(string token)
         {
             var path = "/payment/v1/checkout-payments/" + token;
@@ -528,6 +546,20 @@ namespace Craftgate.Adapter
             var path = "/payment/v1/cards/delete";
             return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(deleteStoredCardRequest, path, RequestOptions), deleteStoredCardRequest);
+        }
+
+        public VerifyCardResponse VerifyCard(VerifyCardRequest verifyCardRequest)
+        {
+            var path = "/payment/v1/cards/verify";
+            return RestClient.Post<VerifyCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(verifyCardRequest, path, RequestOptions), verifyCardRequest);
+        }
+
+        public Task<VerifyCardResponse> VerifyCardAsync(VerifyCardRequest verifyCardRequest)
+        {
+            var path = "/payment/v1/cards/verify";
+            return AsyncRestClient.Post<VerifyCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(verifyCardRequest, path, RequestOptions), verifyCardRequest);
         }
 
         public PaymentTransactionApprovalListResponse ApprovePaymentTransactions(
