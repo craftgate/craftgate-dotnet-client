@@ -127,6 +127,20 @@ namespace Craftgate.Adapter
                 initCheckoutCardVerifyRequest);
         }
 
+        public RetrieveCheckoutCardVerifyResponse RetrieveCheckoutCardVerify(string token)
+        {
+            var path = "/payment/v1/checkout-card-verify/" + token;
+            return RestClient.Get<RetrieveCheckoutCardVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task<RetrieveCheckoutCardVerifyResponse> RetrieveCheckoutCardVerifyAsync(string token)
+        {
+            var path = "/payment/v1/checkout-card-verify/" + token;
+            return AsyncRestClient.Get<RetrieveCheckoutCardVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
         public PaymentResponse RetrieveCheckoutPayment(string token)
         {
             var path = "/payment/v1/checkout-payments/" + token;

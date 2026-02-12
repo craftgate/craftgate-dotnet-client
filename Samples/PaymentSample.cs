@@ -2609,5 +2609,15 @@ namespace Samples
             Assert.AreEqual(CardVerifyStatus.THREE_DS_PENDING, response.CardVerifyStatus);
             Assert.NotNull(response.HtmlContent);
         }
+
+        [Test]
+        public void Retrieve_Checkout_Card_Verify()
+        {
+            var token = "456d1297-908e-4bd6-a13b-4be31a6e47d5";
+
+            var response = _craftgateClient.Payment().RetrieveCheckoutCardVerify(token);
+            Assert.NotNull(response);
+            Assert.NotNull(response.Token);
+        }
     }
 }
