@@ -29,7 +29,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "ALFABANK")] ALFABANK,
         [EnumMember(Value = "ZIP")] ZIP,
         [EnumMember(Value = "HASO")] HASO,
-        [EnumMember(Value = "DKB")] DKB,
+        [EnumMember(Value = "KARACA_FINANS")] KARACA_FINANS,
         [EnumMember(Value = "CHIPPIN")] CHIPPIN,
         [EnumMember(Value = "MULTINET")] MULTINET,
         [EnumMember(Value = "MULTINET_GIFT")] MULTINET_GIFT,
