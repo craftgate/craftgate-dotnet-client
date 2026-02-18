@@ -2042,7 +2042,6 @@ namespace Samples
             var request = new StoreCardRequest
             {
                 CardAlias = "My YKB Card",
-                CardUserKey = "c115ecdf-0afc-4d83-8a1b-719c2af19cbd",
                 CardHolderName = "Haluk Demir",
                 CardNumber = "5258640000000001",
                 ExpireYear = "2044",
