@@ -30,6 +30,7 @@ namespace Craftgate.Request
         public bool ForceThreeDS { get; set; }
         public bool ForceAuthForNonCreditCards { get; set; }
         public bool DepositPayment { get; set; }
+        public string ReturnBackUrl { get; set; }
         public long? Ttl { get; set; }
         public IList<CustomInstallment> CustomInstallments { get; set; }
         public IList<PaymentItem> Items { get; set; }
