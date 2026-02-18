@@ -25,7 +25,6 @@ namespace Craftgate.Common
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
             NullValueHandling = NullValueHandling.Ignore,
-            DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
             Converters = new List<JsonConverter>
             {
                 new StringEnumConverter()
