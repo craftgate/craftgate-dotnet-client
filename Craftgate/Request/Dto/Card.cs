@@ -19,5 +19,6 @@ namespace Craftgate.Request.Dto
         public string CardHolderIdentityNumber { get; set; }
         public Loyalty Loyalty { get; set; }
         public TokenizedCard TokenizedCard { get; set; }
+        public EncryptedCard EncryptedCard { get; set; }
     }
 }
