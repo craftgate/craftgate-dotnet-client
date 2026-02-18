@@ -1068,6 +1068,92 @@ namespace Samples
         }
         
         [Test]
+        public void Init_Tokenflex_Apm_Payment()
+        {
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.TOKENFLEX,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "paymentCode", "123456" }
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.Null(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
+        
+        [Test]
+        public void Init_Tokenflex_Gift_Apm_Payment()
+        {
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.TOKENFLEX_GIFT,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "paymentCode", "123456" }
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.Null(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
+        
+        [Test]
         public void Init_Setcard_Apm_Payment()
         {
             var request = new InitApmPaymentRequest
@@ -1481,6 +1567,44 @@ namespace Samples
 
         [Test]
         public void Complete_Edenred_Apm_Payment()
+        {
+            var request = new CompleteApmPaymentRequest
+            {
+                PaymentId = 1,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "otpCode", "784294" }
+                },
+            };
+
+            var response = _craftgateClient.Payment().CompleteApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
+            Assert.NotNull(response.ConversationId);
+        }
+        
+        [Test]
+        public void Complete_Tokenflex_Apm_Payment()
+        {
+            var request = new CompleteApmPaymentRequest
+            {
+                PaymentId = 1,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "otpCode", "784294" }
+                },
+            };
+
+            var response = _craftgateClient.Payment().CompleteApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
+            Assert.NotNull(response.ConversationId);
+        }
+        
+        [Test]
+        public void Complete_Tokenflex_Gift_Apm_Payment()
         {
             var request = new CompleteApmPaymentRequest
             {
