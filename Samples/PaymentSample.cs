@@ -2059,6 +2059,21 @@ namespace Samples
         }
 
         [Test]
+        public void Store_Card_With_Secure_Fields()
+        {
+            var request = new StoreCardRequest
+            {
+                SecureFieldsToken = "xxXXxx"
+            };
+            
+            var response = _craftgateClient.Payment().StoreCard(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response);
+            Assert.NotNull(response.CardToken);
+            Assert.NotNull(response.CreatedAt);
+        }
+
+        [Test]
         public void Update_Stored_Card()
         {
             var request = new UpdateCardRequest
@@ -2546,6 +2561,63 @@ namespace Samples
             var response = _craftgateClient.Payment().RetrieveProviderCards(request);
 
             Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Init_Checkout_Card_Verify_With_Non_3DS_Auth_Type()
+        {
+            var request = new InitCheckoutCardVerifyRequest
+            {
+                CallbackUrl = "https://www.your-website.com/craftgate-checkout-card-verify-callback",
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                PaymentAuthenticationType = CardVerificationAuthType.NON_THREE_DS,
+                VerificationPrice = new decimal(10.0),
+                Currency = Currency.TRY
+            };
+
+            var response = _craftgateClient.Payment().InitCheckoutCardVerify(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PageUrl);
+            Assert.NotNull(response.Token);
+            Assert.NotNull(response.TokenExpireDate);
+        }
+
+        [Test]
+        public void Verify_Card_With_3DS()
+        {
+            var request = new VerifyCardRequest
+            {
+                Card = new VerifyCard
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "5258640000000001",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000",
+                    CardAlias = "My YKB Card"
+                },
+                PaymentAuthenticationType = CardVerificationAuthType.THREE_DS,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-card-verify-callback",
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                VerificationPrice = new decimal(10.0),
+                Currency = Currency.TRY,
+                ClientIp = "127.0.0.1"
+            };
+
+            var response = _craftgateClient.Payment().VerifyCard(request);
+            Assert.NotNull(response);
+            Assert.AreEqual(CardVerifyStatus.THREE_DS_PENDING, response.CardVerifyStatus);
+            Assert.NotNull(response.HtmlContent);
+        }
+
+        [Test]
+        public void Retrieve_Checkout_Card_Verify()
+        {
+            var token = "456d1297-908e-4bd6-a13b-4be31a6e47d5";
+
+            var response = _craftgateClient.Payment().RetrieveCheckoutCardVerify(token);
+            Assert.NotNull(response);
+            Assert.NotNull(response.Token);
         }
     }
 }
