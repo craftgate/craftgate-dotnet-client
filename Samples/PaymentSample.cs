@@ -2654,6 +2654,46 @@ namespace Samples
 
             _craftgateClient.Payment().VerifyBnplPayment(PaymentId);
         }
+        
+        [Test]
+        public void Init_Multi_Payment()
+        {
+            var request = new InitMultiPaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                CallbackUrl = "https://www.your-website.com/craftgate-checkout-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitMultiPayment(request);
+            Assert.NotNull(response.Token);
+            Assert.NotNull(response.PageUrl);
+            Assert.NotNull(response.TokenExpireDate);
+        }
 
         [Test]
         public void Retrieve_Multi_Payment()

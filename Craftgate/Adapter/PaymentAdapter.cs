@@ -457,8 +457,9 @@ namespace Craftgate.Adapter
                 CreateHeaders(refundPaymentRequest, path, RequestOptions),
                 refundPaymentRequest);
         }
-        
-        public WaitingPaymentRefundResponse RefundWaitingPayment(RefundWaitingPaymentRequest refundWaitingPaymentRequest)
+
+        public WaitingPaymentRefundResponse RefundWaitingPayment(
+            RefundWaitingPaymentRequest refundWaitingPaymentRequest)
         {
             var path = "/payment/v1/refunds/refund-waiting-payment";
             return RestClient.Post<WaitingPaymentRefundResponse>(RequestOptions.BaseUrl + path,
@@ -466,7 +467,8 @@ namespace Craftgate.Adapter
                 refundWaitingPaymentRequest);
         }
 
-        public Task<WaitingPaymentRefundResponse> RefundWaitingPaymentAsync(RefundWaitingPaymentRequest refundWaitingPaymentRequest)
+        public Task<WaitingPaymentRefundResponse> RefundWaitingPaymentAsync(
+            RefundWaitingPaymentRequest refundWaitingPaymentRequest)
         {
             var path = "/payment/v1/refunds/refund-waiting-payment";
             return AsyncRestClient.Post<WaitingPaymentRefundResponse>(RequestOptions.BaseUrl + path,
@@ -715,6 +717,21 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions),
                 applePayMerchantSessionCreateRequest);
+        }
+
+        public InitMultiPaymentResponse InitMultiPayment(InitMultiPaymentRequest initMultiPaymentRequest)
+        {
+            var path = "/payment/v1/multi-payments/init";
+            return RestClient.Post<InitMultiPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions), initMultiPaymentRequest);
+        }
+
+
+        public Task<InitMultiPaymentResponse> InitMultiPaymentAsync(InitMultiPaymentRequest initMultiPaymentRequest)
+        {
+            var path = "/payment/v1/multi-payments/init";
+            return AsyncRestClient.Post<InitMultiPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions), initMultiPaymentRequest);
         }
 
         public MultiPaymentResponse RetrieveMultiPayment(string token)
