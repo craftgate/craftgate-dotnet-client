@@ -7,6 +7,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "IYZICO")] IYZICO,
         [EnumMember(Value = "IPARA")] IPARA,
         [EnumMember(Value = "BIRLESIK_ODEME")] BIRLESIK_ODEME,
-        [EnumMember(Value = "MEX")] MEX
+        [EnumMember(Value = "MEX")] MEX,
+        [EnumMember(Value = "PARAM")] PARAM
     }
 }
