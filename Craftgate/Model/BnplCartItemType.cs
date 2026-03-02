@@ -11,6 +11,7 @@ namespace Craftgate.Model
         MOBILE_PHONE_PRICE_BELOW_REGULATION_LIMIT,
         [EnumMember(Value = "TABLET")] TABLET,
         [EnumMember(Value = "COMPUTER")] COMPUTER,
+        [EnumMember(Value = "TABLET_WITH_CAMPAIGN")] TABLET_WITH_CAMPAIGN,
 
         [EnumMember(Value = "CONSTRUCTION_MARKET")]
         CONSTRUCTION_MARKET,

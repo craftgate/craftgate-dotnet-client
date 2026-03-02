@@ -143,5 +143,21 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+        
+        public FraudRuleListResponse SearchFraudRules(SearchFraudRuleRequest request)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
+            var path = "/fraud/v1/rules" + queryParam;
+            return RestClient.Get<FraudRuleListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        public Task SearchFraudRulesAsync(SearchFraudRuleRequest request)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
+            var path = "/fraud/v1/rules" + queryParam;
+            return AsyncRestClient.Get<FraudRuleListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
     }
 }

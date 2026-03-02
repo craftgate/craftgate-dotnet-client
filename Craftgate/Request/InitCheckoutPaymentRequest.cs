@@ -24,12 +24,14 @@ namespace Craftgate.Request
         public string ClientIp { get; set; }
         public IList<int> EnabledInstallments { get; set; }
         public bool AlwaysStoreCardAfterPayment { get; set; }
+        public bool AllowDeleteStoredCard { get; set; }
         public bool AllowOnlyStoredCards { get; set; }
         public bool AllowOnlyCreditCard { get; set; }
         public bool AllowInstallmentOnlyCommercialCards { get; set; }
         public bool ForceThreeDS { get; set; }
         public bool ForceAuthForNonCreditCards { get; set; }
         public bool DepositPayment { get; set; }
+        public string ReturnBackUrl { get; set; }
         public long? Ttl { get; set; }
         public IList<CustomInstallment> CustomInstallments { get; set; }
         public IList<PaymentItem> Items { get; set; }

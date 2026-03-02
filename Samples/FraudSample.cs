@@ -119,5 +119,17 @@ namespace Samples
         {
             _craftgateClient.Fraud().DeleteValueList("ipList");
         }
+        
+        [Test]
+        public void Search_Fraud_Rules()
+        {
+            var request = new SearchFraudRuleRequest()
+            {
+                Action = FraudAction.REVIEW
+            };
+
+            var response = _craftgateClient.Fraud().SearchFraudRules(request);
+            Assert.True(response.Items.Count > 0);
+        }
     }
 }
