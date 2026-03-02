@@ -1068,6 +1068,92 @@ namespace Samples
         }
         
         [Test]
+        public void Init_Tokenflex_Apm_Payment()
+        {
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.TOKENFLEX,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "paymentCode", "123456" }
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.Null(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
+        
+        [Test]
+        public void Init_Tokenflex_Gift_Apm_Payment()
+        {
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.TOKENFLEX_GIFT,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "paymentCode", "123456" }
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                }
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.Null(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
+        
+        [Test]
         public void Init_Setcard_Apm_Payment()
         {
             var request = new InitApmPaymentRequest
@@ -1481,6 +1567,44 @@ namespace Samples
 
         [Test]
         public void Complete_Edenred_Apm_Payment()
+        {
+            var request = new CompleteApmPaymentRequest
+            {
+                PaymentId = 1,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "otpCode", "784294" }
+                },
+            };
+
+            var response = _craftgateClient.Payment().CompleteApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
+            Assert.NotNull(response.ConversationId);
+        }
+        
+        [Test]
+        public void Complete_Tokenflex_Apm_Payment()
+        {
+            var request = new CompleteApmPaymentRequest
+            {
+                PaymentId = 1,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "otpCode", "784294" }
+                },
+            };
+
+            var response = _craftgateClient.Payment().CompleteApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
+            Assert.NotNull(response.ConversationId);
+        }
+        
+        [Test]
+        public void Complete_Tokenflex_Gift_Apm_Payment()
         {
             var request = new CompleteApmPaymentRequest
             {
@@ -1957,6 +2081,46 @@ namespace Samples
             Assert.AreEqual(request.PaymentId, response.PaymentId);
             Assert.AreEqual("SUCCESS", response.Status);
         }
+        
+        [Test]
+        public void Refund_Waiting_Payment()
+        {
+            var request = new RefundWaitingPaymentRequest
+            {
+                PaymentId = 1,
+            };
+
+            var response = _craftgateClient.Payment().RefundWaitingPayment(request);
+            Assert.NotNull(response);
+            Assert.AreEqual("SUCCESS", response.Status);
+        }
+        
+        [Test]
+        public void Refund_Payment_Mark_As_Refunded()
+        {
+            var request = new RefundPaymentRequest
+            {
+                PaymentId = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                RefundDestinationType = RefundDestinationType.PROVIDER
+            };
+
+            var response = _craftgateClient.Payment().refundPaymentMarkAsRefunded(request);
+            Assert.NotNull(response);
+        }
+        
+        [Test]
+        public void Refund_Payment_Transaction_Mark_As_Refunded()
+        {
+            var request = new RefundPaymentTransactionMarkAsRefundedRequest
+            {
+                PaymentTransactionId = 1,
+                RefundPrice = 20
+            };
+
+            var response = _craftgateClient.Payment().refundPaymentTransactionMarkAsRefunded(request);
+            Assert.NotNull(response);
+        }
 
         [Test]
         public void Retrieve_Payment_Refund()
@@ -2014,6 +2178,21 @@ namespace Samples
             Assert.AreEqual(request.CardAlias, response.CardAlias);
             Assert.AreEqual(request.CardUserKey, response.CardUserKey);
             Assert.AreEqual(request.CardHolderName, response.CardHolderName);
+            Assert.NotNull(response.CardToken);
+            Assert.NotNull(response.CreatedAt);
+        }
+
+        [Test]
+        public void Store_Card_With_Secure_Fields()
+        {
+            var request = new StoreCardRequest
+            {
+                SecureFieldsToken = "xxXXxx"
+            };
+            
+            var response = _craftgateClient.Payment().StoreCard(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response);
             Assert.NotNull(response.CardToken);
             Assert.NotNull(response.CreatedAt);
         }
@@ -2506,6 +2685,63 @@ namespace Samples
             var response = _craftgateClient.Payment().RetrieveProviderCards(request);
 
             Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Init_Checkout_Card_Verify_With_Non_3DS_Auth_Type()
+        {
+            var request = new InitCheckoutCardVerifyRequest
+            {
+                CallbackUrl = "https://www.your-website.com/craftgate-checkout-card-verify-callback",
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                PaymentAuthenticationType = CardVerificationAuthType.NON_THREE_DS,
+                VerificationPrice = new decimal(10.0),
+                Currency = Currency.TRY
+            };
+
+            var response = _craftgateClient.Payment().InitCheckoutCardVerify(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PageUrl);
+            Assert.NotNull(response.Token);
+            Assert.NotNull(response.TokenExpireDate);
+        }
+
+        [Test]
+        public void Verify_Card_With_3DS()
+        {
+            var request = new VerifyCardRequest
+            {
+                Card = new VerifyCard
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "5258640000000001",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000",
+                    CardAlias = "My YKB Card"
+                },
+                PaymentAuthenticationType = CardVerificationAuthType.THREE_DS,
+                CallbackUrl = "https://www.your-website.com/craftgate-3DSecure-card-verify-callback",
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                VerificationPrice = new decimal(10.0),
+                Currency = Currency.TRY,
+                ClientIp = "127.0.0.1"
+            };
+
+            var response = _craftgateClient.Payment().VerifyCard(request);
+            Assert.NotNull(response);
+            Assert.AreEqual(CardVerifyStatus.THREE_DS_PENDING, response.CardVerifyStatus);
+            Assert.NotNull(response.HtmlContent);
+        }
+
+        [Test]
+        public void Retrieve_Checkout_Card_Verify()
+        {
+            var token = "456d1297-908e-4bd6-a13b-4be31a6e47d5";
+
+            var response = _craftgateClient.Payment().RetrieveCheckoutCardVerify(token);
+            Assert.NotNull(response);
+            Assert.NotNull(response.Token);
         }
     }
 }

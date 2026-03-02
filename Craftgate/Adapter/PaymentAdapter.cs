@@ -109,6 +109,38 @@ namespace Craftgate.Adapter
                 initCheckoutPaymentRequest);
         }
 
+        public InitCheckoutCardVerifyResponse InitCheckoutCardVerify(
+            InitCheckoutCardVerifyRequest initCheckoutCardVerifyRequest)
+        {
+            var path = "/payment/v1/checkout-card-verify/init";
+            return RestClient.Post<InitCheckoutCardVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initCheckoutCardVerifyRequest, path, RequestOptions),
+                initCheckoutCardVerifyRequest);
+        }
+
+        public Task<InitCheckoutCardVerifyResponse> InitCheckoutCardVerifyAsync(
+            InitCheckoutCardVerifyRequest initCheckoutCardVerifyRequest)
+        {
+            var path = "/payment/v1/checkout-card-verify/init";
+            return AsyncRestClient.Post<InitCheckoutCardVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initCheckoutCardVerifyRequest, path, RequestOptions),
+                initCheckoutCardVerifyRequest);
+        }
+
+        public RetrieveCheckoutCardVerifyResponse RetrieveCheckoutCardVerify(string token)
+        {
+            var path = "/payment/v1/checkout-card-verify/" + token;
+            return RestClient.Get<RetrieveCheckoutCardVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task<RetrieveCheckoutCardVerifyResponse> RetrieveCheckoutCardVerifyAsync(string token)
+        {
+            var path = "/payment/v1/checkout-card-verify/" + token;
+            return AsyncRestClient.Get<RetrieveCheckoutCardVerifyResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
         public PaymentResponse RetrieveCheckoutPayment(string token)
         {
             var path = "/payment/v1/checkout-payments/" + token;
@@ -374,6 +406,42 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
+        public PaymentTransactionRefundResponse refundPaymentTransactionMarkAsRefunded(
+            RefundPaymentTransactionMarkAsRefundedRequest refundPaymentTransactionMarkAsRefundedRequest)
+        {
+            var path = "/payment/v1/refund-transactions/mark-as-refunded";
+            return RestClient.Post<PaymentTransactionRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundPaymentTransactionMarkAsRefundedRequest, path, RequestOptions),
+                refundPaymentTransactionMarkAsRefundedRequest);
+        }
+
+        public Task<PaymentTransactionRefundResponse> refundPaymentTransactionMarkAsRefundedAsync(
+            RefundPaymentTransactionMarkAsRefundedRequest refundPaymentTransactionMarkAsRefundedRequest)
+        {
+            var path = "/payment/v1/refund-transactions/mark-as-refunded";
+            return AsyncRestClient.Post<PaymentTransactionRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundPaymentTransactionMarkAsRefundedRequest, path, RequestOptions),
+                refundPaymentTransactionMarkAsRefundedRequest);
+        }
+
+        public PaymentTransactionRefundListResponse refundPaymentMarkAsRefunded(
+            RefundPaymentRequest refundPaymentRequest)
+        {
+            var path = "/payment/v1/refunds/mark-as-refunded";
+            return RestClient.Post<PaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundPaymentRequest, path, RequestOptions),
+                refundPaymentRequest);
+        }
+
+        public Task<PaymentTransactionRefundListResponse> refundPaymentMarkAsRefundedAsync(
+            RefundPaymentRequest refundPaymentRequest)
+        {
+            var path = "/payment/v1/refunds/mark-as-refunded";
+            return AsyncRestClient.Post<PaymentTransactionRefundListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundPaymentRequest, path, RequestOptions),
+                refundPaymentRequest);
+        }
+
         public PaymentRefundResponse RefundPayment(RefundPaymentRequest refundPaymentRequest)
         {
             var path = "/payment/v1/refunds";
@@ -388,6 +456,22 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<PaymentRefundResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(refundPaymentRequest, path, RequestOptions),
                 refundPaymentRequest);
+        }
+        
+        public WaitingPaymentRefundResponse RefundWaitingPayment(RefundWaitingPaymentRequest refundWaitingPaymentRequest)
+        {
+            var path = "/payment/v1/refunds/refund-waiting-payment";
+            return RestClient.Post<WaitingPaymentRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundWaitingPaymentRequest, path, RequestOptions),
+                refundWaitingPaymentRequest);
+        }
+
+        public Task<WaitingPaymentRefundResponse> RefundWaitingPaymentAsync(RefundWaitingPaymentRequest refundWaitingPaymentRequest)
+        {
+            var path = "/payment/v1/refunds/refund-waiting-payment";
+            return AsyncRestClient.Post<WaitingPaymentRefundResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(refundWaitingPaymentRequest, path, RequestOptions),
+                refundWaitingPaymentRequest);
         }
 
         public PaymentRefundResponse RetrievePaymentRefund(long id)
@@ -476,6 +560,20 @@ namespace Craftgate.Adapter
             var path = "/payment/v1/cards/delete";
             return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(deleteStoredCardRequest, path, RequestOptions), deleteStoredCardRequest);
+        }
+
+        public VerifyCardResponse VerifyCard(VerifyCardRequest verifyCardRequest)
+        {
+            var path = "/payment/v1/cards/verify";
+            return RestClient.Post<VerifyCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(verifyCardRequest, path, RequestOptions), verifyCardRequest);
+        }
+
+        public Task<VerifyCardResponse> VerifyCardAsync(VerifyCardRequest verifyCardRequest)
+        {
+            var path = "/payment/v1/cards/verify";
+            return AsyncRestClient.Post<VerifyCardResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(verifyCardRequest, path, RequestOptions), verifyCardRequest);
         }
 
         public PaymentTransactionApprovalListResponse ApprovePaymentTransactions(
@@ -606,7 +704,8 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/apple-pay/merchant-sessions";
             return RestClient.Post<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
+                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions),
+                applePayMerchantSessionCreateRequest);
         }
 
         public Task<object> CreateApplePayMerchantSessionAsync(
@@ -614,7 +713,8 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/apple-pay/merchant-sessions";
             return AsyncRestClient.Post<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions), applePayMerchantSessionCreateRequest);
+                CreateHeaders(applePayMerchantSessionCreateRequest, path, RequestOptions),
+                applePayMerchantSessionCreateRequest);
         }
 
         public MultiPaymentResponse RetrieveMultiPayment(string token)
@@ -640,7 +740,8 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<StoredCardListResponse> RetrieveProviderCardsAsync(RetrieveProviderCardRequest retrieveProviderCardRequest)
+        public Task<StoredCardListResponse> RetrieveProviderCardsAsync(
+            RetrieveProviderCardRequest retrieveProviderCardRequest)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;

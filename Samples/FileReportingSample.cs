@@ -1,7 +1,4 @@
 using System;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
@@ -13,6 +10,7 @@ namespace Samples
     {
         private readonly CraftgateClient _craftgateClient =
             new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+
 
         [Test]
         public void Retrieve_Daily_Transaction_Report()
@@ -39,6 +37,35 @@ namespace Samples
 
             var response = _craftgateClient.FileReporting().RetrieveDailyPaymentReport(request);
 
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Create_Report()
+        {
+            var request = new CreateReportRequest
+            {
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddMonths(1),
+                ReportType = ReportType.PAYMENT,
+                ReportPeriod = ReportPeriod.INSTANT
+            };
+
+            var response = _craftgateClient.FileReporting().CreateReport(request);
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Retrieve_Report()
+        {
+            var request = new RetrieveReportRequest
+            {
+                FileType = ReportFileType.CSV
+            };
+
+            var reportId = 27;
+
+            var response = _craftgateClient.FileReporting().RetrieveReport(request, reportId);
             Assert.NotNull(response);
         }
     }

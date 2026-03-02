@@ -115,6 +115,13 @@ namespace Craftgate.Adapter
             RestClient.Post<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
+        
+        public void AddCardFingerprintToFraudValueList(AddCardFingerprintFraudValueListRequest request,string listName)
+        {
+            string path = "/fraud/v1/value-lists/" + listName + "/card-fingerprints";
+            RestClient.Post<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
 
         public Task AddValueToValueListAsync(FraudValueListRequest request)
         {
@@ -134,6 +141,22 @@ namespace Craftgate.Adapter
         {
             var path = "/fraud/v1/value-lists/" + listName + "/values/" + valueId;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        public FraudRuleListResponse SearchFraudRules(SearchFraudRuleRequest request)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
+            var path = "/fraud/v1/rules" + queryParam;
+            return RestClient.Get<FraudRuleListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+        
+        public Task SearchFraudRulesAsync(SearchFraudRuleRequest request)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
+            var path = "/fraud/v1/rules" + queryParam;
+            return AsyncRestClient.Get<FraudRuleListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
     }
