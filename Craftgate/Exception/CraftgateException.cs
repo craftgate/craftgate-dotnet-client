@@ -1,3 +1,4 @@
+using Craftgate.Response.Common;
 using exception = System.Exception;
 
 namespace Craftgate.Exception
@@ -10,13 +11,15 @@ namespace Craftgate.Exception
         public string ErrorCode { get; }
         public string ErrorDescription { get; }
         public string ErrorGroup { get; }
+        public ProviderError ProviderError { get; }
 
-        public CraftgateException(string errorCode, string errorDescription, string errorGroup)
+        public CraftgateException(string errorCode, string errorDescription, string errorGroup, ProviderError providerError)
             : base(errorDescription)
         {
             ErrorCode = errorCode;
             ErrorDescription = errorDescription;
             ErrorGroup = errorGroup;
+            ProviderError = providerError;
         }
 
         public CraftgateException(exception exception)
