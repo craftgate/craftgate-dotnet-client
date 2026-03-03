@@ -21,7 +21,7 @@ namespace Craftgate.Request.Common
 
                 if (request != null)
                 {
-                    var requestBody = JsonConvert.SerializeObject(request, CraftgateJsonSerializerSettings.Settings);
+                    var requestBody = JsonConvert.SerializeObject(request, CraftgateJsonSerializerSettings.RequestSettings);
                     hashData = decodedUrl + apiKey + secretKey + randomString + requestBody;
                 }
                 else

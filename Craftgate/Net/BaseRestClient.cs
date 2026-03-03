@@ -50,7 +50,7 @@ namespace Craftgate.Net
         {
             var contentString = Encoding.UTF8.GetString(content);
             RequireSuccess<T>(httpResponseMessage, contentString);
-            var apiResponse = JsonConvert.DeserializeObject<Response<T>>(contentString, CraftgateJsonSerializerSettings.Settings);
+            var apiResponse = JsonConvert.DeserializeObject<Response<T>>(contentString, CraftgateJsonSerializerSettings.ResponseSettings);
             return apiResponse == null ? default : apiResponse.Data;
         }
 
@@ -63,7 +63,7 @@ namespace Craftgate.Net
         private static void RequireSuccess<T>(HttpResponseMessage httpResponseMessage, string content)
         {
             if (httpResponseMessage.StatusCode < HttpStatusCode.BadRequest) return;
-            var response = JsonConvert.DeserializeObject<Response<T>>(content, CraftgateJsonSerializerSettings.Settings);
+            var response = JsonConvert.DeserializeObject<Response<T>>(content, CraftgateJsonSerializerSettings.ResponseSettings);
             if (response != null && response.Errors != null)
             {
                 var errorResponse = response.Errors;
@@ -74,7 +74,7 @@ namespace Craftgate.Net
         private static StringContent PrepareContent(object request)
         {
             if (request == null) return null;
-            var body = JsonConvert.SerializeObject(request, CraftgateJsonSerializerSettings.Settings);
+            var body = JsonConvert.SerializeObject(request, CraftgateJsonSerializerSettings.RequestSettings);
             return new StringContent(body, Encoding.UTF8, "application/json");
         }
     }
