@@ -10,7 +10,7 @@ namespace Samples
     public class MerchantSample
     {
         private readonly CraftgateClient _craftgateClient =
-            new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
+            new CraftgateClient("sandbox-aOZCSUnvcVUMrzVDxABizCpiSNdomQgi", "sandbox-UeshvAPTzqAOvbAKmvUGGOngzprzbjsG", "https://sandbox-api.craftgate.io");
 
         [Test]
         public void Create_Merchant_Pos()
