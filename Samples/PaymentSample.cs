@@ -2590,6 +2590,43 @@ namespace Samples
         }
 
         [Test]
+        public void Init_Bnpl_Limit_Inquiry()
+        {
+            var request = new InitBnplLimitInquiryRequest
+            {
+                ApmType = ApmType.ZIP,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "buyerPhoneNumber", "5320000000" },
+                    { "buyerIdentityNumber", "11111111110" },
+                    { "buyerBirthdate", "1990-01-01" }
+                }
+            };
+            
+            var response = _craftgateClient.Payment().InitBnplLimitInquiry(request);
+            
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Complete_Bnpl_Limit_Inquiry()
+        {
+            var request = new InitBnplLimitInquiryRequest
+            {
+                ApmType = ApmType.ZIP,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "buyerPhoneNumber", "5320000000" },
+                    { "otpCode", "123456" }
+                }
+            };
+            
+            var response = _craftgateClient.Payment().CompleteBnplLimitInquiry(request);
+            
+            Assert.NotNull(response);
+        }
+
+        [Test]
         public void Init_TomFinance_Bnpl_Payment()
         {
             var additionalParams = new Dictionary<string, object>();
