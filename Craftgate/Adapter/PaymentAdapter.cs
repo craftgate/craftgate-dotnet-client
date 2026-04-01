@@ -658,30 +658,30 @@ namespace Craftgate.Adapter
                 CreateHeaders(request, path, RequestOptions), request);
         }
         
-        public BnplLimitInquiryResponse InitBnplLimitInquiry(InitBnplLimitInquiryRequest request)
+        public BnplLimitInquiryResponse BnplLimitInquiryInit(BnplLimitInquiryRequest request)
         {
             var path = "/payment/v1/bnpl-payments/limit-inquiry/init";
             return RestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public Task<BnplLimitInquiryResponse> InitBnplLimitInquiryAsync(InitBnplLimitInquiryRequest request)
+        public Task<BnplLimitInquiryResponse> BnplLimitInquiryInitAsync(BnplLimitInquiryRequest request)
         {
             var path = "/payment/v1/bnpl-payments/limit-inquiry/init";
             return AsyncRestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
         
-        public BnplLimitInquiryResponse CompleteBnplLimitInquiry(InitBnplLimitInquiryRequest request)
+        public BnplLimitInquiryResponse BnplLimitInquiry(BnplLimitInquiryRequest request)
         {
-            var path = "/payment/v1/bnpl-payments/limit-inquiry/complete";
+            var path = "/payment/v1/bnpl-payments/limit-inquiry";
             return RestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public Task<BnplLimitInquiryResponse> CompleteBnplLimitInquiryAsync(InitBnplLimitInquiryRequest request)
+        public Task<BnplLimitInquiryResponse> BnplLimitInquiryAsync(BnplLimitInquiryRequest request)
         {
-            var path = "/payment/v1/bnpl-payments/limit-inquiry/complete";
+            var path = "/payment/v1/bnpl-payments/limit-inquiry";
             return AsyncRestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }

@@ -2590,9 +2590,9 @@ namespace Samples
         }
 
         [Test]
-        public void Init_Bnpl_Limit_Inquiry()
+        public void Bnpl_Limit_Inquiry_Init()
         {
-            var request = new InitBnplLimitInquiryRequest
+            var request = new BnplLimitInquiryRequest
             {
                 ApmType = ApmType.ZIP,
                 AdditionalParams = new Dictionary<string, object>
@@ -2603,15 +2603,15 @@ namespace Samples
                 }
             };
             
-            var response = _craftgateClient.Payment().InitBnplLimitInquiry(request);
+            var response = _craftgateClient.Payment().BnplLimitInquiryInit(request);
             
             Assert.NotNull(response);
         }
 
         [Test]
-        public void Complete_Bnpl_Limit_Inquiry()
+        public void Bnpl_Limit_Inquiry()
         {
-            var request = new InitBnplLimitInquiryRequest
+            var request = new BnplLimitInquiryRequest
             {
                 ApmType = ApmType.ZIP,
                 AdditionalParams = new Dictionary<string, object>
@@ -2621,7 +2621,7 @@ namespace Samples
                 }
             };
             
-            var response = _craftgateClient.Payment().CompleteBnplLimitInquiry(request);
+            var response = _craftgateClient.Payment().BnplLimitInquiry(request);
             
             Assert.NotNull(response);
         }
