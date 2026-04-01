@@ -657,6 +657,34 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<InitBnplPaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
+        
+        public BnplLimitInquiryResponse BnplLimitInquiryInit(BnplLimitInquiryRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/limit-inquiry/init";
+            return RestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public Task<BnplLimitInquiryResponse> BnplLimitInquiryInitAsync(BnplLimitInquiryRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/limit-inquiry/init";
+            return AsyncRestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+        
+        public BnplLimitInquiryResponse BnplLimitInquiry(BnplLimitInquiryRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/limit-inquiry";
+            return RestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public Task<BnplLimitInquiryResponse> BnplLimitInquiryAsync(BnplLimitInquiryRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/limit-inquiry";
+            return AsyncRestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
 
         public PaymentResponse ApproveBnplPayment(long PaymentId)
         {
