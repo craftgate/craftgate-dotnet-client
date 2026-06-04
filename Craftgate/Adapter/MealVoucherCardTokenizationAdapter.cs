@@ -1,5 +1,3 @@
-
-using System.Threading.Tasks;
 using Craftgate.Net;
 using Craftgate.Request;
 using Craftgate.Request.Common;
