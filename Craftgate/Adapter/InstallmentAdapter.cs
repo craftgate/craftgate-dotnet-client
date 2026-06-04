@@ -28,16 +28,16 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public BinNumberResponse RetrieveBinNumber(string binNumber)
+        public BinNumberResponse RetrieveBinNumber(string binNumber, bool includeGlobalBins = false)
         {
-            var path = "/installment/v1/bins/" + binNumber;
+            var path = "/installment/v1/bins/" + binNumber + (includeGlobalBins ? "?includeGlobalBins=true" : "");
             return RestClient.Get<BinNumberResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<BinNumberResponse> RetrieveBinNumberAsync(string binNumber)
+        public Task<BinNumberResponse> RetrieveBinNumberAsync(string binNumber, bool includeGlobalBins = false)
         {
-            var path = "/installment/v1/bins/" + binNumber;
+            var path = "/installment/v1/bins/" + binNumber + (includeGlobalBins ? "?includeGlobalBins=true" : "");
             return AsyncRestClient.Get<BinNumberResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
