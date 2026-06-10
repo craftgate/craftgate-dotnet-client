@@ -2450,6 +2450,19 @@ namespace Samples
             Assert.AreEqual(request.SubMerchantMemberId, response.SubMerchantMemberId);
             Assert.AreEqual(request.SubMerchantMemberPrice, response.SubMerchantMemberPrice);
         }
+        
+        [Test]
+        public void Update_Payment_Transaction_With_Blockage_Resolved_Date()
+        {
+            var request = new UpdatePaymentTransactionRequest
+            {
+                PaymentTransactionId = 2159617,
+                BlockageResolvedDate = DateTime.Now.AddDays(5)
+            };
+
+            var response = _craftgateClient.Payment().UpdatePaymentTransaction(request);
+            Assert.AreEqual(request.BlockageResolvedDate, response.BlockageResolvedDate);
+        }
 
         [Test]
         public void Verify_3DS_Callback()
