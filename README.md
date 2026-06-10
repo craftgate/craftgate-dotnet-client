@@ -97,7 +97,10 @@ Assert.NotNull(response);
 ```
 
 ### Contributions
-For all contributions to this client please see the contribution guide [here](CONTRIBUTING.md).
+For all contributions to this client please see the contribution guide [here](CONTRIBUTING.md). By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Security
+If you discover a security vulnerability, please review our [Security Policy](SECURITY.md) for how to report it responsibly.
 
 ## License
-MIT
+This project is licensed under the Apache License, Version 2.0 — see the [LICENSE](LICENSE) and [NOTICE](NOTICE.md) files for details.
