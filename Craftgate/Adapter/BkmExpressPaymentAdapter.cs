@@ -27,14 +27,6 @@ namespace Craftgate.Adapter
                 completeBkmExpressPayment);
         }
 
-        public PaymentResponse RetrievePayment(
-            string ticketId)
-        {
-            var path = "/payment/v1/bkm-express/payments/" + ticketId;
-            return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
-        }
-
         public PaymentResponse RetrievePaymentByToken(
             string token)
         {
