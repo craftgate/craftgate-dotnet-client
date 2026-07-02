@@ -10,13 +10,12 @@ namespace Craftgate.Request
         public decimal? PaidPrice { get; set; }
         public Currency? Currency { get; set; }
         public PaymentGroup? PaymentGroup { get; set; }
-        public PaymentSource? PaymentSource { get; set; }
         public string ConversationId { get; set; }
         public string ExternalId { get; set; }
         public string CallbackUrl { get; set; }
-        public PaymentPhase PaymentPhase { get; set; } = PaymentPhase.AUTH;
         public string PaymentChannel { get; set; }
         public IList<PaymentMethod> EnabledPaymentMethods { get; set; }
+        public IList<int> EnabledInstallments { get; set; }
         public string CardUserKey { get; set; }
         public long? BuyerMemberId { get; set; }
         public bool AllowOnlyCreditCard { get; set; }
