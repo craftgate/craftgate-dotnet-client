@@ -10,7 +10,6 @@ namespace Craftgate.Request
         public decimal? PaidPrice { get; set; }
         public Currency? Currency { get; set; }
         public PaymentGroup? PaymentGroup { get; set; }
-        public PaymentSource? PaymentSource { get; set; }
         public string ConversationId { get; set; }
         public string ExternalId { get; set; }
         public string CallbackUrl { get; set; }
