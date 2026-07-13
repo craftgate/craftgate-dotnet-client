@@ -2710,7 +2710,6 @@ namespace Samples
             var request = new InitMultiPaymentRequest
             {
                 Price = new decimal(100.0),
-                PaidPrice = new decimal(100.0),
                 Currency = Currency.TRY,
                 PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
@@ -2754,7 +2753,7 @@ namespace Samples
             Assert.NotNull(response.Id);
             Assert.NotNull(response.MultiPaymentStatus);
             Assert.NotNull(response.Token);
-            Assert.NotNull(response.PaidPrice);
+            Assert.NotNull(response.Price);
             Assert.NotNull(response.RemainingAmount);
             Assert.NotNull(response.PaymentIds);
         }
