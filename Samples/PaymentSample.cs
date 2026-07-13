@@ -2753,7 +2753,7 @@ namespace Samples
             Assert.NotNull(response.Id);
             Assert.NotNull(response.MultiPaymentStatus);
             Assert.NotNull(response.Token);
-            Assert.NotNull(response.PaidPrice);
+            Assert.NotNull(response.Price);
             Assert.NotNull(response.RemainingAmount);
             Assert.NotNull(response.PaymentIds);
         }
