@@ -658,6 +658,34 @@ namespace Craftgate.Adapter
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
+        public BnplLimitInquiryResponse BnplLimitInquiryInit(BnplLimitInquiryRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/limit-inquiry/init";
+            return RestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public Task<BnplLimitInquiryResponse> BnplLimitInquiryInitAsync(BnplLimitInquiryRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/limit-inquiry/init";
+            return AsyncRestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public BnplLimitInquiryResponse BnplLimitInquiry(BnplLimitInquiryRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/limit-inquiry";
+            return RestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
+        public Task<BnplLimitInquiryResponse> BnplLimitInquiryAsync(BnplLimitInquiryRequest request)
+        {
+            var path = "/payment/v1/bnpl-payments/limit-inquiry";
+            return AsyncRestClient.Post<BnplLimitInquiryResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(request, path, RequestOptions), request);
+        }
+
         public PaymentResponse ApproveBnplPayment(long PaymentId)
         {
             var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
@@ -763,6 +791,23 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
             return AsyncRestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public IVRCardTokenizationResponse RetrieveCardFromIvr(RetrieveCardFromIvrRequest retrieveCardFromIvrRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveCardFromIvrRequest);
+            var path = "/payment/v1/ivr-cards" + queryParam;
+            return RestClient.Get<IVRCardTokenizationResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task<IVRCardTokenizationResponse> RetrieveCardFromIvrAsync(
+            RetrieveCardFromIvrRequest retrieveCardFromIvrRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveCardFromIvrRequest);
+            var path = "/payment/v1/ivr-cards" + queryParam;
+            return AsyncRestClient.Get<IVRCardTokenizationResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 

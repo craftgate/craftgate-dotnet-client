@@ -1066,7 +1066,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
         }
-        
+
         [Test]
         public void Init_Tokenflex_Apm_Payment()
         {
@@ -1109,7 +1109,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
         }
-        
+
         [Test]
         public void Init_Tokenflex_Gift_Apm_Payment()
         {
@@ -1152,7 +1152,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
         }
-        
+
         [Test]
         public void Init_Setcard_Apm_Payment()
         {
@@ -1235,7 +1235,7 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
         }
-        
+
         [Test]
         public void Init_IWallet_Apm_Payment_with_card_password()
         {
@@ -1367,7 +1367,7 @@ namespace Samples
             var request = new InitApmPaymentRequest
             {
                 ApmType = ApmType.CHIPPIN,
-                ApmUserIdentity = "1000000",  // Chippin Kullanıcı No
+                ApmUserIdentity = "1000000", // Chippin Kullanıcı No
                 Price = new decimal(1.0),
                 PaidPrice = new decimal(1.0),
                 Currency = Currency.TRY,
@@ -1399,13 +1399,13 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.WAIT_FOR_WEBHOOK);
         }
-        
+
         [Test]
         public void Init_Bizum_Apm_Payment()
         {
             var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("buyerPhoneNumber", "34700000000");
-            
+
             var request = new InitApmPaymentRequest
             {
                 ApmType = ApmType.BIZUM,
@@ -1440,13 +1440,13 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.WAIT_FOR_WEBHOOK);
         }
-        
+
         [Test]
         public void Init_Mbway_Apm_Payment()
         {
             var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("buyerPhoneNumber", "34700000000");
-            
+
             var request = new InitApmPaymentRequest
             {
                 ApmType = ApmType.PAYLANDS_MB_WAY,
@@ -1481,13 +1481,13 @@ namespace Samples
             Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
             Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.WAIT_FOR_WEBHOOK);
         }
-        
+
         [Test]
         public void Init_Paycell_DCB_Apm_Payment()
         {
             var additionalParams = new Dictionary<string, object>();
             additionalParams.Add("paycellGsmNumber", "5305289290");
-            
+
             var request = new InitApmPaymentRequest
             {
                 ApmType = ApmType.PAYCELL_DCB,
@@ -1583,7 +1583,7 @@ namespace Samples
             Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
             Assert.NotNull(response.ConversationId);
         }
-        
+
         [Test]
         public void Complete_Tokenflex_Apm_Payment()
         {
@@ -1602,7 +1602,7 @@ namespace Samples
             Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
             Assert.NotNull(response.ConversationId);
         }
-        
+
         [Test]
         public void Complete_Tokenflex_Gift_Apm_Payment()
         {
@@ -1621,7 +1621,7 @@ namespace Samples
             Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
             Assert.NotNull(response.ConversationId);
         }
-        
+
         [Test]
         public void Complete_Setcard_Apm_Payment()
         {
@@ -2081,7 +2081,7 @@ namespace Samples
             Assert.AreEqual(request.PaymentId, response.PaymentId);
             Assert.AreEqual("SUCCESS", response.Status);
         }
-        
+
         [Test]
         public void Refund_Waiting_Payment()
         {
@@ -2094,7 +2094,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.AreEqual("SUCCESS", response.Status);
         }
-        
+
         [Test]
         public void Refund_Payment_Mark_As_Refunded()
         {
@@ -2108,7 +2108,7 @@ namespace Samples
             var response = _craftgateClient.Payment().refundPaymentMarkAsRefunded(request);
             Assert.NotNull(response);
         }
-        
+
         [Test]
         public void Refund_Payment_Transaction_Mark_As_Refunded()
         {
@@ -2188,7 +2188,7 @@ namespace Samples
             {
                 SecureFieldsToken = "xxXXxx"
             };
-            
+
             var response = _craftgateClient.Payment().StoreCard(request);
             Assert.NotNull(response);
             Assert.NotNull(response);
@@ -2450,6 +2450,19 @@ namespace Samples
             Assert.AreEqual(request.SubMerchantMemberId, response.SubMerchantMemberId);
             Assert.AreEqual(request.SubMerchantMemberPrice, response.SubMerchantMemberPrice);
         }
+        
+        [Test]
+        public void Update_Payment_Transaction_With_Blockage_Resolved_Date()
+        {
+            var request = new UpdatePaymentTransactionRequest
+            {
+                PaymentTransactionId = 2159617,
+                BlockageResolvedDate = DateTime.Now.AddDays(5)
+            };
+
+            var response = _craftgateClient.Payment().UpdatePaymentTransaction(request);
+            Assert.AreEqual(request.BlockageResolvedDate, response.BlockageResolvedDate);
+        }
 
         [Test]
         public void Verify_3DS_Callback()
@@ -2590,6 +2603,43 @@ namespace Samples
         }
 
         [Test]
+        public void Bnpl_Limit_Inquiry_Init()
+        {
+            var request = new BnplLimitInquiryRequest
+            {
+                ApmType = ApmType.ZIP,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "buyerPhoneNumber", "5320000000" },
+                    { "buyerIdentityNumber", "11111111110" },
+                    { "buyerBirthdate", "1990-01-01" }
+                }
+            };
+
+            var response = _craftgateClient.Payment().BnplLimitInquiryInit(request);
+
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Bnpl_Limit_Inquiry()
+        {
+            var request = new BnplLimitInquiryRequest
+            {
+                ApmType = ApmType.ZIP,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "buyerPhoneNumber", "5320000000" },
+                    { "otpCode", "123456" }
+                }
+            };
+
+            var response = _craftgateClient.Payment().BnplLimitInquiry(request);
+
+            Assert.NotNull(response);
+        }
+
+        [Test]
         public void Init_TomFinance_Bnpl_Payment()
         {
             var additionalParams = new Dictionary<string, object>();
@@ -2645,7 +2695,7 @@ namespace Samples
 
             _craftgateClient.Payment().ApproveBnplPayment(PaymentId);
         }
-        
+
         [Test]
         public void Verify_Bnpl_Payment()
         {
@@ -2653,14 +2703,13 @@ namespace Samples
 
             _craftgateClient.Payment().VerifyBnplPayment(PaymentId);
         }
-        
+
         [Test]
         public void Init_Multi_Payment()
         {
             var request = new InitMultiPaymentRequest
             {
                 Price = new decimal(100.0),
-                PaidPrice = new decimal(100.0),
                 Currency = Currency.TRY,
                 PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
@@ -2704,7 +2753,7 @@ namespace Samples
             Assert.NotNull(response.Id);
             Assert.NotNull(response.MultiPaymentStatus);
             Assert.NotNull(response.Token);
-            Assert.NotNull(response.PaidPrice);
+            Assert.NotNull(response.Price);
             Assert.NotNull(response.RemainingAmount);
             Assert.NotNull(response.PaymentIds);
         }
@@ -2714,7 +2763,6 @@ namespace Samples
         {
             var request = new RetrieveProviderCardRequest
             {
-
                 ProviderCardToken = "45f12c74-3000-465c-96dc-876850e7dd7a",
                 ExternalId = "1001",
                 ProviderCardUserId = "0309ac2d-c5a5-4b4f-a91f-5c444ba07b24",
@@ -2722,6 +2770,20 @@ namespace Samples
             };
 
             var response = _craftgateClient.Payment().RetrieveProviderCards(request);
+
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Retrieve_Card_From_IVR()
+        {
+            var request = new RetrieveCardFromIvrRequest
+            {
+                CardUserKey = "45f12c74-3000-465c-96dc-876850e7dd7a",
+                CallToken = "0309ac2d-c5a5-4b4f-a91f-5c444ba07b24"
+            };
+
+            var response = _craftgateClient.Payment().RetrieveCardFromIvr(request);
 
             Assert.NotNull(response);
         }
