@@ -50,6 +50,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "TAP")] TAP,
         [EnumMember(Value = "TEB")] TEB,
         [EnumMember(Value = "TRPOS")] TRPOS,
+        [EnumMember(Value = "TURKONAY")] TURKONAY,
         [EnumMember(Value = "VAKIFBANK")] VAKIFBANK,
         [EnumMember(Value = "VAKIFKATILIM")] VAKIFKATILIM,
         [EnumMember(Value = "WORLDPAY")] WORLDPAY,
