@@ -6,6 +6,7 @@ namespace Craftgate.Request.Dto
     {
         public OrderingRule? OrderingRule { get; set; }
         public IList<string> PosAliases { get; set; }
+        public bool? IgnoreAdvancedPosRoutingRules { get; set; }
     }
 
     public enum OrderingRule

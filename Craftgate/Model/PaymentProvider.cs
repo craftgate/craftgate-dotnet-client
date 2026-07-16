@@ -45,6 +45,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "SETCARD")] SETCARD,
         [EnumMember(Value = "PAPEL")] PAPEL,
         [EnumMember(Value = "BKM_EXPRESS")] BKM_EXPRESS,
+        [EnumMember(Value = "ALBARAKA")] ALBARAKA,
         [EnumMember(Value = "OFFLINE")] OFFLINE
     }
 }
