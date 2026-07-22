@@ -31,5 +31,6 @@ namespace Craftgate.Request
         public long? Ttl { get; set; }
         public int MaximumSplitPaymentCount { get; set; }
         public Dictionary<string, object> AdditionalParams { get; set; }
+        public bool? Retry { get; set; }
     }
 }

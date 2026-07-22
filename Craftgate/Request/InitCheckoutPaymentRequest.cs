@@ -40,5 +40,6 @@ namespace Craftgate.Request
         public FraudCheckParameters FraudParams { get; set; }
         public Dictionary<string, object> AdditionalParams { get; set; }
         public Dictionary<string, List<CustomInstallment>> CardBrandInstallments { get; set; }
+        public bool? Retry { get; set; }
     }
 }
