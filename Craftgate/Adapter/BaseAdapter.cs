@@ -27,7 +27,7 @@ namespace Craftgate.Adapter
         protected Dictionary<string, string> CreateHeaders(object request, string path,
             RequestOptions requestOptions)
         {
-            return CreateHttpHeaders(request, path, requestOptions, (request as BaseRequest)?.IdempotencyKey);
+            return CreateHttpHeaders(request, path, requestOptions, request as BaseRequest);
         }
 
         protected Dictionary<string, string> CreateHeaders(string path, RequestOptions requestOptions)
@@ -36,17 +36,17 @@ namespace Craftgate.Adapter
         }
 
         /// <summary>
-        /// Headers for a body-less mutating request. Only the wrapper's idempotency key is used —
-        /// it is never hashed or sent as a body, so the signature stays that of a body-less call.
+        /// Headers for a mutating request that sends no body. Only the wrapper's request-scoped
+        /// options are used — it is never hashed or sent, so the signature stays that of a body-less call.
         /// </summary>
-        protected Dictionary<string, string> CreateHeadersForPathOnlyRequest(string path,
+        protected Dictionary<string, string> CreateHeadersWithoutBody(string path,
             RequestOptions requestOptions, BaseRequest request)
         {
-            return CreateHttpHeaders(null, path, requestOptions, request?.IdempotencyKey);
+            return CreateHttpHeaders(null, path, requestOptions, request);
         }
 
         private static Dictionary<string, string> CreateHttpHeaders(object request, string path,
-            RequestOptions options, string idempotencyKey
+            RequestOptions options, BaseRequest scopedOptions
         )
         {
             var headers = new Dictionary<string, string>();
@@ -61,11 +61,20 @@ namespace Craftgate.Adapter
             {
                 headers.Add(LanguageHeaderName, options.Language);
             }
-            if (idempotencyKey != null)
-            {
-                headers.Add(IdempotencyKeyHeaderName, idempotencyKey);
-            }
+            ApplyRequestScopedHeaders(headers, scopedOptions);
             return headers;
+        }
+
+        /// <summary>
+        /// Applies the options that travel as headers rather than in the payload. New
+        /// request-scoped options are added here and nowhere else.
+        /// </summary>
+        private static void ApplyRequestScopedHeaders(Dictionary<string, string> headers, BaseRequest options)
+        {
+            if (options?.IdempotencyKey != null)
+            {
+                headers.Add(IdempotencyKeyHeaderName, options.IdempotencyKey);
+            }
         }
 
         private static string PrepareAuthorizationString(object request, string path, string randomString,

@@ -55,14 +55,14 @@ namespace Craftgate.Adapter
         {
             var path = "/settlement/v1/payout-accounts/" + request.Id;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
+                CreateHeadersWithoutBody(path, RequestOptions, request));
         }
 
         public Task DeletePayoutAccountAsync(DeletePayoutAccountRequest request)
         {
             var path = "/settlement/v1/payout-accounts/" + request.Id;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
+                CreateHeadersWithoutBody(path, RequestOptions, request));
         }
 
         public PayoutAccountListResponse SearchPayoutAccounts(SearchPayoutAccountRequest request)
