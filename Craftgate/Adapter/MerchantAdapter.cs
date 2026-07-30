@@ -61,32 +61,32 @@ namespace Craftgate.Adapter
                 updateMerchantPosRequest);
         }
 
-        public void UpdateMerchantPosStatus(long id, PosStatus posStatus)
+        public void UpdateMerchantPosStatus(UpdateMerchantPosStatusRequest request)
         {
-            var path = "/merchant/v1/merchant-poses/" + id + "/status/" + posStatus;
+            var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId + "/status/" + request.PosStatus;
             RestClient.Put<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
         }
 
-        public void UpdateMerchantPosStatusAsync(long id, PosStatus posStatus)
+        public void UpdateMerchantPosStatusAsync(UpdateMerchantPosStatusRequest request)
         {
-            var path = "/merchant/v1/merchant-poses/" + id + "/status/" + posStatus;
+            var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId + "/status/" + request.PosStatus;
             AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
         }
 
-        public void DeleteMerchantPos(long id)
+        public void DeleteMerchantPos(DeleteMerchantPosRequest request)
         {
-            var path = "/merchant/v1/merchant-poses/" + id;
+            var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
         }
 
-        public void DeleteMerchantPosAsync(long id)
+        public void DeleteMerchantPosAsync(DeleteMerchantPosRequest request)
         {
-            var path = "/merchant/v1/merchant-poses/" + id;
+            var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId;
             AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
         }
 
         public MerchantPosListResponse SearchMerchantPos(SearchMerchantPosRequest searchMerchantPosRequest)

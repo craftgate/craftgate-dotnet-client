@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class CreateMerchantPosRequest
+    public class CreateMerchantPosRequest : BaseRequest
     {
         public PosStatus Status;
         public string Name;

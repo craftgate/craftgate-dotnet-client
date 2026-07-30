@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchProductsRequest
+    public class SearchProductsRequest : BaseRequest
     {
         public long Id { get; set; }
         public string Name { get; set; }

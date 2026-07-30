@@ -81,7 +81,7 @@ namespace Samples
         public void Delete_Product()
         {
             long productId = 1;
-            _craftgateClient.PayByLink().DeleteProduct(productId);
+            _craftgateClient.PayByLink().DeleteProduct(new DeleteProductRequest {Id = productId});
         }
 
         [Test]

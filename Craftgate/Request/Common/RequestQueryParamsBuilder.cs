@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Craftgate.Request.Common
 {
@@ -12,7 +13,11 @@ namespace Craftgate.Request.Common
     {
         public static string BuildQueryParam(object request)
         {
-            var fields = Enumerable.ToList(request.GetType().GetRuntimeProperties());
+            // GetRuntimeProperties() includes inherited properties, so BaseRequest's header-only
+            // options would otherwise land in the query string.
+            var fields = Enumerable.ToList(request.GetType().GetRuntimeProperties())
+                .Where(field => field.GetCustomAttribute<JsonIgnoreAttribute>() == null)
+                .ToList();
             var query = new StringBuilder(fields.Any() ? "?" : "");
             foreach (var field in fields)
             {

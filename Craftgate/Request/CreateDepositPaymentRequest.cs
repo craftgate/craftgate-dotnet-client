@@ -1,9 +1,10 @@
 using Craftgate.Model;
+using Craftgate.Request.Common;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class CreateDepositPaymentRequest
+    public class CreateDepositPaymentRequest : BaseRequest
     {
         public long? BuyerMemberId { get; set; }
         public decimal? Price { set; get; }

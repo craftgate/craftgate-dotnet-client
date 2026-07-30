@@ -15,6 +15,7 @@ namespace Craftgate.Adapter
         private const string ClientVersionHeaderName = "x-client-version";
         private const string SignatureHeaderName = "x-signature";
         private const string LanguageHeaderName = "lang";
+        private const string IdempotencyKeyHeaderName = "x-idempotency-key";
         private const string RandomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         protected readonly RequestOptions RequestOptions;
 
@@ -26,16 +27,26 @@ namespace Craftgate.Adapter
         protected Dictionary<string, string> CreateHeaders(object request, string path,
             RequestOptions requestOptions)
         {
-            return CreateHttpHeaders(request, path, requestOptions);
+            return CreateHttpHeaders(request, path, requestOptions, (request as BaseRequest)?.IdempotencyKey);
         }
 
         protected Dictionary<string, string> CreateHeaders(string path, RequestOptions requestOptions)
         {
-            return CreateHttpHeaders(null, path, requestOptions);
+            return CreateHttpHeaders(null, path, requestOptions, null);
+        }
+
+        /// <summary>
+        /// Headers for a body-less mutating request. Only the wrapper's idempotency key is used —
+        /// it is never hashed or sent as a body, so the signature stays that of a body-less call.
+        /// </summary>
+        protected Dictionary<string, string> CreateHeadersForPathOnlyRequest(string path,
+            RequestOptions requestOptions, BaseRequest request)
+        {
+            return CreateHttpHeaders(null, path, requestOptions, request?.IdempotencyKey);
         }
 
         private static Dictionary<string, string> CreateHttpHeaders(object request, string path,
-            RequestOptions options
+            RequestOptions options, string idempotencyKey
         )
         {
             var headers = new Dictionary<string, string>();
@@ -49,6 +60,10 @@ namespace Craftgate.Adapter
             if (options.Language != null)
             {
                 headers.Add(LanguageHeaderName, options.Language);
+            }
+            if (idempotencyKey != null)
+            {
+                headers.Add(IdempotencyKeyHeaderName, idempotencyKey);
             }
             return headers;
         }

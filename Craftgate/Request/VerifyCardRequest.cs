@@ -1,9 +1,10 @@
 using Craftgate.Model;
+using Craftgate.Request.Common;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class VerifyCardRequest
+    public class VerifyCardRequest : BaseRequest
     {
         public VerifyCard Card { get; set; }
         public CardVerificationAuthType? PaymentAuthenticationType { get; set; }

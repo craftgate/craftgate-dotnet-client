@@ -51,16 +51,18 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path, CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public void DeletePayoutAccount(long id)
+        public void DeletePayoutAccount(DeletePayoutAccountRequest request)
         {
-            var path = "/settlement/v1/payout-accounts/" + id;
-            RestClient.Delete<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            var path = "/settlement/v1/payout-accounts/" + request.Id;
+            RestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
         }
 
-        public Task DeletePayoutAccountAsync(long id)
+        public Task DeletePayoutAccountAsync(DeletePayoutAccountRequest request)
         {
-            var path = "/settlement/v1/payout-accounts/" + id;
-            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            var path = "/settlement/v1/payout-accounts/" + request.Id;
+            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
         }
 
         public PayoutAccountListResponse SearchPayoutAccounts(SearchPayoutAccountRequest request)

@@ -96,6 +96,40 @@ var response = _craftgate.Payment().CreatePayment(request);
 Assert.NotNull(response);
 ```
 
+## Idempotency
+
+Mutating operations (`POST`/`PUT`/`DELETE`) accept an optional idempotency key. Set it on the request object and the client sends it as the `x-idempotency-key` header, so a request can be safely retried (e.g. after a timeout) without the operation being performed twice — the server returns the result of the first request when it sees a repeated key.
+
+Every request extends `BaseRequest`, so the key is available on any request:
+
+```dotnet
+var request = new CreatePaymentRequest
+{
+    Price = new decimal(100.0),
+    PaidPrice = new decimal(100.0),
+    Currency = Currency.Try,
+    PaymentGroup = PaymentGroup.ListingOrSubscription,
+    IdempotencyKey = Guid.NewGuid().ToString(),
+    // ... other fields
+};
+
+var response = _craftgate.Payment().CreatePayment(request);
+```
+
+Operations whose parameters live in the URL path take a request object as well, so they can carry a key too:
+
+```dotnet
+_craftgate.Payment().ExpireCheckoutPayment(new ExpireCheckoutPaymentRequest
+{
+    Token = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+    IdempotencyKey = Guid.NewGuid().ToString()
+});
+```
+
+> Use a fresh key per distinct operation, and reuse the same key when retrying that operation.
+
+The key is sent as a header only — it never appears in the request body, the query string, or the request signature.
+
 ### Contributions
 For all contributions to this client please see the contribution guide [here](CONTRIBUTING.md). By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
 

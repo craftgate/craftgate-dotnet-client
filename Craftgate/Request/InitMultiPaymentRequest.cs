@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class InitMultiPaymentRequest
+    public class InitMultiPaymentRequest : BaseRequest
     {
         public decimal? Price { get; set; }
         public Currency? Currency { get; set; }

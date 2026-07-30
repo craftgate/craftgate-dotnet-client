@@ -208,18 +208,18 @@ namespace Craftgate.Adapter
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public WithdrawResponse CancelWithdraw(long withdrawId)
+        public WithdrawResponse CancelWithdraw(CancelWithdrawRequest request)
         {
-            var path = "/wallet/v1/withdraws/" + withdrawId + "/cancel";
+            var path = "/wallet/v1/withdraws/" + request.WithdrawId + "/cancel";
             return RestClient.Post<WithdrawResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
         }
 
-        public Task<WithdrawResponse> CancelWithdrawAsync(long withdrawId)
+        public Task<WithdrawResponse> CancelWithdrawAsync(CancelWithdrawRequest request)
         {
-            var path = "/wallet/v1/withdraws/" + withdrawId + "/cancel";
+            var path = "/wallet/v1/withdraws/" + request.WithdrawId + "/cancel";
             return AsyncRestClient.Post<WithdrawResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersForPathOnlyRequest(path, RequestOptions, request));
         }
 
         public WithdrawResponse RetrieveWithdraw(long withdrawId)

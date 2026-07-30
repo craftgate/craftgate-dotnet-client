@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchFraudRuleRequest
+    public class SearchFraudRuleRequest : BaseRequest
     {
         public int? Page { get; set; }
         public int? Size { get; set; }
