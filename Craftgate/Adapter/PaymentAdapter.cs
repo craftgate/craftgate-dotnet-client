@@ -751,7 +751,7 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/multi-payments/init";
             return RestClient.Post<InitMultiPaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions), initMultiPaymentRequest);
+                CreateHeaders(initMultiPaymentRequest, path, RequestOptions), initMultiPaymentRequest);
         }
 
 
@@ -759,7 +759,7 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/multi-payments/init";
             return AsyncRestClient.Post<InitMultiPaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions), initMultiPaymentRequest);
+                CreateHeaders(initMultiPaymentRequest, path, RequestOptions), initMultiPaymentRequest);
         }
 
         public MultiPaymentResponse RetrieveMultiPayment(string token)
