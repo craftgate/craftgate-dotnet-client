@@ -40,28 +40,28 @@ namespace Craftgate.Adapter
         /// options are used — it is never hashed or sent, so the signature stays that of a body-less call.
         /// </summary>
         protected Dictionary<string, string> CreateHeadersWithoutBody(string path,
-            RequestOptions requestOptions, BaseRequest request)
+            RequestOptions requestOptions, BaseRequest headerOptions)
         {
-            return CreateHttpHeaders(null, path, requestOptions, request);
+            return CreateHttpHeaders(null, path, requestOptions, headerOptions);
         }
 
         private static Dictionary<string, string> CreateHttpHeaders(object request, string path,
-            RequestOptions options, BaseRequest scopedOptions
+            RequestOptions requestOptions, BaseRequest headerOptions
         )
         {
             var headers = new Dictionary<string, string>();
 
             var randomString = RandomString(RandomStringSize);
-            headers.Add(ApiKeyHeaderName, options.ApiKey);
+            headers.Add(ApiKeyHeaderName, requestOptions.ApiKey);
             headers.Add(RandomHeaderName, randomString);
             headers.Add(AuthVersionHeaderName, ApiVersionHeaderValue);
             headers.Add(ClientVersionHeaderName, ClientVersionHeaderValue + ":1.0.83");
-            headers.Add(SignatureHeaderName, PrepareAuthorizationString(request, path, randomString, options));
-            if (options.Language != null)
+            headers.Add(SignatureHeaderName, PrepareAuthorizationString(request, path, randomString, requestOptions));
+            if (requestOptions.Language != null)
             {
-                headers.Add(LanguageHeaderName, options.Language);
+                headers.Add(LanguageHeaderName, requestOptions.Language);
             }
-            ApplyRequestScopedHeaders(headers, scopedOptions);
+            ApplyRequestScopedHeaders(headers, headerOptions);
             return headers;
         }
 
@@ -69,19 +69,19 @@ namespace Craftgate.Adapter
         /// Applies the options that travel as headers rather than in the payload. New
         /// request-scoped options are added here and nowhere else.
         /// </summary>
-        private static void ApplyRequestScopedHeaders(Dictionary<string, string> headers, BaseRequest options)
+        private static void ApplyRequestScopedHeaders(Dictionary<string, string> headers, BaseRequest headerOptions)
         {
-            if (options?.IdempotencyKey != null)
+            if (headerOptions?.IdempotencyKey != null)
             {
-                headers.Add(IdempotencyKeyHeaderName, options.IdempotencyKey);
+                headers.Add(IdempotencyKeyHeaderName, headerOptions.IdempotencyKey);
             }
         }
 
         private static string PrepareAuthorizationString(object request, string path, string randomString,
-            RequestOptions options)
+            RequestOptions requestOptions)
         {
-            return HashGenerator.GenerateHash(options.BaseUrl, options.ApiKey, options.SecretKey, randomString,
-                request, path);
+            return HashGenerator.GenerateHash(requestOptions.BaseUrl, requestOptions.ApiKey,
+                requestOptions.SecretKey, randomString, request, path);
         }
 
         private static string RandomString(int length)
