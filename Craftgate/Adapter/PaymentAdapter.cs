@@ -159,14 +159,14 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/checkout-payments/" + request.Token;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request));
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
         }
 
         public Task ExpireCheckoutPaymentAsync(ExpireCheckoutPaymentRequest request)
         {
             var path = "/payment/v1/checkout-payments/" + request.Token;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request));
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
         }
 
         public DepositPaymentResponse CreateDepositPayment(CreateDepositPaymentRequest createDepositPaymentRequest)
@@ -690,28 +690,28 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/bnpl-payments/" + request.PaymentId + "/approve";
             return RestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request), null);
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()), null);
         }
 
         public Task<PaymentResponse> ApproveBnplPaymentAsync(ApproveBnplPaymentRequest request)
         {
             var path = "/payment/v1/bnpl-payments/" + request.PaymentId + "/approve";
             return AsyncRestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request), null);
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()), null);
         }
 
         public BnplPaymentVerifyResponse VerifyBnplPayment(VerifyBnplPaymentRequest request)
         {
             var path = "/payment/v1/bnpl-payments/" + request.PaymentId + "/verify";
             return RestClient.Post<BnplPaymentVerifyResponse>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request), null);
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()), null);
         }
 
         public Task<BnplPaymentVerifyResponse> VerifyBnplPaymentAsync(VerifyBnplPaymentRequest request)
         {
             var path = "/payment/v1/bnpl-payments/" + request.PaymentId + "/verify";
             return AsyncRestClient.Post<BnplPaymentVerifyResponse>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request), null);
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()), null);
         }
 
         public InstantTransferBanksResponse RetrieveActiveBanks()

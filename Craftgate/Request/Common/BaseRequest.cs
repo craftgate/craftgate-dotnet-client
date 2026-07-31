@@ -15,5 +15,11 @@ namespace Craftgate.Request.Common
         /// </summary>
         [JsonIgnore]
         public string IdempotencyKey { get; set; }
+
+        /// <summary>Narrows this request to just the options the header layer may use.</summary>
+        public HeaderOptions ToHeaderOptions()
+        {
+            return new HeaderOptions {IdempotencyKey = IdempotencyKey};
+        }
     }
 }

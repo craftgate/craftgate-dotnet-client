@@ -27,7 +27,7 @@ namespace Craftgate.Adapter
         protected Dictionary<string, string> CreateHeaders(object request, string path,
             RequestOptions requestOptions)
         {
-            return CreateHttpHeaders(request, path, requestOptions, request as BaseRequest);
+            return CreateHttpHeaders(request, path, requestOptions, (request as BaseRequest)?.ToHeaderOptions());
         }
 
         protected Dictionary<string, string> CreateHeaders(string path, RequestOptions requestOptions)
@@ -40,13 +40,13 @@ namespace Craftgate.Adapter
         /// options are used — it is never hashed or sent, so the signature stays that of a body-less call.
         /// </summary>
         protected Dictionary<string, string> CreateHeadersWithoutBody(string path,
-            RequestOptions requestOptions, BaseRequest headerOptions)
+            RequestOptions requestOptions, HeaderOptions headerOptions)
         {
             return CreateHttpHeaders(null, path, requestOptions, headerOptions);
         }
 
         private static Dictionary<string, string> CreateHttpHeaders(object request, string path,
-            RequestOptions requestOptions, BaseRequest headerOptions
+            RequestOptions requestOptions, HeaderOptions headerOptions
         )
         {
             var headers = new Dictionary<string, string>();
@@ -69,7 +69,7 @@ namespace Craftgate.Adapter
         /// Applies the options that travel as headers rather than in the payload. New
         /// request-scoped options are added here and nowhere else.
         /// </summary>
-        private static void ApplyRequestScopedHeaders(Dictionary<string, string> headers, BaseRequest headerOptions)
+        private static void ApplyRequestScopedHeaders(Dictionary<string, string> headers, HeaderOptions headerOptions)
         {
             if (headerOptions?.IdempotencyKey != null)
             {

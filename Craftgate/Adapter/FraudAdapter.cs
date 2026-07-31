@@ -97,14 +97,14 @@ namespace Craftgate.Adapter
         {
             var path = "/fraud/v1/value-lists/" + request.ListName;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request));
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
         }
 
         public Task DeleteValueListAsync(DeleteValueListRequest request)
         {
             var path = "/fraud/v1/value-lists/" + request.ListName;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request));
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
         }
 
         public void AddValueToValueList(FraudValueListRequest request)
@@ -132,14 +132,14 @@ namespace Craftgate.Adapter
         {
             var path = "/fraud/v1/value-lists/" + request.ListName + "/values/" + request.ValueId;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request));
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
         }
 
         public Task RemoveValueFromValueListAsync(RemoveValueFromValueListRequest request)
         {
             var path = "/fraud/v1/value-lists/" + request.ListName + "/values/" + request.ValueId;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request));
+                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
         }
         
         public FraudRuleListResponse SearchFraudRules(SearchFraudRuleRequest request)

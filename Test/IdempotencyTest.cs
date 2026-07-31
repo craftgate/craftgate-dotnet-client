@@ -33,7 +33,7 @@ namespace Test
                 CreateHeaders(request, path, Options);
 
             public Dictionary<string, string> PathOnlyHeaders(string path, BaseRequest request) =>
-                CreateHeadersWithoutBody(path, Options, request);
+                CreateHeadersWithoutBody(path, Options, request.ToHeaderOptions());
         }
 
         private readonly TestAdapter _adapter = new TestAdapter(Options);
