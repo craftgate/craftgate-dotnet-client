@@ -35,10 +35,6 @@ namespace Craftgate.Adapter
             return CreateHttpHeaders(null, path, requestOptions, null);
         }
 
-        /// <summary>
-        /// Headers for a mutating request that sends no body. Only the wrapper's request-scoped
-        /// options are used — it is never hashed or sent, so the signature stays that of a body-less call.
-        /// </summary>
         protected Dictionary<string, string> CreateHeadersWithoutBody(string path,
             RequestOptions requestOptions, HeaderOptions headerOptions)
         {
@@ -65,10 +61,6 @@ namespace Craftgate.Adapter
             return headers;
         }
 
-        /// <summary>
-        /// Applies the options that travel as headers rather than in the payload. New
-        /// request-scoped options are added here and nowhere else.
-        /// </summary>
         private static void ApplyRequestScopedHeaders(Dictionary<string, string> headers, HeaderOptions headerOptions)
         {
             if (headerOptions?.IdempotencyKey != null)

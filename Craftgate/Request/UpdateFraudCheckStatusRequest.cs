@@ -13,7 +13,6 @@ namespace Craftgate.Request
 
         public UpdateFraudCheckStatusRequest(FraudCheckStatus fraudCheckStatus) => CheckStatus = fraudCheckStatus;
 
-        /// <summary>Goes in the URL path, so it is excluded from the body.</summary>
         [JsonIgnore]
         public long? Id { get; set; }
 

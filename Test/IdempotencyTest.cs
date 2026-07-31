@@ -22,7 +22,6 @@ namespace Test
             BaseUrl = "https://sandbox-api.craftgate.io"
         };
 
-        /// <summary>Exposes the protected header builders for testing.</summary>
         private class TestAdapter : BaseAdapter
         {
             public TestAdapter(RequestOptions requestOptions) : base(requestOptions)
@@ -120,7 +119,6 @@ namespace Test
             Assert.IsFalse(query.Contains("idempotency-key-1"));
         }
 
-        /// <summary>A regression here rejects every delete/approve/cancel call at the API.</summary>
         [Test]
         public void Should_Not_Change_Signature_Of_Path_Only_Request()
         {
@@ -179,7 +177,6 @@ namespace Test
             Assert.AreEqual("idempotency-key-3", fraudCheck.IdempotencyKey);
         }
 
-        /// <summary>The class doubles as the body, so its path variable must not reach it.</summary>
         [Test]
         public void Should_Exclude_Fraud_Check_Id_From_Request_Body()
         {

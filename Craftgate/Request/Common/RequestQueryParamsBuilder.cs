@@ -10,9 +10,6 @@ namespace Craftgate.Request.Common
 {
     public static class RequestQueryParamsBuilder
     {
-        /// <summary>
-        /// Reserved request properties that are sent as headers, so they never belong in the query string.
-        /// </summary>
         private static readonly ISet<string> ReservedPropertyNames = new HashSet<string>
         {
             nameof(BaseRequest.IdempotencyKey)
@@ -20,10 +17,6 @@ namespace Craftgate.Request.Common
 
         public static string BuildQueryParam(object request)
         {
-            // GetRuntimeProperties() includes inherited properties, so BaseRequest's header-only
-            // options would otherwise land in the query string. Excluded by name rather than by
-            // [JsonIgnore]: that attribute answers "is this in the body?", which is a separate
-            // question from "is this in the query string?".
             var fields = Enumerable.ToList(request.GetType().GetRuntimeProperties())
                 .Where(field => !ReservedPropertyNames.Contains(field.Name))
                 .ToList();
