@@ -65,28 +65,28 @@ namespace Craftgate.Adapter
         {
             var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId + "/status/" + request.PosStatus;
             RestClient.Put<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public void UpdateMerchantPosStatusAsync(UpdateMerchantPosStatusRequest request)
         {
             var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId + "/status/" + request.PosStatus;
             AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public void DeleteMerchantPos(DeleteMerchantPosRequest request)
         {
             var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public void DeleteMerchantPosAsync(DeleteMerchantPosRequest request)
         {
             var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId;
             AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public MerchantPosListResponse SearchMerchantPos(SearchMerchantPosRequest searchMerchantPosRequest)

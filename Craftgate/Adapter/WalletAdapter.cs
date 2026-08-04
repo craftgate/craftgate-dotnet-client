@@ -212,14 +212,14 @@ namespace Craftgate.Adapter
         {
             var path = "/wallet/v1/withdraws/" + request.WithdrawId + "/cancel";
             return RestClient.Post<WithdrawResponse>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public Task<WithdrawResponse> CancelWithdrawAsync(CancelWithdrawRequest request)
         {
             var path = "/wallet/v1/withdraws/" + request.WithdrawId + "/cancel";
             return AsyncRestClient.Post<WithdrawResponse>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public WithdrawResponse RetrieveWithdraw(long withdrawId)

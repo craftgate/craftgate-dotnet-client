@@ -100,7 +100,7 @@ Assert.NotNull(response);
 
 Mutating operations accept an optional idempotency key. Set it on the request object and the client sends it as the `x-idempotency-key` header, so a request can be safely retried (e.g. after a timeout) without the operation being performed twice — the server returns the result of the first request when it sees a repeated key.
 
-Every request extends `BaseRequest`, so the key is available on any request:
+Every request extends `BaseRequest`, which carries a `HeaderOptions` object, so the key is available on any request:
 
 ```dotnet
 var request = new CreatePaymentRequest
@@ -109,7 +109,7 @@ var request = new CreatePaymentRequest
     PaidPrice = new decimal(100.0),
     Currency = Currency.Try,
     PaymentGroup = PaymentGroup.ListingOrSubscription,
-    IdempotencyKey = Guid.NewGuid().ToString(),
+    HeaderOptions = new HeaderOptions {IdempotencyKey = Guid.NewGuid().ToString()},
     // ... other fields
 };
 
@@ -122,7 +122,7 @@ Operations whose parameters live in the URL path take a request object as well, 
 _craftgate.Payment().ExpireCheckoutPayment(new ExpireCheckoutPaymentRequest
 {
     Token = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
-    IdempotencyKey = Guid.NewGuid().ToString()
+    HeaderOptions = new HeaderOptions {IdempotencyKey = Guid.NewGuid().ToString()}
 });
 ```
 
@@ -130,7 +130,7 @@ _craftgate.Payment().ExpireCheckoutPayment(new ExpireCheckoutPaymentRequest
 
 > The API honours the key on `POST`, `PATCH` and `DELETE` only. It is ignored on `PUT` endpoints, so retrying one of those is not de-duplicated.
 
-The key is sent as a header only — it never appears in the request body, the query string, or the request signature.
+`HeaderOptions` is sent as headers only — it never appears in the request body, the query string, or the request signature.
 
 ### Contributions
 For all contributions to this client please see the contribution guide [here](CONTRIBUTING.md). By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).

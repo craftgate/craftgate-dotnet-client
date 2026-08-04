@@ -10,15 +10,10 @@ namespace Craftgate.Request.Common
 {
     public static class RequestQueryParamsBuilder
     {
-        private static readonly ISet<string> ReservedPropertyNames = new HashSet<string>
-        {
-            nameof(BaseRequest.IdempotencyKey)
-        };
-
         public static string BuildQueryParam(object request)
         {
             var fields = Enumerable.ToList(request.GetType().GetRuntimeProperties())
-                .Where(field => !ReservedPropertyNames.Contains(field.Name))
+                .Where(field => field.PropertyType != typeof(HeaderOptions))
                 .ToList();
             var query = new StringBuilder(fields.Any() ? "?" : "");
             foreach (var field in fields)

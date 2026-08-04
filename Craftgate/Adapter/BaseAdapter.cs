@@ -24,10 +24,10 @@ namespace Craftgate.Adapter
             RequestOptions = requestOptions;
         }
 
-        protected Dictionary<string, string> CreateHeaders(object request, string path,
+        protected Dictionary<string, string> CreateHeaders(BaseRequest request, string path,
             RequestOptions requestOptions)
         {
-            return CreateHttpHeaders(request, path, requestOptions, (request as BaseRequest)?.ToHeaderOptions());
+            return CreateHttpHeaders(request, path, requestOptions, request?.HeaderOptions);
         }
 
         protected Dictionary<string, string> CreateHeaders(string path, RequestOptions requestOptions)
@@ -35,13 +35,13 @@ namespace Craftgate.Adapter
             return CreateHttpHeaders(null, path, requestOptions, null);
         }
 
-        protected Dictionary<string, string> CreateHeadersWithoutBody(string path,
-            RequestOptions requestOptions, HeaderOptions headerOptions)
+        protected Dictionary<string, string> CreateHeadersWithoutBody(BaseRequest request, string path,
+            RequestOptions requestOptions)
         {
-            return CreateHttpHeaders(null, path, requestOptions, headerOptions);
+            return CreateHttpHeaders(null, path, requestOptions, request?.HeaderOptions);
         }
 
-        private static Dictionary<string, string> CreateHttpHeaders(object request, string path,
+        private static Dictionary<string, string> CreateHttpHeaders(BaseRequest request, string path,
             RequestOptions requestOptions, HeaderOptions headerOptions
         )
         {
@@ -69,7 +69,7 @@ namespace Craftgate.Adapter
             }
         }
 
-        private static string PrepareAuthorizationString(object request, string path, string randomString,
+        private static string PrepareAuthorizationString(BaseRequest request, string path, string randomString,
             RequestOptions requestOptions)
         {
             return HashGenerator.GenerateHash(requestOptions.BaseUrl, requestOptions.ApiKey,

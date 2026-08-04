@@ -56,14 +56,14 @@ namespace Craftgate.Adapter
         {
             var path = "/craftlink/v1/products/" + request.Id;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public Task DeleteProductAsync(DeleteProductRequest request)
         {
             var path = "/craftlink/v1/products/" + request.Id;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(path, RequestOptions, request.ToHeaderOptions()));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public ProductListResponse SearchProducts(SearchProductsRequest searchProductsRequest)

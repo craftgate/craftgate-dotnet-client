@@ -28,11 +28,11 @@ namespace Test
             {
             }
 
-            public Dictionary<string, string> Headers(object request, string path) =>
+            public Dictionary<string, string> Headers(BaseRequest request, string path) =>
                 CreateHeaders(request, path, Options);
 
             public Dictionary<string, string> PathOnlyHeaders(string path, BaseRequest request) =>
-                CreateHeadersWithoutBody(path, Options, request.ToHeaderOptions());
+                CreateHeadersWithoutBody(request, path, Options);
         }
 
         private readonly TestAdapter _adapter = new TestAdapter(Options);
@@ -41,7 +41,7 @@ namespace Test
         public void Should_Send_Idempotency_Key_Header_For_Body_Request()
         {
             //given
-            var request = new DeleteStoredCardRequest {CardToken = "card-token", IdempotencyKey = "idempotency-key-1"};
+            var request = new DeleteStoredCardRequest {CardToken = "card-token", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
 
             //when
             var headers = _adapter.Headers(request, "/payment/v1/cards/delete");
@@ -67,7 +67,7 @@ namespace Test
         public void Should_Send_Idempotency_Key_Header_For_Path_Only_Request()
         {
             //given
-            var request = new ExpireCheckoutPaymentRequest {Token = "token-1", IdempotencyKey = "idempotency-key-1"};
+            var request = new ExpireCheckoutPaymentRequest {Token = "token-1", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
 
             //when
             var headers = _adapter.PathOnlyHeaders("/payment/v1/checkout-payments/token-1", request);
@@ -93,28 +93,70 @@ namespace Test
         public void Should_Exclude_Idempotency_Key_From_Request_Body()
         {
             //given
-            var request = new DeleteStoredCardRequest {CardToken = "card-token", IdempotencyKey = "idempotency-key-1"};
+            var request = new DeleteStoredCardRequest {CardToken = "card-token", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
 
             //when
             var body = JsonConvert.SerializeObject(request, CraftgateJsonSerializerSettings.RequestSettings);
 
             //then
             Assert.IsTrue(body.Contains("card-token"));
+            Assert.IsFalse(body.Contains("headerOptions"));
             Assert.IsFalse(body.Contains("idempotencyKey"));
             Assert.IsFalse(body.Contains("idempotency-key-1"));
+        }
+
+        [Test]
+        public void Should_Default_Header_Options_To_Null()
+        {
+            //given
+            var request = new DeleteStoredCardRequest {CardToken = "card-token"};
+
+            //then
+            Assert.IsNull(request.HeaderOptions);
+        }
+
+        [Test]
+        public void Should_Not_Send_Idempotency_Key_Header_For_Empty_Header_Options()
+        {
+            //given
+            var request = new DeleteStoredCardRequest {CardToken = "card-token", HeaderOptions = new HeaderOptions()};
+
+            //when
+            var headers = _adapter.Headers(request, "/payment/v1/cards/delete");
+
+            //then
+            Assert.IsFalse(headers.ContainsKey(IdempotencyKeyHeaderName));
+        }
+
+        [Test]
+        public void Should_Serialize_Identical_Body_With_And_Without_Header_Options()
+        {
+            //given
+            var withKey = new DeleteStoredCardRequest
+                {CardToken = "card-token", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
+            var withoutKey = new DeleteStoredCardRequest {CardToken = "card-token"};
+
+            //when
+            var withKeyBody = JsonConvert.SerializeObject(withKey, CraftgateJsonSerializerSettings.RequestSettings);
+            var withoutKeyBody =
+                JsonConvert.SerializeObject(withoutKey, CraftgateJsonSerializerSettings.RequestSettings);
+
+            //then
+            Assert.AreEqual(withoutKeyBody, withKeyBody);
         }
 
         [Test]
         public void Should_Exclude_Idempotency_Key_From_Query_Params_Of_Read_Requests()
         {
             //given
-            var request = new SearchProductsRequest {Name = "A new Product", IdempotencyKey = "idempotency-key-1"};
+            var request = new SearchProductsRequest {Name = "A new Product", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
 
             //when
             var query = RequestQueryParamsBuilder.BuildQueryParam(request);
 
             //then
             Assert.IsTrue(query.Contains("name="));
+            Assert.IsFalse(query.Contains("headerOptions"));
             Assert.IsFalse(query.Contains("idempotencyKey"));
             Assert.IsFalse(query.Contains("idempotency-key-1"));
         }
@@ -124,7 +166,7 @@ namespace Test
         {
             //given
             const string path = "/payment/v1/checkout-payments/token-1";
-            var request = new ExpireCheckoutPaymentRequest {Token = "token-1", IdempotencyKey = "idempotency-key-1"};
+            var request = new ExpireCheckoutPaymentRequest {Token = "token-1", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
 
             //when
             var headers = _adapter.PathOnlyHeaders(path, request);
@@ -140,7 +182,7 @@ namespace Test
         {
             //given
             const string path = "/payment/v1/cards/delete";
-            var request = new DeleteStoredCardRequest {CardToken = "card-token", IdempotencyKey = "idempotency-key-1"};
+            var request = new DeleteStoredCardRequest {CardToken = "card-token", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
 
             //when
             var headers = _adapter.Headers(request, path);
@@ -157,24 +199,24 @@ namespace Test
         {
             //given
             var removeValue = new RemoveValueFromValueListRequest
-                {ListName = "ipList", ValueId = "value-1", IdempotencyKey = "idempotency-key-1"};
+                {ListName = "ipList", ValueId = "value-1", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
             var posStatus = new UpdateMerchantPosStatusRequest
-                {MerchantPosId = 1, PosStatus = PosStatus.PASSIVE, IdempotencyKey = "idempotency-key-2"};
+                {MerchantPosId = 1, PosStatus = PosStatus.PASSIVE, HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-2"}};
             var fraudCheck = new UpdateFraudCheckStatusRequest
-                {Id = 2613, CheckStatus = FraudCheckStatus.FRAUD, IdempotencyKey = "idempotency-key-3"};
+                {Id = 2613, CheckStatus = FraudCheckStatus.FRAUD, HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-3"}};
 
             //then
             Assert.AreEqual("ipList", removeValue.ListName);
             Assert.AreEqual("value-1", removeValue.ValueId);
-            Assert.AreEqual("idempotency-key-1", removeValue.IdempotencyKey);
+            Assert.AreEqual("idempotency-key-1", removeValue.HeaderOptions.IdempotencyKey);
 
             Assert.AreEqual(1, posStatus.MerchantPosId);
             Assert.AreEqual(PosStatus.PASSIVE, posStatus.PosStatus);
-            Assert.AreEqual("idempotency-key-2", posStatus.IdempotencyKey);
+            Assert.AreEqual("idempotency-key-2", posStatus.HeaderOptions.IdempotencyKey);
 
             Assert.AreEqual(2613, fraudCheck.Id);
             Assert.AreEqual(FraudCheckStatus.FRAUD, fraudCheck.CheckStatus);
-            Assert.AreEqual("idempotency-key-3", fraudCheck.IdempotencyKey);
+            Assert.AreEqual("idempotency-key-3", fraudCheck.HeaderOptions.IdempotencyKey);
         }
 
         [Test]
@@ -182,7 +224,7 @@ namespace Test
         {
             //given
             var request = new UpdateFraudCheckStatusRequest
-                {Id = 2613, CheckStatus = FraudCheckStatus.FRAUD, IdempotencyKey = "idempotency-key-1"};
+                {Id = 2613, CheckStatus = FraudCheckStatus.FRAUD, HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
 
             //when
             var body = JsonConvert.SerializeObject(request, CraftgateJsonSerializerSettings.RequestSettings);
