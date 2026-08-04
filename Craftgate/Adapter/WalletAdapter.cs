@@ -45,7 +45,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchWalletTransactionsRequest);
             var path = "/wallet/v1/wallets/" + walletId + "/wallet-transactions" + queryParam;
             return RestClient.Get<WalletTransactionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchWalletTransactionsRequest, path, RequestOptions));
         }
 
         public Task<WalletTransactionListResponse> SearchWalletTransactionsAsync(long walletId,
@@ -54,7 +54,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchWalletTransactionsRequest);
             var path = "/wallet/v1/wallets/" + walletId + "/wallet-transactions" + queryParam;
             return AsyncRestClient.Get<WalletTransactionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchWalletTransactionsRequest, path, RequestOptions));
         }
 
         public WalletResponse UpdateMemberWallet(long memberId, long walletId, UpdateWalletRequest updateWalletRequest)
@@ -240,7 +240,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/wallet/v1/withdraws" + queryParam;
             return RestClient.Get<WithdrawListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public Task<WithdrawListResponse> SearchWithdrawsAsync(SearchWithdrawsRequest request)
@@ -248,7 +248,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/wallet/v1/withdraws" + queryParam;
             return AsyncRestClient.Get<WithdrawListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
     }
 }

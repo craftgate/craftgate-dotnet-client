@@ -538,7 +538,7 @@ namespace Craftgate.Adapter
             var path = "/payment/v1/cards" + query;
 
             return RestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchStoredCardsRequest, path, RequestOptions));
         }
 
         public Task<StoredCardListResponse> SearchStoredCardsAsync(SearchStoredCardsRequest searchStoredCardsRequest)
@@ -547,7 +547,7 @@ namespace Craftgate.Adapter
             var path = "/payment/v1/cards" + query;
 
             return AsyncRestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchStoredCardsRequest, path, RequestOptions));
         }
 
         public void DeleteStoredCard(DeleteStoredCardRequest deleteStoredCardRequest)
@@ -782,7 +782,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
             return RestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(retrieveProviderCardRequest, path, RequestOptions));
         }
 
         public Task<StoredCardListResponse> RetrieveProviderCardsAsync(
@@ -791,7 +791,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
             return AsyncRestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(retrieveProviderCardRequest, path, RequestOptions));
         }
 
         public IVRCardTokenizationResponse RetrieveCardFromIvr(RetrieveCardFromIvrRequest retrieveCardFromIvrRequest)
@@ -799,7 +799,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveCardFromIvrRequest);
             var path = "/payment/v1/ivr-cards" + queryParam;
             return RestClient.Get<IVRCardTokenizationResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(retrieveCardFromIvrRequest, path, RequestOptions));
         }
 
         public Task<IVRCardTokenizationResponse> RetrieveCardFromIvrAsync(
@@ -808,7 +808,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveCardFromIvrRequest);
             var path = "/payment/v1/ivr-cards" + queryParam;
             return AsyncRestClient.Get<IVRCardTokenizationResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(retrieveCardFromIvrRequest, path, RequestOptions));
         }
 
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)

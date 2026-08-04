@@ -94,7 +94,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMerchantPosRequest);
             var path = "/merchant/v1/merchant-poses" + queryParam;
             return RestClient.Get<MerchantPosListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchMerchantPosRequest, path, RequestOptions));
         }
 
         public Task<MerchantPosListResponse> SearchMerchantPosAsync(SearchMerchantPosRequest searchMerchantPosRequest)
@@ -102,7 +102,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMerchantPosRequest);
             var path = "/merchant/v1/merchant-poses" + queryParam;
             return AsyncRestClient.Get<MerchantPosListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchMerchantPosRequest, path, RequestOptions));
         }
 
         public MerchantPosCommissionListResponse RetrieveMerchantPosCommissions(long id)

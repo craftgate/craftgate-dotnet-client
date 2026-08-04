@@ -18,7 +18,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchFraudChecksRequest);
             var path = "/fraud/v1/fraud-checks" + queryParam;
             return RestClient.Get<FraudCheckListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchFraudChecksRequest, path, RequestOptions));
         }
 
         public Task<FraudCheckListResponse> SearchFraudChecksAsync(SearchFraudChecksRequest searchFraudChecksRequest)
@@ -26,7 +26,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchFraudChecksRequest);
             var path = "/fraud/v1/fraud-checks" + queryParam;
             return AsyncRestClient.Get<FraudCheckListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchFraudChecksRequest, path, RequestOptions));
         }
 
         public void UpdateFraudCheckStatus(UpdateFraudCheckStatusRequest request)
@@ -147,7 +147,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/fraud/v1/rules" + queryParam;
             return RestClient.Get<FraudRuleListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
         
         public Task SearchFraudRulesAsync(SearchFraudRuleRequest request)
@@ -155,7 +155,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/fraud/v1/rules" + queryParam;
             return AsyncRestClient.Get<FraudRuleListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
     }
 }

@@ -70,7 +70,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/settlement/v1/payout-accounts" + queryParam;
             return RestClient.Get<PayoutAccountListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public Task<PayoutAccountListResponse> SearchPayoutAccountsAsync(SearchPayoutAccountRequest request)
@@ -78,7 +78,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/settlement/v1/payout-accounts" + queryParam;
             return AsyncRestClient.Get<PayoutAccountListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
     }
 }

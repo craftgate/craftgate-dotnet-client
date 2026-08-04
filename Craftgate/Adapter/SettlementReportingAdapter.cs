@@ -18,7 +18,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
             var path = "/settlement-reporting/v2/settlement-file/payout-completed-transactions" + queryParam;
             return RestClient.Get<PayoutCompletedTransactionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchPayoutCompletedTransactionsRequest, path, RequestOptions));
         }
 
         public Task<PayoutCompletedTransactionListResponse> SearchPayoutCompletedTransactionsAsync(
@@ -27,7 +27,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
             var path = "/settlement-reporting/v2/settlement-file/payout-completed-transactions" + queryParam;
             return AsyncRestClient.Get<PayoutCompletedTransactionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchPayoutCompletedTransactionsRequest, path, RequestOptions));
         }
 
         public PayoutBouncedTransactionListResponse SearchBouncedPayoutTransactions(
@@ -36,7 +36,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
             var path = "/settlement-reporting/v1/settlement-file/bounced-sub-merchant-rows" + queryParam;
             return RestClient.Get<PayoutBouncedTransactionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchPayoutCompletedTransactionsRequest, path, RequestOptions));
         }
 
         public Task<PayoutBouncedTransactionListResponse> SearchBouncedPayoutTransactionsAsync(
@@ -45,7 +45,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
             var path = "/settlement-reporting/v1/settlement-file/bounced-sub-merchant-rows" + queryParam;
             return AsyncRestClient.Get<PayoutBouncedTransactionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchPayoutCompletedTransactionsRequest, path, RequestOptions));
         }
 
         public PayoutDetailResponse RetrievePayoutDetails(long id)
@@ -67,7 +67,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/settlement-reporting/v1/settlement-file-rows" + queryParam;
             return RestClient.Get<PayoutRowListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public Task<PayoutRowListResponse> SearchPayoutRowsAsync(SearchPayoutRowsRequest request)
@@ -75,7 +75,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/settlement/v1/settlements/rows" + queryParam;
             return AsyncRestClient.Get<PayoutRowListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
     }
 }

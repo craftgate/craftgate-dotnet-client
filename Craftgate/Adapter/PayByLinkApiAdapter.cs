@@ -71,7 +71,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchProductsRequest);
             var path = "/craftlink/v1/products" + queryParam;
             return RestClient.Get<ProductListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchProductsRequest, path, RequestOptions));
         }
 
         public Task<ProductListResponse> SearchProductsAsync(SearchProductsRequest searchProductsRequest)
@@ -79,7 +79,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchProductsRequest);
             var path = "/craftlink/v1/products" + queryParam;
             return AsyncRestClient.Get<ProductListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchProductsRequest, path, RequestOptions));
         }
     }
 }

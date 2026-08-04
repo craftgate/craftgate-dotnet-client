@@ -33,6 +33,9 @@ namespace Test
 
             public Dictionary<string, string> PathOnlyHeaders(string path, BaseRequest request) =>
                 CreateHeadersWithoutBody(request, path, Options);
+
+            public Dictionary<string, string> ReadHeaders(string path, BaseRequest request) =>
+                CreateHeadersWithoutBody(request, path, Options);
         }
 
         private readonly TestAdapter _adapter = new TestAdapter(Options);
@@ -159,6 +162,27 @@ namespace Test
             Assert.IsFalse(query.Contains("headerOptions"));
             Assert.IsFalse(query.Contains("idempotencyKey"));
             Assert.IsFalse(query.Contains("idempotency-key-1"));
+        }
+
+        [Test]
+        public void Should_Send_Idempotency_Key_Header_For_Read_Request_And_Stay_Body_Less()
+        {
+            //given
+            var request = new SearchProductsRequest
+                {Name = "A new Product", HeaderOptions = new HeaderOptions {IdempotencyKey = "idempotency-key-1"}};
+            var path = "/craftlink/v1/products" + RequestQueryParamsBuilder.BuildQueryParam(request);
+
+            //when
+            var headers = _adapter.ReadHeaders(path, request);
+
+            //then
+            Assert.AreEqual("idempotency-key-1", headers[IdempotencyKeyHeaderName]);
+            Assert.IsFalse(path.Contains("headerOptions"));
+            Assert.IsFalse(path.Contains("idempotencyKey"));
+
+            var bodyLess = HashGenerator.GenerateHash(Options.BaseUrl, Options.ApiKey, Options.SecretKey,
+                headers[RandomHeaderName], null, path);
+            Assert.AreEqual(bodyLess, headers[SignatureHeaderName]);
         }
 
         [Test]
