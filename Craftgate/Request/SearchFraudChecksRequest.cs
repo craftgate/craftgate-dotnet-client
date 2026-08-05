@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchFraudChecksRequest
+    public class SearchFraudChecksRequest : BaseRequest
     {
         public FraudAction? Action { get; set; }
         public FraudCheckStatus? CheckStatus { get; set; }

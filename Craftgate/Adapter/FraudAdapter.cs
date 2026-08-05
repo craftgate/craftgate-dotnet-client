@@ -18,7 +18,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchFraudChecksRequest);
             var path = "/fraud/v1/fraud-checks" + queryParam;
             return RestClient.Get<FraudCheckListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchFraudChecksRequest, path, RequestOptions));
         }
 
         public Task<FraudCheckListResponse> SearchFraudChecksAsync(SearchFraudChecksRequest searchFraudChecksRequest)
@@ -26,21 +26,19 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchFraudChecksRequest);
             var path = "/fraud/v1/fraud-checks" + queryParam;
             return AsyncRestClient.Get<FraudCheckListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchFraudChecksRequest, path, RequestOptions));
         }
 
-        public void UpdateFraudCheckStatus(long id, FraudCheckStatus fraudCheckStatus)
+        public void UpdateFraudCheckStatus(UpdateFraudCheckStatusRequest request)
         {
-            var path = "/fraud/v1/fraud-checks/" + id + "/check-status";
-            var request = new UpdateFraudCheckStatusRequest(fraudCheckStatus);
+            var path = "/fraud/v1/fraud-checks/" + request.Id + "/check-status";
             RestClient.Put<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public Task UpdateFraudCheckStatusAsync(long id, FraudCheckStatus fraudCheckStatus)
+        public Task UpdateFraudCheckStatusAsync(UpdateFraudCheckStatusRequest request)
         {
-            var path = "/fraud/v1/fraud-checks/" + id + "/check-status";
-            var request = new UpdateFraudCheckStatusRequest(fraudCheckStatus);
+            var path = "/fraud/v1/fraud-checks/" + request.Id + "/check-status";
             return AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path,
                 CreateHeaders(request, path, RequestOptions), request);
         }
@@ -95,18 +93,18 @@ namespace Craftgate.Adapter
             });
         }
 
-        public void DeleteValueList(string listName)
+        public void DeleteValueList(DeleteValueListRequest request)
         {
-            var path = "/fraud/v1/value-lists/" + listName;
+            var path = "/fraud/v1/value-lists/" + request.ListName;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
-        public Task DeleteValueListAsync(string listName)
+        public Task DeleteValueListAsync(DeleteValueListRequest request)
         {
-            var path = "/fraud/v1/value-lists/" + listName;
+            var path = "/fraud/v1/value-lists/" + request.ListName;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public void AddValueToValueList(FraudValueListRequest request)
@@ -130,18 +128,18 @@ namespace Craftgate.Adapter
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public void RemoveValueFromValueList(string listName, string value)
+        public void RemoveValueFromValueList(RemoveValueFromValueListRequest request)
         {
-            var path = "/fraud/v1/value-lists/" + listName + "/values/" + value;
+            var path = "/fraud/v1/value-lists/" + request.ListName + "/values/" + request.ValueId;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
-        public Task RemoveValueFromValueListAsync(string listName, string valueId)
+        public Task RemoveValueFromValueListAsync(RemoveValueFromValueListRequest request)
         {
-            var path = "/fraud/v1/value-lists/" + listName + "/values/" + valueId;
+            var path = "/fraud/v1/value-lists/" + request.ListName + "/values/" + request.ValueId;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
         
         public FraudRuleListResponse SearchFraudRules(SearchFraudRuleRequest request)
@@ -149,7 +147,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/fraud/v1/rules" + queryParam;
             return RestClient.Get<FraudRuleListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
         
         public Task SearchFraudRulesAsync(SearchFraudRuleRequest request)
@@ -157,7 +155,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/fraud/v1/rules" + queryParam;
             return AsyncRestClient.Get<FraudRuleListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
     }
 }

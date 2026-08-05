@@ -15,6 +15,7 @@ namespace Craftgate.Adapter
         private const string ClientVersionHeaderName = "x-client-version";
         private const string SignatureHeaderName = "x-signature";
         private const string LanguageHeaderName = "lang";
+        private const string IdempotencyKeyHeaderName = "x-idempotency-key";
         private const string RandomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         protected readonly RequestOptions RequestOptions;
 
@@ -23,41 +24,56 @@ namespace Craftgate.Adapter
             RequestOptions = requestOptions;
         }
 
-        protected Dictionary<string, string> CreateHeaders(object request, string path,
+        protected Dictionary<string, string> CreateHeaders(BaseRequest request, string path,
             RequestOptions requestOptions)
         {
-            return CreateHttpHeaders(request, path, requestOptions);
+            return CreateHttpHeaders(request, path, requestOptions, request?.HeaderOptions);
         }
 
         protected Dictionary<string, string> CreateHeaders(string path, RequestOptions requestOptions)
         {
-            return CreateHttpHeaders(null, path, requestOptions);
+            return CreateHttpHeaders(null, path, requestOptions, null);
         }
 
-        private static Dictionary<string, string> CreateHttpHeaders(object request, string path,
-            RequestOptions options
+        protected Dictionary<string, string> CreateHeadersWithoutBody(BaseRequest request, string path,
+            RequestOptions requestOptions)
+        {
+            return CreateHttpHeaders(null, path, requestOptions, request?.HeaderOptions);
+        }
+
+        private static Dictionary<string, string> CreateHttpHeaders(BaseRequest request, string path,
+            RequestOptions requestOptions, HeaderOptions headerOptions
         )
         {
             var headers = new Dictionary<string, string>();
 
             var randomString = RandomString(RandomStringSize);
-            headers.Add(ApiKeyHeaderName, options.ApiKey);
+            headers.Add(ApiKeyHeaderName, requestOptions.ApiKey);
             headers.Add(RandomHeaderName, randomString);
             headers.Add(AuthVersionHeaderName, ApiVersionHeaderValue);
             headers.Add(ClientVersionHeaderName, ClientVersionHeaderValue + ":1.0.83");
-            headers.Add(SignatureHeaderName, PrepareAuthorizationString(request, path, randomString, options));
-            if (options.Language != null)
+            headers.Add(SignatureHeaderName, PrepareAuthorizationString(request, path, randomString, requestOptions));
+            if (requestOptions.Language != null)
             {
-                headers.Add(LanguageHeaderName, options.Language);
+                headers.Add(LanguageHeaderName, requestOptions.Language);
             }
+            ApplyRequestScopedHeaders(headers, headerOptions);
             return headers;
         }
 
-        private static string PrepareAuthorizationString(object request, string path, string randomString,
-            RequestOptions options)
+        private static void ApplyRequestScopedHeaders(Dictionary<string, string> headers, HeaderOptions headerOptions)
         {
-            return HashGenerator.GenerateHash(options.BaseUrl, options.ApiKey, options.SecretKey, randomString,
-                request, path);
+            if (!string.IsNullOrEmpty(headerOptions?.IdempotencyKey))
+            {
+                headers.Add(IdempotencyKeyHeaderName, headerOptions.IdempotencyKey);
+            }
+        }
+
+        private static string PrepareAuthorizationString(BaseRequest request, string path, string randomString,
+            RequestOptions requestOptions)
+        {
+            return HashGenerator.GenerateHash(requestOptions.BaseUrl, requestOptions.ApiKey,
+                requestOptions.SecretKey, randomString, request, path);
         }
 
         private static string RandomString(int length)

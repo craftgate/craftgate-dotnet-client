@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchPaymentTransactionRefundsRequest
+    public class SearchPaymentTransactionRefundsRequest : BaseRequest
     {
         public long? Id { get; set; }
         public long? PaymentId { get; set; }

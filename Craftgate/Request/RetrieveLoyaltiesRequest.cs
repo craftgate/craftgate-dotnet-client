@@ -1,8 +1,9 @@
-﻿using Craftgate.Request.Dto;
+﻿using Craftgate.Request.Common;
+using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class RetrieveLoyaltiesRequest
+    public class RetrieveLoyaltiesRequest : BaseRequest
     {
         public string CardNumber { get; set; }
         public string ExpireYear { get; set; }

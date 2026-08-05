@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class CreateApmPaymentRequest
+    public class CreateApmPaymentRequest : BaseRequest
     {
         public ApmType ApmType { get; set; }
         public decimal Price { get; set; }

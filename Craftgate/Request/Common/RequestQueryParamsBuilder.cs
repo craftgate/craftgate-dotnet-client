@@ -12,7 +12,9 @@ namespace Craftgate.Request.Common
     {
         public static string BuildQueryParam(object request)
         {
-            var fields = Enumerable.ToList(request.GetType().GetRuntimeProperties());
+            var fields = Enumerable.ToList(request.GetType().GetRuntimeProperties())
+                .Where(field => field.PropertyType != typeof(HeaderOptions))
+                .ToList();
             var query = new StringBuilder(fields.Any() ? "?" : "");
             foreach (var field in fields)
             {

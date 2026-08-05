@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using Craftgate.Common;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 using Newtonsoft.Json;
 
 namespace Craftgate.Request
 {
-    public class CreateProductRequest
+    public class CreateProductRequest : BaseRequest
     {
         public string Name {get; set;}
         public string Channel {get; set;}

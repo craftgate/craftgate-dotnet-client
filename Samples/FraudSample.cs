@@ -42,7 +42,8 @@ namespace Samples
         public void Update_Fraud_Check_Status()
         {
             const long fraudCheckId = 1L;
-            _craftgateClient.Fraud().UpdateFraudCheckStatus(fraudCheckId, FraudCheckStatus.FRAUD);
+            _craftgateClient.Fraud().UpdateFraudCheckStatus(
+                new UpdateFraudCheckStatusRequest {Id = fraudCheckId, CheckStatus = FraudCheckStatus.FRAUD});
         }
         
         [Test]
@@ -111,13 +112,14 @@ namespace Samples
         [Test]
         public void Remove_Value_From_Fraud_Value_List()
         {
-            _craftgateClient.Fraud().RemoveValueFromValueList("ipList", "9bf6d4de-59ee-48c1-8404-374999ab1a4e");
+            _craftgateClient.Fraud().RemoveValueFromValueList(new RemoveValueFromValueListRequest
+                {ListName = "ipList", ValueId = "9bf6d4de-59ee-48c1-8404-374999ab1a4e"});
         }
         
         [Test]
         public void Delete_Value_List()
         {
-            _craftgateClient.Fraud().DeleteValueList("ipList");
+            _craftgateClient.Fraud().DeleteValueList(new DeleteValueListRequest {ListName = "ipList"});
         }
         
         [Test]

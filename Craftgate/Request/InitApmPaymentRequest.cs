@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class InitApmPaymentRequest
+    public class InitApmPaymentRequest : BaseRequest
     {
         public ApmType ApmType { get; set; }
         public long? MerchantApmId { get; set; }

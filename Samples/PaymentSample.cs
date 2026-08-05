@@ -2064,7 +2064,7 @@ namespace Samples
         {
             var token = "456d1297-908e-4bd6-a13b-4be31a6e47d5";
 
-            _craftgateClient.Payment().ExpireCheckoutPayment(token);
+            _craftgateClient.Payment().ExpireCheckoutPayment(new ExpireCheckoutPaymentRequest {Token = token});
         }
 
         [Test]
@@ -2693,7 +2693,7 @@ namespace Samples
         {
             var PaymentId = 1;
 
-            _craftgateClient.Payment().ApproveBnplPayment(PaymentId);
+            _craftgateClient.Payment().ApproveBnplPayment(new ApproveBnplPaymentRequest {PaymentId = PaymentId});
         }
 
         [Test]
@@ -2701,7 +2701,7 @@ namespace Samples
         {
             var PaymentId = 1;
 
-            _craftgateClient.Payment().VerifyBnplPayment(PaymentId);
+            _craftgateClient.Payment().VerifyBnplPayment(new VerifyBnplPaymentRequest {PaymentId = PaymentId});
         }
 
         [Test]

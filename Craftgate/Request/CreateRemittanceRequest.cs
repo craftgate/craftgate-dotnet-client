@@ -1,8 +1,9 @@
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class CreateRemittanceRequest
+    public class CreateRemittanceRequest : BaseRequest
     {
         public long? MemberId { get; set; }
         public decimal? Price { get; set; }
