@@ -63,7 +63,7 @@ namespace Craftgate.Adapter
 
         private static void ApplyRequestScopedHeaders(Dictionary<string, string> headers, HeaderOptions headerOptions)
         {
-            if (headerOptions?.IdempotencyKey != null)
+            if (!string.IsNullOrEmpty(headerOptions?.IdempotencyKey))
             {
                 headers.Add(IdempotencyKeyHeaderName, headerOptions.IdempotencyKey);
             }

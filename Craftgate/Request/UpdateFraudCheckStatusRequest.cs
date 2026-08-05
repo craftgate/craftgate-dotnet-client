@@ -7,12 +7,6 @@ namespace Craftgate.Request
 {
     public class UpdateFraudCheckStatusRequest : BaseRequest
     {
-        public UpdateFraudCheckStatusRequest()
-        {
-        }
-
-        public UpdateFraudCheckStatusRequest(FraudCheckStatus fraudCheckStatus) => CheckStatus = fraudCheckStatus;
-
         [JsonIgnore]
         public long? Id { get; set; }
 

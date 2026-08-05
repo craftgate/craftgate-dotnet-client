@@ -73,7 +73,7 @@ namespace Craftgate.Adapter
         public Task<PayoutRowListResponse> SearchPayoutRowsAsync(SearchPayoutRowsRequest request)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
-            var path = "/settlement/v1/settlements/rows" + queryParam;
+            var path = "/settlement-reporting/v1/settlement-file-rows" + queryParam;
             return AsyncRestClient.Get<PayoutRowListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeadersWithoutBody(request, path, RequestOptions));
         }

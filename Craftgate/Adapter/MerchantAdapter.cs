@@ -68,10 +68,10 @@ namespace Craftgate.Adapter
                 CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
-        public void UpdateMerchantPosStatusAsync(UpdateMerchantPosStatusRequest request)
+        public Task UpdateMerchantPosStatusAsync(UpdateMerchantPosStatusRequest request)
         {
             var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId + "/status/" + request.PosStatus;
-            AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path,
                 CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
@@ -82,10 +82,10 @@ namespace Craftgate.Adapter
                 CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
-        public void DeleteMerchantPosAsync(DeleteMerchantPosRequest request)
+        public Task DeleteMerchantPosAsync(DeleteMerchantPosRequest request)
         {
             var path = "/merchant/v1/merchant-poses/" + request.MerchantPosId;
-            AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
+            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
                 CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
