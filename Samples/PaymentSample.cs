@@ -2022,6 +2022,29 @@ namespace Samples
         }
 
         [Test]
+        public void Retrieve_Loyalties_by_Installment()
+        {
+            var request = new RetrieveLoyaltiesRequest
+            {
+                CardNumber = "5482370000000003",
+                ExpireYear = "2044",
+                ExpireMonth = "07",
+                Cvc = "000",
+                Installment = 2,
+                LoyaltyType = LoyaltyType.ADDITIONAL_INSTALLMENT
+            };
+
+            var response = _craftgateClient.Payment().RetrieveLoyalties(request);
+            Assert.NotNull(response);
+            Assert.AreEqual("Maximum", response.CardBrand);
+            Assert.IsNotEmpty(response.Loyalties);
+            Assert.AreEqual(LoyaltyType.ADDITIONAL_INSTALLMENT, response.Loyalties[0].Type);
+            Assert.IsNotNull(response.Loyalties[0].Reward);
+            Assert.AreEqual("+5 taksit", response.Loyalties[0].Message);
+            Assert.AreEqual("installment5", response.Loyalties[0].LoyaltyData.Code);
+        }
+
+        [Test]
         public void Retrieve_Payment()
         {
             long paymentId = 1;
