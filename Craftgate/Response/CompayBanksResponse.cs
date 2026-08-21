@@ -3,8 +3,8 @@ using Craftgate.Response.Dto;
 
 namespace Craftgate.Response
 {
-    public class InstantTransferBanksResponse
+    public class CompayBanksResponse
     {
-        public IList<InstantTransferBank> Items { get; set; }
+        public IList<CompayBank> Items { get; set; }
     }
 }

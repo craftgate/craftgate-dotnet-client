@@ -19,19 +19,19 @@ namespace Samples
         [Test]
         public void RetrieveActiveBanks()
         {
-            InstantTransferBanksResponse response = _craftgateClient.Payment().RetrieveActiveBanks();
+            CompayBanksResponse response = _craftgateClient.Payment().RetrieveActiveBanks();
             Assert.NotNull(response.Items);
-            InstantTransferBank instantTransferBank = response.Items[0];
-            Assert.NotNull(instantTransferBank);
+            CompayBank compayBank = response.Items[0];
+            Assert.NotNull(compayBank);
         }
 
 
         [Test]
-        public void Init_Instant_Transfer_Apm_Payment()
+        public void Init_Compay_Apm_Payment()
         {
             var request = new InitApmPaymentRequest
             {
-                ApmType = ApmType.INSTANT_TRANSFER,
+                ApmType = ApmType.COMPAY,
                 Price = new decimal(1.0),
                 PaidPrice = new decimal(1.0),
                 Currency = Currency.TRY,
@@ -39,10 +39,11 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 ExternalId = "optional-ExternalId",
                 CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
-                ApmUserIdentity = "5555555555",
                 AdditionalParams = new Dictionary<string, object>
                 {
-                    {"bankCode", "0"}
+                    {"bankCode", "0"},
+                    {"shopUrl", "your-website.com"},
+                    {"receiptDescription", "your-description"}
                 },
                 Items = new List<PaymentItem>
                 {
