@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace Samples
 {
-    public class InstantTransferPaymentSample
+    public class CompayPaymentSample
     {
         private readonly CraftgateClient _craftgateClient =
             new CraftgateClient("api-key", "secret-key",
