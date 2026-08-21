@@ -716,14 +716,14 @@ namespace Craftgate.Adapter
 
         public CompayBanksResponse RetrieveActiveBanks()
         {
-            var path = "/payment/v1/compay-banks";
+            var path = "/payment/v1/compay/banks";
             return RestClient.Get<CompayBanksResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
         public Task<CompayBanksResponse> RetrieveActiveBanksAsync()
         {
-            var path = "/payment/v1/compay-banks";
+            var path = "/payment/v1/compay/banks";
             return AsyncRestClient.Get<CompayBanksResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
