@@ -2,6 +2,7 @@ using System;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Samples
@@ -132,6 +133,19 @@ namespace Samples
 
             var response = _craftgateClient.Fraud().SearchFraudRules(request);
             Assert.True(response.Items.Count > 0);
+        }
+
+        [Test]
+        public void Search_Global_Fraud_Rules()
+        {
+            var request = new SearchFraudRuleRequest()
+            {
+                Scope = FraudRuleScope.GLOBAL
+            };
+
+            var response = _craftgateClient.Fraud().SearchFraudRules(request);
+            Assert.True(response.Items.Count > 0);
+            Assert.True(response.Items.All(rule => rule.IsGlobal == true));
         }
     }
 }
