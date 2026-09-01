@@ -12,6 +12,7 @@ namespace Craftgate.Request
         public string Cvc { get; set; }
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }
+        public string SecureFieldsToken { get; set; }
         public LoyaltyType LoyaltyType { get; set;}
         public int? Installment { get; set; }
         public string ClientIp { get; set; }
