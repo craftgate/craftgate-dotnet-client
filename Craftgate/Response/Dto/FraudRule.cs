@@ -11,5 +11,6 @@ namespace Craftgate.Response.Dto
         public FraudAction Action { get; set; }
         public string Conditions { get; set; }
         public IList<string> Operations { get; set; }
+        public bool? IsGlobal { get; set; }
     }
 }
