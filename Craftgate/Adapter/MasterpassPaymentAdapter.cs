@@ -45,6 +45,24 @@ namespace Craftgate.Adapter
                 masterpassPaymentTokenGenerateRequest);
         }
 
+        public MasterpassAccountTokenGenerateResponse GenerateMasterpassAccountToken(
+            MasterpassAccountTokenGenerateRequest masterpassAccountTokenGenerateRequest)
+        {
+            var path = "/payment/v2/masterpass-accounts/generate-token";
+            return RestClient.Post<MasterpassAccountTokenGenerateResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(masterpassAccountTokenGenerateRequest, path, RequestOptions),
+                masterpassAccountTokenGenerateRequest);
+        }
+
+        public Task<MasterpassAccountTokenGenerateResponse> GenerateMasterpassAccountTokenAsync(
+            MasterpassAccountTokenGenerateRequest masterpassAccountTokenGenerateRequest)
+        {
+            var path = "/payment/v2/masterpass-accounts/generate-token";
+            return AsyncRestClient.Post<MasterpassAccountTokenGenerateResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(masterpassAccountTokenGenerateRequest, path, RequestOptions),
+                masterpassAccountTokenGenerateRequest);
+        }
+
         public PaymentResponse CompleteMasterpassPayment(
             MasterpassPaymentCompleteRequest masterpassPaymentCompleteRequest)
         {
