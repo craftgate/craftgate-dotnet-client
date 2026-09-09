@@ -20,7 +20,7 @@ namespace Craftgate.Response
         public string TerminalId { get; set; }
         public string ThreedsPosnetId { get; set; }
         public string ThreedsTerminalId { get; set; }
-        public string ThreedsKey { get; set; }
+        public bool ThreedsKeyExists { get; set; }
         public string ThreedsPath { get; set; }
         public bool EnableForeignCard { get; set; }
         public bool EnableInstallment { get; set; }
