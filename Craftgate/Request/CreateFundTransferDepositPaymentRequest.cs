@@ -10,5 +10,6 @@ namespace Craftgate.Request
         public long? BuyerMemberId { get; set; }
         public string ConversationId { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace Craftgate.Request
         public LoyaltyType LoyaltyType { get; set;}
         public int? Installment { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
         public string ConversationId { get; set; }
         public FraudCheckParameters FraudParams { get; set; }
     }
