@@ -13,6 +13,7 @@ namespace Craftgate.Request
         public string CallbackUrl { get; set; }
         public string PosAlias { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
         public Card Card { get; set; }
         public RoutingOptions RoutingOptions { get; set; }
     }

@@ -18,6 +18,7 @@ namespace Craftgate.Request
         public long? BuyerMemberId { get; set; }
         public string ApmOrderId { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
         public IList<PaymentItem> Items { get; set; }
     }
 }

@@ -20,5 +20,6 @@ namespace Craftgate.Request
         public string ApmUserIdentity { get; set; }
         public Dictionary<string, object> AdditionalParams { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
     }
 }
