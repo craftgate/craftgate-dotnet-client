@@ -17,6 +17,7 @@ namespace Craftgate.Request
         public string ExternalId { get; set; }
         public string CallbackUrl { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
         public string PaymentChannel { get; set; }
         public long? BuyerMemberId { get; set; }
         public string BankOrderId { get; set; }

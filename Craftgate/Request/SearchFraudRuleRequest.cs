@@ -11,6 +11,7 @@ namespace Craftgate.Request
         public string Name { get; set; }
         public FraudAction? Action { get; set; }
         public FraudOperation? Operation { get; set; }
+        public FraudRuleScope? Scope { get; set; }
         public DateTime? MinCreatedDate { get; set; }
         public DateTime? MaxCreatedDate { get; set; }
     }

@@ -21,6 +21,7 @@ namespace Craftgate.Request
         public long? BuyerMemberId { get; set; }
         public string BankOrderId { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
         public Card Card { get; set; }
         public RoutingOptions RoutingOptions { get; set; }
         public FraudCheckParameters FraudParams { get; set; }

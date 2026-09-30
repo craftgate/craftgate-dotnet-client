@@ -879,7 +879,8 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 ExternalId = "optional-ExternalId",
                 CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
-                ClientIp = "127.0.0.1"
+                ClientIp = "127.0.0.1",
+                ClientPort = 51520
             };
 
             var response = _craftgateClient.Payment().InitApmDepositPayment(request);
@@ -2084,6 +2085,20 @@ namespace Samples
         }
 
         [Test]
+        public void Retrieve_Loyalties_With_Secure_Fields()
+        {
+            var request = new RetrieveLoyaltiesRequest
+            {
+                SecureFieldsToken = "xxXXxx"
+            };
+
+            var response = _craftgateClient.Payment().RetrieveLoyalties(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.CardBrand);
+            Assert.NotNull(response.Loyalties);
+        }
+
+        [Test]
         public void Retrieve_Loyalties_by_Installment()
         {
             var request = new RetrieveLoyaltiesRequest
@@ -2911,7 +2926,8 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 VerificationPrice = new decimal(10.0),
                 Currency = Currency.TRY,
-                ClientIp = "127.0.0.1"
+                ClientIp = "127.0.0.1",
+                ClientPort = 51520
             };
 
             var response = _craftgateClient.Payment().VerifyCard(request);
