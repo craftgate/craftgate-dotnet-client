@@ -23,6 +23,7 @@ namespace Craftgate.Response
         public string Url { get; set; }
         public string Channel { get; set; }
         public bool MultiPayment { get; set; }
+        public bool ForceThreeDS { get; set; }
         public string BasketIdentifier { get; set; }
     }
 }
