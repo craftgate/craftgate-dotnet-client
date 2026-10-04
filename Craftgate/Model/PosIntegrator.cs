@@ -14,6 +14,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "CHECKOUT")] CHECKOUT,
         [EnumMember(Value = "DENIZBANK")] DENIZBANK,
         [EnumMember(Value = "ELEKSE")] ELEKSE,
+        [EnumMember(Value = "ENPARA")] ENPARA,
         [EnumMember(Value = "FIBABANK")] FIBABANK,
         [EnumMember(Value = "FIBABANK_ASSECO")] FIBABANK_ASSECO,
         [EnumMember(Value = "FINANSBANK")] FINANSBANK,
