@@ -17,6 +17,7 @@ namespace Craftgate.Request
         public string ConversationId { get; set; }
         public string ExternalId { get; set; }
         public string OrderId { get; set; }
+        public string BasketIdentifier { get; set; }
         public PaymentPhase PaymentPhase { get; set; } = PaymentPhase.AUTH;
         public IList<PaymentMethod> EnabledPaymentMethods { get; set; }
         public string MasterpassGsmNumber { get; set; }

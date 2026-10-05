@@ -11,6 +11,7 @@ namespace Craftgate.Request
         public decimal? VerificationPrice { get; set; }
         public Currency? Currency { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
         public string ConversationId { get; set; }
         public string CallbackUrl { get; set; }
     }
