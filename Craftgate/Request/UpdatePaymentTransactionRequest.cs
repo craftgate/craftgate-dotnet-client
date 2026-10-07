@@ -1,8 +1,9 @@
 using System;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class UpdatePaymentTransactionRequest
+    public class UpdatePaymentTransactionRequest : BaseRequest
     {
         public long? SubMerchantMemberId { get; set; }
         public decimal? SubMerchantMemberPrice { get; set; }

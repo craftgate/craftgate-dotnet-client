@@ -1,8 +1,9 @@
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class FraudValueListRequest
+    public class FraudValueListRequest : BaseRequest
     {
         public string ListName { get; set; }
         public FraudValueType Type { get; set; }

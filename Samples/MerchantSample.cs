@@ -113,7 +113,8 @@ namespace Samples
             const int id = 9;
             const PosStatus posStatus = PosStatus.PASSIVE;
 
-            _craftgateClient.Merchant().UpdateMerchantPosStatus(id, posStatus);
+            _craftgateClient.Merchant().UpdateMerchantPosStatus(
+                new UpdateMerchantPosStatusRequest {MerchantPosId = id, PosStatus = posStatus});
         }
 
         [Test]
@@ -121,7 +122,7 @@ namespace Samples
         {
             const int id = 9;
 
-            _craftgateClient.Merchant().DeleteMerchantPos(id);
+            _craftgateClient.Merchant().DeleteMerchantPos(new DeleteMerchantPosRequest {MerchantPosId = id});
         }
 
         [Test]

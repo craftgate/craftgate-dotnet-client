@@ -1,8 +1,9 @@
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class InitCheckoutCardVerifyRequest
+    public class InitCheckoutCardVerifyRequest : BaseRequest
     {
         public decimal? VerificationPrice { get; set; }
         public Currency? Currency { get; set; }

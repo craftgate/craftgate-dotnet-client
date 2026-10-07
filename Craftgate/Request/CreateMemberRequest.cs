@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class CreateMemberRequest
+    public class CreateMemberRequest : BaseRequest
     {
         public string MemberExternalId { get; set; }
         public string Name { get; set; }

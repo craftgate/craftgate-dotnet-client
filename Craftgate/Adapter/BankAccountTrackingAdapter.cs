@@ -21,7 +21,7 @@ namespace Craftgate.Adapter
             var path = "/bank-account-tracking/v1/merchant-bank-account-trackings/records" + query;
 
             return RestClient.Get<BankAccountTrackingRecordListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public Task<BankAccountTrackingRecordListResponse> SearchRecordsAsync(SearchBankAccountTrackingRecordsRequest request)
@@ -30,7 +30,7 @@ namespace Craftgate.Adapter
             var path = "/bank-account-tracking/v1/merchant-bank-account-trackings/records" + query;
 
             return AsyncRestClient.Get<BankAccountTrackingRecordListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public BankAccountTrackingRecordResponse RetrieveRecord(decimal Id)

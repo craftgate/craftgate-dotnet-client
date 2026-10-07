@@ -51,16 +51,18 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Put<object>(RequestOptions.BaseUrl + path, CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public void DeletePayoutAccount(long id)
+        public void DeletePayoutAccount(DeletePayoutAccountRequest request)
         {
-            var path = "/settlement/v1/payout-accounts/" + id;
-            RestClient.Delete<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            var path = "/settlement/v1/payout-accounts/" + request.Id;
+            RestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
-        public Task DeletePayoutAccountAsync(long id)
+        public Task DeletePayoutAccountAsync(DeletePayoutAccountRequest request)
         {
-            var path = "/settlement/v1/payout-accounts/" + id;
-            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
+            var path = "/settlement/v1/payout-accounts/" + request.Id;
+            return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public PayoutAccountListResponse SearchPayoutAccounts(SearchPayoutAccountRequest request)
@@ -68,7 +70,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/settlement/v1/payout-accounts" + queryParam;
             return RestClient.Get<PayoutAccountListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public Task<PayoutAccountListResponse> SearchPayoutAccountsAsync(SearchPayoutAccountRequest request)
@@ -76,7 +78,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(request);
             var path = "/settlement/v1/payout-accounts" + queryParam;
             return AsyncRestClient.Get<PayoutAccountListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
     }
 }

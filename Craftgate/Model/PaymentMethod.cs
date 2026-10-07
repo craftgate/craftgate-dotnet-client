@@ -39,6 +39,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "KARACA_FINANS")] KARACA_FINANS,
         [EnumMember(Value = "PAYCELL_DCB")] PAYCELL_DCB,
         [EnumMember(Value = "SETCARD")] SETCARD,
+        [EnumMember(Value = "SETCARD_GIFT")] SETCARD_GIFT,
         [EnumMember(Value = "IWALLET")] IWALLET,
         [EnumMember(Value = "PAPEL")] PAPEL,
         [EnumMember(Value = "BKM_EXPRESS")] BKM_EXPRESS

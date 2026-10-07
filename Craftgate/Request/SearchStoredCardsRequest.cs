@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchStoredCardsRequest
+    public class SearchStoredCardsRequest : BaseRequest
     {
         public string CardAlias { get; set; }
         public string CardBrand { get; set; }

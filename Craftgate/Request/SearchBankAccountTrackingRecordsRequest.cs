@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchBankAccountTrackingRecordsRequest
+    public class SearchBankAccountTrackingRecordsRequest : BaseRequest
     {
         public string SenderName { get; set; }
         public string SenderIban { get; set; }

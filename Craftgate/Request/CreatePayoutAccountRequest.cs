@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class CreatePayoutAccountRequest
+    public class CreatePayoutAccountRequest : BaseRequest
     {
         public PayoutAccountType Type { get; set; }
         public string ExternalAccountId { get; set; }

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchMembersRequest
+    public class SearchMembersRequest : BaseRequest
     {
         public bool? IsBuyer { get; set; }
         public bool? IsSubMerchant { get; set; }

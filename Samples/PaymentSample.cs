@@ -879,7 +879,8 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 ExternalId = "optional-ExternalId",
                 CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
-                ClientIp = "127.0.0.1"
+                ClientIp = "127.0.0.1",
+                ClientPort = 51520
             };
 
             var response = _craftgateClient.Payment().InitApmDepositPayment(request);
@@ -1159,6 +1160,49 @@ namespace Samples
             var request = new InitApmPaymentRequest
             {
                 ApmType = ApmType.SETCARD,
+                Price = new decimal(1.0),
+                PaidPrice = new decimal(1.0),
+                Currency = Currency.TRY,
+                PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                ExternalId = "optional-ExternalId",
+                CallbackUrl = "https://www.your-website.com/craftgate-apm-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.40)
+                    },
+
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(0.60)
+                    }
+                },
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "cardNumber", "7599640961180814" }
+                },
+            };
+
+            var response = _craftgateClient.Payment().InitApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.Null(response.RedirectUrl);
+            Assert.AreEqual(response.PaymentStatus, PaymentStatus.WAITING);
+            Assert.AreEqual(response.AdditionalAction, ApmAdditionalAction.OTP_REQUIRED);
+        }
+
+        [Test]
+        public void Init_Setcard_Gift_Apm_Payment()
+        {
+            var request = new InitApmPaymentRequest
+            {
+                ApmType = ApmType.SETCARD_GIFT,
                 Price = new decimal(1.0),
                 PaidPrice = new decimal(1.0),
                 Currency = Currency.TRY,
@@ -1642,6 +1686,25 @@ namespace Samples
         }
 
         [Test]
+        public void Complete_Setcard_Gift_Apm_Payment()
+        {
+            var request = new CompleteApmPaymentRequest
+            {
+                PaymentId = 1,
+                AdditionalParams = new Dictionary<string, object>
+                {
+                    { "otpCode", "784294" }
+                },
+            };
+
+            var response = _craftgateClient.Payment().CompleteApmPayment(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.PaymentId);
+            Assert.AreEqual(PaymentStatus.SUCCESS, response.PaymentStatus);
+            Assert.NotNull(response.ConversationId);
+        }
+
+        [Test]
         public void Complete_IWallet_Apm_Payment()
         {
             var request = new CompleteApmPaymentRequest
@@ -2022,6 +2085,43 @@ namespace Samples
         }
 
         [Test]
+        public void Retrieve_Loyalties_With_Secure_Fields()
+        {
+            var request = new RetrieveLoyaltiesRequest
+            {
+                SecureFieldsToken = "xxXXxx"
+            };
+
+            var response = _craftgateClient.Payment().RetrieveLoyalties(request);
+            Assert.NotNull(response);
+            Assert.NotNull(response.CardBrand);
+            Assert.NotNull(response.Loyalties);
+        }
+
+        [Test]
+        public void Retrieve_Loyalties_by_Installment()
+        {
+            var request = new RetrieveLoyaltiesRequest
+            {
+                CardNumber = "5482370000000003",
+                ExpireYear = "2044",
+                ExpireMonth = "07",
+                Cvc = "000",
+                Installment = 2,
+                LoyaltyType = LoyaltyType.ADDITIONAL_INSTALLMENT
+            };
+
+            var response = _craftgateClient.Payment().RetrieveLoyalties(request);
+            Assert.NotNull(response);
+            Assert.AreEqual("Maximum", response.CardBrand);
+            Assert.IsNotEmpty(response.Loyalties);
+            Assert.AreEqual(LoyaltyType.ADDITIONAL_INSTALLMENT, response.Loyalties[0].Type);
+            Assert.IsNotNull(response.Loyalties[0].Reward);
+            Assert.AreEqual("+5 taksit", response.Loyalties[0].Message);
+            Assert.AreEqual("installment5", response.Loyalties[0].LoyaltyData.Code);
+        }
+
+        [Test]
         public void Retrieve_Payment()
         {
             long paymentId = 1;
@@ -2064,7 +2164,7 @@ namespace Samples
         {
             var token = "456d1297-908e-4bd6-a13b-4be31a6e47d5";
 
-            _craftgateClient.Payment().ExpireCheckoutPayment(token);
+            _craftgateClient.Payment().ExpireCheckoutPayment(new ExpireCheckoutPaymentRequest {Token = token});
         }
 
         [Test]
@@ -2693,7 +2793,7 @@ namespace Samples
         {
             var PaymentId = 1;
 
-            _craftgateClient.Payment().ApproveBnplPayment(PaymentId);
+            _craftgateClient.Payment().ApproveBnplPayment(new ApproveBnplPaymentRequest {PaymentId = PaymentId});
         }
 
         [Test]
@@ -2701,7 +2801,7 @@ namespace Samples
         {
             var PaymentId = 1;
 
-            _craftgateClient.Payment().VerifyBnplPayment(PaymentId);
+            _craftgateClient.Payment().VerifyBnplPayment(new VerifyBnplPaymentRequest {PaymentId = PaymentId});
         }
 
         [Test]
@@ -2710,7 +2810,6 @@ namespace Samples
             var request = new InitMultiPaymentRequest
             {
                 Price = new decimal(100.0),
-                PaidPrice = new decimal(100.0),
                 Currency = Currency.TRY,
                 PaymentGroup = PaymentGroup.LISTING_OR_SUBSCRIPTION,
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
@@ -2754,7 +2853,7 @@ namespace Samples
             Assert.NotNull(response.Id);
             Assert.NotNull(response.MultiPaymentStatus);
             Assert.NotNull(response.Token);
-            Assert.NotNull(response.PaidPrice);
+            Assert.NotNull(response.Price);
             Assert.NotNull(response.RemainingAmount);
             Assert.NotNull(response.PaymentIds);
         }
@@ -2827,7 +2926,8 @@ namespace Samples
                 ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
                 VerificationPrice = new decimal(10.0),
                 Currency = Currency.TRY,
-                ClientIp = "127.0.0.1"
+                ClientIp = "127.0.0.1",
+                ClientPort = 51520
             };
 
             var response = _craftgateClient.Payment().VerifyCard(request);

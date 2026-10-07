@@ -63,7 +63,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMembersRequest);
             var path = "/onboarding/v1/members" + queryParam;
             return RestClient.Get<MemberListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchMembersRequest, path, RequestOptions));
         }
 
         public Task<MemberListResponse> SearchMembersAsync(SearchMembersRequest searchMembersRequest)
@@ -71,7 +71,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchMembersRequest);
             var path = "/onboarding/v1/members" + queryParam;
             return AsyncRestClient.Get<MemberListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchMembersRequest, path, RequestOptions));
         }
 
         public CreateMerchantResponse CreateMerchant(CreateMerchantRequest createMerchantRequest)

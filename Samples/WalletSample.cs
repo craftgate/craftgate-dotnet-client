@@ -196,7 +196,7 @@ namespace Samples
         {
             var withdrawId = 1;
 
-            var response = _craftgateClient.Wallet().CancelWithdraw(withdrawId);
+            var response = _craftgateClient.Wallet().CancelWithdraw(new CancelWithdrawRequest {WithdrawId = withdrawId});
 
             Assert.IsNotNull(response.Id);
             Assert.IsNotNull(response.CreatedDate);

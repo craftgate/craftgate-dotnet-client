@@ -17,7 +17,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchInstallmentsRequest);
             var path = "/installment/v1/installments" + queryParam;
             return RestClient.Get<InstallmentListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchInstallmentsRequest, path, RequestOptions));
         }
 
         public Task<InstallmentListResponse> SearchInstallmentsAsync(SearchInstallmentsRequest searchInstallmentsRequest)
@@ -25,7 +25,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchInstallmentsRequest);
             var path = "/installment/v1/installments" + queryParam;
             return AsyncRestClient.Get<InstallmentListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchInstallmentsRequest, path, RequestOptions));
         }
 
         public BinNumberResponse RetrieveBinNumber(string binNumber)

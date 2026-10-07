@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class InitCheckoutPaymentRequest
+    public class InitCheckoutPaymentRequest : BaseRequest
     {
         public decimal? Price { get; set; }
         public decimal? PaidPrice { get; set; }
@@ -16,6 +17,7 @@ namespace Craftgate.Request
         public string ConversationId { get; set; }
         public string ExternalId { get; set; }
         public string OrderId { get; set; }
+        public string BasketIdentifier { get; set; }
         public PaymentPhase PaymentPhase { get; set; } = PaymentPhase.AUTH;
         public IList<PaymentMethod> EnabledPaymentMethods { get; set; }
         public string MasterpassGsmNumber { get; set; }
@@ -42,5 +44,6 @@ namespace Craftgate.Request
         public FraudCheckParameters FraudParams { get; set; }
         public Dictionary<string, object> AdditionalParams { get; set; }
         public Dictionary<string, List<CustomInstallment>> CardBrandInstallments { get; set; }
+        public bool? Retry { get; set; }
     }
 }

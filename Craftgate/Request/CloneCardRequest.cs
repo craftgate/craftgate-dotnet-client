@@ -1,6 +1,8 @@
+using Craftgate.Request.Common;
+
 namespace Craftgate.Request
 {
-    public class CloneCardRequest
+    public class CloneCardRequest : BaseRequest
     {
         public string SourceCardUserKey { get; set; }
         public string SourceCardToken { get; set; }

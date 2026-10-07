@@ -1,8 +1,9 @@
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchPayoutAccountRequest
+    public class SearchPayoutAccountRequest : BaseRequest
     {
         public Currency? Currency { get; set; }
         public AccountOwner? AccountOwner { get; set; }

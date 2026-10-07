@@ -67,7 +67,7 @@ namespace Samples
         [Test]
         public void Delete_Payout_Account()
         {
-            _craftgateClient.Settlement().DeletePayoutAccount(13);
+            _craftgateClient.Settlement().DeletePayoutAccount(new DeletePayoutAccountRequest {Id = 13});
         }
         
         

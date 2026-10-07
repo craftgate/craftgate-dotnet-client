@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class InitGarantiPayPaymentRequest
+    public class InitGarantiPayPaymentRequest : BaseRequest
     {
         public decimal? Price { get; set; }
         public decimal? PaidPrice { get; set; }
@@ -16,6 +17,7 @@ namespace Craftgate.Request
         public string ExternalId { get; set; }
         public string CallbackUrl { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
         public string PaymentChannel { get; set; }
         public long? BuyerMemberId { get; set; }
         public string BankOrderId { get; set; }

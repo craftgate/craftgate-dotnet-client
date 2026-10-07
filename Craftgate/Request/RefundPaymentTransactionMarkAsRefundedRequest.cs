@@ -1,8 +1,9 @@
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class RefundPaymentTransactionMarkAsRefundedRequest
+    public class RefundPaymentTransactionMarkAsRefundedRequest : BaseRequest
     {
         public long? PaymentTransactionId { get; set; }
         public string ConversationId { get; set; }

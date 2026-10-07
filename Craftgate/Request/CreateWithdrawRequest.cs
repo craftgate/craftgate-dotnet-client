@@ -1,8 +1,9 @@
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class CreateWithdrawRequest
+    public class CreateWithdrawRequest : BaseRequest
     {
         public decimal Price { get; set; }
         public long MemberId { get; set; }

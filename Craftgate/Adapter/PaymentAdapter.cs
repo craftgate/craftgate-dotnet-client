@@ -155,18 +155,18 @@ namespace Craftgate.Adapter
                 CreateHeaders(path, RequestOptions));
         }
 
-        public void ExpireCheckoutPayment(string token)
+        public void ExpireCheckoutPayment(ExpireCheckoutPaymentRequest request)
         {
-            var path = "/payment/v1/checkout-payments/" + token;
+            var path = "/payment/v1/checkout-payments/" + request.Token;
             RestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
-        public Task ExpireCheckoutPaymentAsync(string token)
+        public Task ExpireCheckoutPaymentAsync(ExpireCheckoutPaymentRequest request)
         {
-            var path = "/payment/v1/checkout-payments/" + token;
+            var path = "/payment/v1/checkout-payments/" + request.Token;
             return AsyncRestClient.Delete<object>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(request, path, RequestOptions));
         }
 
         public DepositPaymentResponse CreateDepositPayment(CreateDepositPaymentRequest createDepositPaymentRequest)
@@ -538,7 +538,7 @@ namespace Craftgate.Adapter
             var path = "/payment/v1/cards" + query;
 
             return RestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchStoredCardsRequest, path, RequestOptions));
         }
 
         public Task<StoredCardListResponse> SearchStoredCardsAsync(SearchStoredCardsRequest searchStoredCardsRequest)
@@ -547,7 +547,7 @@ namespace Craftgate.Adapter
             var path = "/payment/v1/cards" + query;
 
             return AsyncRestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(searchStoredCardsRequest, path, RequestOptions));
         }
 
         public void DeleteStoredCard(DeleteStoredCardRequest deleteStoredCardRequest)
@@ -686,32 +686,32 @@ namespace Craftgate.Adapter
                 CreateHeaders(request, path, RequestOptions), request);
         }
 
-        public PaymentResponse ApproveBnplPayment(long PaymentId)
+        public PaymentResponse ApproveBnplPayment(ApproveBnplPaymentRequest request)
         {
-            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
+            var path = "/payment/v1/bnpl-payments/" + request.PaymentId + "/approve";
             return RestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(null, path, RequestOptions), null);
+                CreateHeadersWithoutBody(request, path, RequestOptions), null);
         }
 
-        public Task<PaymentResponse> ApproveBnplPaymentAsync(long PaymentId)
+        public Task<PaymentResponse> ApproveBnplPaymentAsync(ApproveBnplPaymentRequest request)
         {
-            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/approve";
+            var path = "/payment/v1/bnpl-payments/" + request.PaymentId + "/approve";
             return AsyncRestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(null, path, RequestOptions), null);
+                CreateHeadersWithoutBody(request, path, RequestOptions), null);
         }
 
-        public BnplPaymentVerifyResponse VerifyBnplPayment(long PaymentId)
+        public BnplPaymentVerifyResponse VerifyBnplPayment(VerifyBnplPaymentRequest request)
         {
-            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/verify";
+            var path = "/payment/v1/bnpl-payments/" + request.PaymentId + "/verify";
             return RestClient.Post<BnplPaymentVerifyResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(null, path, RequestOptions), null);
+                CreateHeadersWithoutBody(request, path, RequestOptions), null);
         }
 
-        public Task<BnplPaymentVerifyResponse> VerifyBnplPaymentAsync(long PaymentId)
+        public Task<BnplPaymentVerifyResponse> VerifyBnplPaymentAsync(VerifyBnplPaymentRequest request)
         {
-            var path = "/payment/v1/bnpl-payments/" + PaymentId + "/verify";
+            var path = "/payment/v1/bnpl-payments/" + request.PaymentId + "/verify";
             return AsyncRestClient.Post<BnplPaymentVerifyResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(null, path, RequestOptions), null);
+                CreateHeadersWithoutBody(request, path, RequestOptions), null);
         }
 
         public InstantTransferBanksResponse RetrieveActiveBanks()
@@ -751,7 +751,7 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/multi-payments/init";
             return RestClient.Post<InitMultiPaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions), initMultiPaymentRequest);
+                CreateHeaders(initMultiPaymentRequest, path, RequestOptions), initMultiPaymentRequest);
         }
 
 
@@ -759,7 +759,7 @@ namespace Craftgate.Adapter
         {
             var path = "/payment/v1/multi-payments/init";
             return AsyncRestClient.Post<InitMultiPaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions), initMultiPaymentRequest);
+                CreateHeaders(initMultiPaymentRequest, path, RequestOptions), initMultiPaymentRequest);
         }
 
         public MultiPaymentResponse RetrieveMultiPayment(string token)
@@ -782,7 +782,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
             return RestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(retrieveProviderCardRequest, path, RequestOptions));
         }
 
         public Task<StoredCardListResponse> RetrieveProviderCardsAsync(
@@ -791,7 +791,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveProviderCardRequest);
             var path = "/payment/v1/cards/provider-card-mappings" + queryParam;
             return AsyncRestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(retrieveProviderCardRequest, path, RequestOptions));
         }
 
         public IVRCardTokenizationResponse RetrieveCardFromIvr(RetrieveCardFromIvrRequest retrieveCardFromIvrRequest)
@@ -799,7 +799,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveCardFromIvrRequest);
             var path = "/payment/v1/ivr-cards" + queryParam;
             return RestClient.Get<IVRCardTokenizationResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(retrieveCardFromIvrRequest, path, RequestOptions));
         }
 
         public Task<IVRCardTokenizationResponse> RetrieveCardFromIvrAsync(
@@ -808,7 +808,7 @@ namespace Craftgate.Adapter
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveCardFromIvrRequest);
             var path = "/payment/v1/ivr-cards" + queryParam;
             return AsyncRestClient.Get<IVRCardTokenizationResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
+                CreateHeadersWithoutBody(retrieveCardFromIvrRequest, path, RequestOptions));
         }
 
         public bool Is3DSecureCallbackVerified(string threeDSecureCallbackKey, Dictionary<string, string> parameters)

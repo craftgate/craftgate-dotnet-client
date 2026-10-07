@@ -1,6 +1,8 @@
-﻿namespace Craftgate.Request
+﻿using Craftgate.Request.Common;
+
+namespace Craftgate.Request
 {
-    public class MasterpassRetrieveLoyaltiesRequest
+    public class MasterpassRetrieveLoyaltiesRequest : BaseRequest
     {
         public string Msisdn { get; set; }
         public string BinNumber { get; set; }
