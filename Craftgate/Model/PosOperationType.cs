@@ -9,6 +9,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "PROVRFN")] PROVRFN,
         [EnumMember(Value = "PAYMENT")] PAYMENT,
         [EnumMember(Value = "REFUND")] REFUND,
-        [EnumMember(Value = "INQUIRY")] INQUIRY
+        [EnumMember(Value = "INQUIRY")] INQUIRY,
+        [EnumMember(Value = "POS_APM")] POS_APM
     }
 }

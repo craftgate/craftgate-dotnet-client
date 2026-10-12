@@ -19,6 +19,8 @@ namespace Craftgate.Model
         [EnumMember(Value = "BKM_EXPRESS_PAYMENT_NOTIFICATION")] BKM_EXPRESS_PAYMENT_NOTIFICATION,
         [EnumMember(Value = "MULTI_PAYMENT_COMPLETED")] MULTI_PAYMENT_COMPLETED,
         [EnumMember(Value = "MULTI_PAYMENT_EXPIRED")] MULTI_PAYMENT_EXPIRED,
-        [EnumMember(Value = "REPORT_CREATED")] REPORT_CREATED
+        [EnumMember(Value = "REPORT_CREATED")] REPORT_CREATED,
+        [EnumMember(Value = "FRAUD_CHECK")] FRAUD_CHECK,
+        [EnumMember(Value = "REPORT_GENERATED")] REPORT_GENERATED
     }
 }

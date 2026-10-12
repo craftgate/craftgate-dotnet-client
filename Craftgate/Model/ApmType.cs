@@ -49,6 +49,11 @@ namespace Craftgate.Model
         [EnumMember(Value = "SETCARD_GIFT")] SETCARD_GIFT,
         [EnumMember(Value = "PAYCELL_DCB")] PAYCELL_DCB,
         [EnumMember(Value = "PAPEL")] PAPEL,
-        [EnumMember(Value = "ALBARAKA")] ALBARAKA
+        [EnumMember(Value = "ALBARAKA")] ALBARAKA,
+        [EnumMember(Value = "CECABANK_BIZUM")] CECABANK_BIZUM,
+        [EnumMember(Value = "COMPAY_BNPL")] COMPAY_BNPL,
+        [EnumMember(Value = "ISBANK_IDEAL")] ISBANK_IDEAL,
+        [EnumMember(Value = "PAYGURU")] PAYGURU,
+        [EnumMember(Value = "PAYLANDS_BIZUM")] PAYLANDS_BIZUM
     }
 }

@@ -6,5 +6,6 @@ namespace Craftgate.Model
     {
         [EnumMember(Value = "APPLE_PAY")] APPLE_PAY,
         [EnumMember(Value = "BKM_EXPRESS")] BKM_EXPRESS,
+        [EnumMember(Value = "GOOGLEPAY")] GOOGLEPAY,
     }
 }

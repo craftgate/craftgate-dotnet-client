@@ -6,6 +6,7 @@ namespace Craftgate.Model
     {
         [EnumMember(Value = "CREATED")] CREATED,
 
-        [EnumMember(Value = "COMPLETED")] COMPLETED
+        [EnumMember(Value = "COMPLETED")] COMPLETED,
+        [EnumMember(Value = "EXPIRED")] EXPIRED
     }
 }

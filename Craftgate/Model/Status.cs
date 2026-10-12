@@ -5,6 +5,7 @@ namespace Craftgate.Model
     public enum Status
     {
         [EnumMember(Value = "ACTIVE")] ACTIVE,
-        [EnumMember(Value = "PASSIVE")] PASSIVE
+        [EnumMember(Value = "PASSIVE")] PASSIVE,
+        [EnumMember(Value = "SIMULATION")] SIMULATION
     }
 }

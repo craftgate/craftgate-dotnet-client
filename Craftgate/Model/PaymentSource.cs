@@ -10,5 +10,6 @@ namespace Craftgate.Model
         [EnumMember(Value = "JUZDAN")] JUZDAN,
         [EnumMember(Value = "HEPSIPAY")] HEPSIPAY,
         [EnumMember(Value = "MONO")] MONO,
+        [EnumMember(Value = "MASTERPASS")] MASTERPASS,
     }
 }

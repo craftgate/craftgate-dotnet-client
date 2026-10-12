@@ -13,6 +13,9 @@ namespace Craftgate.Model
         [EnumMember(Value = "YKB_WORLD_PAY")] YKB_WORLD_PAY,
         [EnumMember(Value = "YKB_WORLD_PAY_SHOPPING_LOAN")] YKB_WORLD_PAY_SHOPPING_LOAN,
         [EnumMember(Value = "GARANTI_PAY")] GARANTI_PAY,
-        [EnumMember(Value = "JUZDAN")] JUZDAN
+        [EnumMember(Value = "JUZDAN")] JUZDAN,
+        [EnumMember(Value = "CARD_VERIFICATION")] CARD_VERIFICATION,
+        [EnumMember(Value = "ISPAY")] ISPAY,
+        [EnumMember(Value = "POS_APM")] POS_APM
     }
 }

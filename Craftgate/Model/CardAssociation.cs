@@ -16,7 +16,6 @@ namespace Craftgate.Model
 
         [EnumMember(Value = "UNION_PAY")] UNION_PAY,
 
-        [EnumMember(Value = "MAESTRO")] MAESTRO,
 
         [EnumMember(Value = "DISCOVER")] DISCOVER,
 

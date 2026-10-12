@@ -6,6 +6,7 @@ namespace Craftgate.Model
     {
         [EnumMember(Value = "COLLECTION")] COLLECTION,
         [EnumMember(Value = "WITHDRAW")] WITHDRAW,
-        [EnumMember(Value = "BOUNCED")] BOUNCED
+        [EnumMember(Value = "BOUNCED")] BOUNCED,
+        [EnumMember(Value = "MONEY_TRANSFER")] MONEY_TRANSFER
     }
 }

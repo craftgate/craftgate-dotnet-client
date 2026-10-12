@@ -9,6 +9,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "POSTPONING_INSTALLMENT")] POSTPONING_INSTALLMENT,
         [EnumMember(Value = "EXTRA_POINTS")] EXTRA_POINTS,
         [EnumMember(Value = "GAINING_MINUTES")] GAINING_MINUTES,
-        [EnumMember(Value = "POSTPONING_STATEMENT")] POSTPONING_STATEMENT
+        [EnumMember(Value = "POSTPONING_STATEMENT")] POSTPONING_STATEMENT,
+        [EnumMember(Value = "POSTPONING_PAYMENT")] POSTPONING_PAYMENT
     }
 }

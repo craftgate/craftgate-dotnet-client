@@ -46,6 +46,11 @@ namespace Craftgate.Model
         [EnumMember(Value = "PAPEL")] PAPEL,
         [EnumMember(Value = "BKM_EXPRESS")] BKM_EXPRESS,
         [EnumMember(Value = "ALBARAKA")] ALBARAKA,
-        [EnumMember(Value = "OFFLINE")] OFFLINE
+        [EnumMember(Value = "OFFLINE")] OFFLINE,
+        [EnumMember(Value = "CECABANK_BIZUM")] CECABANK_BIZUM,
+        [EnumMember(Value = "COMPAY")] COMPAY,
+        [EnumMember(Value = "ISBANK_IDEAL")] ISBANK_IDEAL,
+        [EnumMember(Value = "PAYGURU")] PAYGURU,
+        [EnumMember(Value = "PAYLANDS_BIZUM")] PAYLANDS_BIZUM
     }
 }

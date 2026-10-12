@@ -59,6 +59,27 @@ namespace Craftgate.Model
         [EnumMember(Value = "ZIRAATBANK")] ZIRAATBANK,
         [EnumMember(Value = "ZIRAATBANK_INNOVA")] ZIRAATBANK_INNOVA,
         [EnumMember(Value = "ZIRAATKATILIM")] ZIRAATKATILIM,
-        [EnumMember(Value = "BIN_PAY")] BIN_PAY
+        [EnumMember(Value = "BIN_PAY")] BIN_PAY,
+        [EnumMember(Value = "AKODE")] AKODE,
+        [EnumMember(Value = "ALBANK")] ALBANK,
+        [EnumMember(Value = "CECABANK_ABANCA")] CECABANK_ABANCA,
+        [EnumMember(Value = "CECABANK_ANDBANK")] CECABANK_ANDBANK,
+        [EnumMember(Value = "CECABANK_BANCA_PUEYO")] CECABANK_BANCA_PUEYO,
+        [EnumMember(Value = "CECABANK_BANCO_DE_POLLENSA")] CECABANK_BANCO_DE_POLLENSA,
+        [EnumMember(Value = "CECABANK_CAIXA_ONTINYENT")] CECABANK_CAIXA_ONTINYENT,
+        [EnumMember(Value = "CECABANK_CAJA_ALMENDRALEJO")] CECABANK_CAJA_ALMENDRALEJO,
+        [EnumMember(Value = "CECABANK_EUROCAJA_RURAL")] CECABANK_EUROCAJA_RURAL,
+        [EnumMember(Value = "CECABANK_IBERCAJA")] CECABANK_IBERCAJA,
+        [EnumMember(Value = "CECABANK_UNICAJA")] CECABANK_UNICAJA,
+        [EnumMember(Value = "REDSYS_ABANCA")] REDSYS_ABANCA,
+        [EnumMember(Value = "REDSYS_BANCO_COOPERATIVO_ESPANOL")] REDSYS_BANCO_COOPERATIVO_ESPANOL,
+        [EnumMember(Value = "REDSYS_BANCO_SABADELL")] REDSYS_BANCO_SABADELL,
+        [EnumMember(Value = "REDSYS_BANCO_SANTANDER")] REDSYS_BANCO_SANTANDER,
+        [EnumMember(Value = "REDSYS_BANKINTER")] REDSYS_BANKINTER,
+        [EnumMember(Value = "REDSYS_BBVA")] REDSYS_BBVA,
+        [EnumMember(Value = "REDSYS_CAIXABANK")] REDSYS_CAIXABANK,
+        [EnumMember(Value = "TKPAY")] TKPAY,
+        [EnumMember(Value = "TURK_TICARET")] TURK_TICARET,
+        [EnumMember(Value = "UNITED_PAYMENT_AZ")] UNITED_PAYMENT_AZ
     }
 }

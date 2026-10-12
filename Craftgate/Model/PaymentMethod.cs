@@ -42,6 +42,9 @@ namespace Craftgate.Model
         [EnumMember(Value = "SETCARD_GIFT")] SETCARD_GIFT,
         [EnumMember(Value = "IWALLET")] IWALLET,
         [EnumMember(Value = "PAPEL")] PAPEL,
-        [EnumMember(Value = "BKM_EXPRESS")] BKM_EXPRESS
+        [EnumMember(Value = "BKM_EXPRESS")] BKM_EXPRESS,
+        [EnumMember(Value = "CECABANK_BIZUM")] CECABANK_BIZUM,
+        [EnumMember(Value = "ISBANK_IDEAL")] ISBANK_IDEAL,
+        [EnumMember(Value = "PAYLANDS_BIZUM")] PAYLANDS_BIZUM
     }
 }
