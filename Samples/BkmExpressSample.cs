@@ -92,5 +92,17 @@ namespace Samples
             var response = _craftgateClient.BkmExpress().RetrievePaymentByToken(token);
             Assert.NotNull(response);
         }
+        [Test]
+        public void Generate_Token()
+        {
+            var request = new BkmExpressGenerateTokenRequest()
+            {
+               GsmNumber = "5555555555",
+               UserId = "user-id"
+            };
+
+            var response = _craftgateClient.BkmExpress().GenerateToken(request);
+            Assert.NotNull(response);
+        }
     }
 }
