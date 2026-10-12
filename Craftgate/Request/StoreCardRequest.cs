@@ -1,8 +1,9 @@
+using Craftgate.Request.Common;
 using Craftgate.Request.Dto;
 
 namespace Craftgate.Request
 {
-    public class StoreCardRequest
+    public class StoreCardRequest : BaseRequest
     {
         public string CardHolderName { get; set; }
         public string CardNumber { get; set; }

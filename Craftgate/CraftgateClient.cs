@@ -23,6 +23,7 @@ namespace Craftgate
         private readonly MerchantApmAdapter _merchantApmAdapter;
         private readonly JuzdanPaymentAdapter _juzdanPaymentAdapter;
         private readonly BkmExpressPaymentAdapter _bkmExpressPaymentAdapter;
+        private readonly MealVoucherCardTokenizationAdapter _mealVoucherCardTokenizationAdapter;
 
         public CraftgateClient(string apiKey, string secretKey)
             : this(apiKey, secretKey, BaseUrl, null)
@@ -61,6 +62,7 @@ namespace Craftgate
             _merchantApmAdapter = new MerchantApmAdapter(requestOptions);
             _juzdanPaymentAdapter = new JuzdanPaymentAdapter(requestOptions);
             _bkmExpressPaymentAdapter = new BkmExpressPaymentAdapter(requestOptions);
+            _mealVoucherCardTokenizationAdapter = new MealVoucherCardTokenizationAdapter(requestOptions);
         }
 
         public PaymentAdapter Payment()
@@ -146,6 +148,11 @@ namespace Craftgate
         public BkmExpressPaymentAdapter BkmExpress()
         {
             return _bkmExpressPaymentAdapter;
+        }
+
+        public MealVoucherCardTokenizationAdapter MealVoucherCardTokenization()
+        {
+            return _mealVoucherCardTokenizationAdapter;
         }
     }
 }

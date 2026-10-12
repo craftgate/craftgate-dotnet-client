@@ -1,6 +1,8 @@
+using Craftgate.Request.Common;
+
 namespace Craftgate.Request
 {
-    public class UpdateCardRequest
+    public class UpdateCardRequest : BaseRequest
     {
         public string CardUserKey { get; set; }
         public string CardToken { get; set; }

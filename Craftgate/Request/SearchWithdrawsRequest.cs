@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchWithdrawsRequest
+    public class SearchWithdrawsRequest : BaseRequest
     {
         public long? MemberId { set; get; }
         public Currency? Currency { set; get; }

@@ -27,20 +27,19 @@ namespace Craftgate.Adapter
                 completeBkmExpressPayment);
         }
 
-        public PaymentResponse RetrievePayment(
-            string ticketId)
-        {
-            var path = "/payment/v1/bkm-express/payments/" + ticketId;
-            return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(path, RequestOptions));
-        }
-
         public PaymentResponse RetrievePaymentByToken(
             string token)
         {
             var path = "/payment/v1/bkm-express/" + token;
             return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
+        }
+        
+        public BkmExpressGenerateTokenResponse GenerateToken(BkmExpressGenerateTokenRequest bkmExpressGenerateTokenRequest)
+        {
+            var path = "/payment/v2/bkm-express/generate-token";
+            return RestClient.Post<BkmExpressGenerateTokenResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(bkmExpressGenerateTokenRequest, path, RequestOptions), bkmExpressGenerateTokenRequest);
         }
     }
 }

@@ -85,20 +85,23 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Payment()
-        {
-            var ticketId = "b9bd7b93-662f-4460-9ef3-8fc735853cf1";
-
-            var response = _craftgateClient.BkmExpress().RetrievePayment(ticketId);
-            Assert.NotNull(response);
-        }
-
-        [Test]
         public void Retrieve_Payment_By_Token()
         {
             var token = "23f4e147-2c4e-4a2c-8a67-9c783d813b79";
 
-            var response = _craftgateClient.BkmExpress().RetrievePayment(token);
+            var response = _craftgateClient.BkmExpress().RetrievePaymentByToken(token);
+            Assert.NotNull(response);
+        }
+        [Test]
+        public void Generate_Token()
+        {
+            var request = new BkmExpressGenerateTokenRequest()
+            {
+               GsmNumber = "5555555555",
+               UserId = "user-id"
+            };
+
+            var response = _craftgateClient.BkmExpress().GenerateToken(request);
             Assert.NotNull(response);
         }
     }

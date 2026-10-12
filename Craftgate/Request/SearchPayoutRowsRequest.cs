@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchPayoutRowsRequest
+    public class SearchPayoutRowsRequest : BaseRequest
     {
         public FileStatus FileStatus { get; set; }
         public DateTime StartDate { get; set; }

@@ -11,6 +11,7 @@ namespace Craftgate.Response.Dto
         public FraudPaymentData PaymentData { get; set; }
         public long RuleId { get; set; }
         public string RuleName { get; set; }
+        public bool? IsGlobalRule { get; set; }
         public long PaymentId { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
     }

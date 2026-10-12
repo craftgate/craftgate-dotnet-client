@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class UpdateMemberRequest
+    public class UpdateMemberRequest : BaseRequest
     {
         public string Name { get; set; }
         public string Address { get; set; }

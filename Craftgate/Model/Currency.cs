@@ -21,6 +21,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "RUB")] RUB,
         [EnumMember(Value = "JPY")] JPY,
         [EnumMember(Value = "EGP")] EGP,
-        [EnumMember(Value = "MXN")] MXN
+        [EnumMember(Value = "MXN")] MXN,
+        [EnumMember(Value = "RON")] RON
     }
 }

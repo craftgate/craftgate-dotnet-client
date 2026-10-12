@@ -18,6 +18,7 @@ namespace Craftgate.Request.Dto
         public long? BuyerMemberId { get; set; }
         public string BankOrderId { get; set; }
         public string ClientIp { get; set; }
+        public int? ClientPort { get; set; }
         public IList<PaymentItem> Items { get; set; }
         public Dictionary<string, object> AdditionalParams { get; set; }
     }

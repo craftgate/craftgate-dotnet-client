@@ -1,9 +1,10 @@
 using System;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchPayoutCompletedTransactionsRequest
+    public class SearchPayoutCompletedTransactionsRequest : BaseRequest
     {
         public long? SettlementFileId { get; set; }
         public SettlementType? SettlementType { get; set; }

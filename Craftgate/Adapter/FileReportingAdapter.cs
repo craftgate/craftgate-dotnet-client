@@ -19,7 +19,7 @@ namespace Craftgate.Adapter
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveDailyTransactionReportRequest);
             var path = "/file-reporting/v1/transaction-reports" + queryParam;
-            var headers = CreateHeaders(path, RequestOptions);
+            var headers = CreateHeadersWithoutBody(retrieveDailyTransactionReportRequest, path, RequestOptions);
             headers.Add(ContentType, ApplicationOctetStream);
             return RestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
         }
@@ -28,7 +28,7 @@ namespace Craftgate.Adapter
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveDailyTransactionReportRequest);
             var path = "/file-reporting/v1/transaction-reports" + queryParam;
-            var headers = CreateHeaders(path, RequestOptions);
+            var headers = CreateHeadersWithoutBody(retrieveDailyTransactionReportRequest, path, RequestOptions);
             headers.Add(ContentType, ApplicationOctetStream);
             return AsyncRestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
         }
@@ -37,7 +37,7 @@ namespace Craftgate.Adapter
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveDailyPaymentReportRequest);
             var path = "/file-reporting/v1/payment-reports" + queryParam;
-            var headers = CreateHeaders(path, RequestOptions);
+            var headers = CreateHeadersWithoutBody(retrieveDailyPaymentReportRequest, path, RequestOptions);
             headers.Add(ContentType, ApplicationOctetStream);
             return RestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
         }
@@ -46,7 +46,7 @@ namespace Craftgate.Adapter
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveDailyPaymentReportRequest);
             var path = "/file-reporting/v1/payment-reports" + queryParam;
-            var headers = CreateHeaders(path, RequestOptions);
+            var headers = CreateHeadersWithoutBody(retrieveDailyPaymentReportRequest, path, RequestOptions);
             headers.Add(ContentType, ApplicationOctetStream);
             return AsyncRestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
         }
@@ -69,7 +69,7 @@ namespace Craftgate.Adapter
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveReportRequest);
             var path = "/file-reporting/v1/reports/" + reportId + queryParam;
-            var headers = CreateHeaders(path, RequestOptions);
+            var headers = CreateHeadersWithoutBody(retrieveReportRequest, path, RequestOptions);
             headers.Add(ContentType, ApplicationOctetStream);
             return RestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
         }
@@ -78,7 +78,7 @@ namespace Craftgate.Adapter
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveReportRequest);
             var path = "/file-reporting/v1/reports/" + reportId + queryParam;
-            var headers = CreateHeaders(path, RequestOptions);
+            var headers = CreateHeadersWithoutBody(retrieveReportRequest, path, RequestOptions);
             headers.Add(ContentType, ApplicationOctetStream);
             return AsyncRestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
         }

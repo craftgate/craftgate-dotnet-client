@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Craftgate.Model;
+using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class CreateMerchantRequest
+    public class CreateMerchantRequest : BaseRequest
     {
         public string Name { get; set; }
         public string LegalCompanyTitle { get; set; }
