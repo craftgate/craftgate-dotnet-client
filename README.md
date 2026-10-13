@@ -9,9 +9,8 @@ This repo contains the Dotnet client for Craftgate API.
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/craftgate/craftgate-dotnet-client)
 
 ## Requirements
-- .NET Framework 4.6+
-- .NET Core 1.1+ 
-- .NET Core 2.0+
+- .NET Framework 4.5+
+- .NET Core 1.0+ and .NET 5+ (through .NET Standard 1.3 and 2.0)
 
 ## Installation
 ```bash
@@ -23,16 +22,16 @@ To access the Craftgate API you'll first need to obtain API credentials (e.g. an
 
 Once you've obtained your API credentials, you can start using Craftgate by instantiating a `Craftgate` with your credentials.
 
-```dotnet
+```csharp
 
 CraftgateClient _craftgate = new CraftgateClient("<YOUR API KEY>", "<YOUR SECRET KEY>");
 ...
 
 ```
 
-By default the Craftgate client connects to the production API servers at `https://api.craftgate.io`. For testing purposes, please use the sandbox URL `https://sandbox-api.craftgate.io` using the .
+By default the Craftgate client connects to the production API servers at `https://api.craftgate.io`. For testing purposes, please use the sandbox URL `https://sandbox-api.craftgate.io`
 
-```dotnet
+```csharp
 
 CraftgateClient _craftgate = new CraftgateClient("<YOUR API KEY>", "<YOUR SECRET KEY>", "https://sandbox-api.craftgate.io");
 ...
@@ -40,17 +39,23 @@ CraftgateClient _craftgate = new CraftgateClient("<YOUR API KEY>", "<YOUR SECRET
 ```
 
 ## Examples
-Included in the project are a number of examples that cover almost all use-cases. Refer to [the `Samples/` folder](./Samples)] for more info.
+Included in the project are a number of examples that cover almost all use-cases. Refer to [the `Samples/` folder](./Samples) for more info.
 
 ### Running the Examples
-If you've cloned this repo on your development machine and wish to run the examples you can run an example with the command `dotnet test` or run single test with the command `dotnet test --filter Name~Create_Payment`
+If you've cloned this repo on your development machine and wish to run the examples, replace the `api-key` and `secret-key` values in the sample class with your sandbox credentials, then run the samples against the sandbox API with `dotnet test Samples`, or a single one with:
+
+```bash
+dotnet test Samples --filter "FullyQualifiedName=Samples.PaymentSample.Create_Payment"
+```
+
+To run only the unit tests, which don't call the Craftgate API, use `dotnet test Test`.
 
 ### Credit Card Payment Use Case
 Let's quickly review an example where we implement a credit card payment scenario.
 
 > For more examples covering almost all use-cases, check out the [examples in the `Samples/` folder](./Samples)
 
-```dotnet
+```csharp
 CraftgateClient _craftgate = new CraftgateClient("<YOUR API KEY>", "<YOUR SECRET KEY>");
 
 var request = new CreatePaymentRequest
@@ -102,7 +107,7 @@ Mutating operations accept an optional idempotency key. Set it on the request ob
 
 Every request extends `BaseRequest`, which carries a `HeaderOptions` object, so the key is available on any request:
 
-```dotnet
+```csharp
 var request = new CreatePaymentRequest
 {
     Price = new decimal(100.0),
@@ -118,7 +123,7 @@ var response = _craftgate.Payment().CreatePayment(request);
 
 Operations whose parameters live in the URL path take a request object as well, so they can carry a key too:
 
-```dotnet
+```csharp
 _craftgate.Payment().ExpireCheckoutPayment(new ExpireCheckoutPaymentRequest
 {
     Token = "456d1297-908e-4bd6-a13b-4be31a6e47d5",

@@ -26,23 +26,25 @@ jobs:
           echo "move SDK to ${env:sdkSystemPath}\v4.5"
           Move-Item -Force -LiteralPath "${env:temp}\net45sdk\build\.NETFramework\v4.5" -Destination "${env:sdkSystemPath}"
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
 
       - name: Setup dotnet 3.1
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '3.1.x'
           source-url: https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_SECRET_KEY}}
 
-      - name: Set Package Version
-        run: echo ("PACKAGE_VERSION=" + $env:GITHUB_REF.replace('refs/tags/', '')) >> $env:GITHUB_ENV 
-    
+      - name: Resolve version from tag
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: ./.github/scripts/resolve-version.ps1 -Tag $env:TAG_NAME
+
       - name: Pack Client Library
-        run: dotnet pack -c Release -p:PackageVersion="${{ env.PACKAGE_VERSION }}" ./Craftgate
+        run: dotnet pack -c Release -p:Version="$env:VERSION" ./Craftgate
 
       - name: Push Packed Client Library to Nuget
-        run:  dotnet nuget push ./Craftgate/bin/Release/Craftgate.${{ env.PACKAGE_VERSION }}.nupkg -k $env:NUGET_SECRET_KEY
+        run:  dotnet nuget push "./Craftgate/bin/Release/Craftgate.$env:VERSION.nupkg" -k $env:NUGET_SECRET_KEY
         env: 
           NUGET_SECRET_KEY: ${{secrets.NUGET_SECRET_KEY}}

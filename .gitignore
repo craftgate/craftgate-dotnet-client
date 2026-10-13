@@ -7,3 +7,4 @@ riderModule.iml
 .DS_Store
 .vscode
 craftgate-dotnet-client.sln.DotSettings.user
+.github/release-dry-run/packages/

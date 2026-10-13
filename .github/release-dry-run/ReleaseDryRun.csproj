@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!-- Installs the packed Craftgate package like a user would and checks the x-client-version header. -->
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RestoreSources>$(CraftgatePackageDir);https://api.nuget.org/v3/index.json</RestoreSources>
+        <RestorePackagesPath>$(MSBuildThisFileDirectory)packages</RestorePackagesPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Craftgate" Version="$(CraftgateVersion)" />
+    </ItemGroup>
+
+</Project>

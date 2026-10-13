@@ -4,15 +4,23 @@
 
         <IsPackable>false</IsPackable>
 
-        <TargetFrameworks>net45;net462;netcoreapp2.0;netcoreapp1.0;netcoreapp1.1;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>net45;net462;netcoreapp2.0;netcoreapp1.0;netcoreapp1.1;netcoreapp3.1;net8.0;net10.0</TargetFrameworks>
+        <ModernTestTarget Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net10.0'">true</ModernTestTarget>
     </PropertyGroup>
 
-    <ItemGroup>
+    <ItemGroup Condition="'$(ModernTestTarget)' != 'true'">
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.2" />
         <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
         <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
         <PackageReference Include="NUnit" Version="3.10.1" />
         <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    </ItemGroup>
+
+    <!-- The test packages above are too old to run on current .NET versions. -->
+    <ItemGroup Condition="'$(ModernTestTarget)' == 'true'">
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+        <PackageReference Include="NUnit" Version="3.14.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
     </ItemGroup>
 
     <ItemGroup>
