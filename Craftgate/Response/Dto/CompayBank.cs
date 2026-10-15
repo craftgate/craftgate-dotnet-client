@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Craftgate.Response.Dto
 {
-    public class InstantTransferBank
+    public class CompayBank
     {
         public string BankCode { get; set; }
         public string BankName { get; set; }
