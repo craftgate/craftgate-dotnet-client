@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Craftgate.Common;
 using Craftgate.Request.Common;
 
 namespace Craftgate.Adapter
@@ -51,7 +52,7 @@ namespace Craftgate.Adapter
             headers.Add(ApiKeyHeaderName, requestOptions.ApiKey);
             headers.Add(RandomHeaderName, randomString);
             headers.Add(AuthVersionHeaderName, ApiVersionHeaderValue);
-            headers.Add(ClientVersionHeaderName, ClientVersionHeaderValue + ":1.0.86");
+            headers.Add(ClientVersionHeaderName, ClientVersionHeaderValue + ":" + ClientVersion.Value);
             headers.Add(SignatureHeaderName, PrepareAuthorizationString(request, path, randomString, requestOptions));
             if (requestOptions.Language != null)
             {

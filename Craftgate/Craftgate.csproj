@@ -4,7 +4,17 @@
         <TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
         <RootNamespace>Craftgate</RootNamespace>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <!-- The release workflow passes the tag as -p:Version; builds without it send "unknown". -->
+        <CraftgateClientVersion>$(Version)</CraftgateClientVersion>
+        <CraftgateClientVersion Condition="'$(CraftgateClientVersion)' == ''">unknown</CraftgateClientVersion>
     </PropertyGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+            <_Parameter1>CraftgateClientVersion</_Parameter1>
+            <_Parameter2>$(CraftgateClientVersion)</_Parameter2>
+        </AssemblyAttribute>
+    </ItemGroup>
     
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
