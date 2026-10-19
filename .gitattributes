@@ -1,0 +1,2 @@
+# Shell scripts run with bash on the Windows runners too, where checkouts would otherwise get CRLF line endings.
+*.sh text eol=lf

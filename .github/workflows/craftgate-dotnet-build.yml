@@ -46,9 +46,10 @@ jobs:
       - run: dotnet test Test -f net45
       - run: dotnet test Test -f net462
 
-      # Same version resolution as the release workflow, with a fake "v" prefixed tag.
-      - name: Resolve version for release dry run
-        run: ./.github/scripts/resolve-version.ps1 -Tag v9.9.9
+      # Same version validation as the release workflow, with a fake "v" prefixed version.
+      - name: Validate version for release dry run
+        shell: bash
+        run: .github/scripts/prepare-release.sh v9.9.9
 
       - name: Release dry run
         env:
