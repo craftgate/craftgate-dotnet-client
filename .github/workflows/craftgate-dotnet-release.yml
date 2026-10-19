@@ -80,7 +80,7 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ env.TAG }}
-          name: ${{ env.TAG }}
+          name: v${{ env.VERSION }}
           generate_release_notes: true
           files: |
             Craftgate/bin/Release/Craftgate.${{ env.VERSION }}.nupkg
