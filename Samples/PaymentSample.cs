@@ -2160,7 +2160,7 @@ namespace Samples
         }
 
         [Test]
-        public void Delete_Payout_Account()
+        public void Expire_Checkout_Payment()
         {
             var token = "456d1297-908e-4bd6-a13b-4be31a6e47d5";
 
