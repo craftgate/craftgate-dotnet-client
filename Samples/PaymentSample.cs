@@ -2361,34 +2361,6 @@ namespace Samples
         }
 
         [Test]
-        public void Approve_Payment_Transactions()
-        {
-            var request = new ApprovePaymentTransactionsRequest
-            {
-                PaymentTransactionIds = new HashSet<long> { 1, 2 },
-                IsTransactional = true
-            };
-
-            var response = _craftgateClient.Payment().ApprovePaymentTransactions(request);
-            Assert.NotNull(response);
-            Assert.AreEqual(2, response.Size);
-        }
-
-        [Test]
-        public void Disapprove_Payment_Transactions()
-        {
-            var request = new DisapprovePaymentTransactionsRequest
-            {
-                PaymentTransactionIds = new HashSet<long> { 1, 2 },
-                IsTransactional = true
-            };
-
-            var response = _craftgateClient.Payment().DisapprovePaymentTransactions(request);
-            Assert.NotNull(response);
-            Assert.AreEqual(2, response.Size);
-        }
-
-        [Test]
         public void Create_Pre_Auth_Payment()
         {
             var request = new CreatePaymentRequest
@@ -2534,34 +2506,6 @@ namespace Samples
             Assert.AreEqual(3, response.PaymentTransactions.Count);
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
-        }
-
-        [Test]
-        public void Update_Payment_Transaction()
-        {
-            var request = new UpdatePaymentTransactionRequest
-            {
-                SubMerchantMemberId = 1,
-                PaymentTransactionId = 10,
-                SubMerchantMemberPrice = new decimal(10.0)
-            };
-
-            var response = _craftgateClient.Payment().UpdatePaymentTransaction(request);
-            Assert.AreEqual(request.SubMerchantMemberId, response.SubMerchantMemberId);
-            Assert.AreEqual(request.SubMerchantMemberPrice, response.SubMerchantMemberPrice);
-        }
-        
-        [Test]
-        public void Update_Payment_Transaction_With_Blockage_Resolved_Date()
-        {
-            var request = new UpdatePaymentTransactionRequest
-            {
-                PaymentTransactionId = 2159617,
-                BlockageResolvedDate = DateTime.Now.AddDays(5)
-            };
-
-            var response = _craftgateClient.Payment().UpdatePaymentTransaction(request);
-            Assert.AreEqual(request.BlockageResolvedDate, response.BlockageResolvedDate);
         }
 
         [Test]

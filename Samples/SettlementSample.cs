@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
@@ -82,6 +85,63 @@ namespace Samples
 
             PayoutAccountListResponse response = _craftgateClient.Settlement().SearchPayoutAccounts(request);
             Assert.NotNull(response.Items);
+        }
+
+        [Test]
+        public void Approve_Payment_Transactions()
+        {
+            var request = new ApprovePaymentTransactionsRequest
+            {
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
+                IsTransactional = true
+            };
+
+            var response = _craftgateClient.Settlement().ApprovePaymentTransactions(request);
+            Assert.NotNull(response);
+            Assert.AreEqual(2, response.Size);
+        }
+
+        [Test]
+        public void Disapprove_Payment_Transactions()
+        {
+            var request = new DisapprovePaymentTransactionsRequest
+            {
+                PaymentTransactionIds = new HashSet<long> { 1, 2 },
+                IsTransactional = true
+            };
+
+            var response = _craftgateClient.Settlement().DisapprovePaymentTransactions(request);
+            Assert.NotNull(response);
+            Assert.AreEqual(2, response.Size);
+        }
+
+        [Test]
+        public void Update_Payment_Transaction()
+        {
+            var request = new UpdatePaymentTransactionRequest
+            {
+                SubMerchantMemberId = 1,
+                PaymentTransactionId = 10,
+                SubMerchantMemberPrice = new decimal(10.0)
+            };
+
+            var response = _craftgateClient.Settlement().UpdatePaymentTransaction(request);
+            Assert.AreEqual(request.PaymentTransactionId, response.PaymentTransactionId);
+            Assert.True(response.PayoutItems.Any(item =>
+                item.MerchantType == MerchantType.SUB_MERCHANT_MEMBER.ToString() && item.MerchantId == request.SubMerchantMemberId));
+        }
+
+        [Test]
+        public void Update_Payment_Transaction_With_Blockage_Resolved_Date()
+        {
+            var request = new UpdatePaymentTransactionRequest
+            {
+                PaymentTransactionId = 2159617,
+                BlockageResolvedDate = DateTime.Now.AddDays(5)
+            };
+
+            var response = _craftgateClient.Settlement().UpdatePaymentTransaction(request);
+            Assert.AreEqual(request.BlockageResolvedDate, response.BlockageResolvedDate);
         }
     }
 }
