@@ -5,5 +5,6 @@ namespace Craftgate.Response
         public long? PaymentTransactionId { get; set; }
         public string ApprovalStatus { get; set; }
         public string FailedReason { get; set; }
+        public string FailedReasonCode { get; set; }
     }
 }

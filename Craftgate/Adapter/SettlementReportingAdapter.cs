@@ -12,22 +12,22 @@ namespace Craftgate.Adapter
         {
         }
 
-        public PayoutCompletedTransactionListResponse SearchPayoutCompletedTransactions(
-            SearchPayoutCompletedTransactionsRequest searchPayoutCompletedTransactionsRequest)
+        public PayoutCompletedItemListResponse SearchPayoutCompletedItems(
+            SearchPayoutCompletedItemsRequest searchPayoutCompletedItemsRequest)
         {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
-            var path = "/settlement-reporting/v2/settlement-file/payout-completed-transactions" + queryParam;
-            return RestClient.Get<PayoutCompletedTransactionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(searchPayoutCompletedTransactionsRequest, path, RequestOptions));
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedItemsRequest);
+            var path = "/settlement-reporting/v1/settlement-file/payout-completed-items" + queryParam;
+            return RestClient.Get<PayoutCompletedItemListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeadersWithoutBody(searchPayoutCompletedItemsRequest, path, RequestOptions));
         }
 
-        public Task<PayoutCompletedTransactionListResponse> SearchPayoutCompletedTransactionsAsync(
-            SearchPayoutCompletedTransactionsRequest searchPayoutCompletedTransactionsRequest)
+        public Task<PayoutCompletedItemListResponse> SearchPayoutCompletedItemsAsync(
+            SearchPayoutCompletedItemsRequest searchPayoutCompletedItemsRequest)
         {
-            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedTransactionsRequest);
-            var path = "/settlement-reporting/v2/settlement-file/payout-completed-transactions" + queryParam;
-            return AsyncRestClient.Get<PayoutCompletedTransactionListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeadersWithoutBody(searchPayoutCompletedTransactionsRequest, path, RequestOptions));
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPayoutCompletedItemsRequest);
+            var path = "/settlement-reporting/v1/settlement-file/payout-completed-items" + queryParam;
+            return AsyncRestClient.Get<PayoutCompletedItemListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeadersWithoutBody(searchPayoutCompletedItemsRequest, path, RequestOptions));
         }
 
         public PayoutBouncedTransactionListResponse SearchBouncedPayoutTransactions(
@@ -48,17 +48,17 @@ namespace Craftgate.Adapter
                 CreateHeadersWithoutBody(searchPayoutCompletedTransactionsRequest, path, RequestOptions));
         }
 
-        public PayoutDetailResponse RetrievePayoutDetails(long id)
+        public SettlementRowResponse RetrieveSettlementRow(long settlementRowId)
         {
-            var path = "/settlement-reporting/v1/settlement-file/payout-details/" + id;
-            return RestClient.Get<PayoutDetailResponse>(RequestOptions.BaseUrl + path,
+            var path = "/settlement-reporting/v1/settlement-file/rows/" + settlementRowId;
+            return RestClient.Get<SettlementRowResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<PayoutDetailResponse> RetrievePayoutDetailsAsync(long id)
+        public Task<SettlementRowResponse> RetrieveSettlementRowAsync(long settlementRowId)
         {
-            var path = "/settlement-reporting/v1/settlement-file/payout-details/" + id;
-            return AsyncRestClient.Get<PayoutDetailResponse>(RequestOptions.BaseUrl + path,
+            var path = "/settlement-reporting/v1/settlement-file/rows/" + settlementRowId;
+            return AsyncRestClient.Get<SettlementRowResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
@@ -76,6 +76,38 @@ namespace Craftgate.Adapter
             var path = "/settlement-reporting/v1/settlement-file-rows" + queryParam;
             return AsyncRestClient.Get<PayoutRowListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeadersWithoutBody(request, path, RequestOptions));
+        }
+
+        public PaymentTxPayoutResponse RetrievePaymentTransactionPayout(long paymentTransactionId)
+        {
+            var path = "/settlement-reporting/v1/payment-transactions/" + paymentTransactionId + "/payout";
+            return RestClient.Get<PaymentTxPayoutResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public Task<PaymentTxPayoutResponse> RetrievePaymentTransactionPayoutAsync(long paymentTransactionId)
+        {
+            var path = "/settlement-reporting/v1/payment-transactions/" + paymentTransactionId + "/payout";
+            return AsyncRestClient.Get<PaymentTxPayoutResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public PaymentTxPayoutListResponse SearchPaymentTransactionPayouts(
+            SearchPaymentTransactionPayoutsRequest searchPaymentTransactionPayoutsRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPaymentTransactionPayoutsRequest);
+            var path = "/settlement-reporting/v1/payment-transactions/payouts" + queryParam;
+            return RestClient.Get<PaymentTxPayoutListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeadersWithoutBody(searchPaymentTransactionPayoutsRequest, path, RequestOptions));
+        }
+
+        public Task<PaymentTxPayoutListResponse> SearchPaymentTransactionPayoutsAsync(
+            SearchPaymentTransactionPayoutsRequest searchPaymentTransactionPayoutsRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchPaymentTransactionPayoutsRequest);
+            var path = "/settlement-reporting/v1/payment-transactions/payouts" + queryParam;
+            return AsyncRestClient.Get<PaymentTxPayoutListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeadersWithoutBody(searchPaymentTransactionPayoutsRequest, path, RequestOptions));
         }
     }
 }

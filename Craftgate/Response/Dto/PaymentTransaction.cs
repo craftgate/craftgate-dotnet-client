@@ -12,13 +12,9 @@ namespace Craftgate.Response.Dto
         public decimal WalletPrice { get; set; }
         public decimal MerchantCommissionRate { get; set; }
         public decimal MerchantCommissionRateAmount { get; set; }
-        public decimal MerchantPayoutAmount { get; set; }
         public long SubMerchantMemberId { get; set; }
         public decimal SubMerchantMemberPrice { get; set; }
-        public decimal SubMerchantMemberPayoutRate { get; set; }
-        public decimal SubMerchantMemberPayoutAmount { get; set; }
         public string TransactionStatus { get; set; }
         public DateTime BlockageResolvedDate { get; set; }
-        public Payout Payout { get; set; }
     }
 }

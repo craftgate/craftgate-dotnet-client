@@ -578,58 +578,6 @@ namespace Craftgate.Adapter
                 CreateHeaders(verifyCardRequest, path, RequestOptions), verifyCardRequest);
         }
 
-        public PaymentTransactionApprovalListResponse ApprovePaymentTransactions(
-            ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
-        {
-            var path = "/payment/v1/payment-transactions/approve";
-            return RestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(approvePaymentTransactionsRequest, path, RequestOptions),
-                approvePaymentTransactionsRequest);
-        }
-
-        public Task<PaymentTransactionApprovalListResponse> ApprovePaymentTransactionsAsync(
-            ApprovePaymentTransactionsRequest approvePaymentTransactionsRequest)
-        {
-            var path = "/payment/v1/payment-transactions/approve";
-            return AsyncRestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(approvePaymentTransactionsRequest, path, RequestOptions),
-                approvePaymentTransactionsRequest);
-        }
-
-        public PaymentTransactionApprovalListResponse DisapprovePaymentTransactions(
-            DisapprovePaymentTransactionsRequest disapprovePaymentTransactionsRequest)
-        {
-            var path = "/payment/v1/payment-transactions/disapprove";
-            return RestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(disapprovePaymentTransactionsRequest, path, RequestOptions),
-                disapprovePaymentTransactionsRequest);
-        }
-
-        public Task<PaymentTransactionApprovalListResponse> DisapprovePaymentTransactionsAsync(
-            DisapprovePaymentTransactionsRequest disapprovePaymentTransactionsRequest)
-        {
-            var path = "/payment/v1/payment-transactions/disapprove";
-            return AsyncRestClient.Post<PaymentTransactionApprovalListResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(disapprovePaymentTransactionsRequest, path, RequestOptions),
-                disapprovePaymentTransactionsRequest);
-        }
-
-        public PaymentTransactionResponse UpdatePaymentTransaction(
-            UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
-        {
-            var path = "/payment/v1/payment-transactions/" + updatePaymentTransactionRequest.PaymentTransactionId;
-            return RestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions), updatePaymentTransactionRequest);
-        }
-
-        public Task<PaymentTransactionResponse> UpdatePaymentTransactionAsync(
-            UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
-        {
-            var path = "/payment/v1/payment-transactions/" + updatePaymentTransactionRequest.PaymentTransactionId;
-            return AsyncRestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions), updatePaymentTransactionRequest);
-        }
-
         public BnplPaymentOfferResponse RetrieveBnplOffers(BnplPaymentOfferRequest request)
         {
             var path = "/payment/v1/bnpl-payments/offers";
