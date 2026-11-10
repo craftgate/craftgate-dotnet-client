@@ -714,17 +714,17 @@ namespace Craftgate.Adapter
                 CreateHeadersWithoutBody(request, path, RequestOptions), null);
         }
 
-        public InstantTransferBanksResponse RetrieveActiveBanks()
+        public CompayBanksResponse RetrieveActiveBanks()
         {
-            var path = "/payment/v1/instant-transfer-banks";
-            return RestClient.Get<InstantTransferBanksResponse>(RequestOptions.BaseUrl + path,
+            var path = "/payment/v1/compay/banks";
+            return RestClient.Get<CompayBanksResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
-        public Task<InstantTransferBanksResponse> RetrieveActiveBanksAsync()
+        public Task<CompayBanksResponse> RetrieveActiveBanksAsync()
         {
-            var path = "/payment/v1/instant-transfer-banks";
-            return AsyncRestClient.Get<InstantTransferBanksResponse>(RequestOptions.BaseUrl + path,
+            var path = "/payment/v1/compay/banks";
+            return AsyncRestClient.Get<CompayBanksResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
