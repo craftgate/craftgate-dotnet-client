@@ -25,6 +25,7 @@ namespace Craftgate.Response.Common
         public string PaymentPhase { get; set; }
         public string PaymentChannel { get; set; }
         public bool IsThreeDS { get; set; }
+        public bool IsMaskedCardPayment { get; set; }
         public decimal MerchantCommissionRate { get; set; }
         public decimal MerchantCommissionRateAmount { get; set; }
         public decimal BankCommissionRate { get; set; }
