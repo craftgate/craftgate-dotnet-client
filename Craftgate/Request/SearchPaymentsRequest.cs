@@ -25,6 +25,7 @@ namespace Craftgate.Request
         public decimal? MaxPaidPrice { get; set; }
         public int? Installment { get; set; }
         public bool? IsThreeDS { get; set; }
+        public bool? IsMaskedCardPayment { get; set; }
         public DateTime? MinCreatedDate { get; set; }
         public DateTime? MaxCreatedDate { get; set; }
         public int Page { get; set; } = 0;

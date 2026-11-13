@@ -45,6 +45,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "QNB_PAY")] QNB_PAY,
         [EnumMember(Value = "REDSYS")] REDSYS,
         [EnumMember(Value = "RUBIK")] RUBIK,
+        [EnumMember(Value = "SAGLAMPAY")] SAGLAMPAY,
         [EnumMember(Value = "SIPAY")] SIPAY,
         [EnumMember(Value = "STRIPE")] STRIPE,
         [EnumMember(Value = "TAMI")] TAMI,

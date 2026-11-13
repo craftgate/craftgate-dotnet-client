@@ -33,6 +33,7 @@ namespace Samples
                 MaxPaidPrice = new decimal(100),
                 Installment = 1,
                 IsThreeDS = false,
+                IsMaskedCardPayment = false,
                 MinCreatedDate = DateTime.Now.AddDays(-30),
                 MaxCreatedDate = DateTime.Now,
             };
