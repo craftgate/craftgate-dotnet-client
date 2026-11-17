@@ -4,7 +4,7 @@ using Craftgate.Request.Common;
 
 namespace Craftgate.Request
 {
-    public class SearchPayoutCompletedTransactionsRequest : BaseRequest
+    public class SearchPayoutCompletedItemsRequest : BaseRequest
     {
         public long? SettlementFileId { get; set; }
         public SettlementType? SettlementType { get; set; }

@@ -48,6 +48,13 @@ namespace Test
                     MinCreatedDate = DateTime.Parse("03/25/2023 16:51:34"),
                 },
                 "?paymentId=1511&paymentType=CARD_PAYMENT&paymentChannel=MobileApp&maxPaidPrice=1234.987654321&isThreeDS=False&minCreatedDate=2023-03-25T16:51:34&page=0&size=10&");
+
+            yield return new TestCaseData(
+                new SearchPaymentTransactionPayoutsRequest()
+                {
+                    PaymentTransactionIds = new HashSet<long> { 1, 2 }
+                },
+                "?paymentTransactionIds=1,2&");
         }
     }
 }
