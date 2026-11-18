@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
+using Craftgate.Request.Dto;
 using NUnit.Framework;
 
 namespace Samples
@@ -52,6 +54,24 @@ namespace Samples
             };
 
             var response = _craftgateClient.FileReporting().CreateReport(request);
+            Assert.NotNull(response);
+        }
+
+        [Test]
+        public void Create_Report_From_Template()
+        {
+            var request = new CreateReportFromTemplateRequest
+            {
+                Filters = new List<ReportFilter>
+                {
+                    ReportFilter.ReportDate(DateTime.Now.AddDays(-2), DateTime.Now)
+                },
+                FileFormats = new HashSet<ReportFileType> {ReportFileType.CSV}
+            };
+
+            var templateId = 7;
+
+            var response = _craftgateClient.FileReporting().CreateReportFromTemplate(templateId, request);
             Assert.NotNull(response);
         }
 

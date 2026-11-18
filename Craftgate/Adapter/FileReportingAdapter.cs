@@ -65,6 +65,20 @@ namespace Craftgate.Adapter
             return AsyncRestClient.Post<ReportDemandResponse>(RequestOptions.BaseUrl + path, headers, request);
         }
 
+        public ReportFromTemplateResponse CreateReportFromTemplate(long templateId, CreateReportFromTemplateRequest request)
+        {
+            var path = "/file-reporting/v1/report-templates/" + templateId + "/reports";
+            var headers = CreateHeaders(request, path, RequestOptions);
+            return RestClient.Post<ReportFromTemplateResponse>(RequestOptions.BaseUrl + path, headers, request);
+        }
+
+        public Task<ReportFromTemplateResponse> CreateReportFromTemplateAsync(long templateId, CreateReportFromTemplateRequest request)
+        {
+            var path = "/file-reporting/v1/report-templates/" + templateId + "/reports";
+            var headers = CreateHeaders(request, path, RequestOptions);
+            return AsyncRestClient.Post<ReportFromTemplateResponse>(RequestOptions.BaseUrl + path, headers, request);
+        }
+
         public byte[] RetrieveReport(RetrieveReportRequest retrieveReportRequest, long reportId)
         {
             var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveReportRequest);
