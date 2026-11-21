@@ -76,6 +76,20 @@ namespace Samples
         }
 
         [Test]
+        public void Download_Report()
+        {
+            var request = new RetrieveReportRequest
+            {
+                FileType = ReportFileType.CSV
+            };
+
+            var reportId = 27;
+
+            var response = _craftgateClient.FileReporting().DownloadReport(request, reportId);
+            Assert.NotNull(response);
+        }
+
+        [Test]
         public void Retrieve_Report()
         {
             var request = new RetrieveReportRequest

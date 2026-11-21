@@ -96,5 +96,23 @@ namespace Craftgate.Adapter
             headers.Add(ContentType, ApplicationOctetStream);
             return AsyncRestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
         }
+
+        public byte[] DownloadReport(RetrieveReportRequest retrieveReportRequest, long reportId)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveReportRequest);
+            var path = "/file-reporting/v1/reports/" + reportId + "/download" + queryParam;
+            var headers = CreateHeadersWithoutBody(retrieveReportRequest, path, RequestOptions);
+            headers.Add(ContentType, ApplicationOctetStream);
+            return RestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
+        }
+
+        public Task<byte[]> DownloadReportAsync(RetrieveReportRequest retrieveReportRequest, long reportId)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(retrieveReportRequest);
+            var path = "/file-reporting/v1/reports/" + reportId + "/download" + queryParam;
+            var headers = CreateHeadersWithoutBody(retrieveReportRequest, path, RequestOptions);
+            headers.Add(ContentType, ApplicationOctetStream);
+            return AsyncRestClient.Get<byte[]>(RequestOptions.BaseUrl + path, headers);
+        }
     }
 }
