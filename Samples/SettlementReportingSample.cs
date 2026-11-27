@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Craftgate;
 using Craftgate.Model;
 using Craftgate.Request;
@@ -12,10 +13,10 @@ namespace Samples
             new CraftgateClient("api-key", "secret-key", "https://sandbox-api.craftgate.io");
 
         [Test]
-        public void Search_Settlement_Payout_Completed_Transactions()
+        public void Search_Settlement_Payout_Completed_Items()
         {
             var ts = DateTime.Now;
-            var request = new SearchPayoutCompletedTransactionsRequest()
+            var request = new SearchPayoutCompletedItemsRequest()
             {
                 SettlementType = SettlementType.SETTLEMENT,
                 StartDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 0, 0, 0),
@@ -24,17 +25,17 @@ namespace Samples
                 Size = 10
             };
 
-            var response = _craftgateClient.SettlementReporting().SearchPayoutCompletedTransactions(request);
+            var response = _craftgateClient.SettlementReporting().SearchPayoutCompletedItems(request);
             Assert.True(response.Items.Count > 0);
             Assert.True(response.Page == 0);
             Assert.True(response.Size == 10);
         }
 
         [Test]
-        public void Search_Bounced_Settlement_Payout_Completed_Transactions()
+        public void Search_Bounced_Settlement_Payout_Completed_Items()
         {
             var ts = DateTime.Now;
-            var request = new SearchPayoutCompletedTransactionsRequest()
+            var request = new SearchPayoutCompletedItemsRequest()
             {
                 SettlementType = SettlementType.BOUNCED_SETTLEMENT,
                 StartDate = new DateTime(ts.Year, ts.Month, ts.Day - 1, 0, 0, 0),
@@ -43,7 +44,7 @@ namespace Samples
                 Size = 10
             };
 
-            var response = _craftgateClient.SettlementReporting().SearchPayoutCompletedTransactions(request);
+            var response = _craftgateClient.SettlementReporting().SearchPayoutCompletedItems(request);
             Assert.True(response.Items.Count > 0);
             Assert.True(response.Page == 0);
             Assert.True(response.Size == 10);
@@ -64,12 +65,13 @@ namespace Samples
         }
 
         [Test]
-        public void Retrieve_Payout_Details()
+        public void Retrieve_Settlement_Row()
         {
-            var payoutId = 1L;
+            var settlementRowId = 1L;
 
-            var response = _craftgateClient.SettlementReporting().RetrievePayoutDetails(payoutId);
+            var response = _craftgateClient.SettlementReporting().RetrieveSettlementRow(settlementRowId);
             Assert.NotNull(response);
+            Assert.True(response.Items.Count > 0);
         }
         
         [Test]
@@ -86,6 +88,28 @@ namespace Samples
             };
 
             var response = _craftgateClient.SettlementReporting().SearchPayoutRows(request);
+            Assert.True(response.Items.Count > 0);
+        }
+
+        [Test]
+        public void Retrieve_Payment_Transaction_Payout()
+        {
+            var paymentTransactionId = 1L;
+
+            var response = _craftgateClient.SettlementReporting().RetrievePaymentTransactionPayout(paymentTransactionId);
+            Assert.AreEqual(paymentTransactionId, response.PaymentTransactionId);
+            Assert.True(response.PayoutItems.Count > 0);
+        }
+
+        [Test]
+        public void Search_Payment_Transaction_Payouts()
+        {
+            var request = new SearchPaymentTransactionPayoutsRequest()
+            {
+                PaymentTransactionIds = new HashSet<long> { 1, 2 }
+            };
+
+            var response = _craftgateClient.SettlementReporting().SearchPaymentTransactionPayouts(request);
             Assert.True(response.Items.Count > 0);
         }
     }
