@@ -30,6 +30,7 @@ namespace Craftgate.Model
         [EnumMember(Value = "MULTINET_NEO_GIFT")] MULTINET_NEO_GIFT,
         [EnumMember(Value = "METROPOL")] METROPOL,
         [EnumMember(Value = "ISPAY")] ISPAY,
+        [EnumMember(Value = "ISPAY_POS_APM")] ISPAY_POS_APM,
         [EnumMember(Value = "PAYMOB")] PAYMOB,
         [EnumMember(Value = "VODAFONE_DCB")] VODAFONE_DCB,
         [EnumMember(Value = "KASPI")] KASPI,
