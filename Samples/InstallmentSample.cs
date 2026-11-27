@@ -54,5 +54,20 @@ namespace Samples
             var response = _craftgateClient.Installment().SearchInstallments(request);
             Assert.True(response.Items.Count > 0);
         }
+
+        [Test]
+        public void Search_Installments_With_Payment_Provider()
+        {
+            var request = new SearchInstallmentsRequest
+            {
+                BinNumber = "525864",
+                Price = 100,
+                Currency = Currency.TRY,
+                PaymentProvider = PaymentProvider.MASTERPASS
+            };
+
+            var response = _craftgateClient.Installment().SearchInstallments(request);
+            Assert.True(response.Items.Count > 0);
+        }
     }
 }

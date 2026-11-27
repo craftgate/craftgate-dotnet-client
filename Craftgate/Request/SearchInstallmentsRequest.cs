@@ -10,5 +10,6 @@ namespace Craftgate.Request
         public Currency? Currency { get; set; }
         public bool? DistinctCardBrandsWithLowestCommissions { get; set; }
         public bool? LoyaltyExists { get; set; }
+        public PaymentProvider? PaymentProvider { get; set; }
     }
 }
